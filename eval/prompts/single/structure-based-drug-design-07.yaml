@@ -1,0 +1,40 @@
+id: structure-based-drug-design-07
+prompt: 'You are optimizing a series of covalent inhibitors targeting KRASG12C for
+  a lung adenocarcinoma program. Your lead compound **KRX-447** has the following
+  profile from crystallographic and biochemical data:
+
+
+  - Co-crystal structure resolved at 2.1 Å (PDB-like entry: KRX_447_complex) showing
+  the warhead (acrylamide) covalently bound to C12, with the core scaffold occupying
+  the Switch II pocket (S-IIP)
+
+  - Covalent docking score: −11.3 kcal/mol (non-covalent component: −8.7 kcal/mol)
+
+  - Biochemical IC50 (irreversible): 38 nM; cellular NanoBRET IC50: 210 nM
+
+  - Three analogs (KRX-448, KRX-449, KRX-450) with fluorine, chloro, and methyl substitutions
+  at the para-position of a pendant phenyl ring show IC50 values of 22 nM, 55 nM,
+  and 41 nM respectively
+
+  - MM-GBSA rescoring of the non-covalent pre-reaction complex: ΔG_bind = −42.1, −39.4,
+  −47.8, −38.6 kcal/mol for KRX-447 through KRX-450
+
+
+  Given this data, please provide:
+
+  1. An interpretation of the SAR from the substituent series and whether MM-GBSA
+  rankings correlate with biochemical potency
+
+  2. A recommendation on whether to use induced-fit docking (IFD) or ensemble docking
+  to explore additional substitutions at this position, with justification
+
+  3. A brief FEP+ planning strategy (perturbation map, cycle closure, key considerations)
+  for prioritizing 6 new analogs at this position
+
+  4. Python pseudocode using an RDKit-based workflow to enumerate and filter the next
+  20 candidate substituents based on physicochemical constraints (MW ≤ 500, cLogP
+  ≤ 4, no reactive groups)'
+target_skills:
+- structure-based-drug-design
+domain: protein-structure
+difficulty: intermediate

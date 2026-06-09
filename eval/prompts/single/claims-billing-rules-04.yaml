@@ -1,0 +1,40 @@
+id: claims-billing-rules-04
+prompt: 'A regional Medicare Advantage plan is conducting a retrospective claims audit
+  on a high-volume orthopedic surgery group. The audit team flagged Provider Group
+  XYZ, which submitted 847 claims over 6 months involving arthroscopic knee procedures.
+  The following patterns were identified in the data:
+
+
+  - CPT 29881 (arthroscopy with meniscectomy) billed with CPT 29876 (synovectomy)
+  on the same knee, same date, using Modifier 59 on CPT 29876 — appearing on 312 claims
+
+  - CPT 99213 (E&M visit) billed same day as CPT 29881 with Modifier 25 on the E&M
+  — appearing on 198 claims
+
+  - CPT 29881 billed bilaterally (units = 2, no LT/RT modifiers) — appearing on 89
+  claims
+
+  - Post-operative pain management E&M visits billed within the 90-day global surgery
+  period without Modifier 24 — appearing on 143 claims
+
+
+  Using your knowledge of NCCI edit logic, global surgery period rules, and modifier
+  usage guidelines, please provide:
+
+
+  1. An assessment of whether each of the four billing patterns represents a likely
+  coding error, potential fraud, or acceptable billing practice — with specific regulatory
+  or CMS guidance citations for each determination
+
+  2. The correct modifier usage or billing approach that should have been applied
+  in each scenario
+
+  3. A prioritized list of which patterns warrant escalation to a formal FWA investigation
+  versus provider education, with justification
+
+  4. A risk-scoring framework (scale 1–10) that could be applied systematically to
+  flag similar patterns across the broader provider population'
+target_skills:
+- claims-billing-rules
+domain: healthcare-ops
+difficulty: intermediate

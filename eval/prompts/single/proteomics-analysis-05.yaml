@@ -1,0 +1,40 @@
+id: proteomics-analysis-05
+prompt: 'You have processed a TMT 10-plex proteomics experiment comparing three conditions:
+  healthy controls (n=4), early-stage Alzheimer''s disease (n=4), and late-stage Alzheimer''s
+  disease (n=4) using MSFragger, with the output file `combined_protein.tsv`. Each
+  condition occupies specific TMT channels: controls use channels 126, 127N, 127C,
+  128N; early-AD uses 128C, 129N, 129C, 130N; late-AD uses 130C, 131N, 131C, and one
+  pooled reference in channel 132N used for cross-batch normalization.
+
+
+  Your analysis requirements are:
+
+
+  1. **Data loading and preprocessing**: Write R code using MSnbase or a similar package
+  to load `combined_protein.tsv`, extract TMT reporter ion intensities for the 12
+  sample channels, and filter proteins requiring at least 2 valid values per condition
+  (retaining the pooled reference channel separately for normalization purposes).
+
+
+  2. **Normalization**: Implement reference channel normalization using the 132N pooled
+  reference to correct for loading differences, followed by median centering across
+  all samples. Show intermediate QC boxplots before and after normalization.
+
+
+  3. **Differential expression**: Using limma with a design matrix that models both
+  pairwise contrasts (early-AD vs. control, late-AD vs. control, late-AD vs. early-AD),
+  run moderated t-tests with Benjamini-Hochberg correction. Use an adjusted p-value
+  threshold of 0.05 and |log2FC| > 0.5.
+
+
+  4. **Visualization**: Generate a multi-panel volcano plot (one panel per contrast)
+  highlighting proteins APP, APOE, TREM2, CLU, and BIN1 in a distinct color.
+
+
+  5. **Enrichment analysis**: Run clusterProfiler GO biological process enrichment
+  on the significant proteins from the late-AD vs. control contrast and produce a
+  dotplot of the top 15 terms.'
+target_skills:
+- proteomics-analysis
+domain: proteomics
+difficulty: intermediate

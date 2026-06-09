@@ -1,0 +1,47 @@
+id: pa-decision-automation-05
+prompt: 'Here is test question #5 of 10:
+
+
+  ---
+
+
+  Your team has built a gradient boosting PA classifier trained on 18 months of historical
+  prior authorization decisions (142,000 approved, 38,500 denied) for specialty medications
+  including biologics for rheumatoid arthritis (adalimumab, etanercept, tocilizumab).
+  The model achieves 89% overall accuracy, but your medical director has flagged that
+  denial rates for patients with ICD-10 code M06.9 (rheumatoid arthritis, unspecified)
+  are 34% higher than for M05.79 (seropositive RA with rheumatoid factor), even when
+  clinical notes indicate equivalent disease severity scores (DAS28 > 5.1). The model
+  uses 47 input features including: prior medication history, lab values (CRP, ESR,
+  RF titer), diagnosis codes, step therapy compliance flags, and provider NPI specialty
+  codes.
+
+
+  Please provide the following deliverables:
+
+
+  1. **Denial pattern analysis**: Write Python code using pandas and SHAP to identify
+  which features are driving the differential denial rate between M06.9 and M05.79
+  patient cohorts, including a SHAP waterfall plot comparing mean feature contributions
+  for each group.
+
+
+  2. **Bias remediation strategy**: Recommend at least three concrete approaches to
+  reduce the diagnosis-code-driven disparity while maintaining overall model accuracy,
+  including whether to apply pre-processing, in-processing, or post-processing fairness
+  interventions.
+
+
+  3. **Rules engine override**: Design a supplementary rules-based adjudication layer
+  (pseudocode acceptable) that catches cases where the ML model predicts denial but
+  clinical severity indicators (DAS28 > 5.1, CRP > 20 mg/L, two or more failed step
+  therapy medications) collectively meet clinical criteria for approval.
+
+
+  4. **Audit logging schema**: Propose a database schema for tracking override decisions
+  to support downstream regulatory audit requirements under CMS prior authorization
+  transparency rules.'
+target_skills:
+- pa-decision-automation
+domain: healthcare-ops
+difficulty: intermediate

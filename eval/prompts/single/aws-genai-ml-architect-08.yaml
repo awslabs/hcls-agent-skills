@@ -1,0 +1,44 @@
+id: aws-genai-ml-architect-08
+prompt: 'Here is test question #8 of 10:
+
+
+  ---
+
+
+  Your organization operates a federated network of 14 regional hospitals contributing
+  de-identified genomic and clinical data to a centralized AWS environment for a pharmacogenomics
+  study involving 340,000 patient records. Each hospital retains data sovereignty
+  and cannot allow raw data to leave its VPC. You are designing a federated learning
+  architecture to train a variant effect prediction model (targeting CYP2D6, CYP2C19,
+  and SLCO1B1 gene variants) that will inform drug dosing recommendations — a high-stakes
+  clinical decision support function requiring FDA 21 CFR Part 11 audit trails.
+
+
+  The architecture must satisfy: (1) HIPAA BAA coverage across all 14 hospital AWS
+  accounts, (2) differential privacy guarantees (ε ≤ 2.0) on gradient aggregation,
+  (3) model versioning with immutable audit logs, (4) inference latency under 800ms
+  for point-of-care queries, and (5) a cost ceiling of $120,000/year for the central
+  aggregation hub.
+
+
+  Please provide:
+
+  - A detailed AWS architecture diagram description for the federated hub-and-spoke
+  topology, specifying which AWS services handle local training, secure gradient transmission,
+  and central aggregation
+
+  - A recommendation on whether to use SageMaker Federated Learning capabilities,
+  custom FL frameworks on SageMaker, or a hybrid Bedrock approach for the aggregation
+  layer, with explicit trade-off justification
+
+  - A Python pseudocode sketch of the differential privacy gradient clipping and aggregation
+  Lambda/SageMaker Pipeline step
+
+  - An MLOps governance design addressing 21 CFR Part 11 requirements using AWS native
+  services
+
+  - A cost breakdown validating feasibility within the $120,000/year constraint'
+target_skills:
+- aws-genai-ml-architect
+domain: cross-domain
+difficulty: hard

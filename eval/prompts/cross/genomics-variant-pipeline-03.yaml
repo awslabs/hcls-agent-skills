@@ -1,0 +1,49 @@
+id: genomics-variant-pipeline-03
+prompt: 'A clinical genomics laboratory is processing a cohort of 47 patients with
+  suspected hereditary breast and ovarian cancer syndrome. Paired-end Illumina NovaSeq
+  6000 reads (150 bp, ~30x target WES coverage) have been sequenced, and you are building
+  a production-grade analysis pipeline from FASTQ to variant interpretation report.
+
+
+  For a representative sample (sample ID: HBC_042), the following specific findings
+  have been observed after a preliminary run:
+
+
+  **QC flags:** FastQC reports 18% adapter contamination in R2, mean Q30 rate of 87%,
+  and mosdepth shows that 12% of BRCA1 exonic targets fall below 20x coverage. Duplicate
+  rate from Picard MarkDuplicates is 34%.
+
+
+  **Variant calling concerns:** HaplotypeCaller was run in GVCF mode but the cohort
+  is too small for VQSR (n=47). A candidate indel in BRCA2 exon 11 was called with
+  DP=8, GQ=15, and an adjacent homopolymer run of 9 bp.
+
+
+  **Candidate variant for interpretation:** A novel heterozygous variant `BRCA1 c.5194-3C>A`
+  (chr17:43,057,092 C>A, GRCh38) is identified. SpliceAI delta score = 0.41 (DS_AL),
+  REVEL = 0.62, gnomAD v3.1 allele frequency = 0.000008 (2 heterozygotes observed),
+  ClinVar has no existing submissions, and in-silico tools predict weakened branch
+  point usage. The variant is absent from the patient''s unaffected mother but present
+  in an affected maternal aunt (no sequencing data available for aunt, reported by
+  clinical notes only).
+
+
+  **Deliverables required:**
+
+
+  1. Design a complete QC remediation plan for HBC_042, specifying exact tools, commands,
+  and thresholds to address each flagged metric before re-calling variants.
+
+  2. Justify and implement an appropriate hard-filter strategy to replace VQSR for
+  this cohort size, providing GATK `VariantFiltration` filter expressions for both
+  SNVs and indels, and explain why the BRCA2 candidate should be flagged.
+
+  3. Classify `BRCA1 c.5194-3C>A` using ACMG/AMP 2015 criteria, explicitly evaluating
+  applicability of PVS1, PM2, PP3, BS1, and BS2, and assign a final classification
+  with a clinical reporting recommendation.'
+target_skills:
+- genomic-variant-interpretation
+- variant-calling
+- ngs-quality-control
+domain: genomics
+difficulty: easy

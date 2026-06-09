@@ -1,0 +1,26 @@
+id: edc-data-validation-03
+prompt: "Here is test question #3 of 10:\n\n---\n\nYou are working as a data manager\
+  \ on a Phase II oncology trial with 85 enrolled patients. Your EDC system (Veeva\
+  \ Vault CDMS) has exported vital signs data as a CSV file. Each row contains: USUBJID,\
+  \ VISIT, VSTEST (test name), VSORRES (original result), VSORRESU (original unit),\
+  \ VSDTC (date/time of collection).\n\nThe VSTEST values in your export include:\
+  \ \"Systolic Blood Pressure\", \"Diastolic Blood Pressure\", \"Heart Rate\", \"\
+  Temperature\", and \"Weight\". You need to implement automated range checks per\
+  \ the protocol-defined limits below:\n\n- Systolic BP: 70–200 mmHg  \n- Diastolic\
+  \ BP: 40–120 mmHg  \n- Heart Rate: 40–150 bpm  \n- Temperature: 35.0–41.0 °C  \n\
+  - Weight: 30–200 kg  \n\nAdditionally, there is a clinical rule that Diastolic BP\
+  \ must always be strictly less than Systolic BP for the same patient visit.\n\n\
+  Please provide:\n\n1. A Python function `validate_vital_signs(df: pd.DataFrame)\
+  \ -> pd.DataFrame` that accepts the exported DataFrame and returns a summary DataFrame\
+  \ listing all flagged records with columns: USUBJID, VISIT, VSTEST, VSORRES, VSORRESU,\
+  \ FLAG_TYPE (either \"OUT_OF_RANGE\" or \"DIASTOLIC_EXCEEDS_SYSTOLIC\"), and FLAG_MESSAGE\
+  \ describing the issue.\n\n2. A second function `generate_query_report(flagged_df:\
+  \ pd.DataFrame) -> str` that formats the flagged records into a human-readable data\
+  \ query report string, grouping issues by USUBJID.\n\n3. Brief inline comments explaining\
+  \ the logic for the cross-form consistency check between Diastolic and Systolic\
+  \ BP values.\n\nAssume pandas is available and VSORRES values have already been\
+  \ cast to float."
+target_skills:
+- edc-data-validation
+domain: clinical-data-review
+difficulty: easy

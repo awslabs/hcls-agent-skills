@@ -1,0 +1,43 @@
+id: scrna-seq-pipeline-03
+prompt: 'You have just loaded a 10X Genomics dataset from a PBMC experiment with 8,500
+  cells into an AnnData object. Before proceeding with downstream analysis, you need
+  to perform quality control filtering to remove low-quality cells and potential doublets
+  based on standard QC metrics.
+
+
+  Your raw AnnData object (`adata`) has already been loaded using `sc.read_10x_mtx()`
+  and contains the following characteristics:
+
+  - Total cells before filtering: 8,500
+
+  - Genes detected range: 200–6,800 per cell
+
+  - Some cells show very high mitochondrial gene content (up to 45%)
+
+  - Mitochondrial genes follow the "MT-" prefix convention
+
+
+  **Your tasks:**
+
+
+  1. **Write complete Python/Scanpy code** to calculate the three standard QC metrics:
+  number of genes per cell (`n_genes_by_counts`), total UMI counts per cell (`total_counts`),
+  and percentage of mitochondrial reads (`pct_counts_mt`).
+
+
+  2. **Apply filtering thresholds** using these specific parameters: minimum 200 genes
+  per cell, maximum 2,500 genes per cell, and less than 15% mitochondrial content.
+  Show the filtering code and print how many cells remain after each filtering step.
+
+
+  3. **Generate a QC visualization** using `sc.pl.violin()` to display all three metrics
+  side-by-side before and after filtering.
+
+
+  4. **Briefly explain** (2-3 sentences) why the upper threshold on `n_genes_by_counts`
+  (2,500) is important for data quality, specifically what biological artifact it
+  helps remove.'
+target_skills:
+- scrna-seq-pipeline
+domain: single-cell
+difficulty: easy

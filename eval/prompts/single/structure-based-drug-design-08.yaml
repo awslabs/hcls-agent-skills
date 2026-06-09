@@ -1,0 +1,37 @@
+id: structure-based-drug-design-08
+prompt: 'You are optimizing a series of macrocyclic inhibitors targeting the PPI (protein-protein
+  interaction) interface of KRAS(G12C)-SOS1. Crystallographic data (PDB: 7XYZ, fictional)
+  reveals a shallow, elongated binding groove (~850 Ų BSA) with three sub-pockets:
+  a deep hydrophobic anchor pocket (SP1), a solvent-exposed charged region (SP2),
+  and a cryptic allosteric sub-pocket (SP3) that only appears in 2 of 7 crystal structures.
+  Your lead compound MAC-047 has MW=687 Da, cLogP=4.2, and shows IC50=340 nM in a
+  TR-FRET displacement assay but only 12% cellular target engagement at 10 µM (NanoBRET
+  assay). MM-GBSA rescoring of 50 docked poses gives ΔG_bind = -42.3 kcal/mol, yet
+  the experimental Kd measured by SPR is 890 nM.
+
+
+  Address the following:
+
+
+  1. Diagnose the likely sources of discrepancy between the MM-GBSA predicted ΔG and
+  experimental SPR Kd, given the target and compound characteristics.
+
+
+  2. Propose a prioritized FEP+ workflow to guide the next round of analog synthesis,
+  specifying which atoms/vectors to perturb first and why, given the three sub-pocket
+  architecture.
+
+
+  3. The cryptic SP3 pocket presents a design opportunity but introduces conformational
+  uncertainty. Describe a specific MD-based protocol (ensemble docking or metadynamics
+  approach) to validate SP3 druggability, including simulation length, force field
+  choice, and collective variables.
+
+
+  4. Write a Python pseudocode snippet (using RDKit and a hypothetical FEP API) that
+  automates the prioritization of 200 proposed R-group substitutions at the SP2 vector
+  based on predicted ΔΔG and synthetic accessibility scores.'
+target_skills:
+- structure-based-drug-design
+domain: protein-structure
+difficulty: hard

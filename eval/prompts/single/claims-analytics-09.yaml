@@ -1,0 +1,47 @@
+id: claims-analytics-09
+prompt: 'Here is test question #9 of 10:
+
+
+  ---
+
+
+  A regional Medicare Advantage plan has flagged a cohort of 47 pain management providers
+  showing unusually high charges for nerve block procedures (CPT codes 64415–64450
+  range). Your task is to investigate potential upcoding and unbundling violations
+  using a claims dataset with the following schema: `claims(claim_id, provider_npi,
+  service_date, cpt_code, modifier, billed_amount, allowed_amount, units, place_of_service,
+  diagnosis_code_primary)` containing approximately 2.3 million rows spanning 24 months.
+
+
+  **Deliverables required:**
+
+
+  1. **SQL query** that profiles each of the 47 flagged NPIs against their specialty
+  peer group, computing: average billed amount per unit, units-per-claim ratio, 90th
+  percentile charge comparison vs. peers, and a frequency distribution of modifier
+  usage (specifically modifiers 59, XU, XS, XE, XP).
+
+
+  2. **Python code** implementing NCCI edit validation logic that detects improper
+  unbundling between column 1/column 2 code pairs — specifically identifying claims
+  where CPT 64415 is billed same-day alongside 64417, 64418, or 64420 for the same
+  beneficiary without an appropriate modifier override.
+
+
+  3. **Benford''s Law analysis** in Python applied to the `billed_amount` field for
+  the flagged provider cohort versus a clean control group of 200 randomly selected
+  same-specialty providers, including a chi-square goodness-of-fit test and visualization
+  code using matplotlib that overlays observed vs. expected first-digit distributions
+  for both groups.
+
+
+  4. A **fraud risk scoring rubric** (as a Python dictionary or dataclass) that combines
+  the above signals into a composite score with justifiable weights, flagging providers
+  exceeding a threshold of 75 out of 100.
+
+
+  Assume pandas, sqlalchemy, scipy, and matplotlib are available.'
+target_skills:
+- claims-analytics
+domain: healthcare-ops
+difficulty: hard

@@ -1,0 +1,37 @@
+id: ngs-quality-control-03
+prompt: 'You have just received paired-end FASTQ files (`sample_R1.fastq.gz` and `sample_R2.fastq.gz`)
+  from a whole-genome sequencing run and need to perform initial quality control before
+  proceeding with variant calling. Your computing environment has `THREADS=8` available
+  and you want all outputs written to `qc_out/`.
+
+
+  **Your tasks are:**
+
+
+  1. Write a `fastp` command to perform adapter trimming and quality filtering on
+  the paired FASTQs. Use the following parameters: minimum read length of 50 bp, quality
+  threshold of 20 for sliding-window trimming (window size 4), and generate both the
+  JSON and HTML QC reports. Save the trimmed reads as `sample_R1_trimmed.fastq.gz`
+  and `sample_R2_trimmed.fastq.gz` inside `qc_out/`.
+
+
+  2. Write a FastQC command to assess the quality of the **trimmed** reads, directing
+  all output to `qc_out/`.
+
+
+  3. After running both tools, write a MultiQC command that aggregates all QC reports
+  found in `qc_out/` into a single summary report, also saved in `qc_out/`, with the
+  project labeled `"WGS_Sample_QC"`.
+
+
+  4. List **three specific metrics** you would examine in the MultiQC report to decide
+  whether the sample passes QC and briefly explain the acceptable threshold or interpretation
+  for each metric in the context of whole-genome sequencing.
+
+
+  Provide all commands in bash-ready format and ensure they are consistent with the
+  directory structure and thread count specified above.'
+target_skills:
+- ngs-quality-control
+domain: genomics
+difficulty: easy

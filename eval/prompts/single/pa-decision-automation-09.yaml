@@ -1,0 +1,51 @@
+id: pa-decision-automation-09
+prompt: 'Here is test question #9 of 10:
+
+
+  ---
+
+
+  Your health plan processes approximately 4,200 prior authorization requests per
+  month for specialty biologics (adalimumab, ustekinumab, secukinumab) targeting inflammatory
+  conditions. You have 18 months of historical PA decisions (roughly 75,600 records)
+  stored as FHIR PAS bundles, with an overall approval rate of 67% and a denial rate
+  of 33%. Post-hoc analysis reveals that 41% of denials are subsequently overturned
+  on appeal within 30 days, suggesting your current rules engine is generating a significant
+  volume of "false denials."
+
+
+  Your clinical informatics team suspects the rules engine is over-weighting a single
+  criterion — "failure of at least two conventional DMARDs" — while under-weighting
+  composite clinical severity signals such as elevated CRP (>20 mg/L), DAS28 score
+  (>5.1), and radiographic progression evidence documented in clinical notes as unstructured
+  text.
+
+
+  Given this scenario, provide the following deliverables:
+
+
+  1. **Feature engineering plan**: Describe how you would extract and encode the structured
+  lab values, DAS28 scores, and unstructured radiology/clinical note features from
+  FHIR PAS bundles into a machine-learning-ready feature matrix. Include specific
+  FHIR resource paths and NLP strategy.
+
+
+  2. **Model architecture recommendation**: Propose a gradient-boosted classifier
+  configuration (hyperparameter ranges, class imbalance handling given the 67/33 split,
+  and cross-validation strategy appropriate for temporal PA data).
+
+
+  3. **SHAP explainability implementation**: Write Python pseudocode using `shap`
+  library to generate per-request waterfall explanations that a utilization management
+  nurse reviewer could interpret, specifically showing how the DMADR failure criterion
+  compares against composite severity features in driving the predicted outcome.
+
+
+  4. **Denial pattern audit query**: Write a FHIR-compliant query (using FHIRPath
+  or FHIR Search syntax) to isolate the subset of overturned denials where CRP and
+  DAS28 were both documented but the DMARD criterion was cited as the sole denial
+  reason.'
+target_skills:
+- pa-decision-automation
+domain: healthcare-ops
+difficulty: hard

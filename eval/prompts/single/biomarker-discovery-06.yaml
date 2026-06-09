@@ -1,0 +1,47 @@
+id: biomarker-discovery-06
+prompt: 'Here is test question #6 of 10:
+
+
+  ---
+
+
+  You are developing a **predictive biomarker** to identify which early-stage non-small
+  cell lung cancer (NSCLC) patients will respond to adjuvant immunotherapy (pembrolizumab)
+  versus chemotherapy alone. Your discovery cohort consists of 312 patients (187 treated
+  with pembrolizumab, 125 with chemotherapy) from a single academic center, with the
+  primary endpoint being 3-year recurrence-free survival (RFS). Available data includes:
+  (1) a 1,847-gene RNA-seq panel from tumor biopsies, (2) 14 clinical variables (age,
+  stage, smoking history, PD-L1 TPS score, TMB, etc.), and (3) a treatment assignment
+  indicator.
+
+
+  Your statistician flags a concern: the team previously normalized the RNA-seq data
+  and removed batch effects using the full dataset (n=312) before splitting into train/test
+  sets.
+
+
+  **Please provide the following:**
+
+
+  1. **Classify** this biomarker as prognostic, predictive, or both — and explain
+  why the distinction critically affects your modeling strategy, specifically regarding
+  how treatment interaction terms must be incorporated.
+
+
+  2. **Identify and quantify** the specific data leakage introduced by the normalization/batch-correction
+  step, and describe a corrected preprocessing pipeline using pseudocode.
+
+
+  3. **Design a nested cross-validation scheme** appropriate for this sample size
+  and endpoint (include fold choices, inner loop purpose, and how you would compute
+  an optimism-corrected C-index for the treatment interaction model).
+
+
+  4. **Specify the minimum external validation requirements** before this biomarker
+  could be considered for regulatory submission, including cohort characteristics,
+  required sample size (using events-per-variable reasoning), and which performance
+  metrics beyond C-index you would report.'
+target_skills:
+- biomarker-discovery
+domain: single-cell
+difficulty: intermediate

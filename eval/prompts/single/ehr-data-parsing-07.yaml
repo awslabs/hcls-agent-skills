@@ -1,0 +1,39 @@
+id: ehr-data-parsing-07
+prompt: 'You are working with a hospital''s ADT (Admit-Discharge-Transfer) feed that
+  delivers HL7v2 ADT^A01 messages for patient admissions. Your team needs to parse
+  these messages and extract structured patient demographics into a pandas DataFrame
+  for downstream analytics. Below is a representative sample message:
+
+
+  ```
+
+  MSH|^~\&|EPIC|MEMORIAL|RHAPSODY|HIE|20240315142233||ADT^A01|MSG00471|P|2.5
+
+  EVN|A01|20240315142233
+
+  PID|1||MR789456^^^MEMORIAL^MR||JOHNSON^ROBERT^LEE^^MR||19681122|M|||742 EVERGREEN
+  TERRACE^^SPRINGFIELD^IL^62701^USA||555-867-5309^PRN^PH^^^555^8675309|555-555-0192^WPN^PH|||S||ACC-2024-0315||123-45-6789
+
+  PV1|1|I|3WEST^301^A^MEMORIAL||||1234567^SMITH^JANE^^^DR^MD|||MED||||A|||1234567^SMITH^JANE^^^DR^MD||V1000123^^^VISIT^VN|INS|||||||||||||||||||MEMORIAL||ADM|20240315142000|
+
+  ```
+
+
+  Please provide:
+
+  1. A Python function `parse_adt_message(raw_hl7: str) -> dict` that extracts patient
+  ID (MRN), full name, date of birth, gender, address, phone numbers (home and work),
+  SSN, attending physician name, visit number, and admission datetime — handling cases
+  where optional fields may be empty or missing.
+
+  2. A second function `batch_parse_to_dataframe(messages: list[str]) -> pd.DataFrame`
+  that processes a list of raw HL7 strings and returns a normalized DataFrame with
+  appropriate column names and data types (DOB as `datetime64`, admission as `datetime64`).
+
+  3. A brief explanation of which PID and PV1 field positions map to each extracted
+  field, and any data quality checks you would add (e.g., validating SSN format, checking
+  for duplicate MRNs).'
+target_skills:
+- ehr-data-parsing
+domain: clinical-data
+difficulty: intermediate

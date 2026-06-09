@@ -1,0 +1,43 @@
+id: proteomics-analysis-08
+prompt: 'You are analyzing a TMT-16plex phosphoproteomics dataset from a clinical
+  study comparing treatment-naive (n=8 patients) versus drug-resistant (n=8 patients)
+  triple-negative breast cancer biopsies. The MSFragger/Philosopher pipeline produced
+  a `combined_protein.tsv` and a separate `combined_phospho.tsv` containing phosphopeptide-level
+  intensities with localization probabilities. Your TMT channels 126–131C represent
+  naive samples and 132N–134N represent resistant samples. You''ve noticed that channels
+  129N and 133C show systematic ~2.3-fold lower signal across all peptides, suggesting
+  pipetting errors during labeling.
+
+
+  Provide complete R code addressing the following:
+
+
+  1. **Data loading and QC**: Load `combined_phospho.tsv`, filter phosphosites to
+  localization probability ≥ 0.75, and generate a sample-level boxplot before normalization
+  to visualize the problematic channels.
+
+
+  2. **Normalization strategy**: Implement a two-step normalization — first apply
+  median centering to correct the faulty channels (129N, 133C), then perform variance-stabilizing
+  normalization (VSN) using the `vsn` package on the corrected matrix.
+
+
+  3. **Missing value handling**: For sites missing in >50% of samples within either
+  group, remove them entirely. For remaining missing values, apply group-aware minimum
+  value imputation (impute using the 5th percentile of detected values within the
+  same group).
+
+
+  4. **Differential analysis**: Run `limma` with a design matrix that includes a batch
+  covariate for tumor purity (continuous variable, provided as a vector `purity <-
+  c(0.82, 0.79, 0.91, 0.85, 0.88, 0.76, 0.83, 0.90, 0.71, 0.84, 0.88, 0.79, 0.92,
+  0.85, 0.77, 0.83)`), and apply `eBayes` with `trend=TRUE`.
+
+
+  5. **Output**: Produce a volcano plot highlighting phosphosites on known resistance-associated
+  kinases (EGFR, AKT1, MAPK1, SRC, MET) and export a ranked gene list for GSEA using
+  `fgsea`.'
+target_skills:
+- proteomics-analysis
+domain: proteomics
+difficulty: hard

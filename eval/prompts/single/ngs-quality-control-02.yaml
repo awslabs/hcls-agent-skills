@@ -1,0 +1,37 @@
+id: ngs-quality-control-02
+prompt: 'You have just received paired-end FASTQ files (`sample_R1.fastq.gz` and `sample_R2.fastq.gz`)
+  from a whole-genome sequencing run and need to perform initial quality assessment
+  before proceeding with variant calling. Your compute environment has `THREADS=8`
+  and you want all outputs written to `qc_out/`.
+
+
+  **Your task is to provide all of the following:**
+
+
+  1. **FastQC command**: Write the exact shell command to run FastQC on both FASTQ
+  files simultaneously, using all 8 available threads and directing output to `qc_out/`.
+
+
+  2. **Interpret key metrics**: List the four most important FastQC modules/metrics
+  you would examine first for a WGS sample, and briefly explain (1–2 sentences each)
+  what a "WARN" or "FAIL" flag in each module would indicate about data quality.
+
+
+  3. **MultiQC aggregation**: Write the shell command to run MultiQC on the `qc_out/`
+  directory so that all FastQC reports are aggregated into a single summary report,
+  also saved in `qc_out/`.
+
+
+  4. **Decision threshold**: Given that downstream variant calling requires reads
+  with mean base quality ≥ Q28 and mean read length ≥ 100 bp, describe what specific
+  values in the FastQC "Per Base Sequence Quality" and "Sequence Length Distribution"
+  modules would cause you to flag this sample as requiring adapter trimming or quality
+  filtering before proceeding.
+
+
+  Keep all commands copy-paste ready and assume standard conda/bioconda installations
+  of FastQC (v0.12.1) and MultiQC (v1.21).'
+target_skills:
+- ngs-quality-control
+domain: genomics
+difficulty: easy

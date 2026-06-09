@@ -1,0 +1,54 @@
+id: pharma-rwd-clinical-06
+prompt: 'Here is the research question:
+
+
+  ---
+
+
+  You are designing a real-world evidence study using a large US commercial claims
+  database (Optum Clinformatics, 2016–2023, approximately 18 million continuously
+  enrolled members) to evaluate the comparative effectiveness of empagliflozin versus
+  sitagliptin on incident heart failure hospitalization among adults with type 2 diabetes.
+  The study will emulate a target trial using an active comparator new-user design.
+
+
+  **Please provide the following concrete deliverables:**
+
+
+  **1. Study Design Specification (Pharmacoepidemiology)**
+
+  Define the target trial protocol including: eligibility criteria with required washout
+  period (specify minimum duration and rationale), index date definition, grace period
+  for exposure definition, and how you would handle time-varying confounding from
+  add-on antidiabetic medications using marginal structural models with stabilized
+  IPTW weights. Explain how immortal time bias could arise if a prevalent-user design
+  were used instead, and calculate an E-value for an observed hazard ratio of 0.72
+  (95% CI: 0.61–0.85) to quantify robustness to unmeasured confounding.
+
+
+  **2. Cohort Identification Pipeline (RWD Cohort Analysis)**
+
+  Specify the exact code sets needed to identify: (a) empagliflozin and sitagliptin
+  initiators using NDC codes (provide at least 4 representative NDC-9 prefixes per
+  drug), (b) type 2 diabetes using ICD-10-CM diagnosis codes with a 2-code validation
+  rule, (c) the outcome of heart failure hospitalization using ICD-10-CM principal
+  discharge diagnosis codes, and (d) CPT codes for relevant comorbidity assessment
+  (eGFR testing, echocardiography). Additionally, describe how you would calculate
+  the proportion of days covered (PDC) over a 180-day follow-up window, and specify
+  SMD thresholds for acceptable propensity score balance diagnostics.
+
+
+  **3. Adverse Event and Terminology Coding (Clinical Data Standards)**
+
+  The safety analysis must capture diabetic ketoacidosis (DKA) as a negative control
+  outcome candidate and urinary tract infections as a known drug-class effect. Map
+  these conditions across ICD-10-CM, MedDRA (specifying PT, HLT, and SOC levels for
+  each), and SNOMED CT concept IDs. Justify whether DKA surveillance should aggregate
+  at the MedDRA HLT or PT level for the AE frequency table, and explain any cross-walk
+  limitations when converting ICD-10-CM codes to MedDRA PTs for these conditions.'
+target_skills:
+- pharmacoepidemiology
+- rwd-cohort-analysis
+- clinical-data-standards
+domain: pharmacoepidemiology
+difficulty: intermediate

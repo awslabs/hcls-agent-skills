@@ -1,0 +1,40 @@
+id: claims-billing-rules-01
+prompt: 'A regional Medicare Advantage plan is conducting a routine claims audit and
+  has flagged a high-volume orthopedic surgery group for potential billing irregularities.
+  The audit team pulled 90 days of claims data and identified the following patterns:
+
+
+  - Surgeon Dr. Patel billed modifier 25 on 94% of all Evaluation & Management (E&M)
+  visits that occurred on the same day as a minor surgical procedure, compared to
+  a peer average of 31%
+
+  - The practice frequently bills CPT 99213 and CPT 99214 on the same date as procedures
+  with 0-day and 10-day global surgery periods
+
+  - In 47 instances, CPT 27447 (total knee arthroplasty) was billed with CPT 27370
+  (injection of contrast for knee arthroplasty) — a known NCCI column 1/column 2 code
+  pair — without any bypass modifier
+
+  - 12 claims show CPT 99213 billed during the 90-day global period following CPT
+  27447, without modifier 24
+
+
+  Please provide the following:
+
+  1. Explain the correct billing rules governing modifier 25 usage with same-day E&M
+  and minor procedures, and identify what documentation would be required to justify
+  legitimate use
+
+  2. Describe the NCCI edit logic that applies to the CPT 27447 + CPT 27370 pairing
+  and what the correct billing approach should be
+
+  3. For the 12 claims billed during the global surgery period without modifier 24,
+  explain whether this pattern is more consistent with a coding error or intentional
+  fraud, and what distinguishing factors an investigator should look for
+
+  4. Recommend a prioritized audit action plan with at least three concrete next steps
+  the plan should take'
+target_skills:
+- claims-billing-rules
+domain: healthcare-ops
+difficulty: easy

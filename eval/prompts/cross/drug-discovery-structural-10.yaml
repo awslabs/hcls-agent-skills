@@ -1,0 +1,45 @@
+id: drug-discovery-structural-10
+prompt: 'You are a computational drug discovery scientist at a mid-sized biotech company
+  investigating **TRPM7 kinase** as a therapeutic target in treatment-resistant glioblastoma
+  (GBM). Your team has identified that TRPM7 is overexpressed in 68% of GBM patient
+  tumors (n=412, TCGA cohort) and correlates with poor survival (HR=2.3, p=0.0004).
+  A phenotypic screen in U87-MG cells identified two hits with IC₅₀ < 500 nM, but
+  your medicinal chemistry resources are limited, so leadership has asked you to prioritize
+  a **drug repurposing strategy** before committing to de novo synthesis.
+
+
+  You have pulled the following approved drugs from DGIdb and OpenTargets that show
+  documented TRPM7 interaction or mechanistic overlap: **Naltrexone** (opioid antagonist,
+  SMILES: `OC1CC2CC(CCC3CC(O)CCC13)N(CC1CC1)CC2`), **Crizotinib** (ALK/MET inhibitor,
+  SMILES: `Clc1ccc(cc1F)C1(CN(C)C(=O)c2c(OC(F)F)cc(cc2)N2CCOCC2)CC1`), and **Imatinib**
+  (BCR-ABL inhibitor, SMILES: `Cc1ccc(cc1Nc1nccc(-c2cccnc2)n1)NC(=O)c1ccc(cc1)CN1CCN(C)CC1`).
+
+
+  **Your deliverables are:**
+
+
+  1. **Repurposing analysis**: Rank the three candidates by repurposing evidence strength
+  for TRPM7-driven GBM using a target-based framework. Justify your ranking using
+  mechanism-of-action overlap, existing clinical safety data relevant to CNS indications,
+  and blood-brain barrier penetration considerations.
+
+
+  2. **Cheminformatics evaluation**: For each candidate, compute Lipinski Rule of
+  Five parameters (MW, HBD, HBA, cLogP) and Veber rule parameters (rotatable bonds,
+  TPSA) directly from the provided SMILES. Flag any PAINS concerns and calculate the
+  Tanimoto similarity between Crizotinib and Imatinib using Morgan fingerprints (radius=2,
+  2048 bits). Identify which candidate has the most favorable CNS druglikeness profile
+  (targeting TPSA < 90 Å² and MW < 450 Da).
+
+
+  3. **Structure-based strategy**: Given that the TRPM7 kinase domain crystal structure
+  is available (PDB: 5ZX5), outline a virtual screening cascade to validate the top
+  repurposing candidate. Specify binding site definition approach, recommended docking
+  protocol (rigid vs. induced-fit), scoring function selection, and whether MM-GBSA
+  rescoring is warranted given the target flexibility.'
+target_skills:
+- drug-repurposing
+- cheminformatics
+- structure-based-drug-design
+domain: drug-discovery
+difficulty: hard

@@ -1,0 +1,42 @@
+id: quantitative-proteomics-06
+prompt: 'You are running a biomarker discovery study comparing plasma samples from
+  24 treatment-responders vs. 24 non-responders to an immunotherapy trial. You used
+  TMT-16plex labeling across 3 multiplexed batches (16 samples per batch, with 2 bridge
+  channels per batch using pooled reference). After database searching in Proteome
+  Discoverer, you have a protein-level matrix of 1,847 proteins across 48 samples,
+  but you notice the following issues:
+
+
+  1. Approximately 31% of values are missing across the matrix
+
+  2. PCA plots show a clear batch effect separating the three TMT batches
+
+  3. Several high-abundance proteins (e.g., APOB, ALB, FGA) show suspiciously low
+  fold-changes (~1.1x) despite known biological relevance, while spiked-in standards
+  show the expected 2x ratio
+
+  4. The missing values appear non-randomly: proteins missing in ≥80% of samples within
+  one batch but present in others
+
+
+  Given these specific problems, please provide:
+
+  - A recommended normalization strategy (with justification over alternatives like
+  VSN or quantile normalization)
+
+  - A concrete batch correction approach using the bridge channels, including the
+  mathematical formula
+
+  - A missing value classification strategy (MNAR vs. MCAR) and the appropriate imputation
+  method for each class
+
+  - An explanation of what is causing the ratio compression and two practical mitigation
+  strategies
+
+  - A differential expression analysis pipeline (specify the statistical model, including
+  how to handle batch as a covariate) with example R code using limma that incorporates
+  all corrections'
+target_skills:
+- quantitative-proteomics
+domain: proteomics
+difficulty: intermediate

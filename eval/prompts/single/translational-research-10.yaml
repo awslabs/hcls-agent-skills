@@ -1,0 +1,44 @@
+id: translational-research-10
+prompt: 'Here is test question #10:
+
+
+  ---
+
+
+  You are advising a neurology program developing a tau-targeting therapy for frontotemporal
+  dementia (FTD) caused by *MAPT* mutations. Your team has generated the following
+  data package and must decide whether to advance to a Phase 2 proof-of-concept trial:
+
+
+  **Preclinical:** In PS19 tau transgenic mice, your ASO (ASO-7741) reduced hippocampal
+  tau mRNA by 68% and insoluble tau by 54% at 12 weeks. Behavioral rescue on Barnes
+  maze was statistically significant (p=0.03) but effect size was modest (Cohen''s
+  d=0.41). No effect was seen on neuroinflammation markers (GFAP, IBA1).
+
+
+  **Biomarker:** In 34 *MAPT* mutation carriers (presymptomatic, CDR=0), a single
+  intrathecal dose in a Phase 1 study reduced CSF total-tau by 31% and phospho-tau-181
+  by 22% at 6 months. Plasma NfL showed no change. MRI volumetrics (frontal lobe)
+  showed no signal at 6 months (n=34, underpowered).
+
+
+  **Epidemiology:** A Mendelian randomization analysis using 12 *MAPT*-region instruments
+  showed causal estimate OR=0.71 (95% CI: 0.48–1.06) for FTD risk per tau-lowering
+  allele — directionally consistent but not significant.
+
+
+  **Constraints:** Your Phase 2 budget allows n≤120 patients, 18-month treatment duration,
+  and you must select a primary endpoint regulators will accept for accelerated approval
+  consideration.
+
+
+  Please provide: (1) a critical assessment of target engagement vs. proof-of-mechanism
+  gaps in the current evidence, (2) a recommended Phase 2 trial design including population
+  enrichment strategy, primary and key secondary endpoints with justification, and
+  statistical analysis plan outline, (3) explicit go/no-go criteria for advancing
+  to Phase 3, and (4) identification of the single highest-risk translational assumption
+  that could invalidate the program.'
+target_skills:
+- translational-research
+domain: cross-domain
+difficulty: hard

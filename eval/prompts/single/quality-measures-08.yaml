@@ -1,0 +1,40 @@
+id: quality-measures-08
+prompt: 'You are building a HEDIS Controlling High Blood Pressure (CBP) measure for
+  a Medicaid managed care plan covering 847,000 members. Your claims data warehouse
+  contains the following tables: `enrollment` (member_id, start_date, end_date, plan_type),
+  `medical_claims` (claim_id, member_id, service_date, diagnosis_codes ARRAY, procedure_codes
+  ARRAY, provider_npi, place_of_service), `pharmacy_claims` (claim_id, member_id,
+  fill_date, ndc_code, days_supply, quantity), and `lab_results` (result_id, member_id,
+  result_date, loinc_code, numeric_value, unit).
+
+
+  The measurement year is 2024. Your preliminary analysis reveals three complicating
+  edge cases you must resolve:
+
+
+  1. **Enrollment gaps**: 12,847 members have a single gap in Medicaid coverage during
+  2024 but were enrolled in a commercial plan (captured in the same enrollment table
+  with plan_type = ''COMMERCIAL'') during that gap period. HEDIS specifications allow
+  a 45-day gap tolerance — determine whether these members qualify for continuous
+  enrollment.
+
+
+  2. **Blood pressure source conflicts**: 4,203 members have both telehealth BP readings
+  (place_of_service = ''02'') and in-person readings in the same measurement year,
+  where the telehealth reading meets the <140/90 threshold but the in-person reading
+  does not (or vice versa). NCQA added telehealth allowances in MY2023 — specify which
+  reading takes precedence.
+
+
+  3. **Exclusion logic for ESRD**: 891 members have both a qualifying hypertension
+  diagnosis AND an ESRD exclusion code, but the ESRD diagnosis appears only on pharmacy
+  claims (not medical claims). Determine if pharmacy-only ESRD codes trigger the exclusion.
+
+
+  Deliverables: (a) Write production-ready SQL handling all three edge cases, (b)
+  calculate the expected denominator impact of each edge case using the provided counts,
+  (c) recommend an audit flag strategy for records requiring manual review.'
+target_skills:
+- quality-measures
+domain: healthcare-ops
+difficulty: hard

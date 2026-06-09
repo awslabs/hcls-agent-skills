@@ -1,0 +1,39 @@
+id: variant-calling-04
+prompt: 'You are setting up a GATK4 germline variant calling pipeline for a whole-exome
+  sequencing (WES) study involving 45 pediatric patients with suspected hereditary
+  cancer syndrome. Sequencing was performed on Illumina NovaSeq 6000 with 150bp paired-end
+  reads, targeting ~60x mean coverage using the Agilent SureSelect Human All Exon
+  V7 capture kit. Your reference genome is GRCh38.
+
+
+  After alignment with BWA-MEM2 and duplicate marking with Picard, you need to decide
+  between VQSR and hard filtering for variant refinement. Your bioinformatics lead
+  has flagged a concern: with only 45 samples, VQSR may not have sufficient variant
+  counts to train a reliable model, particularly for indels.
+
+
+  Please provide the following:
+
+
+  1. **Decision framework**: Explain the minimum sample/variant count thresholds GATK
+  recommends for VQSR to be reliable, and whether your cohort of 45 WES samples meets
+  these criteria for SNPs and indels separately.
+
+
+  2. **Recommended filtering strategy**: Based on your assessment, specify which approach
+  (VQSR, hard filters, or a hybrid) you would use for SNPs versus indels, with justification.
+
+
+  3. **Hard filter parameters**: If hard filtering is appropriate for any variant
+  class, provide the exact GATK-recommended `VariantFiltration` filter expressions
+  for WES data, including specific annotation thresholds for QD, FS, MQ, MQRankSum,
+  ReadPosRankSum, and SOR.
+
+
+  4. **GATK command**: Write a complete `gatk VariantFiltration` command for SNPs
+  using your recommended thresholds, assuming your input VCF is `cohort_genotyped.vcf.gz`
+  and the reference is `GRCh38.fa`.'
+target_skills:
+- variant-calling
+domain: genomics
+difficulty: intermediate

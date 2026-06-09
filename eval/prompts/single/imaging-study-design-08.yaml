@@ -1,0 +1,43 @@
+id: imaging-study-design-08
+prompt: 'Here is test question #8 of 10:
+
+
+  ---
+
+
+  You are designing a multi-site longitudinal diffusion MRI study tracking white matter
+  changes in 847 patients with early-stage ALS across 6 imaging centers (3 Siemens
+  Prisma 3T, 2 GE Discovery MR750 3T, 1 Philips Ingenia 3T). Scans are acquired at
+  baseline, 6 months, and 12 months. The diffusion protocol uses 64 directions at
+  b=1000 s/mm² plus b=0 volumes, but the Philips site inadvertently used 32 directions
+  at b=800 s/mm² throughout the study. All sites used 2mm isotropic voxels except
+  one GE site that used 2.5mm isotropic. You have identified fractional anisotropy
+  (FA) in the corticospinal tract as your primary biomarker, with mean diffusivity
+  (MD) and radial diffusivity (RD) as secondary biomarkers.
+
+
+  Please provide:
+
+  1. A concrete preprocessing pipeline (with specific software tools and parameter
+  choices) that handles the protocol inconsistency at the Philips site and the voxel-size
+  mismatch at the GE site, justifying whether to exclude, harmonize, or model these
+  sites
+
+  2. A ComBat harmonization strategy specifying exactly which covariates to include
+  as biological variables to protect, and whether to use standard ComBat, longitudinal
+  ComBat, or CovBat given this design, with justification
+
+  3. A statistical analysis plan for testing FA decline in the corticospinal tract
+  that accounts for the repeated-measures structure, site effects, and the reduced
+  statistical power from the protocol-inconsistent site
+
+  4. A test-retest reliability sub-study design (n=40 subjects, rescanned within 2
+  weeks) to validate FA measurement reproducibility across the heterogeneous scanner
+  fleet, including the specific ICC threshold you would require before proceeding
+
+
+  ---'
+target_skills:
+- imaging-study-design
+domain: imaging
+difficulty: hard

@@ -1,0 +1,38 @@
+id: imaging-study-design-07
+prompt: 'A multicenter glioblastoma trial (GLIORAD-2, n=847 patients across 14 sites)
+  has collected pre-treatment MRI at 1.5T and 3T scanners from four vendors (Siemens,
+  GE, Philips, Canon). The imaging protocol includes T1-weighted post-contrast, T2-FLAIR,
+  and DSC perfusion (rCBV maps). The team wants to extract radiomic features from
+  the contrast-enhancing tumor and peritumoral FLAIR region to predict MGMT methylation
+  status and 12-month progression-free survival.
+
+
+  During QC review, the team discovers the following issues: (1) DSC rCBV maps were
+  post-processed with different leakage-correction algorithms across sites (Boxerman
+  vs. no correction); (2) voxel sizes range from 0.9×0.9×1.0 mm to 1.2×1.2×3.0 mm
+  across sites; (3) T1 post-contrast images from two GE sites contain burned-in PHI
+  in the top 15 pixels of each axial slice; (4) FLAIR images show significant intensity
+  non-uniformity at one Philips site due to a known B1 field inhomogeneity issue.
+
+
+  Please provide:
+
+  1. A prioritized remediation plan addressing each QC issue, specifying which data
+  should be excluded versus corrected
+
+  2. A ComBat harmonization strategy appropriate for this mixed 1.5T/3T, multi-vendor
+  dataset, including which covariates to protect and whether to use standard, neuroCombat,
+  or longitudinal ComBat
+
+  3. An IBSI-compliant radiomic feature extraction pipeline (resampling target, discretization
+  method, and feature families to prioritize for perfusion vs. morphological biomarkers)
+
+  4. Python pseudocode implementing the burned-in PHI scrubbing step with a validation
+  check
+
+  5. A recommendation on whether to perform feature extraction in MNI or native space
+  for this specific application, with justification'
+target_skills:
+- imaging-study-design
+domain: imaging
+difficulty: intermediate

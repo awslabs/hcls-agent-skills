@@ -1,0 +1,51 @@
+id: genomics-variant-pipeline-09
+prompt: 'A clinical genomics laboratory is processing a cohort of 847 germline WES
+  samples from patients with suspected hereditary colorectal cancer syndrome. The
+  sequencing was performed on an Illumina NovaSeq 6000 (2×150 bp, mean target coverage
+  ~120×) using a SureSelect XT CRC panel targeting 127 genes including *MLH1*, *MSH2*,
+  *MSH6*, *PMS2*, *APC*, and *MUTYH*. You have been handed the following pipeline
+  artifacts for a single proband (sample ID: CRC-0412):
+
+
+  - Paired FASTQs: `CRC0412_R1.fastq.gz` / `CRC0412_R2.fastq.gz`
+
+  - A coordinate-sorted BAM: `CRC0412.bam` (with index)
+
+  - Reference: `hg38/ref.fasta`
+
+  - Target intervals: `CRC_panel_hg38.bed`
+
+  - A pre-called GVCF flagged as having anomalous VQSR tranches
+
+
+  After joint genotyping across all 847 samples, a novel variant was identified in
+  *MLH1*: **NM_000249.4:c.1039-3C>A** (chr3:37,067,436 C>A). Annotations show: gnomAD
+  v3.1 AF = 0.000012 (4 heterozygotes, no homozygotes), SpliceAI delta score = 0.61
+  (DS_AL), CADD Phred = 24.3, no ClinVar entry, and the patient has a strong family
+  history meeting Amsterdam II criteria.
+
+
+  **Deliverables required:**
+
+
+  1. **QC assessment**: Write a complete shell script using `fastp`, `mosdepth`, and
+  `Picard CollectHsMetrics` to evaluate read quality and on-target coverage for CRC-0412,
+  flagging samples with mean target coverage <80× or >5% adapter content. Assume `THREADS=8`
+  and `OUT=qc_out`.
+
+
+  2. **Variant calling remediation**: Explain why VQSR may underperform on a 127-gene
+  panel and provide a GATK4 hard-filter command set (with specific filter expressions)
+  appropriate for WES panel data to replace the failing VQSR tranches for this sample.
+
+
+  3. **Variant interpretation**: Classify **NM_000249.4:c.1039-3C>A** using ACMG/AMP
+  2015 criteria. Explicitly evaluate applicability of PVS1, PM2, PP3, and BP7, justify
+  each criterion applied or rejected, assign a final classification, and state whether
+  this variant should be reported on a clinical CRC panel.'
+target_skills:
+- genomic-variant-interpretation
+- variant-calling
+- ngs-quality-control
+domain: genomics
+difficulty: hard

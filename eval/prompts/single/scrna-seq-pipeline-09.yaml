@@ -1,0 +1,37 @@
+id: scrna-seq-pipeline-09
+prompt: 'You are analyzing a single-cell RNA-seq dataset from a longitudinal study
+  of 8 multiple sclerosis patients (4 treatment-naive, 4 post-interferon-beta treatment)
+  across 3 time points (baseline, 6 months, 12 months), totaling 24 samples and approximately
+  187,000 cells after initial filtering. The data was processed through CellRanger
+  7.1 and loaded as separate h5ad files per sample.
+
+
+  During QC, you notice a bimodal distribution of mitochondrial gene percentages —
+  one peak at ~8% and another at ~22% — across all samples. Additionally, after running
+  Harmony batch correction (grouping by both `patient_id` and `timepoint`), your UMAP
+  shows that T cell clusters from treatment-naive patients at baseline remain stubbornly
+  separated from post-treatment samples, despite Harmony reporting convergence. When
+  you run Leiden clustering at resolution 0.5, you identify 23 clusters, but marker
+  gene analysis reveals that clusters 7 and 14 express nearly identical top markers
+  (CD3D, CD3E, TRAC, IL7R) with >95% Jaccard similarity in their top-50 DEGs.
+
+
+  Please provide:
+
+  1. A diagnostic strategy and Scanpy code to investigate and resolve the bimodal
+  mitochondrial distribution — specifically whether it represents dying cells, a true
+  biological signal, or sample-specific technical artifacts
+
+  2. An explanation of why Harmony may fail in this multi-variable batch scenario
+  and Python code implementing an alternative scVI model that jointly models `patient_id`,
+  `timepoint`, and `treatment_status` as covariates
+
+  3. Code to programmatically detect and merge over-clustered Leiden communities using
+  the Jaccard similarity approach, with a recommended threshold and justification
+
+  4. A brief discussion of how treatment-induced transcriptional changes in T cells
+  could confound batch correction in this specific experimental design'
+target_skills:
+- scrna-seq-pipeline
+domain: single-cell
+difficulty: hard

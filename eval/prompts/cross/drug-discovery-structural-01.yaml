@@ -1,0 +1,50 @@
+id: drug-discovery-structural-01
+prompt: 'You are a computational drug discovery scientist working on a rare pediatric
+  neurological disorder caused by gain-of-function mutations in **KCNQ3** (a voltage-gated
+  potassium channel). A recent phenotypic screen of 847 FDA-approved compounds in
+  a patient-derived iPSC-neuronal model identified **retigabine (ezogabine)** and
+  **flupirtine** as hits that normalize aberrant firing patterns, but both carry known
+  safety liabilities (retinal pigmentation and hepatotoxicity, respectively). Your
+  team has also retrieved the crystal structure of KCNQ3 in complex with retigabine
+  (PDB: 7CR3, resolution 2.8 Å), and you have the following SMILES strings for three
+  structurally related candidates from an internal library that lack the known liability
+  pharmacophores:
+
+
+  - **Compound A:** `CC1=CC(=CC(=C1)NC(=O)C2=CC=CC=C2F)C(F)(F)F`
+
+  - **Compound B:** `COC1=CC2=C(C=C1)N=C(N2)NC3=CC=CC(=C3)Cl`
+
+  - **Compound C:** `O=C(NC1=CC=C(C=C1)S(N)(=O)=O)C2=CC=CC=C2OCC3=CC=CC=C3`
+
+
+  Please provide the following deliverables:
+
+
+  1. **Repurposing evidence assessment:** Using a target-based repurposing framework,
+  rank retigabine and flupirtine as KCNQ3 repurposing candidates for this pediatric
+  indication by evidence tier (mechanistic, clinical, genetic). Identify two additional
+  approved drugs from DGIdb/OpenTargets that share KCNQ-channel modulation activity
+  and could serve as backup candidates, justifying their translatability given existing
+  pediatric safety data.
+
+
+  2. **Cheminformatics profiling:** For Compounds A, B, and C, compute Lipinski Ro5
+  and Veber rule compliance, flag any PAINS substructures, calculate Morgan fingerprint
+  (radius=2, 2048 bits) Tanimoto similarity against retigabine (SMILES: `CCOC1=CC2=C(C=C1)N=C(N2)NC3=CC=CC(=C3)F`)
+  and flupirtine, and rank all five compounds (including retigabine and flupirtine)
+  by predicted druglikeness for the pediatric CNS context.
+
+
+  3. **Structure-based design strategy:** Using PDB 7CR3, define the key binding interactions
+  of retigabine in the KCNQ3 channel gate region, propose a virtual screening cascade
+  (docking → MM-GBSA rescoring → MD validation) with justified scoring function choices,
+  and identify which of Compounds A, B, or C is the most promising lead for optimization
+  based on your combined cheminformatics and structural analysis, with two specific
+  SAR modifications to improve selectivity over KCNQ2.'
+target_skills:
+- drug-repurposing
+- cheminformatics
+- structure-based-drug-design
+domain: drug-discovery
+difficulty: easy

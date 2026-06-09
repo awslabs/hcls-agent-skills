@@ -1,0 +1,33 @@
+id: multi-omics-pipeline-08
+prompt: 'You are integrating three omics layers from a pancreatic ductal adenocarcinoma
+  (PDAC) cohort: RNA-seq (n=847 samples, ~22,000 genes), ATAC-seq chromatin accessibility
+  (n=312 samples, ~180,000 peaks), and reverse-phase protein array (RPPA, n=623 samples,
+  258 antibody probes). The RNA-seq data was processed across 4 sequencing batches
+  (batch sizes: 210, 195, 230, 212), ATAC-seq across 2 batches (156, 156), and RPPA
+  in a single batch. Gene IDs in the RNA-seq matrix are Ensembl (GRCh38.p13), ATAC-seq
+  peaks are annotated to nearest gene using HGNC symbols, and RPPA probes use a mix
+  of UniProt accessions and legacy antibody names (e.g., "pAKT_S473", "EGFR_Y1068").
+  Only 189 samples have all three omics layers measured.
+
+
+  Your task:
+
+  1. Write an R pipeline using `biomaRt` to harmonize all three feature identifier
+  systems into a unified HGNC symbol space, including a strategy for handling the
+  37 RPPA probes that map to phospho-specific isoforms with no direct Ensembl equivalent.
+
+  2. Apply `ComBat-seq` to the RNA-seq count matrix and standard `ComBat` to the log2-transformed
+  ATAC-seq accessibility scores, explaining why different ComBat variants are appropriate
+  for each data type.
+
+  3. Configure and run a MOFA2 model in R on the 189 complete-case samples using all
+  three omics layers, specifying the number of factors, convergence criteria, and
+  how to handle the vastly different feature dimensionalities (22,000 vs. 180,000
+  vs. 258).
+
+  4. After training, extract the top factor driving sample separation and run `clusterProfiler`
+  GSEA on the RNA-seq feature weights from that factor.'
+target_skills:
+- multi-omics-pipeline
+domain: multi-omics
+difficulty: hard

@@ -1,0 +1,37 @@
+id: aws-genai-ml-architect-06
+prompt: 'A regional children''s hospital network (8 facilities, ~340,000 pediatric
+  patients) is building a clinical decision support system to help radiologists prioritize
+  and interpret pediatric chest X-rays for pneumonia detection. The system must process
+  approximately 1,200 images daily across all facilities, with a target latency of
+  under 3 seconds per inference for urgent cases flagged as high-priority.
+
+
+  The ML team has a pre-trained PyTorch model (EfficientNet-B4 fine-tuned on CheXpert
+  pediatric subset, ~19M parameters) achieving 0.91 AUC, stored in an S3 bucket. DICOM
+  images require preprocessing (windowing, normalization, resizing to 380×380) before
+  inference. The system must maintain HIPAA compliance, integrate with existing Epic
+  EHR via HL7 FHIR R4, and support model versioning for FDA Software as a Medical
+  Device (SaMD) audit trails.
+
+
+  Please provide:
+
+
+  1. **Architecture diagram description** comparing SageMaker Real-Time Inference
+  vs. SageMaker Asynchronous Inference for this workload, with specific instance type
+  recommendations (consider ml.g4dn family) and auto-scaling configuration for the
+  daily volume pattern (peak hours 8AM–6PM, near-zero overnight)
+
+  2. **HIPAA/PHI compliance checklist** specific to DICOM image data flowing through
+  SageMaker endpoints, including VPC configuration, encryption requirements, and CloudTrail
+  audit logging
+
+  3. **MLOps pipeline design** using SageMaker Pipelines that satisfies FDA SaMD audit
+  trail requirements, including model registry configuration with approval workflows
+
+  4. **Cost estimate framework** comparing always-on vs. scale-to-zero approaches
+  for the described daily volume, with specific SageMaker Savings Plans considerations'
+target_skills:
+- aws-genai-ml-architect
+domain: cross-domain
+difficulty: intermediate

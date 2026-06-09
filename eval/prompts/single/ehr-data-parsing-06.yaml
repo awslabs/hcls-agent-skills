@@ -1,0 +1,41 @@
+id: ehr-data-parsing-06
+prompt: 'You have received a batch HL7v2 ORU^R01 message file containing lab results
+  for 847 patients from a regional laboratory system. The messages use a non-standard
+  separator configuration where the field separator is `|`, component separator is
+  `^`, repetition separator is `~`, escape character is `\`, and subcomponent separator
+  is `&`. Each message contains MSH, PID, PV1, and multiple OBX segments. A sample
+  message excerpt is:
+
+
+  ```
+
+  MSH|^~\&|LAB_SYS|REGIONAL_LAB|EHR|HOSPITAL|20240315142233||ORU^R01|MSG00423|P|2.5
+
+  PID|1||MRN-78432^^^HOSP^MR||HENDERSON^JAMES^ALAN||19670823|M|||742 MAPLE ST^^BOSTON^MA^02101
+
+  OBX|1|NM|2345-7^Glucose^LN||98|mg/dL|70-100|N|||F|||20240315140012
+
+  OBX|2|NM|2160-0^Creatinine^LN||1.8|mg/dL|0.7-1.3|H|||F|||20240315140012
+
+  OBX|3|NM|718-7^Hemoglobin^LN||9.2|g/dL|13.5-17.5|L|||F|||20240315140012
+
+  ```
+
+
+  Using Python with the `hl7` library, please provide:
+
+
+  1. A complete Python function that parses this batch file and extracts: patient
+  MRN, full name, date of birth, each LOINC code with test name, numeric result value,
+  units, reference range, and abnormal flag into a pandas DataFrame.
+
+  2. A data quality check function that flags records where: the abnormal flag in
+  OBX-8 contradicts the reference range in OBX-7 (e.g., result is outside range but
+  flag shows "N"), or where result values are non-numeric for NM-typed OBX segments.
+
+  3. A brief explanation of how you would handle messages where OBX-8 (abnormal flag)
+  is empty but the result is outside the reference range.'
+target_skills:
+- ehr-data-parsing
+domain: clinical-data
+difficulty: intermediate

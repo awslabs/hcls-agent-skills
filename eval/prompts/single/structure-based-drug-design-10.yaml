@@ -1,0 +1,33 @@
+id: structure-based-drug-design-10
+prompt: 'You are optimizing a series of macrocyclic inhibitors targeting the PPI (protein-protein
+  interaction) interface of the TRIM27-SPRY domain with its substrate recognition
+  partner. Cryo-EM structure resolution is 3.2 Å (PDB-like entry: 9XKM), showing a
+  shallow, elongated binding groove (~850 Ų BSA) with three sub-pockets: a deep hydrophobic
+  anchor (Sub-P1), a charged lysine-rich rim (Sub-P2), and a solvent-exposed flexible
+  loop region (Sub-P3). Your lead compound MAC-114 shows IC₅₀ = 340 nM in FP assay
+  but poor cellular permeability (Papp A→B = 2.1 × 10⁻⁶ cm/s) and high efflux ratio
+  (ER = 8.7). MM-GBSA rescoring of 50 ns MD trajectories gives ΔG_bind = −42.3 kcal/mol,
+  but FEP calculations on three analogs (MAC-117, MAC-119, MAC-122) show predicted
+  ΔΔG values of −1.2, +0.8, and −2.1 kcal/mol respectively versus MAC-114, while experimental
+  shifts are −0.3, +1.4, and −0.6 kcal/mol — a systematic overestimation pattern.
+
+
+  Please provide:
+
+  1. A mechanistic explanation for why FEP is systematically overestimating binding
+  affinity improvements for this macrocyclic PPI series, with at least three specific
+  technical causes
+
+  2. A revised FEP protocol (sampling parameters, lambda windows, force field recommendations)
+  to address these issues
+
+  3. A dual-objective lead optimization strategy that simultaneously improves binding
+  potency at Sub-P1/Sub-P2 while reducing the efflux ratio below 3.0, including specific
+  chemical modifications with SAR rationale
+
+  4. A decision framework for when to trust MM-GBSA versus FEP results for macrocyclic
+  PPI inhibitors given limited computational resources'
+target_skills:
+- structure-based-drug-design
+domain: protein-structure
+difficulty: hard

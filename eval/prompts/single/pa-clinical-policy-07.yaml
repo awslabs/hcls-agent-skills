@@ -1,0 +1,44 @@
+id: pa-clinical-policy-07
+prompt: 'A 58-year-old patient with moderate-to-severe plaque psoriasis (BSA 22%,
+  PASI 18.4) has been prescribed secukinumab 300mg by their dermatologist. The commercial
+  payer (BlueCrest Health Plan) has issued a PA denial citing failure to meet step
+  therapy requirements. The denial letter references BlueCrest''s Specialty Biologics
+  Clinical Policy (SBCP-2024-Derm-07), which mandates:
+
+
+  1. Trial and failure of TWO conventional systemics (methotrexate, cyclosporine,
+  or acitretin) for ≥90 days each
+
+  2. Trial and failure of ONE TNF-alpha inhibitor (adalimumab or etanercept) for ≥16
+  weeks
+
+
+  The patient''s chart documents: methotrexate 15mg/week × 4 months (discontinued
+  due to Grade 2 hepatotoxicity, ALT 3.2× ULN), cyclosporine contraindicated due to
+  uncontrolled hypertension (BP 158/96 on two antihypertensives), and no prior biologic
+  use. The prescribing dermatologist believes the TNF-alpha inhibitor requirement
+  should be waived given the patient''s cardiovascular risk profile and psoriasis
+  severity.
+
+
+  Please provide:
+
+
+  1. **Clinical policy analysis**: Evaluate whether the documented contraindications
+  and adverse events satisfy BlueCrest''s step therapy criteria under standard utilization
+  management principles and CMS step therapy exception rules (42 CFR §422.568)
+
+  2. **Appeal strategy**: Draft a structured peer-to-peer review talking points document
+  the dermatologist can use, citing specific clinical evidence and policy exception
+  language
+
+  3. **Medical necessity letter framework**: Outline the key components and supporting
+  ICD-10/CPT codes relevant to this appeal
+
+  4. **Escalation pathway**: If peer-to-peer fails, describe the IRO (Independent
+  Review Organization) appeal process and what additional documentation strengthens
+  the case'
+target_skills:
+- pa-clinical-policy
+domain: healthcare-ops
+difficulty: intermediate

@@ -1,0 +1,66 @@
+id: pharma-rwd-clinical-10
+prompt: 'You are a pharmacoepidemiologist at a large health system with access to
+  a commercial claims database containing 4.2 million continuously enrolled adults
+  (2018–2023). Your team is designing a real-world evidence study to evaluate whether
+  empagliflozin (SGLT2 inhibitor) versus sitagliptin (DPP-4 inhibitor) reduces the
+  risk of acute kidney injury (AKI) in patients with type 2 diabetes and stage 3 chronic
+  kidney disease (CKD).
+
+
+  **Study context and constraints:**
+
+  - Index date = first pharmacy fill of either drug after a 180-day washout period
+  (new-user design)
+
+  - Prevalent users and patients with prior AKI (ICD-10: N17.x) within 12 months must
+  be excluded
+
+  - The outcome AKI must be captured using both inpatient ICD-10 codes and mapped
+  to MedDRA PT "Acute kidney injury" (PT code 10069339) for regulatory submission
+
+  - CKD stage 3 is defined by eGFR lab values (LOINC 62238-1) between 30–59 mL/min/1.73m²
+  within 6 months before index
+
+  - Time-varying confounders include loop diuretic use, ACE inhibitor/ARB use, and
+  hospitalization frequency
+
+  - The analysis team is concerned about confounding by indication and wants to quantify
+  residual unmeasured confounding
+
+
+  **Deliverables required:**
+
+
+  1. Describe the complete target trial emulation protocol, including eligibility
+  criteria using specific ICD-10 codes (E11.x for T2DM, N18.3 for CKD stage 3), the
+  active comparator rationale, and how immortal time bias is avoided in the index
+  date assignment.
+
+
+  2. Provide the cohort identification logic specifying NDC code categories for empagliflozin
+  and sitagliptin, the PDC calculation approach to define adherence at 180 days, and
+  the standardized mean difference (SMD) threshold for acceptable covariate balance
+  after IPTW with stabilized weights.
+
+
+  3. Explain how to handle the time-varying confounders using a marginal structural
+  Cox model, including the structure of the numerator and denominator models for the
+  stabilized IPTW weights, and how to assess the proportional hazards assumption using
+  Schoenfeld residuals.
+
+
+  4. Specify the MedDRA-to-ICD-10 crosswalk for the AKI outcome (mapping PT 10069339
+  to N17.0, N17.1, N17.2, N17.9), explain whether to aggregate at HLT level ("Renal
+  failure and impairment") for sensitivity analysis, and justify the LOINC code selection
+  for eGFR-based CKD staging.
+
+
+  5. Calculate an E-value for a hypothetical hazard ratio of 0.72 (95% CI: 0.61–0.85)
+  and interpret what magnitude of unmeasured confounding would be needed to explain
+  away the observed association.'
+target_skills:
+- pharmacoepidemiology
+- rwd-cohort-analysis
+- clinical-data-standards
+domain: pharmacoepidemiology
+difficulty: hard

@@ -1,0 +1,46 @@
+id: dicom-processing-06
+prompt: 'Here is test question #6 of 10:
+
+
+  ---
+
+
+  You are working at a neuroimaging research center and have received a dataset of
+  47 subjects from a multi-site clinical trial studying Alzheimer''s disease progression.
+  Each subject folder contains a T1-weighted MPRAGE sequence acquired on a Siemens
+  Prisma 3T scanner (TR=2300ms, TE=2.98ms, TI=900ms, flip angle=9°, voxel size=1x1x1mm).
+  The DICOM files are organized as `/data/raw/sub-{ID}/MPRAGE/*.dcm` where IDs range
+  from `AD001` to `AD047`.
+
+
+  You need to convert this entire dataset to NIfTI format using dcm2niix and organize
+  the output according to BIDS specification. Several complications exist: (1) subjects
+  AD012 and AD031 have duplicate DICOM series (two separate acquisitions were run
+  due to motion artifacts), (2) the scanner software version changed mid-study at
+  subject AD024, which may affect the output JSON sidecar fields, and (3) three subjects
+  (AD005, AD019, AD038) have DICOM files with inconsistent slice timing information
+  that needs to be verified.
+
+
+  Please provide:
+
+  1. A complete bash script that runs dcm2niix with appropriate flags for BIDS-compatible
+  output, handles the duplicate series using a naming convention, and processes all
+  47 subjects in a loop
+
+  2. A Python script using pydicom to extract and compare the `SliceTiming` (0020,1310)
+  and `AcquisitionTime` (0008,0032) tags from the three problematic subjects to diagnose
+  the slice timing inconsistency
+
+  3. The recommended dcm2niix flags and their justification for this specific MPRAGE
+  acquisition
+
+  4. How to verify the scanner software version change impact by comparing JSON sidecar
+  fields between subjects AD023 and AD024
+
+
+  ---'
+target_skills:
+- dicom-processing
+domain: imaging
+difficulty: intermediate

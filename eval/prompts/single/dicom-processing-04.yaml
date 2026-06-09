@@ -1,0 +1,46 @@
+id: dicom-processing-04
+prompt: 'Here is test question #4 of 10:
+
+
+  ---
+
+
+  A research team at Northfield Medical Center has collected a brain MRI study consisting
+  of 312 DICOM files organized in a single flat directory (no subdirectories). The
+  files represent a multi-echo gradient echo sequence with 4 echo times (TE = 7.2ms,
+  14.4ms, 21.6ms, 28.8ms), 78 axial slices per echo, acquired on a Siemens Prisma
+  3T scanner. The DICOM files follow the naming convention `IM-0001-XXXX.dcm` where
+  XXXX is a sequential 4-digit number.
+
+
+  The team wants to convert this dataset to NIfTI format using `dcm2niix` for downstream
+  multi-echo fMRI analysis in AFNI. However, they are encountering two problems:
+
+  1. `dcm2niix` is merging all echoes into a single NIfTI file instead of producing
+  separate files per echo
+
+  2. The resulting JSON sidecar is missing the `EchoTime` field, which is required
+  for their AFNI `3dTcat` pipeline
+
+
+  Please provide:
+
+  1. The exact `dcm2niix` command with appropriate flags to correctly separate the
+  echoes into individual NIfTI files (e.g., `sub-01_echo-1_bold.nii.gz` through `sub-01_echo-4_bold.nii.gz`)
+
+  2. A Python script using `pydicom` that inspects the DICOM headers of the first
+  file in each echo group to verify the correct TE values are present in tag `(0018,0081)`
+  before conversion
+
+  3. A brief explanation (3-5 sentences) of why `dcm2niix` might fail to split echoes
+  and what DICOM tags it relies on for echo separation
+
+  4. A sample corrected JSON sidecar snippet showing the proper `EchoTime` and `EchoNumber`
+  fields for echo 2
+
+
+  ---'
+target_skills:
+- dicom-processing
+domain: imaging
+difficulty: intermediate

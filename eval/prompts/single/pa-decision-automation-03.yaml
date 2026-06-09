@@ -1,0 +1,46 @@
+id: pa-decision-automation-03
+prompt: 'Here is test question #3 of 10:
+
+
+  ---
+
+
+  Your team has built a rules-based prior authorization decision engine for a regional
+  health plan processing approximately 4,200 PA requests per month across musculoskeletal,
+  oncology, and cardiology service lines. The engine currently uses a simple three-tier
+  ruleset: (1) auto-approve if diagnosis code matches an approved ICD-10 list, (2)
+  auto-deny if the requested procedure has no coverage policy, and (3) route everything
+  else to manual review. Currently, 62% of requests fall into the manual review bucket,
+  overwhelming your clinical reviewers.
+
+
+  You have 18 months of historical PA decisions (approximately 75,600 records) with
+  the following features available: ICD-10 diagnosis codes, CPT procedure codes, requesting
+  provider NPI, patient age and gender, prior authorization history (approval/denial
+  counts), urgency flag (routine vs. expedited), and the final adjudication outcome
+  (approved, denied, partially approved).
+
+
+  Your goal is to reduce manual review volume by at least 40% while maintaining a
+  false-denial rate below 3% (i.e., no more than 3% of ultimately approved cases should
+  be incorrectly auto-denied).
+
+
+  Please provide:
+
+  1. A recommended ML classifier architecture (algorithm choice, feature engineering
+  steps, and class imbalance handling strategy) suitable for this dataset size and
+  feature set
+
+  2. A Python code snippet demonstrating how to compute SHAP values for the top 10
+  most influential features using a trained XGBoost model on this PA dataset
+
+  3. A proposed threshold-setting strategy that balances the 40% manual review reduction
+  target against the 3% false-denial constraint
+
+  4. Two specific denial pattern analyses you would run on the historical data to
+  identify systemic issues before deploying the automated system'
+target_skills:
+- pa-decision-automation
+domain: healthcare-ops
+difficulty: easy

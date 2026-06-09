@@ -1,0 +1,59 @@
+id: genomics-variant-pipeline-02
+prompt: 'A clinical genomics laboratory is processing a whole-exome sequencing dataset
+  from a 47-year-old patient with a suspected hereditary cancer syndrome. The sequencing
+  was performed on an Illumina NovaSeq 6000 (2×150 bp), producing paired FASTQs (`sample_R1.fastq.gz`
+  / `sample_R2.fastq.gz`). The laboratory uses `THREADS=8`, `OUT=qc_out`, a coordinate-sorted
+  BAM (`sample.bam`) aligned to GRCh38 (`ref.fasta`), and a SureSelect Human All Exon
+  v7 target intervals file.
+
+
+  Initial FastQC reports show mean Q30 = 87%, adapter content peaking at 4.2% in read
+  2, and a suspected duplication rate of 31%. Mosdepth reports mean target coverage
+  of 58×, but 12% of target bases fall below 20×.
+
+
+  After running GATK4 HaplotypeCaller in GVCF mode with default WES parameters, the
+  pipeline identified a variant in **BRCA2**: `chr13:32,338,763 C>T` (NM_000059.4:
+  c.5946delT is a known frameshift, but this specific SNV resolves to **p.Arg1982Ter**,
+  a nonsense variant). The variant has the following annotations:
+
+  - gnomAD v3.1 allele frequency: 0.000008 (2 heterozygous alleles in 251,000 total)
+
+  - ClinVar: 2 submissions — one "Likely Pathogenic" (2019, no criteria provided),
+  one "VUS" (2021, research lab)
+
+  - CADD Phred score: 41
+
+  - SpliceAI delta score: 0.03 (nearest splice site 47 bp away)
+
+  - REVEL: 0.91
+
+  - The variant was called with DP=34, GQ=87, VAF=0.47
+
+
+  Please provide the following deliverables:
+
+
+  1. **QC Assessment**: Identify all QC failures or warnings from the described metrics,
+  specify which fastp parameters you would apply for adapter trimming and deduplication
+  handling, and state whether the coverage profile is acceptable for confident germline
+  variant calling at this locus.
+
+
+  2. **Pipeline Validation**: Describe whether the GATK4 HaplotypeCaller call at this
+  locus meets quality thresholds for WES germline calling, including genotype-level
+  filters (DP, GQ, VAF), and whether VQSR or hard filters are more appropriate given
+  this is a single-sample WES run.
+
+
+  3. **Variant Classification**: Apply the ACMG/AMP 2015 five-tier classification
+  framework to this BRCA2 nonsense variant, explicitly invoking or rejecting each
+  applicable criterion (PVS1, PS, PM, PP, BA1, BS, BP), reconciling the conflicting
+  ClinVar submissions, and providing a final classification with clinical reporting
+  recommendation.'
+target_skills:
+- genomic-variant-interpretation
+- variant-calling
+- ngs-quality-control
+domain: genomics
+difficulty: easy

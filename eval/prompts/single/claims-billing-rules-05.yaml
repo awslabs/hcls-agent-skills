@@ -1,0 +1,47 @@
+id: claims-billing-rules-05
+prompt: 'A regional Medicare Advantage plan is conducting a quarterly claims audit
+  and has flagged a high-volume orthopedic group practice for potential billing irregularities.
+  The audit team has pulled the following data for a 90-day period:
+
+
+  - 847 claims submitted with CPT 99213 (Office Visit, Level 3) billed alongside CPT
+  20610 (Arthrocentesis, major joint) on the same date of service
+
+  - 623 of those claims include Modifier 25 appended to the E&M code
+
+  - 224 claims have no modifier attached to either code
+
+  - The practice''s Modifier 25 usage rate is 94%, compared to a regional peer average
+  of 41%
+
+  - 38 claims show CPT 20610 billed twice on the same date for the same patient (same
+  provider NPI)
+
+  - 15 patients each have more than 3 arthrocentesis procedures billed within a single
+  30-day window
+
+
+  Given this scenario, provide the following deliverables:
+
+
+  1. **NCCI Edit Analysis**: Explain the column 1/column 2 relationship between CPT
+  99213 and CPT 20610, and under what clinical circumstances Modifier 25 is legitimately
+  required to bypass the edit.
+
+
+  2. **Anomaly Classification**: For each flagged pattern (missing modifier, duplicate
+  same-day billing, high-frequency procedures), classify whether each pattern represents
+  a likely coding error, potential waste, or potential fraud — with reasoning.
+
+
+  3. **Audit Decision Rules**: Write 3 specific, actionable audit rules (in plain
+  logic format) the plan should implement to auto-flag similar claims going forward.
+
+
+  4. **Investigation Priority**: Recommend which of the three anomaly patterns should
+  be escalated to the SIU first and justify your prioritization using FWA investigation
+  methodology principles.'
+target_skills:
+- claims-billing-rules
+domain: healthcare-ops
+difficulty: intermediate

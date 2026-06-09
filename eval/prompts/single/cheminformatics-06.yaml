@@ -1,0 +1,47 @@
+id: cheminformatics-06
+prompt: 'You are optimizing a series of kinase inhibitors and have the following 5
+  compounds represented as SMILES strings:
+
+
+  - **Cpd-1**: `CC1=CC=C(C=C1)NC(=O)C2=CC=C(C=C2)CN3CCN(CC3)C`
+
+  - **Cpd-2**: `COC1=CC=C(C=C1)NC(=O)C2=CC=C(C=C2)CN3CCN(CC3)CC(F)(F)F`
+
+  - **Cpd-3**: `O=C(Nc1ccc(O)cc1)c1ccc(CN2CCN(Cc3ccccc3)CC2)cc1`
+
+  - **Cpd-4**: `CC(=O)Nc1ccc(cc1)C(=O)c1ccc(cc1)CN1CCN(CC1)C(=O)c1cccs1`
+
+  - **Cpd-5**: `c1ccc2c(c1)cc1ccc3cccc4ccc2c1c34`
+
+
+  Your medicinal chemistry team needs the following deliverables:
+
+
+  1. **Descriptor calculation**: Using RDKit, compute MW, LogP (Crippen), HBD, HBA,
+  TPSA, and rotatable bonds for all 5 compounds.
+
+
+  2. **Lipinski & Veber filtering**: Apply Ro5 (MW ≤ 500, LogP ≤ 5, HBD ≤ 5, HBA ≤
+  10) and Veber rules (TPSA ≤ 140, rotatable bonds ≤ 10). Report which compounds pass
+  both filters.
+
+
+  3. **PAINS screening**: Check all compounds against the PAINS-A filter set in RDKit
+  and flag any hits with the specific alert name.
+
+
+  4. **Fingerprint similarity**: Compute pairwise Tanimoto similarity using Morgan
+  fingerprints (radius=2, 2048 bits) and identify the most similar pair.
+
+
+  5. **Lead recommendation**: Based on all analyses, recommend which compound(s) are
+  best suited for further optimization and explain your reasoning, noting any structural
+  concerns.
+
+
+  Provide complete, executable Python code using RDKit for steps 1–4, followed by
+  your lead recommendation.'
+target_skills:
+- cheminformatics
+domain: drug-discovery
+difficulty: intermediate

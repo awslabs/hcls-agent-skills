@@ -1,0 +1,38 @@
+id: rna-seq-analysis-09
+prompt: 'You are analyzing a bulk RNA-seq dataset from a rare pediatric brain tumor
+  study (n=8 tumor samples, n=6 matched normal brain tissue controls). Initial STAR
+  alignment with default parameters yielded concerning metrics: average uniquely mapped
+  reads of 52% (range: 41-67%), with high rates of reads mapping to too many loci
+  (~18% multimappers). Salmon quasi-mapping on the same samples shows markedly different
+  quantification for ~340 genes compared to featureCounts results derived from the
+  STAR BAM files, with fold-change discrepancies exceeding 3x for genes including
+  *MALAT1*, *NEAT1*, and several HERV (human endogenous retrovirus) repeat-element
+  loci.
+
+
+  Given this context, provide the following deliverables:
+
+
+  1. **Diagnose** the likely causes of the poor STAR alignment metrics and explain
+  why lncRNAs like *MALAT1*/*NEAT1* and HERV elements would specifically show quantification
+  discrepancies between Salmon and featureCounts.
+
+
+  2. **Provide revised STAR parameters** (as a complete shell command) optimized for
+  this scenario, including appropriate `--genomeSAindexNbases`, `--sjdbOverhang`,
+  and multimapper-handling flags, assuming 150bp paired-end reads and a genome index
+  built from GRCh38 with a GTF that includes repeat elements.
+
+
+  3. **Write R code** using tximport and DESeq2 that correctly imports Salmon output,
+  applies appropriate filtering for low-count genes (given the small n=14 sample size),
+  and runs a differential expression analysis with a design that accounts for potential
+  batch effects (samples were processed in 3 batches).
+
+
+  4. **Explain** when you would trust Salmon vs. featureCounts results for the discordant
+  genes, and what additional QC steps would resolve the ambiguity.'
+target_skills:
+- rna-seq-analysis
+domain: genomics
+difficulty: hard

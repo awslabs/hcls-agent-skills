@@ -1,0 +1,42 @@
+id: edc-data-validation-08
+prompt: 'A Phase III oncology trial (STUDY-ONX-2847) has completed enrollment with
+  412 subjects across 18 sites. The EDC system (Veeva Vault CDMS) exports SAS transport
+  files for SDTM domains. During a routine Pinnacle 21 validation run, the following
+  issues were flagged across three domains:
+
+
+  **VS domain**: VSTESTCD values "SYSBP" and "DIABP" appear inconsistently — some
+  records use "SYSBP"/"DIABP" while others use "SYSBP_S"/"DIABP_S" (a site-specific
+  modification). Additionally, 23 records show VSORRESU as "mmHG" instead of the CDISC-controlled
+  term "mmHg".
+
+
+  **AE domain**: 47 records have AESTDTC after AEENDTC (end date precedes start date).
+  Additionally, 12 records have AESTDTC values that fall outside the subject''s RFSTDTC–RFENDTC
+  window in the DM domain, but only 8 of these are actual protocol deviations — the
+  remaining 4 are pre-treatment AEs that should be valid.
+
+
+  **LB domain**: LBORRES contains free-text entries like ">1000", "<2.5", and "NEGATIVE"
+  mixed with numeric values. LBSTRESC and LBSTRESN are inconsistently populated —
+  some records have LBSTRESN populated when LBORRES is non-numeric.
+
+
+  Please provide:
+
+  1. A Python validation script that detects all three categories of issues, outputs
+  a structured QC report (Excel with one tab per domain), and applies fuzzy matching
+  to catch additional VSTESTCD/VSORRESU variants beyond the known examples
+
+  2. A data reconciliation function that auto-corrects unambiguous issues (unit case
+  errors, clear date transpositions) while flagging ambiguous cases for manual review
+
+  3. Logic to distinguish pre-treatment AEs from true protocol deviations using RFSTDTC,
+  with a confidence score
+
+  4. SDTM conformance rules these violations map to (cite specific CDISC SDTMIG v3.3
+  rule IDs where applicable)'
+target_skills:
+- edc-data-validation
+domain: clinical-data-review
+difficulty: hard

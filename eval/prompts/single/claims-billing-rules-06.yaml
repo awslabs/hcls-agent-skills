@@ -1,0 +1,40 @@
+id: claims-billing-rules-06
+prompt: 'A regional health plan is conducting a retrospective claims audit of a high-volume
+  orthopedic surgery group (Ortho Partners LLC) covering January–December 2023. The
+  audit team flagged the following billing patterns across 1,200 claims:
+
+
+  - **Modifier 59 usage**: Applied to 78% of all NCCI column 1/column 2 code pairs
+  billed, compared to a national benchmark of ~22%
+
+  - **Global surgery period violations**: 340 claims show E&M visits (99213, 99214)
+  billed within the 90-day global period for major procedures (CPT 27447 - total knee
+  arthroplasty, CPT 29881 - knee arthroscopy), without Modifier 24 or 25 documentation
+
+  - **Same-day billing**: 89 instances of CPT 99213 billed alongside CPT 20610 (joint
+  aspiration) with Modifier 25 appended, but no documented separate E&M medical necessity
+  in 61 of those cases
+
+  - **Unbundling pattern**: CPT 29881 and 29880 billed together on 47 claims for the
+  same knee, same date of service
+
+
+  Given this data, please provide:
+
+  1. An assessment of which patterns most likely represent **coding errors versus
+  intentional fraud**, with reasoning
+
+  2. The specific **NCCI edit rules** being violated for each pattern and what modifier
+  indicators apply
+
+  3. A **risk-tiered classification** (High/Medium/Low) for each pattern with justification
+
+  4. Recommended **next investigative steps** for the two highest-risk patterns, including
+  what documentation to request and what additional data queries to run
+
+  5. An estimate of **financial exposure** methodology the audit team should use for
+  extrapolation purposes'
+target_skills:
+- claims-billing-rules
+domain: healthcare-ops
+difficulty: intermediate

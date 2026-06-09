@@ -1,0 +1,46 @@
+id: drug-repurposing-04
+prompt: 'A rare pediatric neurological disorder called **Stellwick Syndrome** (affecting
+  ~2,400 patients in the US) has been characterized by dysregulation of the **KCNQ3/KCNQ5
+  potassium channel complex** and secondary neuroinflammation mediated through **IL-6/JAK1/STAT3
+  signaling**. A research team has phenotypic screening data showing that 3 approved
+  drugs reduce disease-relevant biomarkers in a patient-derived iPSC neuronal model:
+
+
+  - **Retigabine** (KCNQ2/3 opener, approved for epilepsy, withdrawn from market due
+  to pigmentation side effects)
+
+  - **Tofacitinib** (JAK1/3 inhibitor, approved for rheumatoid arthritis, black-box
+  warning for serious infections and malignancy)
+
+  - **Flupirtine** (KCNQ channel opener, approved in Europe for pain, withdrawn due
+  to hepatotoxicity)
+
+
+  The team wants to prioritize ONE candidate to advance into an IND-enabling program
+  for Stellwick Syndrome.
+
+
+  **Please provide:**
+
+
+  1. A structured **mechanism-of-action overlap analysis** for each candidate against
+  the known disease biology, noting on-target vs. off-target activity relevant to
+  Stellwick Syndrome
+
+
+  2. A **repurposing evidence hierarchy** scoring each drug across: (a) target engagement
+  evidence, (b) existing clinical safety data applicability to a pediatric population,
+  (c) availability/regulatory status, and (d) translatability from the iPSC model
+
+
+  3. A **recommendation** for which single candidate to advance, with explicit justification
+  addressing the safety liabilities of the withdrawn/black-box drugs
+
+
+  4. A **Python code snippet** that queries the DGIdb REST API (v4) to retrieve and
+  display all known interactions for the gene targets *KCNQ3*, *KCNQ5*, and *JAK1*,
+  filtering for FDA-approved drugs only'
+target_skills:
+- drug-repurposing
+domain: drug-discovery
+difficulty: intermediate

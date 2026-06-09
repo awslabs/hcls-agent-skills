@@ -1,0 +1,36 @@
+id: proteomics-analysis-10
+prompt: 'You are analyzing a TMT 16-plex phosphoproteomics experiment from MSFragger
+  (philosopher output: `combined_protein.tsv` and `combined_peptide.tsv`) comparing
+  triple-negative breast cancer (TNBC) tumor tissue (n=8 patients) versus adjacent
+  normal tissue (n=8 patients). The TMT channels 126–131C contain tumor samples and
+  132N–134N contain normal samples, with channel 131N used as a pooled reference bridge
+  channel for cross-batch normalization (two batches of 8 channels each). The data
+  contains ~12,000 phosphopeptides with approximately 35% missing values concentrated
+  in low-abundance features.
+
+
+  Your analysis must address several complications: (1) the bridge channel normalization
+  must be performed before inter-sample normalization, (2) phosphopeptide-level differential
+  expression should be performed rather than protein-level rollup, (3) imputation
+  must distinguish between MCAR and MNAR missingness patterns using a hybrid approach,
+  and (4) kinase enrichment analysis should be performed on the differentially phosphorylated
+  sites.
+
+
+  Please provide:
+
+  1. Complete R code implementing the full pipeline from raw TSV loading through bridge
+  normalization, hybrid imputation (using `imputeLCMD` for MNAR and `mice` for MCAR),
+  limma differential expression with phosphosite-level blocking for peptides mapping
+  to the same protein, and volcano plot highlighting known TNBC driver kinase substrates
+  (EGFR, CDK4, PIK3CA)
+
+  2. Code for kinase-substrate enrichment analysis using the PhosphoSitePlus kinase-substrate
+  database loaded from a local `PSP_kinase_substrate.tsv` file
+
+  3. Explanation of why standard IRS normalization fails when >20% of bridge channel
+  values are missing and how your implementation handles this edge case'
+target_skills:
+- proteomics-analysis
+domain: proteomics
+difficulty: hard

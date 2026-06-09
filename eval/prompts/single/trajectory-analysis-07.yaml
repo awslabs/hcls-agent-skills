@@ -1,0 +1,39 @@
+id: trajectory-analysis-07
+prompt: 'Here is test question #7 of 10:
+
+
+  ---
+
+
+  You are analyzing a scRNA-seq dataset of 8,400 human hematopoietic stem and progenitor
+  cells (HSPCs) from 3 healthy donors, profiled with 10x Chromics (v3 chemistry).
+  After standard preprocessing, you have identified 9 clusters: HSC, MPP, CMP, GMP,
+  MEP, proB, proNK, pDC_progenitor, and Basophil_progenitor. You have already run
+  velocyto on the BAM files and have a loom file with spliced/unspliced counts. Your
+  goal is to characterize the branching differentiation trajectories from HSC toward
+  the myeloid and lymphoid lineages using RNA velocity and CellRank.
+
+
+  However, you notice two problems: (1) the velocity stream plot shows arrows pointing
+  in inconsistent directions within the MPP cluster, suggesting MPP may be a heterogeneous
+  transition state, and (2) CellRank''s terminal state detection is calling both GMP
+  and proB as terminal states but is missing MEP entirely.
+
+
+  Please provide:
+
+  1. A step-by-step scVelo workflow (using the dynamical model) with specific parameter
+  choices for this dataset size and biology, including how to handle the MPP inconsistency
+
+  2. Python code using CellRank (v2 API) to compute fate probabilities toward GMP,
+  MEP, and proB terminal states, including how to manually add MEP as a terminal state
+
+  3. An explanation of what biological or technical factors could cause MEP to be
+  missed by automated terminal state detection
+
+  4. Recommendations for validating the inferred trajectories using PAGA connectivity
+  and at least two known marker genes per lineage'
+target_skills:
+- trajectory-analysis
+domain: single-cell
+difficulty: intermediate

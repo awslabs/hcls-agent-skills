@@ -1,0 +1,40 @@
+id: claims-analytics-02
+prompt: 'You are a data engineer at a regional health plan with a claims database
+  containing approximately 2.3 million professional claims submitted over the past
+  12 months. Your compliance team suspects that a subset of providers may be upcoding
+  Evaluation & Management (E&M) office visit services — specifically billing CPT codes
+  99214 and 99215 at unusually high rates compared to specialty peers.
+
+
+  Your claims table has the following relevant columns: `claim_id`, `provider_npi`,
+  `provider_specialty_code`, `service_date`, `cpt_code`, `billed_amount`, `allowed_amount`,
+  `place_of_service_code`, and `patient_id`.
+
+
+  You need to build a provider-level E&M distribution analysis focused on outpatient
+  office visits (place of service code = 11) for Internal Medicine providers (specialty
+  code = "207R00000X").
+
+
+  Please deliver the following:
+
+
+  1. A SQL query that calculates, for each provider NPI, the total E&M claims submitted
+  (CPT codes 99211–99215), the count and percentage of claims at each E&M level, and
+  flags any provider where 99214 + 99215 combined exceed 70% of their total E&M volume
+  — but only include providers with at least 50 E&M claims to ensure statistical relevance.
+
+
+  2. A short Python script using pandas that reads the query results from a CSV file
+  named `em_distribution.csv` and produces a simple console summary listing the flagged
+  providers sorted by their 99214+99215 percentage in descending order, showing NPI,
+  total E&M claims, and the combined high-level percentage.
+
+
+  3. A brief explanation (3–5 sentences) of why the 70% threshold is clinically significant
+  and how this analysis fits into a broader fraud, waste, and abuse (FWA) detection
+  workflow.'
+target_skills:
+- claims-analytics
+domain: healthcare-ops
+difficulty: easy

@@ -1,0 +1,43 @@
+id: quality-measures-07
+prompt: 'You are building a HEDIS Controlling High Blood Pressure (CBP) measure for
+  a regional health plan with 45,000 commercial members for measurement year 2023.
+  Your claims data includes the following relevant counts after initial extraction:
+  8,200 members aged 18–85 with at least one hypertension diagnosis (ICD-10: I10,
+  I10.0) during the measurement year, but you need to apply the full HEDIS CBP denominator
+  and numerator logic before reporting a final rate.
+
+
+  **Your specific constraints and data points:**
+
+  - Continuous enrollment requirement: 11 out of 12 months with a gap allowance of
+  up to 45 days
+
+  - After applying continuous enrollment, 6,750 members remain
+
+  - Exclusion categories to apply: ESRD (2,310 members flagged), pregnancy (180 members
+  flagged), and members with a diagnosis of hypertension only during an acute inpatient
+  stay (95 members flagged) — note some members may appear in multiple exclusion categories
+
+  - Blood pressure readings are available in both claims (CPT 99213, 99214) and a
+  supplemental EHR feed; the most recent reading per member should be used
+
+  - Numerator threshold: systolic < 140 mmHg AND diastolic < 90 mmHg
+
+  - Of the 3,890 eligible denominator members, 2,104 have a compliant BP reading on
+  file
+
+
+  **Deliverables requested:**
+
+  1. Write the SQL logic (with CTEs) to build the denominator after applying all exclusions,
+  handling overlapping exclusion flags correctly
+
+  2. Calculate the final CBP measure rate and identify what the HEDIS national average
+  benchmark (~57%) implies about this plan''s performance
+
+  3. Propose two care gap intervention strategies targeting the non-compliant denominator
+  members, with estimated impact assumptions'
+target_skills:
+- quality-measures
+domain: healthcare-ops
+difficulty: intermediate

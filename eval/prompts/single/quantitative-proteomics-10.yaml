@@ -1,0 +1,43 @@
+id: quantitative-proteomics-10
+prompt: 'You are running a phosphoproteomics study to identify kinase substrates dysregulated
+  in triple-negative breast cancer (TNBC). You have 8 TNBC tumor biopsies and 8 matched
+  adjacent normal tissues processed with TMT16-plex labeling. After enrichment and
+  LC-MS/MS acquisition, MaxQuant returns a phosphopeptide intensity matrix with 12,847
+  phosphosites across 16 samples. However, you notice the following issues in your
+  data:
+
+
+  1. **Ratio compression**: Your positive control phosphosite (known 8-fold enriched
+  spike-in peptide pS-EGFR-Y1068) shows only a 3.2-fold ratio in TMT channels.
+
+  2. **Missing values**: 31% of phosphosites have missing values, and preliminary
+  analysis suggests missingness correlates strongly (r = 0.71) with mean intensity
+  — indicating predominantly MNAR (missing not at random) data.
+
+  3. **Normalization conflict**: VSN normalization produces a bimodal distribution
+  for phosphosites on known tumor suppressors (RB1, PTEN), while median centering
+  shows no such artifact.
+
+  4. **Batch effect**: Samples were processed across two TMT experiments (8 samples
+  each), and PCA shows PC2 (explaining 18% of variance) separates the two batches.
+
+
+  Given these four specific challenges, provide:
+
+  - A concrete correction strategy for ratio compression and its expected impact on
+  fold-change estimates
+
+  - A justified imputation method selection with parameters (e.g., QRILC vs. MinProb,
+  with specific distribution truncation values)
+
+  - A normalization pipeline decision with explanation of why VSN fails here
+
+  - R code using `limma` that incorporates batch correction as a blocking factor while
+  testing tumor vs. normal contrast
+
+  - A threshold recommendation for calling differential phosphosites (adjusted p-value
+  and minimum fold-change cutoffs) accounting for the ratio compression artifact'
+target_skills:
+- quantitative-proteomics
+domain: proteomics
+difficulty: hard

@@ -1,0 +1,57 @@
+id: pharma-rwd-clinical-05
+prompt: 'You are a pharmacoepidemiologist at a large health system with access to
+  a commercial claims database containing 4.2 million continuously enrolled adult
+  members (2018–2023). Your team is designing a real-world evidence study to evaluate
+  whether empagliflozin (SGLT2 inhibitor) reduces the risk of acute kidney injury
+  (AKI) compared to sitagliptin (DPP-4 inhibitor) in patients with type 2 diabetes
+  and stage 3 chronic kidney disease (CKD).
+
+
+  **Specific context and constraints:**
+
+
+  - Index date is defined as first prescription fill for either drug
+
+  - Patients must have ≥12 months of continuous enrollment prior to index (washout
+  period)
+
+  - CKD stage 3 is identified via a combination of ICD-10 codes and eGFR lab values
+
+  - AKI outcome must be identified from inpatient claims
+
+  - A prior analysis using a naive prevalent-user design showed HR = 0.71 (95% CI:
+  0.65–0.78), which your team suspects is biased
+
+  - The study period spans a known formulary change in Q3 2020 that differentially
+  affected empagliflozin access
+
+
+  **Please provide all of the following deliverables:**
+
+
+  1. **Study design critique and redesign**: Explain specifically why the prevalent-user
+  design is biased, then specify the complete new-user active comparator design including
+  cohort entry rules, washout criteria, and how to handle the Q3 2020 formulary change
+  as a potential time-varying confounder using marginal structural models with stabilized
+  IPTW weights.
+
+
+  2. **Cohort identification code specification**: List the exact ICD-10 code groupings
+  (including relevant CKD stage 3 codes from N18.3x), NDC code logic for empagliflozin
+  and sitagliptin identification, and LOINC codes for eGFR lab values needed to confirm
+  CKD staging. Explain how you would map AKI inpatient events using both ICD-10 codes
+  and MedDRA PT/HLT hierarchy for cross-validation and regulatory submission purposes.
+
+
+  3. **Propensity score analysis and balance diagnostics**: Describe the PS model
+  covariates, specify the SMD threshold for acceptable balance, and outline how you
+  would assess the proportional hazards assumption using Schoenfeld residuals given
+  the time-varying formulary change. Calculate the E-value for the observed HR = 0.71
+  and interpret what unmeasured confounding magnitude would be needed to explain away
+  the association.'
+target_skills:
+- pharmacoepidemiology
+- rwd-cohort-analysis
+- clinical-data-standards
+domain: pharmacoepidemiology
+difficulty: intermediate

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "hcls-drug-discovery",
+  "description": "Drug discovery specialist: structure-based drug design, protein structure analysis, molecular docking (AutoDock Vina), drug repurposing, cheminformatics (RDKit), and translational research (bench-to-bedside).",
+  "tools": ["*"],
+  "allowedTools": ["read", "shell"],
+  "resources": [
+    "skill://.kiro/skills/structure-based-drug-design/SKILL.md",
+    "skill://.kiro/skills/protein-structure-analysis/SKILL.md",
+    "skill://.kiro/skills/molecular-docking/SKILL.md",
+    "skill://.kiro/skills/drug-repurposing/SKILL.md",
+    "skill://.kiro/skills/cheminformatics/SKILL.md",
+    "skill://.kiro/skills/translational-research/SKILL.md"
+  ]
+}

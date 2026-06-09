@@ -1,0 +1,45 @@
+id: quantitative-proteomics-03
+prompt: 'A research team is conducting a label-free quantification (LFQ) proteomics
+  experiment comparing plasma samples from 12 healthy controls versus 12 patients
+  with early-stage pancreatic ductal adenocarcinoma (PDAC). Samples were processed
+  using the MaxQuant pipeline with default LFQ settings, and the resulting `proteinGroups.txt`
+  file contains 3,847 protein groups. After filtering for proteins identified in at
+  least 70% of samples within at least one group, 1,203 proteins remain. Exploratory
+  analysis reveals the following:
+
+
+  - Raw LFQ intensities span roughly 4 orders of magnitude
+
+  - A PCA plot shows moderate batch effects (samples were processed across two separate
+  days)
+
+  - Approximately 18% of values are missing across the filtered matrix
+
+
+  The team wants to perform differential expression analysis to identify candidate
+  biomarkers.
+
+
+  Please provide the following:
+
+
+  1. **Normalization strategy**: Recommend and justify a specific normalization approach
+  suitable for plasma LFQ data with the described intensity range and batch effects.
+  Explain why you would or would not use quantile normalization here.
+
+
+  2. **Missing value imputation**: The team is unsure whether missing values are MCAR,
+  MAR, or MNAR. Describe how you would assess the missing data mechanism using the
+  data at hand, and recommend an imputation strategy (e.g., MinProb, kNN, QRILC) with
+  justification.
+
+
+  3. **Differential expression**: Outline the statistical framework you would use
+  (e.g., limma with empirical Bayes moderation) and specify how batch should be incorporated
+  into the model. Write a short R code snippet (using `limma`) that sets up the design
+  matrix and contrast for this two-group comparison while accounting for the processing
+  day batch effect.'
+target_skills:
+- quantitative-proteomics
+domain: proteomics
+difficulty: easy

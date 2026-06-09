@@ -1,0 +1,41 @@
+id: molecular-docking-05
+prompt: 'You are preparing a structure-based virtual screen of 2,500 drug-like compounds
+  against the kinase domain of a fictional protein **TRK7** (PDB ID: 7TRK, resolution
+  1.9 Å). The crystal structure contains a co-crystallized inhibitor **TRK7-IN1**
+  in the ATP-binding pocket, along with 3 sulfate ions, 2 glycerol molecules, and
+  148 water molecules in the PDBQT-converted file.
+
+
+  Your grid box should center on the co-crystallized ligand''s centroid, which you''ve
+  calculated at coordinates **(x=12.4, y=−3.7, z=51.2)** in the crystal frame. The
+  ATP-binding pocket is known to be approximately 20 × 18 × 22 Å. You plan to use
+  AutoDock Vina with exhaustiveness=16 and generate the top 5 poses per compound.
+
+
+  Before launching the full screen, your validation redocking of TRK7-IN1 yielded
+  an RMSD of **2.8 Å** against the crystal pose, which exceeds the typical 2.0 Å acceptance
+  threshold.
+
+
+  Please provide:
+
+
+  1. A diagnostic checklist of the **five most likely causes** for the high redocking
+  RMSD and how to investigate each one.
+
+  2. A corrected Python script using **Biopython and RDKit** that prepares the receptor
+  PDBQT (stripping non-standard residues, waters, and co-factors appropriately) and
+  validates that the grid box encompasses at least 95% of the co-crystallized ligand''s
+  heavy atoms.
+
+  3. Specific AutoDock Vina configuration parameters (as a `.conf` file) optimized
+  for this screen, including a justification for your exhaustiveness setting given
+  the pocket volume.
+
+  4. A post-screening filtering strategy to prioritize the top candidates from 2,500
+  docked compounds, specifying at least three scoring or property-based criteria with
+  suggested cutoff values.'
+target_skills:
+- molecular-docking
+domain: protein-structure
+difficulty: intermediate

@@ -1,0 +1,42 @@
+id: digital-pathology-10
+prompt: 'You are processing a CAMELYON16 validation cohort of 48 whole-slide images
+  (mix of Leica Aperio SVS and Hamamatsu NDPI formats) for metastasis detection using
+  H-optimus-0 as a feature extractor. During preprocessing, you discover three complicating
+  factors: (1) 11 slides have tissue-to-background ratios below 15% due to sparse
+  biopsy cores, (2) 7 slides exhibit severe Z-stack focus artifacts affecting roughly
+  30% of their tile area, and (3) the SVS and NDPI slides were scanned at different
+  nominal resolutions (0.252 mpp vs 0.274 mpp respectively), causing feature distribution
+  shift when extracted naively at the stored level 0.
+
+
+  Your pipeline must produce 1024-dimensional H-optimus-0 embeddings for all 48 slides
+  at a standardized 0.5 mpp, aggregate them using an attention-based MIL model (ABMIL),
+  and output slide-level malignancy probabilities.
+
+
+  Please provide:
+
+
+  1. A complete TIAToolbox Python pipeline that reads both SVS and NDPI formats, extracts
+  tiles at exactly 0.5 mpp regardless of scanner origin, detects and excludes focus-artifact
+  tiles using a Laplacian variance threshold (empirically set to 45.0), and handles
+  the sparse-tissue slides without crashing by enforcing a minimum of 16 valid tiles
+  per slide (padding with zero-embeddings if necessary).
+
+
+  2. A function that computes per-tile focus quality scores, applies the threshold,
+  and logs rejected tile coordinates to a CSV file for QC review.
+
+
+  3. An ABMIL aggregation module in PyTorch that accepts variable-length bags of 1024-dim
+  embeddings (including the zero-padded cases) using a masking mechanism to ignore
+  padded entries during attention computation.
+
+
+  4. Recommendations for handling the SVS/NDPI feature distribution shift beyond resolution
+  normalization, including stain normalization strategy and whether domain-adversarial
+  fine-tuning of H-optimus-0 is advisable given only 48 slides.'
+target_skills:
+- digital-pathology
+domain: imaging
+difficulty: hard

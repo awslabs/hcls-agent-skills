@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "hcls-imaging",
+  "description": "Medical imaging specialist: imaging study design, digital pathology (TIAToolbox, H-optimus-0), DICOM processing and de-identification, and radiology preprocessing (skull stripping, registration).",
+  "tools": ["*"],
+  "allowedTools": ["read", "shell"],
+  "resources": [
+    "skill://.kiro/skills/imaging-study-design/SKILL.md",
+    "skill://.kiro/skills/digital-pathology/SKILL.md",
+    "skill://.kiro/skills/dicom-processing/SKILL.md",
+    "skill://.kiro/skills/radiology-preprocessing/SKILL.md"
+  ]
+}

@@ -1,0 +1,42 @@
+id: quality-measures-10
+prompt: 'A regional health plan with 85,000 commercial members needs to calculate
+  the **Breast Cancer Screening (BCS) HEDIS measure** for the current measurement
+  year, but faces three complicating edge cases in their claims data:
+
+
+  1. **Dual enrollment gaps**: 1,247 members have a 47-day gap in enrollment mid-year
+  (days 134–180) due to a system migration error. HEDIS requires continuous enrollment
+  with no more than one 45-day gap.
+
+
+  2. **Bilateral mastectomy exclusions**: The exclusion logic must capture both historical
+  claims (lookback unlimited) using CPT codes 19303/19304 AND ICD-10 diagnosis codes
+  Z90.10–Z90.13, but the data warehouse stores pre-2015 claims in a legacy schema
+  (`legacy_claims.procedures`) with different column names (`proc_cd`, `svc_dt`) versus
+  the current schema (`claims.medical` with `procedure_code`, `service_date`).
+
+
+  3. **Mammogram identification**: The plan uses a supplemental data feed (`supplemental.lab_results`)
+  containing digital mammography results from retail clinics that are NOT in medical
+  claims. These must be included in numerator logic per HEDIS technical specifications.
+
+
+  **Deliverables required:**
+
+
+  - **SQL query** (PostgreSQL dialect) that correctly handles all three edge cases,
+  including the dual-schema exclusion lookup and supplemental data union
+
+  - **Enrollment validation logic** explaining precisely how the 47-day gap population
+  should be handled (included vs. excluded with justification citing NCQA specs)
+
+  - **Rate calculation** showing denominator, numerator, and final BCS rate given
+  these inputs: 12,400 age-eligible women, 1,247 with enrollment gaps, 312 with mastectomy
+  history, 8,941 with qualifying mammograms (claims + supplemental combined)
+
+  - **Care gap list query** identifying members in the denominator who lack a numerator
+  event, stratified by age band (50–54, 55–59, 60–62)'
+target_skills:
+- quality-measures
+domain: healthcare-ops
+difficulty: hard

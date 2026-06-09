@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "hcls-healthcare-ops",
+  "description": "Healthcare operations specialist: claims billing rules (CMS, NCCI), claims analytics (X12 837/835), risk adjustment (CMS-HCC, RAF scores), prior authorization (clinical policy, Da Vinci PAS), HEDIS measures, and quality measures.",
+  "tools": ["*"],
+  "allowedTools": ["read", "shell"],
+  "resources": [
+    "skill://.kiro/skills/claims-billing-rules/SKILL.md",
+    "skill://.kiro/skills/claims-analytics/SKILL.md",
+    "skill://.kiro/skills/risk-adjustment-strategy/SKILL.md",
+    "skill://.kiro/skills/risk-adjustment/SKILL.md",
+    "skill://.kiro/skills/pa-clinical-policy/SKILL.md",
+    "skill://.kiro/skills/pa-decision-automation/SKILL.md",
+    "skill://.kiro/skills/hedis-measure-specification/SKILL.md",
+    "skill://.kiro/skills/quality-measures/SKILL.md"
+  ]
+}

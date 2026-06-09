@@ -1,0 +1,43 @@
+id: dicom-processing-03
+prompt: 'Here is test question #3 of 10:
+
+
+  ---
+
+
+  You are working in a neuroimaging research lab and have received a folder containing
+  DICOM files from a 3T MRI scanner for a single subject (Subject ID: SUB_042). The
+  DICOM series includes a T1-weighted MPRAGE sequence with the following characteristics:
+  176 slices, 1mm isotropic resolution, TR=2300ms, TE=2.98ms, and the files are stored
+  in a flat directory (no subdirectories) named `/data/raw/SUB_042/` containing approximately
+  352 `.dcm` files (two DICOM series mixed together based on SeriesInstanceUID).
+
+
+  Your task is to convert these DICOM files to NIfTI format using `dcm2niix` so that
+  the output is compatible with BIDS (Brain Imaging Data Structure) formatting.
+
+
+  Please provide:
+
+
+  1. The exact `dcm2niix` command you would use, including appropriate flags for BIDS
+  sidecar JSON generation, output filename formatting using the subject ID, compressed
+  NIfTI output (`.nii.gz`), and handling of the mixed series in the flat directory.
+
+
+  2. A brief explanation of what each flag in your command does and why it is appropriate
+  for this use case.
+
+
+  3. A short Python code snippet using `subprocess` or `os` that programmatically
+  runs this `dcm2niix` command for a list of 10 subjects (SUB_001 through SUB_010),
+  assuming each subject has their own flat DICOM directory under `/data/raw/` and
+  outputs should go to `/data/nifti/<subject_id>/`.
+
+
+  4. One potential issue you might encounter with mixed series in a flat directory
+  and how `dcm2niix` handles it automatically.'
+target_skills:
+- dicom-processing
+domain: imaging
+difficulty: easy

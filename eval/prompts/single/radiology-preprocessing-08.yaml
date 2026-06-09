@@ -1,0 +1,39 @@
+id: radiology-preprocessing-08
+prompt: 'You are processing a retrospective multi-site neuroimaging dataset of 847
+  T1w MPRAGE scans collected across 6 scanner sites (3T Siemens Prisma, 3T GE Discovery
+  MR750, and 1.5T Siemens Avanto) for a white matter hyperintensity study. During
+  quality control, you discover the following issues:
+
+
+  1. **Site B (GE, n=203)**: HD-BET skull stripping leaves consistent dural sinus
+  residuals in 31% of subjects, while FSL BET with default parameters (f=0.5, g=0)
+  over-strips temporal poles in 44% of the same subjects.
+
+  2. **Site E (1.5T Avanto, n=89)**: N4BiasFieldCorrection with default 4-level B-spline
+  (200x200x200x200 iterations) is failing to correct a "venetian blind" artifact from
+  gradient nonlinearity, leaving residual intensity bands every ~15mm in the superior-inferior
+  direction.
+
+  3. **Cross-site registration**: After ANTs SyN registration to MNI152 1mm space,
+  Dice overlap for cerebellar ROIs averages 0.71 across sites versus 0.89 for cortical
+  ROIs, suggesting registration is underperforming in posterior fossa regions.
+
+
+  **Deliverables required:**
+
+
+  1. Propose a parameter-tuned hybrid skull stripping strategy for Site B that combines
+  HD-BET and FSL BET outputs, including the specific FSL command with corrected parameters
+  and a Python pseudocode snippet for the mask fusion logic.
+
+  2. Explain why N4''s standard B-spline approach fails for gradient nonlinearity
+  artifacts and provide a modified `N4BiasFieldCorrection` command with adjusted `--bspline-fitting`
+  and `--convergence` parameters to address the banding pattern.
+
+  3. Diagnose why ANTs SyN underperforms in the posterior fossa and recommend a two-stage
+  registration strategy (rigid + deformable) with specific ANTs command-line parameters
+  to improve cerebellar Dice to ≥0.85.'
+target_skills:
+- radiology-preprocessing
+domain: imaging
+difficulty: hard

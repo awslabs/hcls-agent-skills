@@ -1,0 +1,30 @@
+id: rna-seq-analysis-01
+prompt: 'You are setting up a STAR genome index for human RNA-seq data from a study
+  involving 24 tumor samples (12 paired tumor/normal). Your compute cluster has nodes
+  with 64GB RAM and 16 CPU cores available. You are working with the GRCh38 primary
+  assembly (hg38) FASTA file and a matching Gencode v44 GTF annotation file.
+
+
+  **Your tasks:**
+
+
+  1. Write the complete STAR command to generate the genome index, specifying appropriate
+  values for `--runThreadN`, `--genomeSAindexNbases`, and `--sjdbOverhang` given that
+  your RNA-seq reads are 150bp paired-end. Explain why you chose each parameter value.
+
+
+  2. After building the index, write the STAR two-pass alignment command for a single
+  sample (sample ID: "T01_tumor") with paired FASTQ files (`T01_tumor_R1.fastq.gz`
+  and `T01_tumor_R2.fastq.gz`). Include appropriate flags for: outputting a coordinate-sorted
+  BAM, enabling chimeric read detection, and generating a file suitable for downstream
+  transcript quantification with Salmon.
+
+
+  3. Explain the key difference between STAR''s basic two-pass mode (running STAR
+  twice manually) versus using the `--twopassMode Basic` flag, and describe one scenario
+  in this 24-sample study where the manual two-pass approach would be preferred over
+  the built-in flag.'
+target_skills:
+- rna-seq-analysis
+domain: genomics
+difficulty: easy

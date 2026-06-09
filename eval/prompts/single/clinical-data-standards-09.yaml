@@ -1,0 +1,42 @@
+id: clinical-data-standards-09
+prompt: 'A global Phase III oncology trial is preparing its final adverse event summary
+  tables for regulatory submission. The safety database contains 847 coded adverse
+  events using MedDRA v26.0. Your medical coding team has flagged three specific coding
+  conflicts requiring resolution before database lock:
+
+
+  **Conflict 1:** 23 events were coded to LLT "Electrocardiogram QT prolonged" (10014387)
+  and 31 events to LLT "Long QT syndrome" (10024640). The clinical team argues these
+  should be combined in the AE frequency table, but the regulatory statistician insists
+  they map to different PTs.
+
+
+  **Conflict 2:** 18 events of "immune-mediated hepatitis" were coded to PT "Autoimmune
+  hepatitis" (SOC: Hepatobiliary disorders) by one CRO site, while 14 similar events
+  were coded to PT "Hepatitis immune-mediated" (SOC: Hepatobiliary disorders) by another
+  site. Confirm whether these are distinct PTs or synonymous LLTs under one PT.
+
+
+  **Conflict 3:** 9 events described in source documents as "cytokine release syndrome
+  grade 2" were split — 5 coded under SOC "Immune system disorders" and 4 under SOC
+  "General disorders and administration site conditions." The investigator queries
+  whether a multiaxial SOC assignment applies here.
+
+
+  **Deliverables required:**
+
+  1. Resolve each conflict with the correct MedDRA v26.0 hierarchy path (LLT→PT→HLT→HLGT→SOC)
+  for all relevant terms
+
+  2. Specify which events should be combined or kept separate in the PT-level frequency
+  table and the regulatory justification
+
+  3. Explain the multiaxial coding rule for Conflict 3 and identify the primary SOC
+  for tabulation
+
+  4. Recommend a CDISC SEND/SDTM variable-level implementation note for handling the
+  multiaxial assignment in the ADAE dataset'
+target_skills:
+- clinical-data-standards
+domain: clinical-data
+difficulty: hard

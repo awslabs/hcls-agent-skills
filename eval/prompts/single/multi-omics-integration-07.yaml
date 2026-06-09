@@ -1,0 +1,43 @@
+id: multi-omics-integration-07
+prompt: 'You are analyzing a cohort of 156 pediatric acute lymphoblastic leukemia
+  (ALL) patients with three omics layers collected at diagnosis: RNA-seq (156/156
+  patients), ATAC-seq chromatin accessibility (112/156 patients), and targeted metabolomics
+  measuring 287 metabolites (89/156 patients). Batch effects are present across RNA-seq
+  data collected in three sequencing runs (n=52 per batch) and metabolomics data collected
+  across two LC-MS platforms.
+
+
+  Your goal is to identify multi-omic patient subtypes and the biological programs
+  driving them.
+
+
+  **Please provide:**
+
+
+  1. **Integration strategy recommendation**: Given the substantial partial sample
+  overlap (not all patients have all three omics layers), justify whether you would
+  use MOFA+, SNF, or iCluster, and specifically how each handles missing modalities
+  differently.
+
+
+  2. **Batch correction plan**: Describe the order of operations for correcting batch
+  effects — should you correct within each omic layer before integration, during integration,
+  or both? Specify which tools (e.g., ComBat-seq, limma removeBatchEffect, WaveICA2.0)
+  are appropriate for RNA-seq vs. metabolomics, and why applying ComBat-seq to metabolomics
+  data would be inappropriate.
+
+
+  3. **Factor interpretation workflow**: After running MOFA+ with 15 factors and 15%
+  variance explained threshold, describe how you would identify which factors are
+  biologically meaningful versus technical, using a specific combination of variance
+  decomposition plots, factor-covariate correlation tests, and enrichment approaches
+  (GSEA vs. ORA) appropriate for multi-omic factor loadings.
+
+
+  4. **Code snippet**: Provide Python pseudocode using the `mofapy2` library to initialize
+  a MOFA+ model with these three modalities, explicitly handling missing values and
+  setting group structure for the three RNA-seq batches.'
+target_skills:
+- multi-omics-integration
+domain: multi-omics
+difficulty: intermediate

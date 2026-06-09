@@ -1,0 +1,50 @@
+id: genomics-variant-pipeline-07
+prompt: 'A clinical genomics laboratory is processing a cohort of 47 patients with
+  suspected hereditary colorectal cancer syndrome. Whole-exome sequencing was performed
+  on an Illumina NovaSeq 6000 (2×150 bp, ~100× mean target coverage) using a SureSelect
+  Human All Exon v7 kit. You have received paired FASTQs (`sample_R1.fastq.gz` / `sample_R2.fastq.gz`),
+  a coordinate-sorted BAM (`sample.bam`), and a target intervals BED file for one
+  index patient (Patient CRC-031).
+
+
+  During preliminary analysis, the following findings were flagged for Patient CRC-031:
+
+
+  1. **FastQC** reports 18% adapter contamination in R2 reads, mean Q-score drops
+  below Q20 after cycle 130, and a GC-content distribution spike at 72%.
+
+  2. **GATK HaplotypeCaller** (run in GVCF mode with default WES parameters) called
+  a variant in *MLH1*: `chr3:37,067,251 C>T`, resulting in a canonical splice donor
+  disruption at the intron 14 donor site. **SpliceAI** delta score = 0.91 (DS_DL).
+  The variant is absent from gnomAD v3.1.1 (0/~125,000 alleles). ClinVar contains
+  two submissions: one "Likely Pathogenic" (2019, no functional data) and one "VUS"
+  (2021, citing insufficient evidence). REVEL score = 0.74. The variant was called
+  with DP=11, GQ=34, VAF=0.48.
+
+  3. A second variant in *APC* (`chr5:112,175,211 G>A`, p.Arg1450Ter) was called with
+  DP=6, GQ=21.
+
+
+  **Your deliverables:**
+
+
+  - **QC Assessment**: Identify all QC failures for Patient CRC-031 and specify the
+  exact fastp and mosdepth commands (using `THREADS=8`, `OUT=qc_out`) needed to remediate
+  adapter contamination and assess per-target coverage uniformity. Specify thresholds
+  that should trigger sample re-sequencing.
+
+  - **Variant Calling Review**: Explain whether the low-depth calls in *MLH1* (DP=11,
+  GQ=34) and *APC* (DP=6, GQ=21) should be retained or filtered, referencing GATK
+  hard-filter thresholds appropriate for WES at this coverage, and describe the GATK
+  command adjustments needed.
+
+  - **Variant Interpretation**: Classify the *MLH1* splice variant using ACMG/AMP
+  2015 criteria, explicitly evaluating PVS1, PM2, PP3, and BP6/PP5 criteria given
+  the conflicting ClinVar submissions. State your final classification and whether
+  this result is reportable under CAP/CLIA guidelines.'
+target_skills:
+- genomic-variant-interpretation
+- variant-calling
+- ngs-quality-control
+domain: genomics
+difficulty: intermediate

@@ -1,0 +1,41 @@
+id: digital-pathology-08
+prompt: 'You are building a multi-resolution MIL pipeline for CAMELYON16 tumor detection
+  using TIAToolbox. Your WSI collection contains 270 training slides (160 normal,
+  110 tumor) stored as SVS files with varying scanner magnifications (20× Aperio GT450
+  and 40× Hamamatsu NanoZoomer), and you discover that 23 slides have tissue regions
+  with severe pen markings and ink artifacts that must be excluded before patch extraction.
+
+
+  Your feature extractor is H-optimus-0, and you intend to extract patches at 0.5
+  mpp (20× equivalent). The MIL aggregator is ABMIL with Gated Attention. You need
+  to handle the scanner normalization problem: Macenko stain normalization must be
+  applied per-patch, but you''ve benchmarked that naive per-patch Macenko on your
+  40× slides introduces color drift when downsampled to 0.5 mpp because the reference
+  template was computed on 20× patches.
+
+
+  Provide the following concrete deliverables:
+
+
+  1. A Python function using TIAToolbox''s `WSIReader` and `TissueMasker` that filters
+  out pen-mark artifacts using HSV color thresholding before generating the tissue
+  mask, returning only clean tissue contours.
+
+
+  2. A patching pipeline that reads slides at their native resolution, rescales to
+  exactly 0.5 mpp, applies a resolution-aware Macenko normalization (using separate
+  reference statistics for 20× vs. 40× source slides), and extracts 256×256 patches
+  with at least 85% tissue coverage.
+
+
+  3. A PyTorch `Dataset` class that loads pre-extracted H-optimus-0 embeddings (stored
+  as `.pt` files, one per slide, shape `[N, 1536]`) and returns bag-level tensors
+  with a slide-level binary label.
+
+
+  4. Explain why naive per-patch Macenko normalization fails specifically at the resolution
+  boundary and propose a statistically principled fix.'
+target_skills:
+- digital-pathology
+domain: imaging
+difficulty: hard

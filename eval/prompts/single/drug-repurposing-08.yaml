@@ -1,0 +1,55 @@
+id: drug-repurposing-08
+prompt: 'Here is test question #8 of 10:
+
+
+  ---
+
+
+  You are evaluating **bardoxolone methyl** (an Nrf2 activator originally developed
+  for CKD) as a repurposing candidate for **idiopathic pulmonary fibrosis (IPF)**.
+  Your team has generated the following conflicting evidence:
+
+
+  **Supporting evidence:**
+
+  - RNA-seq from 47 IPF lung biopsies shows NRF2 pathway downregulation (NES = -2.3,
+  FDR < 0.01) vs. 22 healthy controls
+
+  - A mouse bleomycin fibrosis model showed 40% reduction in hydroxyproline content
+  at 10 mg/kg dosing
+
+  - CMap L1000 connectivity score: +0.71 against IPF gene signature (p = 0.003)
+
+
+  **Conflicting evidence:**
+
+  - Bardoxolone methyl failed Phase 3 in diabetic nephropathy due to fluid retention/cardiac
+  events (BEACON trial, n=2,185)
+
+  - NRF2 activation has been shown to upregulate TGF-β1 in some fibrotic contexts
+  (3 papers, mechanistic studies only)
+
+  - A 2021 proteomics study (n=12 IPF patients) found NRF2 target genes were *upregulated*
+  in advanced-stage disease, contradicting the RNA-seq finding
+
+
+  **Your tasks:**
+
+  1. Construct a mechanistic argument for why the RNA-seq and proteomics findings
+  may both be valid (stage-dependent biology hypothesis)
+
+  2. Design a DGIdb/OpenTargets query strategy to identify whether bardoxolone''s
+  off-target interactions could explain the cardiac safety signal
+
+  3. Rank the repurposing evidence using a structured evidence hierarchy (preclinical
+  → clinical translatability), explicitly flagging the TGF-β1 conflict
+
+  4. Propose a Phase 2 trial design with a biomarker-stratified enrollment criterion
+  that addresses the stage-dependent NRF2 activity concern
+
+  5. Identify two alternative Nrf2-activating compounds with better cardiac safety
+  profiles using ChEMBL criteria'
+target_skills:
+- drug-repurposing
+domain: drug-discovery
+difficulty: hard

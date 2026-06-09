@@ -1,0 +1,44 @@
+id: genomic-variant-interpretation-04
+prompt: 'A 34-year-old woman with a strong family history of breast and ovarian cancer
+  undergoes germline panel testing. The laboratory returns a result for **BRCA2 c.7976+3A>G**,
+  a variant in the canonical splice donor region of intron 17. The following evidence
+  is available:
+
+
+  - **SpliceAI scores**: Donor loss: 0.61, Acceptor loss: 0.02, Donor gain: 0.08,
+  Acceptor gain: 0.03
+
+  - **REVEL score**: 0.34 (computed on the nearest exonic position as a proxy)
+
+  - **gnomAD v3.1 (non-cancer)**: 4 heterozygous alleles observed out of 152,310 total
+  alleles (no homozygotes)
+
+  - **ClinVar**: 2 submissions — one "Uncertain significance" (single lab, no evidence
+  provided) and one "Likely pathogenic" (ENIGMA consortium, functional splicing assay
+  showing ~40% aberrant transcripts with partial exon 17 skipping)
+
+  - **RNA splicing assay (in-house)**: Confirms partial exon skipping (~35% aberrant
+  isoform), but the aberrant isoform retains in-frame sequence, potentially producing
+  a shortened but partially functional protein
+
+  - **Family history**: Two first-degree relatives with ovarian cancer; co-segregation
+  data unavailable
+
+
+  **Your tasks:**
+
+  1. Systematically apply the ACMG/AMP 2015 criteria, identifying which specific evidence
+  codes apply (or are modified) and justifying each.
+
+  2. Address whether PVS1 is appropriate given the non-canonical position (+3) and
+  the in-frame nature of the aberrant isoform.
+
+  3. Reconcile the conflicting ClinVar submissions and explain how the ENIGMA functional
+  data should be weighted.
+
+  4. Provide a final variant classification with confidence reasoning and note any
+  conditions under which the classification could be upgraded or downgraded.'
+target_skills:
+- genomic-variant-interpretation
+domain: genomics
+difficulty: intermediate

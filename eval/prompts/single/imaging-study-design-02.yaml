@@ -1,0 +1,39 @@
+id: imaging-study-design-02
+prompt: 'A research team at a single academic medical center is planning a cross-sectional
+  study to identify structural MRI biomarkers associated with mild cognitive impairment
+  (MCI) in 85 participants (42 MCI, 43 healthy controls), all scanned on the same
+  3T Siemens Prisma scanner using a standard MPRAGE sequence (TR=2300ms, TE=2.98ms,
+  TI=900ms, flip angle=9°, 1mm isotropic voxels).
+
+
+  The team wants to extract hippocampal volume as their primary volumetric biomarker
+  and compare it between groups. They have no prior imaging analysis experience and
+  are deciding between two approaches: (A) analyzing volumes in native subject space
+  using FreeSurfer''s recon-all segmentation, or (B) registering all images to MNI152
+  standard space first and then applying atlas-based segmentation.
+
+
+  Please provide the following concrete deliverables:
+
+
+  1. **Recommendation**: Which approach (A or B) is more appropriate for this specific
+  use case, and why? Address the trade-offs in terms of anatomical accuracy, computational
+  cost, and suitability for volumetric biomarker extraction.
+
+
+  2. **Quality control checklist**: List at least 5 specific QC steps the team should
+  perform on the raw MPRAGE images and FreeSurfer outputs before statistical analysis.
+
+
+  3. **Covariate strategy**: Identify which demographic or acquisition covariates
+  should be included in the group comparison statistical model, and explain the rationale
+  for each.
+
+
+  4. **Sample size consideration**: Given 85 participants and an expected hippocampal
+  volume effect size of Cohen''s d = 0.65 based on prior literature, comment on whether
+  this sample is adequately powered at α=0.05 for a two-tailed t-test.'
+target_skills:
+- imaging-study-design
+domain: imaging
+difficulty: easy

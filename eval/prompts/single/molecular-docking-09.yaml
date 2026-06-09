@@ -1,0 +1,31 @@
+id: molecular-docking-09
+prompt: 'You are conducting structure-based virtual screening against the allosteric
+  site of mutant KRAS G12C using AutoDock Vina. Your prepared receptor file (`KRAS_G12C_allosteric.pdbqt`)
+  has already been processed with AutoDockTools, and you have a library of 2,847 covalent
+  warhead-containing fragments in PDBQT format. However, you encounter a critical
+  complication: the allosteric Switch II pocket (S-IIP) is cryptic and only fully
+  formed in 3 of 12 available crystal structures (PDB: 6OIM, 7LFX, 8DQQ), while the
+  remaining 9 structures show a collapsed pocket with estimated volume <180 Ų versus
+  >420 Ų in the open conformations.
+
+
+  Your grid box is currently centered at coordinates x=−3.2, y=2.7, z=−1.8 (Å) with
+  dimensions 20×18×22 Ų based on the co-crystallized inhibitor AMG-510 binding pose
+  from 6OIM. Preliminary docking of 50 test compounds shows a bimodal score distribution:
+  31 compounds cluster around −6.2 kcal/mol and 19 compounds cluster around −9.1 kcal/mol,
+  but visual inspection reveals the higher-affinity cluster is docking into an adjacent,
+  non-relevant groove near residues Arg68 and Asp69.
+
+
+  Provide the following: (1) A Python script using RDKit and subprocess to implement
+  an ensemble docking workflow across all three open-conformation receptors with score
+  aggregation using the minimum score (best pose) strategy. (2) A post-docking filtering
+  protocol with specific geometric constraints to eliminate false positives docking
+  into the Arg68/Asp69 groove, including distance cutoff recommendations to key S-IIP
+  residues (His95, Tyr96, Gln99). (3) An analysis of whether your current grid box
+  parameters are appropriate for capturing covalent fragment binding near Cys12, with
+  specific recommendations for adjustment.'
+target_skills:
+- molecular-docking
+domain: protein-structure
+difficulty: hard

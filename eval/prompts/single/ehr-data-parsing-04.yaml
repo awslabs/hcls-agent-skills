@@ -1,0 +1,46 @@
+id: ehr-data-parsing-04
+prompt: 'You are working with a hospital''s ADT (Admit, Discharge, Transfer) feed
+  that delivers HL7v2 ADT^A01 messages for patient admissions. Your task is to parse
+  a batch of these messages and extract key demographic and visit information into
+  a pandas DataFrame for downstream analytics.
+
+
+  Here is a representative HL7v2 ADT^A01 message from the feed:
+
+
+  ```
+
+  MSH|^~\&|EPIC|HOSPITAL_A|ANALYTICS|DW|20240315142300||ADT^A01|MSG00421|P|2.5
+
+  EVN|A01|20240315142300
+
+  PID|1||MRN-78432^^^HOSPITAL_A^MR||Nguyen^Linh^Thi^^Ms.||19851120|F|||45 Maple Street^^Boston^MA^02118^USA||6175550192|||||SS-884-22-1197
+
+  PV1|1|I|3WEST^301^A^HOSPITAL_A|EL|||DR-4421^Chen^Marcus^J^^^MD|DR-9902^Patel^Anita^^^MD||SUR|||||||ADM-9921|A|||||||||||||||||||HOSPITAL_A|||||20240315140000
+
+  ```
+
+
+  Write a Python solution that:
+
+
+  1. **Parses the MSH, PID, and PV1 segments** using only the standard library (no
+  `hl7` package), splitting on `|` and `^` delimiters where appropriate
+
+  2. **Extracts** the following fields: message timestamp, patient MRN, full name
+  (formatted as "Last, First Middle"), date of birth, gender, full address, phone
+  number, admission datetime, ward/room/bed, patient class, and attending physician
+  name
+
+  3. **Handles a list of 3 such messages** (you may reuse the same message with minor
+  variations in MRN, name, and timestamp) and loads all records into a **pandas DataFrame**
+
+  4. **Adds a derived column** `age_at_admission` computed from DOB and admission
+  datetime
+
+  5. **Includes a data quality check** that flags records where DOB is in the future
+  or age exceeds 120 years, adding a boolean column `dob_flag`'
+target_skills:
+- ehr-data-parsing
+domain: clinical-data
+difficulty: intermediate

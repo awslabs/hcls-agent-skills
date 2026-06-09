@@ -1,0 +1,44 @@
+id: genomics-variant-pipeline-06
+prompt: 'A clinical genomics laboratory is processing a cohort of 847 germline WES
+  samples from patients with suspected hereditary breast and ovarian cancer syndrome.
+  The sequencing was performed on Illumina NovaSeq 6000 (2×150 bp), and the raw data
+  is available as paired FASTQs (`sample_R1.fastq.gz` / `sample_R2.fastq.gz`) alongside
+  a coordinate-sorted BAM (`sample.bam`) aligned to GRCh38. Target intervals cover
+  a 48-gene hereditary cancer panel, and the reference is `ref.fasta`.
+
+
+  During preliminary analysis, the team flagged a heterozygous variant in **BRCA2**:
+  `chr13:32,340,301 C>T` (NM_000059.4: c.5946delT is confirmed absent; this is a distinct
+  variant causing p.Arg1982Trp). ClinVar contains two submissions: one "VUS" from
+  a clinical lab in 2019 and one "Likely Pathogenic" from a research consortium in
+  2022, with no star rating. gnomAD v3.1 shows an allele frequency of 0.000041 in
+  non-Finnish Europeans. REVEL score is 0.74, CADD Phred is 24.1, and SpliceAI delta
+  scores are all <0.05. The variant was also detected somatically in a paired tumor
+  sample from the same patient, with a VAF of 0.38 in the tumor versus 0.49 in the
+  germline.
+
+
+  Please provide the following deliverables:
+
+
+  1. **QC assessment**: Write a complete shell script using `fastp`, `mosdepth`, and
+  `MultiQC` (assuming `THREADS=8`, `OUT=qc_out`) to evaluate sequencing quality and
+  panel coverage, including a minimum mean target coverage threshold of 100× and flagging
+  samples below 20× at >5% of targets.
+
+
+  2. **Variant calling pipeline**: Provide a GATK4 HaplotypeCaller GVCF-mode command
+  for germline calling and a Mutect2 tumor-normal command for the somatic call, including
+  appropriate flags for WES panel data and contamination estimation.
+
+
+  3. **Variant classification**: Apply the ACMG/AMP 2015 criteria to classify `BRCA2
+  p.Arg1982Trp`, explicitly evaluating PS1, PM1, PM2, PP3, BP4, and BP7, reconciling
+  the conflicting ClinVar submissions, and providing a final classification with a
+  confidence rationale.'
+target_skills:
+- genomic-variant-interpretation
+- variant-calling
+- ngs-quality-control
+domain: genomics
+difficulty: intermediate

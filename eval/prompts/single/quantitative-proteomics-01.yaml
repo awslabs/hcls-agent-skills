@@ -1,0 +1,38 @@
+id: quantitative-proteomics-01
+prompt: 'A researcher is conducting a label-free quantification (LFQ) proteomics study
+  comparing plasma samples from 12 healthy controls versus 12 patients with early-stage
+  pancreatic ductal adenocarcinoma (PDAC). Samples were processed using a data-dependent
+  acquisition (DDA) workflow on an Orbitrap Eclipse, and MaxQuant was used for protein
+  identification and LFQ intensity calculation. After filtering, the resulting protein
+  matrix contains 1,847 proteins across 24 samples, with approximately 28% missing
+  values overall. Exploratory analysis suggests that the missing values are not randomly
+  distributed — lower-abundance proteins show disproportionately higher rates of missingness
+  in the control group.
+
+
+  The researcher wants to perform differential expression analysis using limma and
+  needs guidance on the following:
+
+
+  1. **Missing value classification**: Based on the described missingness pattern,
+  classify the missing data mechanism (MCAR, MAR, or MNAR) and justify your reasoning.
+
+
+  2. **Imputation strategy**: Recommend a specific imputation method appropriate for
+  this missingness mechanism. Compare it briefly to kNN imputation and explain why
+  kNN would or would not be suitable here.
+
+
+  3. **Normalization**: Recommend a normalization strategy for plasma LFQ data and
+  explain why median centering or quantile normalization might be preferred over VSN
+  in this context.
+
+
+  4. **Limma model setup**: Write a concise R code snippet (using the `limma` package)
+  that sets up the design matrix, fits the linear model, applies empirical Bayes moderation,
+  and extracts results for the PDAC vs. control contrast with a Benjamini-Hochberg
+  FDR threshold of 0.05.'
+target_skills:
+- quantitative-proteomics
+domain: proteomics
+difficulty: easy

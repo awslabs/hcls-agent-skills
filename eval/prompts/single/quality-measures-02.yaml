@@ -1,0 +1,41 @@
+id: quality-measures-02
+prompt: 'You are building a HEDIS Breast Cancer Screening (BCS) measure for a regional
+  health plan with 45,000 female members aged 50–74. The measurement year is 2023,
+  and you have access to three tables in your SQL environment:
+
+
+  - **members** (member_id, date_of_birth, gender, enrollment_start_date, enrollment_end_date,
+  plan_type)
+
+  - **claims** (claim_id, member_id, service_date, procedure_code, diagnosis_code,
+  place_of_service, claim_status)
+
+  - **exclusions** (member_id, exclusion_type, effective_date)
+
+
+  The BCS measure requires continuous enrollment for the measurement year with allowable
+  gaps of no more than 45 days. The numerator requires at least one mammography claim
+  (CPT codes 77065, 77066, 77067) within the measurement year **or** the year prior
+  (2022). Members with a bilateral mastectomy (exclusion_type = ''BILATERAL_MASTECTOMY'')
+  must be excluded from the denominator.
+
+
+  Please provide the following deliverables:
+
+
+  1. **SQL query** to identify the eligible denominator population, incorporating
+  the continuous enrollment check with the 45-day gap allowance and the bilateral
+  mastectomy exclusion logic.
+
+  2. **SQL query** to identify numerator-compliant members using the look-back window
+  spanning 2022–2023.
+
+  3. **Rate calculation** showing how to compute the final BCS measure rate as a percentage,
+  including a brief explanation of how partial-year enrollees should be handled.
+
+  4. **Care gap list query** that returns member IDs who are in the denominator but
+  not the numerator, flagged for outreach.'
+target_skills:
+- quality-measures
+domain: healthcare-ops
+difficulty: easy

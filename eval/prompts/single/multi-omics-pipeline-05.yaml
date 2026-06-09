@@ -1,0 +1,37 @@
+id: multi-omics-pipeline-05
+prompt: 'You are analyzing a multi-omics dataset from a colorectal cancer study involving
+  87 tumor samples and 42 matched normal tissues. The data consists of three omics
+  layers: RNA-seq (count matrix, 18,432 genes), reverse-phase protein array (RPPA,
+  217 proteins), and DNA methylation (850K array, beta values). All three layers have
+  been processed separately and feature identifiers are currently inconsistent: RNA-seq
+  uses Ensembl gene IDs (e.g., ENSG00000141736), RPPA uses gene symbols (e.g., ERBB2),
+  and methylation probes need to be collapsed to gene-level using the closest TSS
+  within 1500 bp.
+
+
+  Before integration, you suspect batch effects exist in the RNA-seq data across three
+  sequencing runs (run IDs: batch_A=31 samples, batch_B=28 samples, batch_C=28 samples).
+
+
+  Please provide:
+
+
+  1. **R code** using `biomaRt` to map all Ensembl IDs to HGNC symbols, handling multi-mapping
+  by retaining the symbol with the highest mean expression, and merging with the RPPA
+  gene symbol list to identify the overlapping feature set.
+
+
+  2. **R code** using `ComBat-seq` (from the `sva` package) to correct batch effects
+  in the raw RNA-seq counts, preserving the tumor/normal biological variable as a
+  covariate, followed by a brief PCA visualization before and after correction using
+  `ggplot2`.
+
+
+  3. **R code** to run MOFA2 on the harmonized three-omics matrix (after batch correction
+  and ID harmonization), configuring 8 latent factors, setting the RNA-seq view to
+  use a Poisson likelihood and methylation to Gaussian, and extracting the top 15
+  feature weights per factor for downstream interpretation.'
+target_skills:
+- multi-omics-pipeline
+domain: multi-omics
+difficulty: intermediate

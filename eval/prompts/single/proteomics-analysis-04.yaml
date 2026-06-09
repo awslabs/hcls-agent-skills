@@ -1,0 +1,46 @@
+id: proteomics-analysis-04
+prompt: 'Here is test question #4 of 10:
+
+
+  ---
+
+
+  You have completed a TMT 10-plex proteomics experiment comparing three conditions:
+  healthy controls (n=4, channels 126, 127N, 127C, 128N), early-stage disease (n=3,
+  channels 128C, 129N, 129C), and late-stage disease (n=3, channels 130N, 130C, 131).
+  The raw reporter ion intensities have been extracted using MSFragger/Philosopher
+  and are available in a `combined_protein.tsv` file. You suspect batch effects because
+  samples were processed across two days (day 1: channels 126–129C; day 2: channels
+  129C–131).
+
+
+  Please provide the following:
+
+
+  1. **R code** to load the `combined_protein.tsv` file, extract TMT reporter ion
+  columns, filter out contaminants and proteins with fewer than 2 unique peptides,
+  and apply sample loading normalization followed by internal reference scaling (IRS)
+  normalization using the average of all channels as a pseudo-reference.
+
+
+  2. **R code** to apply `limma` for differential expression between early-stage vs.
+  healthy and late-stage vs. healthy, using `makeContrasts`, with Benjamini-Hochberg
+  FDR correction. Include a batch covariate for the two processing days in the design
+  matrix.
+
+
+  3. **R code** to generate a volcano plot using `ggplot2` for the late-stage vs.
+  healthy comparison, highlighting proteins with |log2FC| > 1.5 and adjusted p-value
+  < 0.05, and labeling the top 10 most significant proteins by name.
+
+
+  4. A brief explanation (4–6 sentences) of why IRS normalization is preferred over
+  simple median normalization for multi-batch TMT experiments and what artifacts it
+  corrects.
+
+
+  ---'
+target_skills:
+- proteomics-analysis
+domain: proteomics
+difficulty: intermediate

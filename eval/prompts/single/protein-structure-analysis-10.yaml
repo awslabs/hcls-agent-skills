@@ -1,0 +1,46 @@
+id: protein-structure-analysis-10
+prompt: 'You are analyzing a homodimeric enzyme **TrpX_synthase** (fictional) that
+  undergoes a conformational change upon substrate binding. You have two structures:
+
+
+  - **Apo form**: `trpx_apo.pdb` — Chain A and Chain B, 312 residues each, average
+  B-factor 42.3 Å²
+
+  - **Holo form**: `trpx_holo.pdb` — Chain A and Chain B, 312 residues each, average
+  B-factor 28.1 Å², co-crystallized with substrate analog **TRP-101**
+
+
+  Initial superposition of the full homodimer gives an overall RMSD of 3.8 Å, but
+  you suspect the individual subunits are more similar than this value suggests due
+  to a rigid-body rotation of one subunit relative to the other upon binding.
+
+
+  **Deliverables required:**
+
+
+  1. **Write Python code** using Biopython to perform per-chain RMSD calculations
+  (Chain A vs Chain A, Chain B vs Chain B) after independent superposition of each
+  chain, excluding residues with missing backbone atoms and those with B-factors >
+  80 Å² in either structure.
+
+
+  2. **Identify flexible regions** by computing per-residue Cα RMSD between apo and
+  holo Chain A, then flag residues where RMSD > 2.5 Å as putative hinge regions.
+
+
+  3. **Run DSSP-based secondary structure comparison** on both chains and report which
+  secondary structure elements (helices/strands by residue range) show the largest
+  conformational changes.
+
+
+  4. **Detect binding pockets** in the holo form using fpocket via subprocess, parse
+  the output to identify the pocket containing TRP-101 (known to bind near residues
+  145–160), and report the pocket volume and druggability score.
+
+
+  5. Explain why the whole-dimer RMSD of 3.8 Å is misleading and how quaternary structural
+  rearrangements can obscure per-domain flexibility analysis.'
+target_skills:
+- protein-structure-analysis
+domain: protein-structure
+difficulty: hard

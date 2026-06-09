@@ -1,0 +1,52 @@
+id: quality-measure-specification-06
+prompt: 'A regional health plan with 85,000 Medicare Advantage members is preparing
+  for their annual HEDIS Controlling High Blood Pressure (CBP) measure submission.
+  Their analytics team has pulled the following preliminary data for the measurement
+  year:
+
+
+  - Total members aged 18-85 with hypertension diagnosis: 23,400
+
+  - Members with continuous enrollment gaps (>1 gap of 45+ days): 2,100
+
+  - Members with ESRD claims: 890
+
+  - Members with pregnancy diagnoses during measurement year: 340
+
+  - Members missing a qualifying blood pressure reading: 4,200
+
+  - Members with most recent BP reading ≥140/90: 6,800
+
+  - Members with most recent BP reading <140/90: 12,070
+
+
+  The team is uncertain about several specification details and needs your help before
+  finalizing their denominator and numerator counts.
+
+
+  Please provide:
+
+
+  1. **Denominator construction**: Walk through the step-by-step logic to correctly
+  build the CBP denominator, identifying which of the above populations should be
+  excluded and why, citing the relevant NCQA exclusion criteria categories.
+
+
+  2. **Numerator calculation**: Explain what qualifies a member for the CBP numerator
+  and calculate the estimated numerator rate using the data provided, noting any data
+  gaps that could affect accuracy.
+
+
+  3. **Continuous enrollment rule clarification**: The CBP measure uses a specific
+  continuous enrollment requirement — describe the exact rule and explain how the
+  2,100 members with enrollment gaps should be handled.
+
+
+  4. **Care gap prioritization**: Given that 4,200 members are missing a BP reading
+  entirely, propose a risk-based outreach stratification approach using LACE score
+  components or Charlson Comorbidity Index to prioritize which members should receive
+  outreach first.'
+target_skills:
+- quality-measure-specification
+domain: healthcare-ops
+difficulty: intermediate

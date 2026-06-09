@@ -1,0 +1,39 @@
+id: clinical-data-standards-05
+prompt: 'You are conducting a safety analysis for a Phase III oncology trial comparing
+  a novel kinase inhibitor (KI-7734) against standard chemotherapy. Your pharmacovigilance
+  team has collected 847 adverse events across 312 patients and needs to prepare the
+  standard MedDRA-coded AE frequency table for the clinical study report.
+
+
+  During coding review, you identify the following problematic cases requiring decisions:
+
+
+  1. **Cardiac cluster**: 23 events coded at various granularities — "Left ventricular
+  ejection fraction decreased" (LLT), "Cardiac failure congestive" (PT), and "Ventricular
+  dysfunction" (HLT) — all describing similar cardiac function impairment findings
+
+  2. **Hepatic findings**: 41 events split between "Hepatocellular damage" (PT under
+  Hepatobiliary SOC) and "Liver function test abnormal" (PT under Investigations SOC)
+  for the same underlying liver toxicity signal
+
+  3. **Neuropathy terms**: 18 events coded as "Peripheral sensory neuropathy" vs.
+  "Peripheral neuropathy" — both valid PTs under the same HLT
+
+
+  Your deliverables:
+
+  - Explain the MedDRA hierarchy level that should be used for the primary AE frequency
+  table and justify the choice
+
+  - Provide a specific recommendation for resolving each of the three coding inconsistencies
+  above
+
+  - Describe how the dual SOC classification of the hepatic findings affects your
+  safety signal detection, and what additional table you should generate
+
+  - Identify which coding scenario above poses the greatest risk to regulatory submission
+  integrity and explain why'
+target_skills:
+- clinical-data-standards
+domain: clinical-data
+difficulty: intermediate

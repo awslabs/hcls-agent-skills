@@ -1,0 +1,38 @@
+id: structure-based-drug-design-01
+prompt: 'You are a computational chemist working on a drug discovery project targeting
+  the kinase domain of MELK (Maternal Embryonic Leucine Zipper Kinase), a validated
+  oncology target. You have obtained a high-resolution crystal structure (PDB: 4BL1,
+  resolution 2.1 Å) of MELK bound to a small-molecule inhibitor. Your team wants to
+  perform a rigid docking virtual screening campaign against this target using a library
+  of 50,000 drug-like compounds (MW 200–500 Da, cLogP ≤ 5).
+
+
+  Before launching the full campaign, you need to:
+
+
+  1. **Assess the druggability** of the MELK ATP-binding pocket using at least two
+  computational metrics (e.g., pocket volume, hydrophobicity score) and explain what
+  threshold values would indicate a druggable site.
+
+
+  2. **Define the docking box** parameters: specify how you would center and size
+  the grid box around the ATP-binding site, and what software-specific settings you
+  would use in Glide SP (Schrödinger) for a standard rigid docking run.
+
+
+  3. **Select and justify a primary scoring function** for initial screening, and
+  describe one key limitation of that scoring function in the context of kinase targets.
+
+
+  4. **Propose a two-stage filtering strategy** to triage the 50,000 compounds before
+  docking (e.g., PAINS filters, physicochemical property cutoffs) to reduce the library
+  to approximately 30,000 compounds, specifying the exact filters and cutoffs you
+  would apply.
+
+
+  Provide concrete parameter values, thresholds, and brief justifications for each
+  decision.'
+target_skills:
+- structure-based-drug-design
+domain: protein-structure
+difficulty: easy

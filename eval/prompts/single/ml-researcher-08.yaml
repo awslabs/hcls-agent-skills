@@ -1,0 +1,47 @@
+id: ml-researcher-08
+prompt: 'Here is test question #8 of 10:
+
+
+  ---
+
+
+  You are designing a multi-site federated learning study to predict 90-day hospital
+  readmission from EHR data across 6 health systems (Sites A–F). Site A has 42,000
+  patients, Sites B–D have ~8,000–12,000 each, and Sites E–F are safety-net hospitals
+  with 3,200 and 2,900 patients respectively, serving predominantly Medicaid and uninsured
+  populations. The outcome prevalence varies from 11% (Site A) to 31% (Site E). Features
+  include 847 ICD-10 codes, 214 lab values, 38 vitals, and free-text discharge summaries
+  (processed via a local ClinicalBERT variant). The sponsor wants a single global
+  model deployed across all sites with no raw data sharing.
+
+
+  Your task is to provide:
+
+
+  1. **Federated aggregation strategy**: Compare FedAvg, FedProx (μ=0.01), and a personalized
+  federated approach (e.g., pFedMe) given the heterogeneity described; recommend one
+  with justification.
+
+
+  2. **Evaluation protocol**: Design a site-stratified evaluation scheme that correctly
+  handles the class imbalance and prevents temporal leakage, specifying train/validation/test
+  split logic per site.
+
+
+  3. **Fairness audit plan**: Given that Sites E–F serve vulnerable populations but
+  have small n, describe how you would assess subgroup fairness (race, insurance status,
+  site) without overfitting to noisy subgroup estimates—include a specific statistical
+  correction.
+
+
+  4. **Metric selection**: Justify whether AUROC or AUPRC should be the primary metric
+  given prevalence heterogeneity, and explain whether you would report calibration
+  separately per site or globally.
+
+
+  5. **Regulatory consideration**: Identify the single greatest risk factor for FDA
+  SaMD De Novo submission given the federated architecture, and suggest one mitigation.'
+target_skills:
+- ml-researcher
+domain: cross-domain
+difficulty: hard

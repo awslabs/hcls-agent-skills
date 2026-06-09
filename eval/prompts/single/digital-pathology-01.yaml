@@ -1,0 +1,33 @@
+id: digital-pathology-01
+prompt: 'You have a collection of 45 CAMELYON16 whole-slide images in SVS format stored
+  locally at `/data/slides/`. You want to use TIAToolbox to perform basic slide inspection
+  and tissue extraction as a preprocessing step before feature extraction.
+
+
+  **Your task is to complete the following:**
+
+
+  1. **Write a Python snippet** using TIAToolbox''s `WSIReader` to open a single slide
+  (`tumor_001.svs`), print its metadata including dimensions at level 0, available
+  magnifications, and microns-per-pixel (MPP) values.
+
+
+  2. **Write a Python snippet** using TIAToolbox''s `TissueMasker` (specifically `MorphologicalMasker`)
+  to generate a binary tissue mask at 1.25x magnification, then extract non-overlapping
+  tissue tiles at **0.5 MPP (20x equivalent)** with a tile size of **256×256 pixels**.
+  Save the resulting tile coordinates to a CSV file at `/data/outputs/tumor_001_coords.csv`.
+
+
+  3. **Explain briefly** (2–3 sentences) why extracting tiles at a specified MPP rather
+  than a fixed magnification level is considered best practice when working with slides
+  from multiple scanners, given that different scanners may report slightly different
+  nominal magnifications.
+
+
+  Assume TIAToolbox version 1.5.0 is installed, the slide has a baseline MPP of approximately
+  0.25 (40x scanner), and you want to filter out any tiles where tissue coverage is
+  below **75%**. Include all necessary imports in your code snippets.'
+target_skills:
+- digital-pathology
+domain: imaging
+difficulty: easy

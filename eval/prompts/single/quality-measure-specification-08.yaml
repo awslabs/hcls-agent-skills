@@ -1,0 +1,54 @@
+id: quality-measure-specification-08
+prompt: 'A regional health plan (450,000 covered lives) is preparing for NCQA Hybrid
+  Method audit for the Controlling High Blood Pressure (CBP) measure. Their data team
+  has identified a problematic edge case population requiring specification clarification
+  before final rate submission.
+
+
+  **Scenario details:**
+
+  - Measurement year: 2024 (January 1 – December 31)
+
+  - 3,847 members initially flagged as CBP denominator-eligible
+
+  - 412 members have an ICD-10 code of I10 (Essential Hypertension) appearing **only**
+  on a telehealth visit claim (POS code 02) dated February 14, 2024
+
+  - 289 members have both a gestational hypertension diagnosis (O13.9) and an I10
+  code within the measurement year
+
+  - 156 members turned 18 exactly on March 3, 2024
+
+  - The plan uses a 27-month look-back for hypertension diagnosis identification
+
+  - 78 members have a single blood pressure reading of 138/88 mmHg documented via
+  remote patient monitoring (RPM) device, with no in-office reading
+
+
+  **Deliverables requested:**
+
+
+  1. Clarify whether telehealth-only hypertension diagnoses (POS 02) satisfy NCQA''s
+  CBP denominator identification criteria under current specifications, citing relevant
+  guidance.
+
+
+  2. Explain the correct handling of members with both O13.9 and I10 codes — should
+  they be excluded, included, or require additional logic?
+
+
+  3. Determine the continuous enrollment and age-eligibility status for members who
+  turned 18 on March 3, 2024.
+
+
+  4. Assess whether RPM-only blood pressure readings of 138/88 mmHg satisfy the CBP
+  numerator criteria, and describe what documentation the hybrid medical record review
+  would require.
+
+
+  5. Provide a pseudocode algorithm that correctly applies all four edge cases to
+  produce a final auditable denominator and numerator count.'
+target_skills:
+- quality-measure-specification
+domain: healthcare-ops
+difficulty: hard

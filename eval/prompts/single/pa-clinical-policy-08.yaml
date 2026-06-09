@@ -1,0 +1,41 @@
+id: pa-clinical-policy-08
+prompt: 'A 58-year-old patient with treatment-resistant major depressive disorder
+  (TRD) has failed adequate trials of sertraline (200mg/day × 8 weeks), escitalopram
+  (20mg/day × 10 weeks), and venlafaxine XR (225mg/day × 12 weeks), all documented
+  with PHQ-9 scores showing <25% improvement. The treating psychiatrist is requesting
+  prior authorization for esketamine (Spravato) intranasal 56mg twice weekly. The
+  commercial payer''s current clinical policy requires: (1) failure of ≥2 adequate
+  antidepressant trials from different classes, (2) concurrent oral antidepressant
+  use, (3) administration only in certified healthcare settings, and (4) exclusion
+  of active psychosis, uncontrolled hypertension (BP >160/100), or recent cardiovascular
+  event within 6 months. The patient has a documented BP reading of 162/94 from last
+  week but has a cardiology note stating "white coat hypertension likely; ambulatory
+  BP monitoring average 138/82 over 14 days."
+
+
+  **Deliverables requested:**
+
+
+  1. **Coverage gap analysis**: Identify which clinical criteria are met, borderline,
+  or potentially disqualifying, citing the specific BP conflict and how payers typically
+  adjudicate ambulatory vs. in-office readings.
+
+
+  2. **Appeal strategy**: Draft a structured peer-to-peer review talking points document
+  addressing the hypertension exclusion, including what supporting clinical evidence
+  (studies, FDA label language) the psychiatrist should reference.
+
+
+  3. **FHIR Da Vinci PAS implementation note**: Describe how the ambulatory BP monitoring
+  data should be structured in a CoverageEligibilityRequest or prior-auth Bundle to
+  ensure the payer''s automated rules engine does not auto-deny based on the single
+  elevated in-office reading.
+
+
+  4. **Step therapy exception argument**: Explain whether any state step therapy exception
+  laws (using a fictional state "Westoria" with a 72-hour urgent exception provision)
+  could accelerate approval given the severity of TRD.'
+target_skills:
+- pa-clinical-policy
+domain: healthcare-ops
+difficulty: hard

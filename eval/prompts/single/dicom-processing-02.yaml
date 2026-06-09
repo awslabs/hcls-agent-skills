@@ -1,0 +1,47 @@
+id: dicom-processing-02
+prompt: 'Here is test question #2 of 10:
+
+
+  ---
+
+
+  You are working in a neuroimaging research lab and need to convert a batch of DICOM
+  series to NIfTI format for downstream fMRI analysis. You have a directory called
+  `/data/raw_dicoms/` containing 45 subject folders (sub-001 through sub-045), each
+  with multiple series subdirectories (T1w, BOLD_rest, BOLD_task, DWI). You want to
+  use `dcm2niix` to perform the conversion and organize the outputs.
+
+
+  Your specific requirements are:
+
+  - Output files must follow BIDS naming conventions
+
+  - Compressed NIfTI (`.nii.gz`) output is required to save disk space
+
+  - JSON sidecar files must be generated for each converted series
+
+  - The BOLD series have a repetition time (TR) of 2000ms and you want to verify this
+  is correctly captured in the sidecar
+
+  - You need to handle cases where some subjects (sub-012, sub-027, sub-033) have
+  incomplete DICOM series with missing slices
+
+
+  Please provide:
+
+  1. The exact `dcm2niix` command with all necessary flags for a single subject, explaining
+  each flag used
+
+  2. A Python script using `subprocess` that loops through all 45 subject directories
+  and runs the conversion, including basic error handling for the incomplete series
+  cases
+
+  3. A brief explanation of how to verify the TR value is correctly written in the
+  JSON sidecar using Python''s `json` module
+
+  4. The expected output file naming pattern for the BOLD resting-state series following
+  BIDS convention'
+target_skills:
+- dicom-processing
+domain: imaging
+difficulty: easy

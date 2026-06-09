@@ -1,0 +1,37 @@
+id: rwd-cohort-analysis-01
+prompt: 'You are working with a commercial claims database containing 45,000 patients
+  newly diagnosed with Type 2 diabetes (ICD-10: E11.9) between January 2019 and December
+  2020. You want to compare 90-day all-cause hospitalization rates between patients
+  initiated on SGLT2 inhibitors (NDC prefix: 00310-xxxx for empagliflozin) versus
+  GLP-1 receptor agonists (NDC prefix: 00169-xxxx for semaglutide). The index date
+  is the first fill date for either medication, with a 180-day pre-index washout period
+  requiring no prior fills of either drug class. Patients must have 12 months of continuous
+  enrollment pre-index and at least 90 days of follow-up post-index. After applying
+  these criteria, your cohort contains 8,200 SGLT2i initiators and 3,100 GLP-1 RA
+  initiators.
+
+
+  Please provide the following:
+
+
+  1. **Python code** to calculate Proportion of Days Covered (PDC) over the first
+  90 days post-index for each treatment arm, using a sample claims DataFrame with
+  columns: `patient_id`, `fill_date`, `days_supply`, `drug_class`.
+
+
+  2. **Python code** to estimate propensity scores using logistic regression on 6
+  covariates (age, sex, baseline HbA1c category, Charlson Comorbidity Index, prior
+  metformin use, geographic region), then calculate standardized mean differences
+  (SMD) before and after inverse probability of treatment weighting (IPTW).
+
+
+  3. A **brief interpretation** of what SMD threshold indicates adequate balance and
+  what to do if balance is not achieved.
+
+
+  4. **Skeleton code** for a weighted Kaplan-Meier curve comparing 90-day hospitalization-free
+  survival between the two arms using IPTW weights.'
+target_skills:
+- rwd-cohort-analysis
+domain: pharmacoepidemiology
+difficulty: easy

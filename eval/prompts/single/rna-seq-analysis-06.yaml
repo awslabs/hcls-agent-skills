@@ -1,0 +1,40 @@
+id: rna-seq-analysis-06
+prompt: 'You are analyzing a mouse RNA-seq dataset comparing wild-type (n=4) versus
+  *Foxp3*-knockout (n=4) regulatory T cells. You have already built a STAR genome
+  index using GRCm39 with Ensembl 109 annotations (sjdbOverhang=99, read length=100bp).
+  During the first alignment pass on your 8 samples, STAR reports the following average
+  statistics: uniquely mapped reads: 78%, multi-mapped reads: 8%, unmapped (too short):
+  11%, unmapped (mismatch): 3%.
+
+
+  You now want to perform two-pass alignment to improve splice junction detection
+  before proceeding to quantification with Salmon in alignment-based mode.
+
+
+  **Please provide:**
+
+
+  1. **STAR two-pass alignment strategy**: Explain the difference between basic two-pass
+  (--twopassMode Basic) and manual two-pass alignment, and recommend which approach
+  to use given this dataset size (8 samples). Justify your choice.
+
+
+  2. **STAR alignment code**: Write a complete bash script for the recommended two-pass
+  approach, including appropriate parameters for RNA-seq (output SAM attributes, chimeric
+  reads disabled, appropriate thread count of 12, sorting, and any parameters relevant
+  to the 78% unique mapping rate you observed).
+
+
+  3. **Mapping rate interpretation**: The 11% "too short" unmapped fraction is higher
+  than expected. List three possible biological or technical causes and describe one
+  diagnostic step for each.
+
+
+  4. **Salmon quantification command**: After alignment, write the Salmon command
+  to quantify expression using the STAR-generated BAM files, specifying the correct
+  library type for unstranded paired-end data and enabling GC bias correction. Assume
+  the Salmon index was built from the same Ensembl 109 transcriptome.'
+target_skills:
+- rna-seq-analysis
+domain: genomics
+difficulty: intermediate

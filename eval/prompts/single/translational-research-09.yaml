@@ -1,0 +1,35 @@
+id: translational-research-09
+prompt: 'Here is test question #9 of 10:
+
+
+  ---
+
+
+  You are advising a neurology biotech advancing **KCNQ3-gain-of-function (GoF) variants**
+  as a target for treatment-resistant focal epilepsy. Their preclinical package includes:
+  (1) two mouse knock-in lines (R230C and V359L) showing 40–60% seizure frequency
+  reduction with their selective KCNQ3 potentiator compound NX-7741; (2) a Mendelian
+  randomization analysis using 14 GWAS instruments from a 12,000-patient epilepsy
+  cohort that yields a causal OR of 1.31 (95% CI: 0.98–1.74, p=0.07) for KCNQ3 expression
+  on seizure burden — just missing significance; (3) a 22-patient open-label case
+  series showing EEG power spectral changes consistent with mechanism but no seizure
+  frequency data; and (4) a KCNQ3 eQTL in temporal lobe tissue (GTEx v8, p=3×10⁻⁶)
+  that partially colocalizes with the GWAS signal (PP4=0.41, PP3=0.38).
+
+
+  The team wants to advance to a Phase 2a proof-of-mechanism trial in 6 months. Critical
+  constraints: no validated PK/PD biomarker exists, KCNQ3 GoF variants represent only
+  ~8% of their target patient population, and a competitor is 18 months ahead in Phase
+  2 with a KCNQ2-targeted agent.
+
+
+  **Deliver:** (1) A structured assessment of target validation readiness using the
+  T0–T1 framework, explicitly addressing the ambiguous MR and colocalization data;
+  (2) a biomarker qualification strategy specifying context of use for EEG-based endpoints;
+  (3) a patient enrichment and trial design recommendation that accounts for the 8%
+  prevalence constraint; and (4) a "fail-fast" decision tree with explicit go/no-go
+  criteria at 3-month and 6-month milestones.'
+target_skills:
+- translational-research
+domain: cross-domain
+difficulty: hard

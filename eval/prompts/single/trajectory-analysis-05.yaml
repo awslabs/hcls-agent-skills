@@ -1,0 +1,44 @@
+id: trajectory-analysis-05
+prompt: 'Here is test question #5 of 10:
+
+
+  ---
+
+
+  You are analyzing a scRNA-seq dataset of 8,400 human hematopoietic stem and progenitor
+  cells (HSPCs) from bone marrow, spanning differentiation toward erythroid, myeloid,
+  and lymphoid lineages. You have already run scVelo''s dynamical model and obtained
+  velocity embeddings, but you notice that roughly 15% of cells (predominantly in
+  a cluster labeled "stress_HSC") show negative spliced/unspliced ratios for key transcription
+  factors *GATA1*, *SPI1* (PU.1), and *KLF1*, which is biologically unexpected. Additionally,
+  your PAGA graph shows a spurious edge with connectivity weight 0.42 between the
+  erythroid progenitor cluster and a lymphoid progenitor cluster that should not be
+  directly connected based on known biology.
+
+
+  Please provide:
+
+
+  1. **Diagnostic steps** to identify whether the negative spliced/unspliced ratios
+  in the stress_HSC cluster reflect a technical artifact (e.g., ambient RNA contamination,
+  multi-mapping reads) or a genuine biological signal, including specific scVelo/scanpy
+  functions and parameters to inspect.
+
+
+  2. **Code** (Python/scanpy/scVelo) to filter or correct the problematic cells before
+  re-running the dynamical model, using a minimum r-squared fit threshold of 0.05
+  and confidence interval filtering.
+
+
+  3. **Recommendations** for adjusting PAGA connectivity thresholds to remove the
+  spurious erythroid-lymphoid edge while preserving biologically meaningful low-weight
+  connections, with justification for your chosen threshold value.
+
+
+  4. A brief explanation of how you would validate the corrected trajectory using
+  CellRank''s `CFLARE` kernel with at least two complementary terminal state estimation
+  approaches.'
+target_skills:
+- trajectory-analysis
+domain: single-cell
+difficulty: intermediate

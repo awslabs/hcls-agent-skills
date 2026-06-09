@@ -1,0 +1,47 @@
+id: risk-adjustment-10
+prompt: 'Here is test question #10:
+
+
+  ---
+
+
+  You are building a CMS-HCC Model V28 risk adjustment pipeline for a Medicare Advantage
+  plan with 45,000 members. During your hierarchy resolution step, you''ve discovered
+  a problematic edge case: a subset of 312 members have ICD-10 codes that map to HCCs
+  in **both** a higher-severity and lower-severity category within the same disease
+  group, but the higher-severity HCC was submitted in a **prior period encounter**
+  (Date of Service: 11 months ago, still within the measurement year) while the lower-severity
+  HCC appears in a **more recent encounter** (2 months ago). Your ETL team is unsure
+  whether hierarchy resolution should be applied across the full measurement year
+  or only to the most recent encounter date.
+
+
+  Additionally, 78 of these 312 members have Rx proxy signals (e.g., insulin glargine
+  suggesting uncontrolled diabetes, HCC 18 vs. HCC 19) that conflict with the ICD-10-coded
+  HCC already on file.
+
+
+  **Deliverables requested:**
+
+
+  1. Write a Python function `resolve_hcc_hierarchy(member_hcc_df)` that correctly
+  applies CMS V28 hierarchy rules across the full measurement year, retaining the
+  highest-severity HCC regardless of encounter date, and outputs a deduplicated member-HCC
+  mapping with RAF coefficients applied.
+
+
+  2. Write a SQL query that flags the 78 members where Rx proxy signals suggest a
+  higher-severity HCC than what is currently coded, joining a `member_hcc` table with
+  a `pharmacy_claims` table using an NDC-to-HCC proxy crosswalk table.
+
+
+  3. Explain in 200 words or fewer why applying hierarchy resolution only to the most
+  recent encounter (rather than the full measurement year) would systematically underestimate
+  RAF scores and describe the financial impact direction for the plan.
+
+
+  ---'
+target_skills:
+- risk-adjustment
+domain: healthcare-ops
+difficulty: hard

@@ -1,0 +1,41 @@
+id: cdisc-compliance-09
+prompt: 'A Phase III oncology trial (N=847 patients) is being prepared for FDA submission
+  under SDTM 3.3 / ADaM 1.1 standards. The trial collected tumor assessment data using
+  both RECIST 1.1 criteria and an investigator-defined composite endpoint. The SDTM
+  Tumor Results (TR) domain contains 23 custom non-standard variables that cannot
+  be accommodated in the standard TR domain structure, including TRORRES (original
+  result), TRSTRESC (standardized result), and 21 additional variables capturing lesion-specific
+  imaging metadata (e.g., TRLSAXD, TRLSAXL, TRMETHOD2, TRCONTRST).
+
+
+  The ADaM oncology response dataset (ADTR) must derive Best Overall Response (BOR)
+  and Duration of Response (DOR) variables, but source data contains 312 patients
+  with conflicting assessment dates between the TR domain and the EX (Exposure) domain
+  — specifically where tumor assessments occurred within 1 day of dose interruptions,
+  creating ambiguity in the on-treatment response window definition.
+
+
+  Additionally, the define.xml must reference a custom codelist "TRMETHOD2" for the
+  secondary imaging methodology variable, which uses sponsor-defined terms not present
+  in CDISC CT 2023-09-29.
+
+
+  Please provide:
+
+  1. A SUPPQUAL implementation strategy for the 21 non-standard TR variables, including
+  the RDOMAIN, IDVAR, IDVARVAL structure with a representative 5-row example
+
+  2. A decision algorithm (pseudocode) for resolving the 312 conflicting assessment
+  date records in ADTR, with explicit ADaM derivation logic for the on-treatment window
+  flag (ONTRTFL)
+
+  3. Define.xml value-level metadata specification for the TRMETHOD2 custom codelist,
+  including the XML snippet for the CodeList element with appropriate NCI or sponsor
+  extensible terminology handling
+
+  4. A prioritized list of FDA reviewer queries likely to arise from these three issues,
+  ranked by clinical impact'
+target_skills:
+- cdisc-compliance
+domain: clinical-data-review
+difficulty: hard

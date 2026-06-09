@@ -1,0 +1,55 @@
+id: pharma-rwd-clinical-02
+prompt: 'Here is the research question:
+
+
+  ---
+
+
+  You are designing a real-world evidence study using a large US commercial claims
+  database (Optum Clinformatics, 2016–2023, approximately 18 million continuously
+  enrolled members) to evaluate whether initiation of sodium-glucose cotransporter-2
+  (SGLT2) inhibitors is associated with reduced risk of hospitalized heart failure
+  compared to dipeptidyl peptidase-4 (DPP-4) inhibitors among adults with type 2 diabetes.
+  Please provide the following concrete deliverables:
+
+
+  **1. Study Design & Pharmacoepidemiologic Framework:** Specify how you would implement
+  a new-user active comparator design to emulate a target trial, including how you
+  define index date, required washout period (justify the duration), and how you would
+  handle immortal time bias given that some patients have a gap between prescription
+  date and first fill. Explain why DPP-4 inhibitors are an appropriate active comparator
+  for this indication and how confounding by indication is mitigated. Describe how
+  you would apply inverse probability of treatment weighting (IPTW) with stabilized
+  weights to handle time-varying confounding from concomitant diuretic initiation
+  during follow-up, and specify when a marginal structural model is necessary versus
+  a standard Cox model.
+
+
+  **2. Cohort Identification & Balance Diagnostics:** Provide the specific code categories
+  you would use to identify the study cohort, including: (a) ICD-10-CM diagnosis code
+  groups for type 2 diabetes and the primary outcome of hospitalized heart failure,
+  (b) NDC-level drug classification approach for SGLT2 inhibitors versus DPP-4 inhibitors,
+  and (c) CPT codes for relevant baseline procedures (e.g., echocardiography, BNP
+  lab measurement). Describe how you would calculate the proportion of days covered
+  (PDC) over a 180-day baseline window to exclude prevalent users, and specify the
+  standardized mean difference (SMD) threshold you would use to declare acceptable
+  covariate balance post-weighting.
+
+
+  **3. Adverse Event Coding & Outcome Ascertainment:** For the primary safety outcome
+  of diabetic ketoacidosis (DKA) and the secondary outcome of urinary tract infection
+  (UTI), specify the MedDRA Preferred Terms and System Organ Class assignments for
+  each, the corresponding ICD-10-CM codes you would use in claims, and justify whether
+  outcome ascertainment should occur at the ICD-10 three-character category level
+  or a more granular level. Additionally, provide the E-value calculation approach
+  to quantify robustness to unmeasured confounding, given an observed hazard ratio
+  of 0.72 for the primary effectiveness outcome.
+
+
+  ---'
+target_skills:
+- pharmacoepidemiology
+- rwd-cohort-analysis
+- clinical-data-standards
+domain: pharmacoepidemiology
+difficulty: easy

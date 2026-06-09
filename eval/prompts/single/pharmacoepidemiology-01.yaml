@@ -1,0 +1,42 @@
+id: pharmacoepidemiology-01
+prompt: 'A health system researcher wants to study whether metformin reduces the risk
+  of colorectal cancer compared to sulfonylureas among patients with newly diagnosed
+  type 2 diabetes using a large claims database (2010–2022, n = 485,000 diabetic patients).
+
+
+  The researcher plans to identify all patients who ever received a metformin prescription
+  and compare them to patients who never received metformin. The outcome is a new
+  colorectal cancer diagnosis (ICD-10 C18–C20) occurring at any point after the first
+  metformin prescription. Follow-up begins at the date of the first metformin claim
+  and ends at cancer diagnosis, death, disenrollment, or December 31, 2022.
+
+
+  A senior epidemiologist reviews the protocol and raises concerns about several methodological
+  flaws before the study begins.
+
+
+  Please provide the following:
+
+
+  1. **Identify at least three specific methodological problems** with the proposed
+  study design as described, explaining why each introduces bias and in which direction.
+
+
+  2. **Redesign the study** using an active comparator new-user design. Specify the
+  index date definition, eligibility criteria (including a recommended washout period
+  length and rationale), how to define the comparator group, and how to handle the
+  look-back period for baseline covariates.
+
+
+  3. **Explain immortal time bias** as it applies specifically to this scenario —
+  describe the mechanism by which it would inflate or deflate the apparent benefit
+  of metformin, and provide a concrete numerical example using hypothetical person-time.
+
+
+  4. **Recommend a propensity score method** (matching, IPTW, or stratification) for
+  this specific study context, justifying your choice based on the sample size, outcome
+  rarity, and confounding structure typical of diabetes/cancer studies.'
+target_skills:
+- pharmacoepidemiology
+domain: pharmacoepidemiology
+difficulty: easy

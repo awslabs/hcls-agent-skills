@@ -1,0 +1,41 @@
+id: multi-omics-integration-03
+prompt: 'You are analyzing a cohort of 85 colorectal cancer patients with matched
+  RNA-seq transcriptomics and reverse-phase protein array (RPPA) proteomics data.
+  All 85 patients have both data types available (complete overlap). The transcriptomics
+  data contains expression values for 18,000 genes, while the RPPA data covers 258
+  proteins. You have already performed standard within-omics normalization (TMM for
+  RNA-seq, median centering for RPPA), but you suspect there may be batch effects
+  because the samples were processed in three separate batches of roughly 28–29 samples
+  each.
+
+
+  Your goal is to perform an unsupervised multi-omics integration to identify patient
+  subgroups and the molecular features driving them.
+
+
+  Please provide the following deliverables:
+
+
+  1. **Integration strategy recommendation**: Should you use early (concatenation),
+  intermediate (e.g., MOFA+), or late integration for this dataset? Justify your choice
+  given the data dimensions and sample size.
+
+
+  2. **Batch correction approach**: Describe how you would detect and correct batch
+  effects across both omics layers before integration, specifying which tools or statistical
+  tests to use (e.g., ComBat, limma removeBatchEffect, or PCA-based inspection).
+
+
+  3. **MOFA+ configuration**: Provide a concrete Python code snippet using the `mofapy2`
+  library to set up and train a MOFA+ model on this dataset, including how to structure
+  the input data dictionary, set the number of factors (suggest a starting value with
+  rationale), and extract the top features per factor.
+
+
+  4. **Downstream interpretation**: After obtaining MOFA+ factors, describe how you
+  would identify which factors separate patient subgroups and what enrichment analysis
+  you would run on the top-weighted genes and proteins in those factors.'
+target_skills:
+- multi-omics-integration
+domain: multi-omics
+difficulty: easy

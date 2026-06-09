@@ -1,0 +1,34 @@
+id: imaging-study-design-09
+prompt: 'You are coordinating a 12-site longitudinal diffusion MRI study tracking
+  white matter changes in 340 patients with early-stage ALS over 24 months (baseline,
+  6, 12, 18, 24 months). Sites use a mix of scanner hardware: 6 Siemens Prisma (3T),
+  3 GE Premier (3T), and 3 Philips Ingenia (3T) scanners. The diffusion protocol is
+  nominally harmonized at b=1000 s/mm² with 64 directions, but post-hoc audit reveals
+  that effective TE ranges from 78–103 ms across sites and one Philips site used 32
+  directions for the first 8 months before correction. The primary biomarker is fractional
+  anisotropy (FA) in the corticospinal tract (CST), with secondary biomarkers including
+  mean diffusivity (MD) and NODDI-derived neurite density index (NDI). Thirty-two
+  patients dropped out non-randomly (concentrated at two GE sites with the longest
+  scan times), and 15 patients have incidental findings requiring radiological review
+  flagged mid-study.
+
+
+  Provide the following:
+
+  1. A prioritized preprocessing harmonization strategy addressing the TE variability
+  and the 32 vs. 64 direction discrepancy, specifying whether ComBat, traveling-subject
+  normalization, or signal modeling corrections should be applied and in what order
+
+  2. A missing data analysis plan that accounts for the non-random dropout pattern
+  and its potential bias on longitudinal FA trajectories
+
+  3. Specific IBSI-compliant feature stability criteria you would apply before accepting
+  NDI as a valid biomarker given the protocol inconsistencies
+
+  4. A concise Python pseudocode outline (not full implementation) for a quality-control
+  pipeline that flags scans failing site-specific FA reference ranges derived from
+  a traveling-subject dataset of 6 healthy volunteers scanned at all 12 sites'
+target_skills:
+- imaging-study-design
+domain: imaging
+difficulty: hard

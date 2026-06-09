@@ -1,0 +1,43 @@
+id: aws-genai-ml-architect-07
+prompt: 'A regional cancer center is building a **clinical trial matching system**
+  that automatically identifies eligible patients from their EHR data and matches
+  them against 847 active oncology trials. The system must process unstructured clinical
+  notes (averaging 2,400 words each) for 12,000 patients monthly, extracting ECOG
+  performance status, prior treatment lines, biomarker results (e.g., KRAS G12C, PD-L1
+  TPS scores, BRCA1/2 status), and comorbidities.
+
+
+  The architecture team is debating between two approaches:
+
+  - **Option A**: Amazon Bedrock with Claude 3 Sonnet for NLP extraction + Knowledge
+  Bases for trial eligibility criteria RAG
+
+  - **Option B**: Fine-tuned Llama 3 8B on SageMaker using 6,000 labeled oncology
+  notes + OpenSearch for trial matching
+
+
+  Constraints: PHI must never leave the AWS account, latency per patient must be under
+  8 seconds, monthly budget is $18,000, and the system needs audit trails for FDA
+  21 CFR Part 11 compliance (not just HIPAA).
+
+
+  **Deliverables requested:**
+
+  1. Recommend which architecture (A, B, or hybrid) best fits these constraints, with
+  quantitative cost estimates broken down by service
+
+  2. Design the RAG pipeline for trial eligibility matching, including chunking strategy
+  for trial inclusion/exclusion criteria and embedding model selection
+
+  3. Provide a Python code snippet showing how to invoke Bedrock with structured JSON
+  output for biomarker extraction with a sample prompt template
+
+  4. Explain how to implement FDA 21 CFR Part 11-compliant audit logging using AWS
+  CloudTrail, S3, and DynamoDB for every inference event
+
+  5. Identify the top 3 failure modes specific to oncology trial matching and propose
+  mitigation strategies'
+target_skills:
+- aws-genai-ml-architect
+domain: cross-domain
+difficulty: intermediate

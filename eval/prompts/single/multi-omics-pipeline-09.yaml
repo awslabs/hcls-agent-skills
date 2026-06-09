@@ -1,0 +1,43 @@
+id: multi-omics-pipeline-09
+prompt: 'You are integrating a multi-omics dataset from a colorectal cancer study
+  comprising 847 tumor samples across three cohorts (TCGA-CRC n=312, GSE39582 n=285,
+  CPTAC-CRC n=250). Each cohort provides RNA-seq count matrices, reverse-phase protein
+  array (RPPA) data, and DNA methylation 450K beta-value matrices. Feature identifiers
+  are inconsistent: RNA-seq uses Ensembl gene IDs (GRCh38.p13), RPPA uses antibody-gene
+  symbols that are non-standard (e.g., "Akt_pS473", "mTOR_pS2448"), and methylation
+  uses cg-probe IDs needing mapping to gene promoters (±2kb TSS). Before integration,
+  you must harmonize all identifiers to HGNC-approved gene symbols and apply batch
+  correction separately per omic layer.
+
+
+  Specific constraints:
+
+  - RNA-seq: use `biomaRt` to map Ensembl IDs, then `ComBat-seq` for batch correction
+  preserving a "tumor_stage" covariate
+
+  - RPPA: parse phosphosite suffixes (e.g., strip "_pS473") to recover base gene symbols,
+  flag unmappable antibodies
+
+  - Methylation: aggregate cg-probes to gene-level M-values using a custom promoter
+  window, then apply standard `ComBat` (not ComBat-seq) for batch correction
+
+  - After harmonization, run MOFA2 in R across all three omic layers using 15 factors
+  with ARD priors, then perform `clusterProfiler` GSEA on the top factor (by variance
+  explained) using MSigDB Hallmark gene sets
+
+
+  Deliverables:
+
+  1. A complete R script implementing all harmonization, batch correction, and MOFA2
+  steps
+
+  2. A function to parse and validate RPPA antibody names with a lookup table fallback
+
+  3. GSEA code using `clusterProfiler::GSEA()` with appropriate ranking metric
+
+  4. A written explanation of why ComBat vs ComBat-seq are applied to different layers
+  and what could go wrong if swapped'
+target_skills:
+- multi-omics-pipeline
+domain: multi-omics
+difficulty: hard

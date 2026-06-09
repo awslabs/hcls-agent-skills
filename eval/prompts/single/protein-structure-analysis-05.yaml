@@ -1,0 +1,39 @@
+id: protein-structure-analysis-05
+prompt: 'You have obtained two crystal structures of the kinase domain of a fictional
+  protein **KIN3B**: an apo form (`kin3b_apo.pdb`, chain A, 2.1 Å resolution) and
+  a ligand-bound form (`kin3b_holo.pdb`, chain A, 1.8 Å resolution, with a small molecule
+  inhibitor in the active site). Both structures contain residues 12–298. You suspect
+  the binding of the inhibitor induces a conformational change in the activation loop
+  (residues 155–185) and the αC-helix (residues 62–78).
+
+
+  **Deliverables requested:**
+
+
+  1. **Structural superposition**: Write a Python script using Biopython that superimposes
+  the apo structure onto the holo structure using only the structurally conserved
+  core residues (exclude residues 155–185 and 62–78 from the alignment atoms). Report
+  the global RMSD and the per-region RMSD for the activation loop and αC-helix separately.
+
+
+  2. **B-factor comparison**: Extract and plot the Cα B-factors for both structures
+  across all residues (12–298). Highlight the activation loop and αC-helix regions
+  with shaded bands. Discuss what elevated B-factors in the apo structure within these
+  regions would indicate about conformational flexibility.
+
+
+  3. **Binding pocket analysis**: Using fpocket (command-line) on `kin3b_holo.pdb`,
+  identify the top-ranked pocket. Provide the exact fpocket command, explain the three
+  most diagnostically useful pocket descriptors (druggability score, volume, hydrophobicity
+  score), and specify threshold values that would classify this as a high-confidence
+  druggable pocket.
+
+
+  4. **Secondary structure comparison**: Run DSSP on both structures and identify
+  any residues in the activation loop that switch secondary structure assignment between
+  the apo and holo forms. Provide the code and interpret what a helix-to-coil transition
+  in this region would mean biologically.'
+target_skills:
+- protein-structure-analysis
+domain: protein-structure
+difficulty: intermediate

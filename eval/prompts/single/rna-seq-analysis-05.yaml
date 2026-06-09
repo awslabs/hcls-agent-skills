@@ -1,0 +1,48 @@
+id: rna-seq-analysis-05
+prompt: 'Here is test question #5:
+
+
+  ---
+
+
+  You are analyzing a bulk RNA-seq dataset comparing tumor vs. normal tissue from
+  12 colorectal cancer patients (6 tumor, 6 normal adjacent tissue). You performed
+  two-pass STAR alignment against hg38 with the following key parameters: `--outSAMtype
+  BAM SortedByCoordinate`, `--outFilterMultimapNmax 10`, `--alignSJoverhangMin 8`,
+  `--sjdbOverhang 149` (150bp paired-end reads). After alignment, you used Salmon
+  in alignment-based mode to quantify transcripts using GENCODE v44 annotations, producing
+  `quant.sf` files for all 12 samples.
+
+
+  You now need to perform differential expression analysis. The sample metadata includes
+  a `batch` variable (samples were processed in two batches of 6), and preliminary
+  PCA shows clear batch separation explaining ~22% of variance on PC2.
+
+
+  **Please provide the following:**
+
+
+  1. Complete R code using `tximport` to import the Salmon quantification files, properly
+  linking transcripts to genes using a tx2gene table derived from the GENCODE v44
+  GTF file.
+
+
+  2. DESeq2 code that correctly accounts for the batch effect in the design formula,
+  runs the differential expression analysis (tumor vs. normal), and applies appropriate
+  shrinkage estimation for log2 fold changes.
+
+
+  3. A filtering strategy with specific cutoffs to define a high-confidence differentially
+  expressed gene list from the results.
+
+
+  4. Brief explanation of why using `tximport` with `countsFromAbundance = "lengthScaledTPM"`
+  may be preferable to raw counts in this multi-batch scenario, and any potential
+  concerns with the current STAR parameter `--outFilterMultimapNmax 10` for this analysis.
+
+
+  ---'
+target_skills:
+- rna-seq-analysis
+domain: genomics
+difficulty: intermediate

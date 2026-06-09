@@ -1,0 +1,38 @@
+id: rwd-cohort-analysis-07
+prompt: 'You are conducting a real-world evidence study using a commercial claims
+  database (MarketScan, 2018–2022) to compare time-to-first major adverse cardiovascular
+  event (MACE) between patients initiating SGLT2 inhibitors (index drugs: empagliflozin
+  NDC prefix 00597, dapagliflozin NDC prefix 00310) versus GLP-1 receptor agonists
+  (semaglutide NDC prefix 00169, liraglutide NDC prefix 00169) in adults with Type
+  2 diabetes (ICD-10: E11.xx) and established cardiovascular disease (ICD-10: I21.xx,
+  I25.xx). Your cohort has 14,820 SGLT2i initiators and 11,340 GLP-1 RA initiators
+  after applying a 12-month baseline washout period. MACE is defined as hospitalization
+  for MI (ICD-10: I21), stroke (I63), or cardiovascular death (I46.9) identified via
+  CPT/ICD procedure codes.
+
+
+  Please provide the following:
+
+
+  1. **Propensity score model specification**: List at least 8 clinically relevant
+  covariates to include, explain your choice of PS method (matching vs. weighting),
+  and provide Python code to estimate PS using logistic regression with the specified
+  covariates.
+
+
+  2. **Balance diagnostics**: Write code to calculate standardized mean differences
+  (SMD) before and after weighting for all covariates, and define your threshold for
+  acceptable balance.
+
+
+  3. **Kaplan-Meier analysis**: Provide Python code using `lifelines` to plot stratified
+  KM curves with 95% confidence intervals and log-rank test p-value.
+
+
+  4. **Cox PH model**: Fit a weighted Cox model, then test the proportional hazards
+  assumption using Schoenfeld residuals — provide code and explain how to interpret
+  a significant violation (p < 0.05) for the treatment variable specifically.'
+target_skills:
+- rwd-cohort-analysis
+domain: pharmacoepidemiology
+difficulty: intermediate

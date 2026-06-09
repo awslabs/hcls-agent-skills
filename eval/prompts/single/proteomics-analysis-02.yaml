@@ -1,0 +1,58 @@
+id: proteomics-analysis-02
+prompt: 'I have MaxQuant output from a label-free quantification (LFQ) experiment
+  comparing three conditions: wild-type (WT), knockout (KO), and rescue (RES) mouse
+  liver samples, each with n=4 biological replicates (12 samples total). The proteinGroups.txt
+  file contains approximately 3,800 protein groups after initial filtering.
+
+
+  Please help me build a complete R analysis pipeline with the following specific
+  requirements:
+
+
+  **Data Loading & Filtering:**
+
+  - Load proteinGroups.txt and filter out reverse hits, potential contaminants, and
+  proteins only identified by site
+
+  - Retain only proteins with valid LFQ intensity values in at least 3 out of 4 replicates
+  within at least one condition
+
+
+  **Normalization & Imputation:**
+
+  - Log2-transform LFQ intensities
+
+  - Apply median centering normalization across samples
+
+  - Impute missing values using a downshift approach (mean shifted by 1.8 SD, width
+  0.3 SD) to simulate detection limit missingness
+
+
+  **Differential Expression:**
+
+  - Use limma with empirical Bayes moderation to perform three pairwise comparisons:
+  KO vs WT, RES vs WT, and RES vs KO
+
+  - Apply Benjamini-Hochberg FDR correction; significance thresholds: adjusted p-value
+  < 0.05 and |log2FC| > 1
+
+
+  **Visualization:**
+
+  - Generate a volcano plot for the KO vs WT comparison using ggplot2, labeling the
+  top 10 most significant proteins by gene name
+
+  - Include a sample correlation heatmap using pheatmap
+
+
+  **Enrichment:**
+
+  - Run GO biological process enrichment using clusterProfiler on proteins significantly
+  upregulated in KO vs WT (assume mouse genome, org.Mm.eg.db)
+
+
+  Provide complete, runnable R code with comments explaining each step.'
+target_skills:
+- proteomics-analysis
+domain: proteomics
+difficulty: easy

@@ -1,0 +1,44 @@
+id: genomic-variant-interpretation-07
+prompt: 'A 34-year-old woman with a strong family history of breast and ovarian cancer
+  undergoes germline panel testing. The laboratory reports the following variant:
+  **BRCA2 c.7976+3A>G** (NM_000059.4).
+
+
+  Available evidence:
+
+  - **SpliceAI scores**: Donor loss = 0.61, Acceptor gain = 0.04, Donor gain = 0.02,
+  Acceptor loss = 0.01
+
+  - **gnomAD v3.1 allele frequency**: 0.000031 (4 heterozygous alleles, 0 homozygous;
+  total AN = 128,942)
+
+  - **ClinVar**: 2 submissions — one "Uncertain significance" (clinical testing lab,
+  2019), one "Likely pathogenic" (research lab, 2021, no assertion criteria provided)
+
+  - **RNA splicing assay** (performed in-house): shows ~45% reduction in canonical
+  donor usage with partial retention of intron 18 and creation of a 14 bp deletion
+  in the mature transcript, predicted to cause frameshift
+
+  - **Family segregation**: variant co-segregates with affected status in 3 first-degree
+  relatives (mother and two sisters with breast cancer)
+
+  - **REVEL score**: N/A (intronic variant)
+
+
+  Please provide the following:
+
+  1. A systematic ACMG/AMP 2015 criteria assessment, explicitly evaluating which criteria
+  apply (including PVS1, PS3, PP1, PM2, BP4/PP3, and any others relevant), with justification
+  for each
+
+  2. A final variant classification with confidence level
+
+  3. An explanation of how the partial splicing result (45% reduction, not complete
+  abolishment) affects PVS1 strength
+
+  4. Clinical reporting recommendations for this patient given the classification
+  and family history'
+target_skills:
+- genomic-variant-interpretation
+domain: genomics
+difficulty: intermediate

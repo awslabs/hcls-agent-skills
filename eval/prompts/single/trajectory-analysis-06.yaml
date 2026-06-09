@@ -1,0 +1,46 @@
+id: trajectory-analysis-06
+prompt: 'Here is test question #6 of 10:
+
+
+  ---
+
+
+  You are analyzing a single-cell RNA-seq dataset of 8,400 human hematopoietic stem
+  and progenitor cells (HSPCs) from 3 healthy donors, profiled using 10x Chromium
+  v3. After preprocessing and clustering with Scanpy, you have identified 9 distinct
+  clusters: HSC, MPP, CMP, GMP, MEP, Monocyte, Erythroid_early, Erythroid_late, and
+  Megakaryocyte. You want to use PAGA followed by diffusion pseudotime (DPT) to reconstruct
+  the myeloid and erythroid differentiation trajectories, and then validate these
+  trajectories using RNA velocity with scVelo.
+
+
+  **Specific constraints:**
+
+  - The HSC cluster (n=312 cells) should serve as the root for DPT
+
+  - scVelo should be run in dynamical mode
+
+  - You have pre-computed spliced/unspliced count matrices using velocyto with minimum
+  20 counts per gene
+
+  - You are concerned about batch effects across the 3 donors potentially distorting
+  the velocity estimates
+
+
+  **Please provide:**
+
+  1. A complete Python code workflow using Scanpy, scVelo, and CellRank that goes
+  from the preprocessed AnnData object through PAGA, DPT, and RNA velocity computation
+
+  2. How to set the DPT root cell programmatically using the HSC cluster
+
+  3. The recommended scVelo parameters for filtering genes given the 20-count minimum,
+  and how to incorporate `scv.pp.moments()` with appropriate `n_pcs` and `n_neighbors`
+
+  4. A strategy for correcting donor batch effects before computing velocity, specifically
+  whether to use `scvi-tools` integration or `harmony` embeddings as the basis for
+  velocity graph computation, with justification'
+target_skills:
+- trajectory-analysis
+domain: single-cell
+difficulty: intermediate

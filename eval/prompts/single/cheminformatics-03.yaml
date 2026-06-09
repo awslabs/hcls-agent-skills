@@ -1,0 +1,48 @@
+id: cheminformatics-03
+prompt: 'Here is test question #3 of 10:
+
+
+  ---
+
+
+  You are working on a hit-to-lead campaign for a series of kinase inhibitors. Your
+  medicinal chemistry team has synthesized 8 compounds and wants to quickly assess
+  their drug-likeness before investing in further optimization. The compounds are
+  represented by the following SMILES strings:
+
+
+  1. `CC1=CC=C(C=C1)S(=O)(=O)N2CCCC2C(=O)O` — Compound A
+
+  2. `COC1=CC2=C(C=C1OC)C(=O)C(CC3CCCCC3)C(=O)N2` — Compound B
+
+  3. `CC(C)CC1=CC=C(C=C1)C(C)C(=O)O` — Compound C (Ibuprofen analog)
+
+  4. `CN1C=NC2=C1C(=O)N(C(=O)N2C)C` — Compound D (Caffeine)
+
+  5. `CC12CCC3C(C1CCC2O)CCC4=CC(=O)CCC34C` — Compound E
+
+  6. `CCCCCCCCCCCCCCCCC(=O)O` — Compound F (stearic acid)
+
+  7. `C1=CC2=C(C=C1O)C(=O)C(=CO2)C3=CC=C(C=C3)O` — Compound G
+
+  8. `NC(=O)c1ccc[n+]([C@@H]2O[C@H](COP(=O)(O)OP(=O)(O)OC[C@H]3O[C@@H]([n+]4ccc(C(N)=O)cc4)[C@H](O)[C@@H]3O)[C@@H](O)[C@H]2O)c1`
+  — Compound H (NAD+)
+
+
+  Using RDKit, please:
+
+  1. Write Python code to compute all four Lipinski Rule of Five parameters (MW, LogP,
+  HBD, HBA) for each compound
+
+  2. Identify which compounds **pass** and which **fail** Lipinski''s rules, noting
+  any violations
+
+  3. Additionally apply Veber''s rules (rotatable bonds ≤ 10, TPSA ≤ 140 Å²) and report
+  which compounds pass both filter sets
+
+  4. Provide a brief interpretation of why Compound H fails or passes, given its biological
+  origin'
+target_skills:
+- cheminformatics
+domain: drug-discovery
+difficulty: easy

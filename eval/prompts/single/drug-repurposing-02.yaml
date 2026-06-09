@@ -1,0 +1,45 @@
+id: drug-repurposing-02
+prompt: 'A small biotech company has identified that metformin (a type 2 diabetes
+  drug) shows unexpected activity in reducing tumor growth in a preclinical colorectal
+  cancer model. The company wants to formally evaluate metformin as a repurposing
+  candidate for colorectal cancer before committing to a Phase II trial.
+
+
+  The following preliminary data is available:
+
+  - In vitro IC50 against HCT116 colorectal cancer cells: 8.2 mM
+
+  - Primary mechanism: AMPK activation / mTOR inhibition
+
+  - Existing safety data: decades of human use, well-characterized adverse event profile
+
+  - Relevant gene targets from DGIdb query: PRKAA1, PRKAA2, MTOR, TP53
+
+  - A retrospective cohort study (n=1,240 diabetic patients) showed colorectal cancer
+  incidence reduced by 23% in metformin users vs. non-users (HR=0.77, 95% CI: 0.61–0.97)
+
+
+  Please provide the following deliverables:
+
+
+  1. **Evidence strength ranking**: Using a standard repurposing evidence hierarchy,
+  classify and rank the available evidence types (in vitro, epidemiological, mechanistic)
+  from strongest to weakest for supporting clinical translation.
+
+
+  2. **Mechanism-of-action overlap assessment**: Briefly explain how metformin''s
+  known MOA (AMPK/mTOR pathway) is relevant to colorectal cancer biology and whether
+  the gene targets identified support the repurposing hypothesis.
+
+
+  3. **Translatability concern**: Identify the single most critical translational
+  gap in the current evidence package and explain why it matters.
+
+
+  4. **Next recommended study**: Propose one specific next experimental or clinical
+  step (with a brief rationale) that would most efficiently de-risk this repurposing
+  candidate before a Phase II investment decision.'
+target_skills:
+- drug-repurposing
+domain: drug-discovery
+difficulty: easy

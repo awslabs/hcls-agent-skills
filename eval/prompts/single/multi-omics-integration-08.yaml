@@ -1,0 +1,40 @@
+id: multi-omics-integration-08
+prompt: 'You are analyzing a rare pediatric brain tumor cohort (n=47 patients) with
+  four omics layers: whole-genome methylation arrays (850K CpG sites), RNA-seq (gene-level
+  counts, ~18,000 genes after filtering), reverse-phase protein arrays (RPPA, 217
+  proteins), and targeted metabolomics (143 metabolites via LC-MS). The challenge
+  is severe partial overlap: all 47 patients have methylation and RNA-seq data, only
+  31 have RPPA, and only 22 have metabolomics — and the 22 metabolomics patients are
+  not a strict subset of the 31 RPPA patients (19 overlap, 3 metabolomics-only, 12
+  RPPA-only).
+
+
+  Additionally, methylation and RNA-seq were processed in two separate batches (batch
+  A: n=25, batch B: n=22), while RPPA was run in a single plate and metabolomics was
+  processed across three LC-MS runs with known run-order drift.
+
+
+  Your goal is to identify robust multi-omic patient subtypes and the molecular features
+  driving them.
+
+
+  Please provide:
+
+  1. A justified integration strategy that explicitly handles the irregular partial
+  overlap pattern (not a simple complete-case analysis), including which method(s)
+  you would use (e.g., MOFA+, SNF, iCluster+) and why others are less appropriate
+  here.
+
+  2. A step-by-step batch correction plan for each omics layer before integration,
+  specifying methods and any ordering dependencies.
+
+  3. Pseudocode or R/Python code implementing the chosen integration framework with
+  the partial-overlap sample structure.
+
+  4. A strategy for interpreting the resulting factors/clusters, including which enrichment
+  approaches are appropriate given that RPPA covers only 217 proteins rather than
+  a full proteome.'
+target_skills:
+- multi-omics-integration
+domain: multi-omics
+difficulty: hard

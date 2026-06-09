@@ -1,0 +1,46 @@
+id: risk-adjustment-07
+prompt: 'Here is test question #7 of 10:
+
+
+  ---
+
+
+  You are building a risk adjustment pipeline for a Medicare Advantage plan with 12,000
+  members using the CMS-HCC Model V28. Your claims data warehouse contains an `icd_claims`
+  table with columns `(member_id, dos, icd10_code, provider_npi)` and a `member_demographics`
+  table with columns `(member_id, age, sex, medicaid_dual, orig_disabled, new_enrollee_flag)`.
+  The plan''s actuary has flagged that your current RAF scores may be understated
+  because disease hierarchy resolution is not being applied correctly — specifically,
+  members with both HCC18 (Diabetes with Chronic Complications) and HCC19 (Diabetes
+  without Complication) are being credited for both HCCs instead of only HCC18.
+
+
+  Your tasks are:
+
+
+  1. **Explain** the CMS-HCC V28 hierarchy resolution logic and why double-counting
+  HCC18/HCC19 inflates or deflates RAF scores (clarify the direction of the error).
+
+
+  2. **Write Python code** that loads the two tables (assume pandas DataFrames), applies
+  the ICD-10-to-HCC V28 crosswalk for the diabetes family (ICD-10 codes E11.40–E11.49
+  mapping to HCC18, and E11.9 mapping to HCC19), resolves the hierarchy so that HCC19
+  is suppressed when HCC18 is present, and outputs a corrected member-level HCC flag
+  DataFrame.
+
+
+  3. **Write a SQL query** that performs the same hierarchy resolution directly in
+  the warehouse, producing one row per member with boolean columns `hcc18_flag` and
+  `hcc19_flag_resolved`.
+
+
+  4. **Estimate the RAF impact**: if 340 members currently have both flags set and
+  the HCC18 coefficient is 0.302 and HCC19 coefficient is 0.104, calculate the aggregate
+  RAF correction across those members.
+
+
+  ---'
+target_skills:
+- risk-adjustment
+domain: healthcare-ops
+difficulty: intermediate

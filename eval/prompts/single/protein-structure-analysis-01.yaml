@@ -1,0 +1,22 @@
+id: protein-structure-analysis-01
+prompt: "You have downloaded two crystal structures of the same enzyme — **wildtype\
+  \ (WT_enzyme.pdb)** and a mutant variant carrying a G147A substitution (**MUT_enzyme.pdb**).\
+  \ Both structures contain a single chain (Chain A) with 312 residues each, resolved\
+  \ at 1.8 Å and 2.1 Å resolution respectively. You want to understand whether the\
+  \ point mutation causes any meaningful structural deviation.\n\n**Please provide\
+  \ the following deliverables:**\n\n1. **Python code** using Biopython's `Bio.PDB`\
+  \ module to:\n   - Parse both PDB files\n   - Superpose the two structures using\
+  \ only Cα atoms from residues 1–312\n   - Calculate and print the global RMSD value\n\
+  \   - Identify and print any residues where the per-residue Cα distance exceeds\
+  \ 1.5 Å after superposition\n\n2. **A brief explanation** of what RMSD measures\
+  \ in the context of structural comparison and what a value of, say, 0.45 Å versus\
+  \ 3.2 Å would indicate about the structural impact of the G147A mutation.\n\n3.\
+  \ **Recommendations** on which additional structural analyses (e.g., B-factor comparison,\
+  \ secondary structure assignment via DSSP, Ramachandran plot) you would run next\
+  \ if the global RMSD turns out to be low (< 0.5 Å) but residue 147 and its neighbors\
+  \ (residues 144–150) show localized deviations above 1.5 Å.\n\nKeep the code clean,\
+  \ well-commented, and runnable with standard Biopython installation."
+target_skills:
+- protein-structure-analysis
+domain: protein-structure
+difficulty: easy

@@ -1,0 +1,44 @@
+id: cheminformatics-02
+prompt: 'Here is test question #2 of 10:
+
+
+  ---
+
+
+  You are working on a lead optimization campaign and have the following five compounds
+  represented as SMILES strings that you need to evaluate for basic druglikeness:
+
+
+  1. **Cpd-A**: `CC(C)Cc1ccc(cc1)C(C)C(=O)O` (ibuprofen analog)
+
+  2. **Cpd-B**: `COc1ccc2c(c1)cc(=O)n2CCCCCCCCCCCCCC` (long-chain amide)
+
+  3. **Cpd-C**: `c1ccc2c(c1)ccc3cccc4cccc2c34` (pyrene)
+
+  4. **Cpd-D**: `CC1=C(C(=O)Nc2ccccc2F)c2ccccc2N1` (small aromatic)
+
+  5. **Cpd-E**: `NC(=O)c1cnc2ccccc2c1O` (hydroxyl amide)
+
+
+  Please perform the following tasks:
+
+
+  1. **Write complete RDKit Python code** that computes the four Lipinski Rule of
+  Five parameters (MW, LogP, HBD, HBA) for each compound and flags any violations.
+
+
+  2. **Apply Veber''s rules** (rotatable bonds ≤ 10, TPSA ≤ 140 Å²) to the same set
+  and indicate which compounds pass both Lipinski and Veber filters simultaneously.
+
+
+  3. **Compute Morgan fingerprints** (radius=2, nBits=2048) for all five compounds
+  and produce a pairwise Tanimoto similarity matrix using RDKit.
+
+
+  4. **Summarize your findings** in a brief table identifying which compounds are
+  suitable to advance based on all filters, and explain in 2–3 sentences why Cpd-B
+  is likely problematic from a druglikeness standpoint.'
+target_skills:
+- cheminformatics
+domain: drug-discovery
+difficulty: easy

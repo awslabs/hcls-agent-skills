@@ -1,0 +1,46 @@
+id: biomarker-discovery-02
+prompt: 'Here is test question #2 of 10:
+
+
+  ---
+
+
+  A research team has collected RNA-seq data from 120 treatment-naïve breast cancer
+  patients, measuring expression of 15,000 genes. Their goal is to build a prognostic
+  signature predicting 5-year distant recurrence-free survival. They have already
+  log2-normalized and batch-corrected the data. A junior analyst has proposed the
+  following pipeline: (1) rank all 15,000 genes by univariate Cox p-value, (2) keep
+  the top 50 genes with p < 0.001, (3) fit a multivariate LASSO-Cox model on those
+  50 genes, and (4) evaluate performance using 10-fold cross-validation on the full
+  dataset. The team has 87 recurrence events recorded.
+
+
+  Please provide the following:
+
+
+  1. **Identify all data leakage problems** in the proposed pipeline and explain why
+  each is problematic.
+
+
+  2. **Recommend a corrected pipeline** that properly handles feature selection and
+  model evaluation, specifying the exact cross-validation strategy you would use and
+  why.
+
+
+  3. **Justify whether 87 events is sufficient** for this modeling task, referencing
+  the events-per-variable (EPV) rule and any relevant considerations for penalized
+  regression.
+
+
+  4. **Specify two performance metrics** most appropriate for this survival prediction
+  task, explaining what each measures and any important caveats for their interpretation
+  in this context.
+
+
+  5. **Write pseudocode** (language-agnostic, 15–25 lines) implementing your corrected
+  pipeline, clearly showing where feature selection occurs relative to cross-validation
+  folds.'
+target_skills:
+- biomarker-discovery
+domain: single-cell
+difficulty: easy

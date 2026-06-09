@@ -1,0 +1,36 @@
+id: digital-pathology-09
+prompt: 'You are processing a CAMELYON16 validation set of 48 whole-slide images (mix
+  of Leica Aperio SVS and Hamamatsu NDPI formats) for tumor detection using a pre-trained
+  H-optimus-0 foundation model. Each slide has been scanned at different base magnifications:
+  32 SVS files at 40× (0.25 mpp) and 16 NDPI files at 20× (0.50 mpp). Your pipeline
+  must extract 256×256 patches at exactly 0.5 mpp regardless of scanner origin, compute
+  H-optimus-0 embeddings, and then apply ABMIL (Attention-Based MIL) aggregation for
+  slide-level binary classification.
+
+
+  You discover two complicating issues: (1) three NDPI slides have corrupted pyramid
+  levels at 20× but intact 40× levels, and (2) five SVS slides exhibit significant
+  pen marks covering >15% of tissue area that your current Otsu-based tissue mask
+  incorrectly classifies as tissue.
+
+
+  Provide the following deliverables:
+
+
+  1. A Python function using TIAToolbox''s `WSIReader` that detects which pyramid
+  level to read from based on available resolution metadata, with graceful fallback
+  for the corrupted NDPI slides — reading from 40× and downsampling to 0.5 mpp programmatically.
+
+
+  2. A pen-mark detection and exclusion function that operates on RGB patch arrays,
+  using color thresholding in HSV space to identify blue/black/red ink and returns
+  a boolean mask filtering out contaminated patches before embedding.
+
+
+  3. A complete end-to-end pipeline script that processes all 48 slides, handles both
+  edge cases, extracts patches at 0.5 mpp, generates H-optimus-0 embeddings in batches
+  of 32, and saves per-slide `.pt` feature tensors with slide-level metadata JSON.'
+target_skills:
+- digital-pathology
+domain: imaging
+difficulty: hard

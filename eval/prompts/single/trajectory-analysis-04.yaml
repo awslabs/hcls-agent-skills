@@ -1,0 +1,41 @@
+id: trajectory-analysis-04
+prompt: 'Here is test question #4 of 10:
+
+
+  ---
+
+
+  You are analyzing a single-cell RNA-seq dataset of 8,400 hematopoietic stem and
+  progenitor cells (HSPCs) from 6 healthy donors, spanning differentiation toward
+  erythroid, myeloid, and lymphoid lineages. You have already computed a diffusion
+  map with 15 components and identified 9 clusters using Leiden resolution 0.6. PAGA
+  connectivity analysis suggests three main trajectory branches originating from a
+  putative HSC cluster (cluster 0), but the branch leading to the lymphoid lineage
+  (cluster 7) shows unexpectedly weak PAGA connectivity (threshold 0.05) compared
+  to the erythroid and myeloid branches.
+
+
+  Your RNA velocity analysis using scVelo (dynamical model) reveals that cluster 7
+  cells have a high proportion of unspliced reads for transcription factors **IKZF1**
+  and **EBF1**, but the velocity arrows in UMAP space point *away* from the expected
+  lymphoid direction for approximately 30% of cells in that cluster.
+
+
+  Please provide:
+
+  1. A biological interpretation of why the PAGA connectivity to cluster 7 is weak
+  and why velocity arrows are discordant in that subset
+
+  2. A CellRank-based strategy to robustly identify terminal states and compute fate
+  probabilities for all three lineages, accounting for this velocity inconsistency
+
+  3. Annotated Python code using CellRank 2.x that combines a `VelocityKernel` and
+  `ConnectivityKernel` (weighted 60/40) to compute fate probabilities toward all three
+  terminal states
+
+  4. Recommendations for validating the lymphoid trajectory using two orthogonal computational
+  approaches beyond RNA velocity'
+target_skills:
+- trajectory-analysis
+domain: single-cell
+difficulty: intermediate

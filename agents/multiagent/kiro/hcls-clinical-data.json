@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "hcls-clinical-data",
+  "description": "Clinical data specialist: clinical data standards (MedDRA, ICD-10, SNOMED CT, LOINC), EHR data parsing (HL7v2, FHIR R4), CDISC compliance (SDTM, ADaM), and EDC data validation.",
+  "tools": ["*"],
+  "allowedTools": ["read", "shell"],
+  "resources": [
+    "skill://.kiro/skills/clinical-data-standards/SKILL.md",
+    "skill://.kiro/skills/ehr-data-parsing/SKILL.md",
+    "skill://.kiro/skills/cdisc-compliance/SKILL.md",
+    "skill://.kiro/skills/edc-data-validation/SKILL.md"
+  ]
+}

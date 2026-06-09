@@ -1,0 +1,47 @@
+id: genomics-variant-pipeline-04
+prompt: 'A clinical genomics laboratory is processing a cohort of 47 germline WES
+  samples from patients with suspected hereditary breast and ovarian cancer syndrome.
+  The sequencing was performed on an Illumina NovaSeq 6000 (2×150 bp), and you have
+  received paired FASTQs (`sample_R1.fastq.gz` / `sample_R2.fastq.gz`), a coordinate-sorted
+  BAM (`sample.bam`), reference `ref.fasta` (GRCh38), and a SureSelect XT Human All
+  Exon v7 target BED file. Assume `THREADS=8` and `OUT=qc_out`.
+
+
+  During pipeline development, one sample (Patient 23) flagged multiple QC concerns:
+  mean target coverage of 38×, 14% adapter contamination rate in FastQC, and a Picard
+  `PCT_TARGET_BASES_20X` of 0.71. After completing QC remediation with fastp and proceeding
+  through BWA-MEM2 alignment and GATK4 HaplotypeCaller (run in GVCF mode with subsequent
+  joint genotyping across all 47 samples), a candidate variant emerged in **BRCA2**
+  at chr13:32,338,763 (GRCh38): `c.5946delT (p.Ser1982Argfs*22)`.
+
+
+  ClinVar lists three submitters: two report "Pathogenic" (2019, 2021) with no assertion
+  criteria, and one reports "Uncertain Significance" (2023) with ACMG criteria cited.
+  The variant has a gnomAD v3.1.2 allele frequency of 0.000008 (3 heterozygous alleles,
+  0 homozygous). REVEL score is unavailable (frameshift). SpliceAI delta scores are
+  all <0.01.
+
+
+  Please provide the following concrete deliverables:
+
+
+  1. **QC assessment**: Write the complete fastp command to remediate Patient 23''s
+  FASTQ data, and specify which Picard/mosdepth commands you would run post-alignment
+  to confirm coverage improvement. Identify whether Patient 23 should be retained
+  or excluded from joint genotyping and justify your threshold-based decision.
+
+
+  2. **Variant calling**: Write the exact GATK4 HaplotypeCaller and GenomicsDBImport/GenotypeGVCFs
+  commands for this WES cohort, including appropriate intervals, and explain whether
+  VQSR or hard filtering is more appropriate given the cohort size of 47 samples.
+
+
+  3. **Variant interpretation**: Apply the ACMG/AMP 2015 framework to classify `BRCA2
+  c.5946delT`, explicitly evaluating PVS1, PM2, and the conflicting ClinVar evidence.
+  Provide a final classification with a structured evidence summary table.'
+target_skills:
+- genomic-variant-interpretation
+- variant-calling
+- ngs-quality-control
+domain: genomics
+difficulty: intermediate

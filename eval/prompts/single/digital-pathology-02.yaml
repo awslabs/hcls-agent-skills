@@ -1,0 +1,23 @@
+id: digital-pathology-02
+prompt: "You have a directory containing 45 CAMELYON16 whole-slide images in SVS format\
+  \ that you want to process using TIAToolbox. Before extracting patches for a multiple\
+  \ instance learning (MIL) pipeline, you need to perform tissue segmentation to avoid\
+  \ extracting background tiles.\n\n**Your specific requirements:**\n- Target resolution:\
+  \ 0.5 mpp (micrometers per pixel) for patch extraction\n- Patch size: 256×256 pixels\n\
+  - Minimum tissue coverage threshold: 60% per patch\n- Use TIAToolbox's built-in\
+  \ tissue masker (Otsu-based)\n\n**Please provide:**\n\n1. A complete Python code\
+  \ snippet that:\n   - Loads a single SVS slide using TIAToolbox's `WSIReader`\n\
+  \   - Prints basic slide metadata (dimensions at level 0, available MPP, number\
+  \ of pyramid levels)\n   - Generates a tissue mask using `TissueMasker` at a low-resolution\
+  \ thumbnail (4 mpp)\n   - Extracts all valid 256×256 patches at 0.5 mpp that meet\
+  \ the 60% tissue coverage threshold\n   - Saves the patch coordinates (x, y, width,\
+  \ height) to a CSV file named `patch_coords.csv`\n\n2. A brief explanation (3-4\
+  \ sentences) of why tissue masking is performed at a lower resolution (4 mpp) than\
+  \ patch extraction (0.5 mpp), and what computational trade-offs this approach involves.\n\
+  \n3. One potential pitfall when using Otsu thresholding for tissue segmentation\
+  \ on H&E slides that contain significant amounts of adipose (fat) tissue, and a\
+  \ suggested workaround using TIAToolbox tools."
+target_skills:
+- digital-pathology
+domain: imaging
+difficulty: easy

@@ -1,0 +1,41 @@
+id: multi-omics-integration-02
+prompt: 'You are analyzing a cohort of 85 pancreatic ductal adenocarcinoma (PDAC)
+  patients with matched RNA-seq transcriptomics and reverse-phase protein array (RPPA)
+  proteomics data. All 85 patients have transcriptomics data, but only 62 patients
+  have RPPA measurements due to sample quality issues. Your goal is to identify multi-omic
+  subtypes that may stratify patient survival outcomes.
+
+
+  You are considering using MOFA+ (Multi-Omics Factor Analysis) for this integration
+  task. The transcriptomics matrix contains 18,432 genes (after filtering low-expression
+  genes) and the RPPA matrix contains 258 proteins. Both datasets have been independently
+  normalized (VST for RNA-seq, median-centering for RPPA), but they were processed
+  in two separate laboratory batches — batch A (n=40 patients, both omics) and batch
+  B (n=22 patients, both omics; plus 23 patients with transcriptomics only).
+
+
+  Please provide the following:
+
+
+  1. **Batch correction strategy**: Explain whether and how to apply batch correction
+  before MOFA+ integration, given the partial sample overlap and two-batch structure.
+  Should correction be applied per-omic or jointly?
+
+
+  2. **MOFA+ configuration**: Specify the key parameters to set — number of factors
+  to request, how to handle the 23 transcriptomics-only samples, and which likelihood
+  model to use for each data modality.
+
+
+  3. **Factor interpretation**: After running MOFA+, describe a step-by-step workflow
+  to identify which factors are biologically meaningful and associate them with patient
+  survival using the available clinical data.
+
+
+  4. **Short R code snippet**: Provide example code using the `MOFA2` R package to
+  set up and train the model with these two views, correctly specifying the sample
+  groups or missing data structure.'
+target_skills:
+- multi-omics-integration
+domain: multi-omics
+difficulty: easy

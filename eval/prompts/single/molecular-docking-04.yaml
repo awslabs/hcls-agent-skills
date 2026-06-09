@@ -1,0 +1,40 @@
+id: molecular-docking-04
+prompt: 'You are preparing a structure-based virtual screen of 2,500 drug-like compounds
+  against the kinase domain of a fictional target protein **TYK7** (PDB ID: 7XKM,
+  resolution 1.95 Å). The crystal structure contains a co-crystallized inhibitor **LIG-042**
+  in the ATP-binding pocket. Your grid box should be centered on LIG-042''s centroid,
+  which is located at coordinates x=14.3, y=−8.7, z=22.1 (in Ångströms relative to
+  the PDB coordinate frame).
+
+
+  Before launching the full screen, your supervisor requires a **redocking validation**
+  to confirm the docking protocol reproduces the experimental binding pose. The co-crystallized
+  ligand LIG-042 has a known RMSD tolerance threshold of ≤2.0 Å for acceptable pose
+  reproduction.
+
+
+  Your computational resources allow a maximum of 8 CPU cores and you plan to use
+  AutoDock Vina 1.2.3. The ligand library (library.sdf) has already been protonated
+  at pH 7.4, but receptor preparation has not yet been started.
+
+
+  **Please provide all of the following:**
+
+
+  1. A step-by-step receptor preparation protocol using AutoDockTools (or an equivalent
+  open-source alternative), including removal of waters, addition of polar hydrogens,
+  and charge assignment.
+
+  2. A Vina configuration file (`vina.conf`) with a grid box of 22×22×22 Å centered
+  on the given coordinates, exhaustiveness=16, and num_modes=9.
+
+  3. A Python script that converts `library.sdf` to individual PDBQT files using Open
+  Babel, then runs Vina in parallel across all 8 cores using `concurrent.futures`.
+
+  4. A post-docking analysis script that parses all Vina output logs, extracts the
+  top binding affinity per compound, and flags any compound scoring better than −9.0
+  kcal/mol as a priority hit.'
+target_skills:
+- molecular-docking
+domain: protein-structure
+difficulty: intermediate

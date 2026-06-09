@@ -1,0 +1,52 @@
+id: drug-discovery-structural-05
+prompt: 'Here is the research question:
+
+
+  ---
+
+
+  You are a computational drug discovery scientist working on a rare pediatric neurodegenerative
+  disorder caused by a gain-of-function mutation in **TRPM7** (a bifunctional ion
+  channel/kinase). Transcriptomic profiling of 47 affected patients versus 52 healthy
+  controls using L1000 connectivity mapping identified **imatinib** (BCR-ABL/c-KIT
+  inhibitor) and **loratadine** (H1 antihistamine) as the two top-ranked repurposing
+  candidates by connectivity score (τ = −0.81 and τ = −0.74, respectively). A cryo-EM
+  structure of TRPM7''s kinase domain in complex with a tool compound (**PDB: 7XKQ**,
+  hypothetical) reveals a well-defined ATP-binding pocket with volume 412 Å³ and a
+  unique hydrophobic sub-pocket adjacent to the hinge region not present in ABL1.
+
+
+  Using this context, provide the following concrete deliverables:
+
+
+  1. **Repurposing evidence assessment**: Rank imatinib versus loratadine as TRPM7
+  repurposing candidates using an evidence hierarchy framework. Incorporate DGIdb
+  and OpenTargets reasoning, evaluate mechanism-of-action overlap with TRPM7''s kinase
+  domain, and assess clinical translatability constraints specific to pediatric CNS
+  indications (e.g., BBB penetration, pediatric safety labeling).
+
+
+  2. **Cheminformatics profile**: Given the SMILES for imatinib (`Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cnnc3ccccc23)n1`)
+  and loratadine (`CCOC(=O)N1CCC(=C2c3ccc(Cl)cc3CCc3cccnc32)CC1`), compute and compare:
+  (a) Lipinski Ro5 and Veber rule compliance, (b) Morgan fingerprint Tanimoto similarity
+  to each other, (c) predicted CNS MPO score using logP, TPSA, HBD, MW, and pKa proxies,
+  and (d) flag any PAINS substructures. Identify which candidate has superior CNS
+  druglikeness.
+
+
+  3. **Structure-based design strategy**: Using the TRPM7 kinase domain structure,
+  outline a virtual screening cascade to identify analogs that exploit the unique
+  hydrophobic sub-pocket. Specify: docking strategy choice (rigid vs. induced-fit),
+  scoring function rationale, how you would define the pharmacophore incorporating
+  the sub-pocket, and whether MM-GBSA or FEP rescoring is appropriate given the pocket
+  volume and flexibility, with a justified recommendation for lead optimization of
+  the better repurposing candidate.
+
+
+  ---'
+target_skills:
+- drug-repurposing
+- cheminformatics
+- structure-based-drug-design
+domain: drug-discovery
+difficulty: intermediate

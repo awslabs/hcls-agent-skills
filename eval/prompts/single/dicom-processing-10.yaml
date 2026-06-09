@@ -1,0 +1,35 @@
+id: dicom-processing-10
+prompt: 'A research team at Meridian Medical Center is processing a longitudinal neuroimaging
+  study with 847 subjects, each having 3 timepoints of T1-weighted MPRAGE acquisitions.
+  The DICOM files were acquired across two scanner upgrades (Siemens Prisma 3T → Prisma
+  Fit 3T → Prisma Fit 3T with XR gradient system), resulting in inconsistent DICOM
+  header fields across timepoints. Specifically, they''ve discovered that:
+
+
+  1. Some series have `ImageOrientationPatient` tags with floating-point precision
+  variations (e.g., `0.9999998` vs `1.0`) causing dcm2niix to split single volumes
+  into multiple NIfTI files
+
+  2. The `SliceTiming` metadata is missing from ~30% of sessions acquired on the original
+  Prisma (pre-upgrade), which is critical for their fMRI preprocessing pipeline
+
+  3. Several subjects have duplicate `SeriesInstanceUID` values across timepoints
+  due to a PACS migration error
+
+  4. The team wants BIDS-compliant output with proper `sub-`, `ses-`, and `run-` entity
+  labeling
+
+
+  Your task: (a) Write a Python script using pydicom that preprocesses the DICOM headers
+  to normalize `ImageOrientationPatient` values and inject synthetic `SliceTiming`
+  metadata based on known acquisition parameters (TR=2000ms, 64 slices, interleaved
+  ascending), before passing to dcm2niix. (b) Provide the exact dcm2niix command-line
+  invocation with flags optimized for this multi-session BIDS dataset. (c) Explain
+  how to detect and resolve the duplicate `SeriesInstanceUID` issue programmatically.
+  (d) Describe a validation strategy to confirm NIfTI orientation consistency across
+  all 2,541 sessions using nibabel, including a code snippet that flags problematic
+  volumes.'
+target_skills:
+- dicom-processing
+domain: imaging
+difficulty: hard

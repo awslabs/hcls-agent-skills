@@ -1,0 +1,33 @@
+id: translational-research-04
+prompt: 'A biotech company has completed a 18-month natural history study in 847 patients
+  with early-stage amyotrophic lateral sclerosis (ALS). They identified a novel RNA-binding
+  protein, HNRNPQ7, whose cytoplasmic mislocalization correlates with disease progression
+  rate (faster progressors show 3.2-fold higher mislocalization by IHC in post-mortem
+  tissue). A CRISPR screen in iPSC-derived motor neurons identified HNRNPQ7 as synthetically
+  lethal with TDP-43 aggregation. Mendelian randomization using ALS GWAS data (n=29,612
+  cases, 122,656 controls) shows a causal estimate of OR=1.41 (95% CI: 1.18–1.68)
+  per SD increase in HNRNPQ7 expression. A small molecule inhibitor (HQ7-221) reduces
+  mislocalization by 67% in the SOD1-G93A mouse model and extends survival by 14 days
+  (p=0.003), but the mouse model does not carry TDP-43 pathology. CSF levels of phosphorylated
+  HNRNPQ7 fragments are detectable and show a 2.1-fold elevation in fast progressors
+  versus slow progressors.
+
+
+  Given this evidence package, provide:
+
+  1. A structured target validation scorecard rating genetic, functional, and disease-relevance
+  evidence (with explicit gaps)
+
+  2. An assessment of whether the SOD1 mouse model translates meaningfully given the
+  TDP-43 discordance, and what additional preclinical work is needed before IND filing
+
+  3. A proposed Phase 2 trial design including patient stratification strategy, primary
+  and secondary endpoints, and a go/no-go decision framework
+
+  4. A biomarker qualification plan for CSF phospho-HNRNPQ7 specifying context of
+  use, analytical validation requirements, and the evidentiary standard needed to
+  use it as a pharmacodynamic endpoint'
+target_skills:
+- translational-research
+domain: cross-domain
+difficulty: intermediate

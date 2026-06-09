@@ -1,0 +1,40 @@
+id: ml-researcher-09
+prompt: 'Here is test question #9 of 10:
+
+
+  ---
+
+
+  You are designing an ML pipeline to predict 90-day hospital readmission using a
+  federated dataset from four health systems (Sites A–D). Site A contributes 42,000
+  patients (academic medical center, 2018–2023), Site B contributes 18,500 patients
+  (community hospital, 2020–2023), Site C contributes 9,200 patients (safety-net hospital,
+  2019–2022), and Site D contributes 6,800 patients (rural critical-access hospital,
+  2021–2023). The outcome prevalence varies substantially: 22% at Site A, 31% at Site
+  C, 14% at Site D, and 18% at Site B. Features include 847 ICD-10 codes, 214 lab
+  values, 38 vital sign summaries, and free-text discharge summaries (average 480
+  tokens). You plan to use a federated XGBoost model with FedAvg-style gradient aggregation,
+  but a colleague suggests a federated transformer fine-tuned from a clinical foundation
+  model (GatorTron-base) instead.
+
+
+  Provide the following concrete deliverables:
+
+  1. A rigorous evaluation framework specifying how to split data within and across
+  sites to prevent temporal leakage while enabling site-generalization testing, including
+  a pseudocode sketch of the CV loop.
+
+  2. A justified recommendation on XGBoost vs. the clinical transformer, addressing
+  data heterogeneity, sample size imbalance across sites, and the mixed structured/unstructured
+  input.
+
+  3. A metric selection rationale comparing AUROC, AUPRC, calibration (ECE), and net
+  benefit for this specific multi-site prevalence-varying setting.
+
+  4. A fairness audit plan identifying at minimum three clinically meaningful subgroups,
+  the disparity metrics to compute, and a mitigation strategy if disparities exceed
+  a pre-specified threshold.'
+target_skills:
+- ml-researcher
+domain: cross-domain
+difficulty: hard

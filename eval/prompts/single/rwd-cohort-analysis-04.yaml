@@ -1,0 +1,50 @@
+id: rwd-cohort-analysis-04
+prompt: 'You are analyzing a commercial claims database of 847,000 patients diagnosed
+  with atrial fibrillation (AF) between January 2018 and December 2022. You need to
+  compare stroke outcomes between patients initiated on apixaban (NDC prefix: 59148-xxx)
+  versus rivaroxaban (NDC prefix: 50458-xxx) using a new-user active comparator design.
+
+
+  **Cohort identification criteria:**
+
+  - Index date: first prescription fill after AF diagnosis (ICD-10: I48.0, I48.11,
+  I48.19, I48.20, I48.21)
+
+  - Require 180-day pre-index enrollment with no prior oral anticoagulant use
+
+  - Exclude patients with valvular AF (ICD-10: I08.x), ESRD, or prior stroke within
+  12 months
+
+  - Minimum 90-day follow-up; censor at disenrollment or treatment discontinuation
+
+
+  After applying all criteria, the apixaban cohort contains 34,200 patients and rivaroxaban
+  contains 18,750 patients.
+
+
+  **Please provide:**
+
+
+  1. Python code to calculate 12-month PDC for each patient using pharmacy claims
+  fill dates and days-supply, with a function that handles overlapping fills by carrying
+  forward excess days
+
+
+  2. A propensity score model specification including which baseline covariates to
+  include (demographics, comorbidities using CCI components, prior medications), and
+  Python code using logistic regression with 1:1 nearest-neighbor matching (caliper
+  = 0.2 SD of logit PS)
+
+
+  3. SMD calculation before and after matching, with a threshold recommendation and
+  visualization code for a Love plot
+
+
+  4. Kaplan-Meier curves with log-rank test and Cox model code, including how to test
+  the proportional hazards assumption using Schoenfeld residuals, and what to do if
+  the assumption is violated for one covariate (e.g., diabetes status showing time-varying
+  effect after month 6)'
+target_skills:
+- rwd-cohort-analysis
+domain: pharmacoepidemiology
+difficulty: intermediate

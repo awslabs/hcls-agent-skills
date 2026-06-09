@@ -1,0 +1,45 @@
+id: aws-genai-ml-architect-04
+prompt: 'A regional cancer center (Oncology Partners of the Southwest) processes approximately
+  2,400 pathology reports and 800 radiology reports daily. They want to build a clinical
+  NLP pipeline on AWS to extract structured oncology entities (tumor stage, biomarker
+  results, treatment history, adverse events) from these unstructured reports and
+  populate a FHIR R4 data store for downstream analytics and trial matching.
+
+
+  Their constraints are:
+
+  - Reports contain PHI and must meet HIPAA/HITECH requirements
+
+  - Latency requirement: structured output within 4 minutes of report finalization
+
+  - They have 18 months of historical reports (~1.2M documents) for fine-tuning or
+  RAG context
+
+  - Budget cap: $45,000/month for the entire pipeline
+
+  - Existing infrastructure: AWS Health Lake instance, Redshift cluster, and an on-premises
+  PACS system connected via AWS Direct Connect
+
+
+  They are debating between three approaches: (1) fine-tuning a SageMaker-hosted model
+  on their historical corpus, (2) using Amazon Bedrock with Claude via prompt engineering
+  + RAG, or (3) Amazon Comprehend Medical as the primary extractor with a Bedrock
+  layer for complex cases.
+
+
+  Please provide:
+
+  1. A comparative analysis of all three approaches against their specific constraints
+  (latency, cost, PHI compliance, extraction accuracy for oncology-specific entities)
+
+  2. A recommended architecture diagram description with specific AWS services and
+  data flow
+
+  3. An estimated monthly cost breakdown for your recommended approach
+
+  4. A sample Python snippet showing how to invoke your chosen extraction method and
+  write structured output to AWS HealthLake as a FHIR Observation resource'
+target_skills:
+- aws-genai-ml-architect
+domain: cross-domain
+difficulty: intermediate

@@ -1,0 +1,49 @@
+id: drug-discovery-structural-04
+prompt: 'Here is the research question:
+
+
+  ---
+
+
+  You are a computational drug discovery scientist tasked with identifying repurposable
+  candidates for a rare pediatric glioma driven by a constitutively active **FGFR2–TACC2
+  fusion kinase**, identified in 47 of 312 patients in a recent sequencing cohort.
+  The fusion creates a novel dimerization-competent kinase domain that is overexpressed
+  in tumor tissue but absent in normal brain. You have access to the crystal structure
+  of the FGFR2 kinase domain (PDB: 2PVF) with a resolved ATP-binding pocket (volume
+  ~820 Å³, druggability score 0.83 by FTMap analysis).
+
+
+  **Deliverable 1 – Repurposing Candidate Identification:** Query the mechanistic
+  overlap between FGFR2 and approved kinase inhibitors using OpenTargets and DGIdb.
+  Rank the top three repurposing candidates by evidence strength, specifying whether
+  each was identified through a target-based or phenotype-based approach, and note
+  any existing pediatric safety data that would support or complicate clinical translatability.
+
+
+  **Deliverable 2 – Cheminformatics Filtering:** For the top three candidates, provide
+  their canonical SMILES (you may use realistic approximations for known drugs), then
+  evaluate each against Lipinski Rule of Five and Veber criteria. Calculate Morgan
+  fingerprint (radius=2, 2048 bits) Tanimoto similarity between all pairwise combinations.
+  Flag any candidate containing PAINS substructures using RDKit''s FilterCatalog.
+  Report which candidates pass all filters and are suitable for further profiling.
+
+
+  **Deliverable 3 – Structure-Based Prioritization:** For the candidate(s) passing
+  cheminformatics filters, describe a docking strategy against PDB: 2PVF, including
+  binding site definition, choice between rigid and induced-fit docking, recommended
+  scoring function, and how you would handle the constitutively active DFG-in conformation.
+  Propose a follow-up MM-GBSA rescoring protocol and outline whether an allosteric
+  site adjacent to the TACC2 fusion junction warrants a parallel fragment-based screening
+  campaign.
+
+
+  Integrate findings from all three deliverables into a final prioritization recommendation
+  with a clear rationale for which single candidate should advance to an in vitro
+  FGFR2–TACC2 cellular validation assay.'
+target_skills:
+- drug-repurposing
+- cheminformatics
+- structure-based-drug-design
+domain: drug-discovery
+difficulty: intermediate

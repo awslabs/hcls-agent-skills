@@ -1,0 +1,42 @@
+id: biomarker-discovery-04
+prompt: 'Here is test question #4 of 10:
+
+
+  ---
+
+
+  You are analyzing a multi-omics dataset from 312 early-stage non-small cell lung
+  cancer (NSCLC) patients enrolled in the PIONEER-2 trial to develop a predictive
+  biomarker for response to adjuvant pembrolizumab (yes/no response at 18 months).
+  Available data layers include: RNA-seq (18,432 genes), DNA methylation (850K array,
+  beta values), and 47 clinical/pathological variables (age, stage, smoking history,
+  tumor size, etc.). The dataset has 118 responders and 194 non-responders.
+
+
+  You are considering a multi-omics integration strategy before feeding features into
+  a penalized logistic regression model (elastic net). A colleague suggests concatenating
+  all three data layers into a single feature matrix after separately applying variance
+  filters (top 1,000 features per omics layer), then running 5-fold cross-validation
+  to select the optimal alpha and lambda parameters and report the final AUC.
+
+
+  Please provide:
+
+  1. A critique of your colleague''s proposed pipeline, identifying at least three
+  methodological problems that could compromise validity
+
+  2. A corrected pipeline design that properly handles feature selection, hyperparameter
+  tuning, and performance estimation without data leakage
+
+  3. A recommendation on whether to use early, intermediate, or late integration for
+  combining the three omics layers given this specific scenario, with justification
+
+  4. The appropriate primary performance metric(s) for this binary classification
+  task and why AUC alone may be insufficient given the class imbalance
+
+  5. A brief power/sample size consideration: is n=312 adequate for a multi-omics
+  elastic net model, referencing the events-per-variable (EPV) heuristic?'
+target_skills:
+- biomarker-discovery
+domain: single-cell
+difficulty: intermediate

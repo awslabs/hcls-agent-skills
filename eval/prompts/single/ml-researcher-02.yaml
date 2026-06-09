@@ -1,0 +1,37 @@
+id: ml-researcher-02
+prompt: 'A hospital system has collected a retrospective EHR dataset of 8,400 adult
+  patients admitted for community-acquired pneumonia between 2018 and 2023. The goal
+  is to build a 30-day readmission prediction model to be used at discharge for care
+  coordination decisions. The dataset includes 47 structured features: demographics
+  (age, sex, race/ethnicity), vital signs at admission and discharge, lab values (WBC,
+  CRP, procalcitonin, creatinine, albumin), comorbidity flags (COPD, diabetes, CHF,
+  CKD), length of stay, and discharge disposition. The class distribution is 12% readmitted
+  vs. 88% not readmitted.
+
+
+  The data science team is debating between logistic regression with LASSO regularization
+  and a gradient boosting classifier (XGBoost). They plan to use 5-fold cross-validation
+  and report AUROC as their sole evaluation metric. The dataset spans five hospital
+  sites with unequal patient volumes (Site A: 3,200; Sites B–E: 1,100–1,400 each).
+
+
+  Please provide:
+
+  1. A recommendation on model selection with justification for this clinical context.
+
+  2. A critique of the proposed evaluation setup, specifically addressing whether
+  5-fold CV and AUROC alone are appropriate given the class imbalance and multi-site
+  structure.
+
+  3. A revised evaluation framework including the CV strategy, at least three complementary
+  metrics beyond AUROC, and a calibration assessment approach.
+
+  4. A fairness audit plan that identifies which subgroups to examine and which disparity
+  metrics to report.
+
+  5. A short Python code snippet (using scikit-learn) demonstrating how to implement
+  the recommended CV strategy with stratification by both outcome and site.'
+target_skills:
+- ml-researcher
+domain: cross-domain
+difficulty: easy

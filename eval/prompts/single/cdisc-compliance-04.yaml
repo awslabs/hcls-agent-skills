@@ -1,0 +1,43 @@
+id: cdisc-compliance-04
+prompt: 'A Phase III oncology trial (n=847 patients) is preparing SDTM datasets for
+  FDA submission. The clinical team has collected tumor assessment data that spans
+  multiple SDTM domains, and you need to resolve the following mapping challenges:
+
+
+  **Scenario Details:**
+
+  - Tumor measurements (target lesions, non-target lesions, new lesions) were collected
+  at baseline and every 6 weeks
+
+  - RECIST 1.1 responses (CR, PR, SD, PD) were derived by the investigator and recorded
+  on the eCRF
+
+  - A custom "Tumor Burden Score" (TBS) was calculated at each visit using a proprietary
+  algorithm combining sum of diameters with volumetric estimates
+
+  - Lesion-level data includes anatomical location (coded using MedDRA), lesion identifier,
+  and laterality
+
+  - Some lesion measurements have associated radiologist comments (free text, up to
+  500 characters) that are clinically meaningful and must be preserved
+
+
+  **Deliverables requested:**
+
+  1. Identify which SDTM domains should contain each data element (TR, TU, RS, or
+  others), with justification for any non-standard domain usage
+
+  2. Design the SUPPQUAL structure needed to accommodate the radiologist comments
+  and TBS values, including variable names, labels, and IDVAR/IDVARVAL specifications
+
+  3. Explain how RELREC should be used to link the tumor, response, and findings domains
+
+  4. Provide the value-level metadata entries needed in define.xml for the TBS variable,
+  including controlled terminology references
+
+  5. Flag any CDISC compliance risks that could trigger FDA technical rejection, with
+  recommended remediation steps'
+target_skills:
+- cdisc-compliance
+domain: clinical-data-review
+difficulty: intermediate

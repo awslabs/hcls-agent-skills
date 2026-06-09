@@ -1,0 +1,39 @@
+id: claims-billing-rules-03
+prompt: 'A rural physician practice has submitted claims for 847 Medicare patients
+  over a 6-month period. During an internal compliance audit, the following patterns
+  were flagged for review:
+
+
+  - 73% of all Evaluation & Management visits were billed at CPT 99215 (the highest-complexity
+  office visit level), compared to a national average of approximately 18% for similar
+  primary care practices
+
+  - 412 claims include both a new patient E&M code (99203 or 99204) and a procedure
+  code on the same date of service, without Modifier 25 appended to the E&M code
+
+  - 156 claims bill CPT 99213 alongside CPT 99214 for the same patient on the same
+  date of service
+
+  - 38 claims show a surgical procedure billed with a separate E&M code during the
+  established global surgery period (10-day or 90-day), without any modifier indicating
+  a distinct unrelated visit
+
+
+  Using your knowledge of CMS billing rules and NCCI edit logic, please provide:
+
+
+  1. A classification of each of the four flagged patterns as either a likely coding
+  error, potential fraud, or waste/abuse — with a brief rationale for each classification
+
+  2. An explanation of what Modifier 25 is, when it is appropriately used, and why
+  its absence in pattern #2 creates a billing compliance problem
+
+  3. A prioritized list of which patterns should be investigated first, with justification
+  based on financial risk and fraud indicators
+
+  4. Two specific corrective actions the practice should implement to prevent future
+  occurrences of the highest-priority issue'
+target_skills:
+- claims-billing-rules
+domain: healthcare-ops
+difficulty: easy

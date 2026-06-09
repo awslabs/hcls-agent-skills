@@ -1,0 +1,35 @@
+id: claims-analytics-03
+prompt: 'You are a data engineer at a regional health plan with a claims database
+  containing 2.3 million professional claims submitted over the past 12 months. Your
+  compliance team suspects that some providers may be systematically upcoding Evaluation
+  & Management (E&M) office visit codes. Specifically, they want to analyze the distribution
+  of CPT codes 99211, 99212, 99213, 99214, and 99215 across all providers who submitted
+  at least 50 E&M claims in the period.
+
+
+  Your PostgreSQL database has a table called `claims` with the following columns:
+  `claim_id`, `provider_npi`, `provider_specialty`, `service_date`, `cpt_code`, `billed_amount`,
+  `patient_id`, and `place_of_service`.
+
+
+  Please provide the following deliverables:
+
+
+  1. **SQL query** that calculates, for each provider NPI, the count and percentage
+  distribution of each E&M level code (99211–99215), filtered to providers with at
+  least 50 E&M claims and specialty code `11` (Internal Medicine).
+
+
+  2. **Python code** using pandas that takes the SQL result as a DataFrame and flags
+  any provider whose percentage of 99214 + 99215 combined exceeds 70% of their total
+  E&M claims as a potential upcoding outlier.
+
+
+  3. **A brief explanation** (3–5 sentences) of what a legitimate E&M distribution
+  typically looks like for Internal Medicine providers based on industry benchmarks,
+  and what statistical thresholds you would recommend for flagging outliers beyond
+  the simple 70% rule.'
+target_skills:
+- claims-analytics
+domain: healthcare-ops
+difficulty: easy

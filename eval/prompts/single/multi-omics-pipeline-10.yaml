@@ -1,0 +1,37 @@
+id: multi-omics-pipeline-10
+prompt: 'You are integrating three omics layers from a pancreatic ductal adenocarcinoma
+  (PDAC) cohort: RNA-seq (n=847 samples, ~22,000 genes), proteomics (n=312 samples,
+  ~8,500 proteins identified via TMT-10plex across 4 mass-spec batches), and DNA methylation
+  (n=601 samples, EPIC 850K array). The samples partially overlap: only 287 samples
+  have all three layers simultaneously. Feature identifiers are inconsistent — RNA-seq
+  uses Ensembl gene IDs (GRCh38.p13), proteomics uses UniProt accessions with isoform
+  suffixes (e.g., P04637-2), and methylation uses cg-probe IDs that need mapping to
+  gene promoter regions (±2kb from TSS).
+
+
+  Before running MOFA2, you must harmonize identifiers and handle the following edge
+  cases: (1) ~340 UniProt isoform accessions that lack direct Ensembl mappings via
+  biomaRt, (2) ~1,200 Ensembl IDs flagged as retired/merged in GRCh38.p13 versus p14,
+  and (3) multi-mapping cg-probes that fall within promoters of 2–5 genes simultaneously.
+
+
+  Please provide:
+
+  1. A complete R pipeline using biomaRt and custom fallback logic (UniProt API REST
+  calls via httr) to resolve all three identifier edge cases, producing a unified
+  HGNC-symbol reference table with provenance columns tracking resolution method.
+
+  2. ComBat-seq code correcting the proteomics TMT batch effect while preserving a
+  continuous tumor-purity covariate (estimated range 0.31–0.94), including a diagnostic
+  plot comparing pre/post PCA colored by batch.
+
+  3. MOFA2 configuration for this partially-overlapping design, specifying how to
+  handle the 560 samples missing ≥1 omics layer, appropriate number of factors (justify
+  based on data dimensions), and convergence criteria.
+
+  4. Post-MOFA2 fgsea enrichment on the top 3 factors using Reactome gene sets, with
+  leading-edge gene extraction and a dot-plot visualization.'
+target_skills:
+- multi-omics-pipeline
+domain: multi-omics
+difficulty: hard

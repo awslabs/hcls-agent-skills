@@ -1,0 +1,55 @@
+id: genomics-variant-pipeline-08
+prompt: 'A clinical genomics laboratory is processing a cohort of 47 patients with
+  suspected hereditary colorectal cancer syndrome. Each sample was sequenced on an
+  Illumina NovaSeq 6000 (150 bp paired-end, WES with SureSelect Human All Exon v7
+  capture). Raw FASTQ files are available as `sample_R1.fastq.gz` / `sample_R2.fastq.gz`,
+  a coordinate-sorted BAM `sample.bam` with index exists, and the reference is `hg38/ref.fasta`
+  with target intervals `sureselect_v7.bed`.
+
+
+  During variant calling with GATK4 HaplotypeCaller in GVCF mode followed by joint
+  genotyping across all 47 samples, the pipeline flagged a heterozygous variant in
+  **MLH1** (NM_000249.4): `chr3:37,067,251 C>T`, resulting in a predicted **p.Arg217Cys**
+  substitution. The variant has the following annotations:
+
+
+  - **gnomAD v3.1 AF**: 0.000031 (4 alleles / 128,652 total, no homozygotes)
+
+  - **ClinVar**: 2 submissions — one "Uncertain Significance" (2019), one "Likely
+  Pathogenic" (2022, no supporting evidence provided)
+
+  - **REVEL score**: 0.74
+
+  - **CADD Phred**: 26.3
+
+  - **SpliceAI delta score**: 0.04 (max across all splice consequences)
+
+  - **Segregation**: variant present in 3 of 4 affected first-degree relatives in
+  one family; absent in 2 unaffected relatives
+
+
+  Additionally, the QC pipeline revealed that this particular sample has a mean target
+  coverage of 38×, with 84% of bases covered at ≥20×, and FastQC flagged adapter contamination
+  in read 2 (>12% of reads at position 1–10).
+
+
+  Please provide:
+
+  1. A complete shell-based QC pipeline (fastp trimming, mosdepth coverage, MultiQC
+  report) for this sample, noting whether the coverage metrics meet ACMG/AMP minimum
+  thresholds for clinical WES reporting and whether re-sequencing should be recommended.
+
+  2. The exact GATK4 commands to call and jointly genotype this cohort using VQSR
+  (specifying appropriate truth/training resources and tranches), including any WES-specific
+  parameter adjustments.
+
+  3. A fully reasoned ACMG/AMP 2015 variant classification for MLH1 p.Arg217Cys, explicitly
+  invoking or rejecting each applicable criterion (PS3, PM1, PM2, PP3, BP4, BS1, BS2,
+  PP1) with justification, and providing a final classification with clinical reporting
+  recommendation.'
+target_skills:
+- genomic-variant-interpretation
+- variant-calling
+- ngs-quality-control
+domain: genomics
+difficulty: hard

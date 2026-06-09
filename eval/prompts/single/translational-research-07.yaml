@@ -1,0 +1,36 @@
+id: translational-research-07
+prompt: 'A biotech company has completed a 24-month natural history study in 847 patients
+  with early-stage frontotemporal dementia (FTD) carrying the GRN haploinsufficiency
+  variant (rs5848 loss-of-function). They have longitudinal data on: plasma progranulin
+  levels (baseline mean 42 ng/mL, SD 11), CSF neurofilament light chain (NfL), 18F-PI-2620
+  tau PET standardized uptake value ratios (SUVR) in the frontal cortex, and a novel
+  digital cognitive composite called FTD-DCC (12-month ICC = 0.71). The company is
+  now planning a Phase 2 proof-of-concept trial for a GRN gene therapy (AAV9-GRN)
+  that aims to restore progranulin to ≥80 ng/mL plasma levels within 3 months post-dosing.
+
+
+  **Your tasks:**
+
+
+  1. **Evaluate target engagement and proof-of-mechanism (PoM) criteria**: Define
+  specific thresholds and timepoints for declaring PoM success using the available
+  biomarkers, distinguishing primary target engagement from downstream pathway engagement.
+
+
+  2. **Rank the four biomarkers** (plasma progranulin, CSF NfL, tau PET SUVR, FTD-DCC)
+  by their fitness-for-purpose as Phase 2 primary endpoints, citing context-of-use
+  considerations and the ICC data provided.
+
+
+  3. **Design a go/no-go decision framework** with explicit criteria at 6 months and
+  18 months, specifying what combination of biomarker signals would justify advancing
+  to Phase 3.
+
+
+  4. **Identify the two highest-risk translational assumptions** in this AAV9-GRN
+  program and propose one mitigation strategy for each, referencing relevant precedents
+  from AAV gene therapy or GRN biology.'
+target_skills:
+- translational-research
+domain: cross-domain
+difficulty: intermediate

@@ -1,0 +1,48 @@
+id: multi-omics-pipeline-06
+prompt: 'You are analyzing a multi-omics dataset from a colorectal cancer study involving
+  87 tumor samples and 42 matched normal controls. The data includes:
+
+
+  - **RNA-seq counts**: 18,432 genes with Ensembl IDs (e.g., ENSG00000141510, ENSG00000012048)
+
+  - **Proteomics**: 4,217 proteins identified with UniProt accessions (e.g., P04637,
+  P38398)
+
+  - **Methylation array (850K)**: CpG probes linked to gene symbols (e.g., TP53, BRCA1)
+
+
+  The three omics layers were processed in two separate batches (Batch A: 67 samples,
+  Batch B: 62 samples) and you suspect technical variation is confounding downstream
+  integration.
+
+
+  Your task is to build a complete multi-omics integration pipeline with the following
+  deliverables:
+
+
+  1. **ID harmonization code** in R using `biomaRt` to map all three identifier types
+  (Ensembl → HGNC symbol → UniProt) into a unified gene-symbol space, handling one-to-many
+  mappings by retaining the canonical UniProt entry only.
+
+
+  2. **Batch correction code** applying `ComBat-seq` to the RNA-seq counts and standard
+  `ComBat` to the log2-transformed proteomics data, preserving the tumor/normal biological
+  covariate.
+
+
+  3. **MOFA2 integration** in R that trains a MOFA2 model on all three harmonized
+  omics layers using 10 latent factors, with appropriate data normalization per modality
+  before training.
+
+
+  4. **Enrichment analysis** using `clusterProfiler` on the top 200 genes with highest
+  absolute weights in Factor 1, running both GO Biological Process and KEGG pathway
+  over-representation analysis with a BH-adjusted p-value cutoff of 0.05.
+
+
+  Provide complete, executable R code for each step with brief inline comments explaining
+  key parameter choices.'
+target_skills:
+- multi-omics-pipeline
+domain: multi-omics
+difficulty: intermediate

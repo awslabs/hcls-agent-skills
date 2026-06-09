@@ -1,0 +1,38 @@
+id: aws-genai-ml-architect-01
+prompt: 'A regional hospital network with 12 facilities is building its first AWS-based
+  ML system to automatically classify radiology reports (plain text, ~500 words each)
+  into one of five urgency categories: routine, follow-up, urgent, emergent, and critical.
+  The system will process approximately 8,000 reports per day across all facilities,
+  with peak load of 1,200 reports between 8–10 AM. Reports contain PHI including patient
+  names, MRN numbers, and dates of birth.
+
+
+  The team has 2,000 labeled historical reports for fine-tuning and wants to evaluate
+  whether to use **Amazon Bedrock** (invoking a foundation model with prompt engineering)
+  versus **Amazon SageMaker** (fine-tuning a smaller BERT-based model like Bio_ClinicalBERT)
+  for this classification task.
+
+
+  Please provide:
+
+
+  1. **Architecture recommendation** — Which service (Bedrock or SageMaker) is more
+  appropriate for this use case and why, considering accuracy, latency, cost, and
+  HIPAA compliance requirements.
+
+
+  2. **HIPAA compliance checklist** — List at least five specific AWS configuration
+  steps required to handle PHI in this pipeline (e.g., encryption, logging, BAA).
+
+
+  3. **Cost estimate comparison** — Provide a rough monthly cost breakdown for both
+  approaches given the 8,000 reports/day volume, assuming average report processing
+  takes 1 second.
+
+
+  4. **Simple architecture diagram** (described in text/pseudocode) — Show the end-to-end
+  flow from report ingestion to urgency label storage, including relevant AWS services.'
+target_skills:
+- aws-genai-ml-architect
+domain: cross-domain
+difficulty: easy

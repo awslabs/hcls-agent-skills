@@ -1,0 +1,33 @@
+id: ehr-data-parsing-09
+prompt: 'You are building a clinical data pipeline that receives HL7v2 ORU^R01 messages
+  containing laboratory results for a cardiology department. During QA testing, you
+  discover that the same patient (MRN: 7734521) has arrived in three separate ORU
+  messages with conflicting OBX segments for serum troponin (LOINC: 10839-9). The
+  three messages contain the following OBX|5 values respectively: `0.04|ng/mL`, `<0.05|ng/mL`
+  (a "less-than" qualifier), and `0.04^0.06|ng/mL` (a reference range embedded in
+  the value field). Additionally, the MSH-7 timestamps are out of order: `20240315143022`,
+  `20240315141500`, and `20240315144500`.
+
+
+  Your task is to build a Python solution that handles this real-world messiness.
+  Provide the following deliverables:
+
+
+  1. **A Python parser function** using the `hl7` library that extracts OBX segment
+  fields (OBX-2 value type, OBX-3 LOINC code, OBX-5 observed value, OBX-6 units, OBX-8
+  abnormal flag) from all three messages, correctly handling the `<` qualifier prefix
+  and the embedded reference range by stripping them into separate structured fields
+  (`numeric_value`, `qualifier`, `ref_range_low`, `ref_range_high`).
+
+
+  2. **A deduplication and conflict resolution function** that selects the authoritative
+  result based on MSH-7 timestamp ordering and flags the other two as superseded.
+
+
+  3. **A data quality report** (as a pandas DataFrame) showing all three records with
+  columns: `mrn`, `loinc`, `raw_value`, `numeric_value`, `qualifier`, `units`, `abnormal_flag`,
+  `timestamp`, `status` (authoritative vs. superseded), and `conflict_reason`.'
+target_skills:
+- ehr-data-parsing
+domain: clinical-data
+difficulty: hard

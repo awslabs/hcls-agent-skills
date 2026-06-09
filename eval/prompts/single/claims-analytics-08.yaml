@@ -1,0 +1,38 @@
+id: claims-analytics-08
+prompt: 'A regional health plan has flagged a cardiology group (NPI: 1234567890) for
+  potential upcoding across 847 claims submitted over Q1-Q2 2024. The group bills
+  exclusively under CPT codes 99213, 99214, and 99215 for office visits, with the
+  following distribution: 99213 = 4% (34 claims), 99214 = 31% (263 claims), 99215
+  = 65% (550 claims). National cardiology peer benchmarks show: 99213 = 18%, 99214
+  = 48%, 99215 = 34%.
+
+
+  Additionally, the group submitted 312 claims pairing 99215 with modifier -25 alongside
+  same-day procedure codes 93000 (ECG) and 93306 (echocardiography). Your NCCI edit
+  validation logic must handle the nuance that 93000 bundles with E&M under certain
+  circumstances but modifier -25 can override this — however, 93306 has a separate
+  bundling rule that modifier -25 does NOT override when billed with 99215 on the
+  same date of service.
+
+
+  Using this scenario, deliver the following:
+
+
+  1. A Python function that calculates chi-square deviation between the provider''s
+  E&M distribution and specialty peer benchmarks, returning a fraud risk score (0–100)
+  with interpretation thresholds
+
+  2. A SQL query that identifies all same-day claim pairs where 99215 + modifier -25
+  was billed alongside 93306, flagging them as improper bundles
+
+  3. A Benford''s Law analysis function in Python applied to the submitted charge
+  amounts for this provider, including a visualization-ready data structure and a
+  MAD (mean absolute deviation) threshold for anomaly classification
+
+  4. A written interpretation of whether this provider''s combined billing pattern
+  constitutes sufficient evidence for a formal audit referral, citing specific statistical
+  findings from your analysis'
+target_skills:
+- claims-analytics
+domain: healthcare-ops
+difficulty: hard

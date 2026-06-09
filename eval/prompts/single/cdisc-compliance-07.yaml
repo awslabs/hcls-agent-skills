@@ -1,0 +1,39 @@
+id: cdisc-compliance-07
+prompt: 'You are preparing SDTM datasets for an FDA NDA submission for a Phase 3 oncology
+  trial (Study ONC-2847) enrolling 412 patients. During your compliance review, you
+  identify the following issues across three domains:
+
+
+  **Findings Domain (TR - Tumor Results):** 47 records contain TRORRES values that
+  are free-text descriptions (e.g., "slightly irregular border, approximately 2.3cm")
+  rather than standardized measurements. The sponsor wants to preserve this verbatim
+  text while also mapping numeric values to TRSTRESC/TRSTRESN.
+
+
+  **Events Domain (AE):** 23 adverse events have a causal relationship to both the
+  study drug AND a concomitant medication simultaneously. The current mapping uses
+  only AEREL for the primary drug relationship, losing the concomitant medication
+  relationship data.
+
+
+  **Interventions Domain (CM):** 156 concomitant medication records have dose modifications
+  mid-treatment, resulting in multiple dose levels for the same medication episode.
+  The current implementation creates duplicate CMSEQ values within the same USUBJID.
+
+
+  For each issue, provide:
+
+  1. The correct SDTM implementation approach per CDISC standards (SDTM IG 3.3)
+
+  2. Whether SUPPQUAL, RELREC, or split records are the appropriate solution and why
+
+  3. A concrete SAS code snippet demonstrating the recommended fix
+
+  4. The define.xml metadata changes required (variable-level or value-level metadata)
+
+  5. The clinical impact and query priority (High/Medium/Low) if left uncorrected
+  for FDA submission'
+target_skills:
+- cdisc-compliance
+domain: clinical-data-review
+difficulty: intermediate

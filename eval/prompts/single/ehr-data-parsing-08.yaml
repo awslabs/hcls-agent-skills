@@ -1,0 +1,39 @@
+id: ehr-data-parsing-08
+prompt: 'You are building a clinical data pipeline that receives HL7v2 ORU^R01 messages
+  containing laboratory results from three different hospital systems, each using
+  slightly different encoding conventions. The messages include OBX segments with
+  LOINC-coded observations, but you''ve discovered several data quality issues:
+
+
+  1. **Hospital A** sends numeric OBX values with units in OBX-6 but occasionally
+  embeds the unit directly in OBX-5 (e.g., `"7.2 mg/dL"` instead of `"7.2"`), and
+  uses `"~"` as a repetition separator instead of the HL7 default.
+
+  2. **Hospital B** sends OBX-11 (observation result status) as `"F"`, `"P"`, or occasionally
+  `"C"` (correction), but your downstream FHIR Observation resources must map these
+  to the correct `status` values (`final`, `preliminary`, `amended`).
+
+  3. **Hospital C** sends multi-valued OBX segments for microbiology panels where
+  OBX-5 contains pipe-delimited organism/sensitivity pairs like `"Staph aureus|Resistant|Penicillin^Sensitive^Amoxicillin"`.
+
+
+  Your task:
+
+  - Write a Python class `HL7ORUParser` using the `hl7` library (or raw string parsing
+  if needed) that handles all three hospital edge cases
+
+  - Extract patient MRN (PID-3), collection datetime (OBX-14 or fallback to OBR-7),
+  LOINC code (OBX-3.1), numeric value (cleaned), units, and result status per observation
+
+  - Output a pandas DataFrame with columns: `mrn`, `collection_dt`, `loinc_code`,
+  `value`, `unit`, `status`, `source_hospital`
+
+  - Include a `validate_extract()` method that flags rows where value is non-numeric
+  after cleaning, status mapping is unknown, or collection_dt is missing
+
+  - Provide a sample HL7 message string for Hospital B demonstrating a corrected result
+  and show the expected DataFrame output'
+target_skills:
+- ehr-data-parsing
+domain: clinical-data
+difficulty: hard

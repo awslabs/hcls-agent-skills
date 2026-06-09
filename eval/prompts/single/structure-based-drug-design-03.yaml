@@ -1,0 +1,40 @@
+id: structure-based-drug-design-03
+prompt: 'You are beginning a structure-based drug discovery campaign against PRKX2,
+  a serine/threonine kinase implicated in treatment-resistant glioblastoma. A crystal
+  structure has been resolved at 2.1 Å resolution (PDB-like entry: 7XKP), revealing
+  a well-defined ATP-binding pocket with the following characteristics: a hydrophobic
+  back pocket lined by residues Leu83, Val102, Ala156, and Ile174; a hinge region
+  with two hydrogen bond donors (Met91 backbone NH and Thr93 backbone NH); a DFG motif
+  in the "in" conformation; and a solvent-exposed region near the glycine-rich loop.
+
+
+  Your team has retrieved 2,400 commercially available fragment compounds (MW 150–300
+  Da, cLogP < 3) for a fragment-based virtual screening campaign. The docking software
+  available is Glide (Schrödinger Suite), and you have access to standard-precision
+  (SP) and extra-precision (XP) scoring modes.
+
+
+  Please provide the following deliverables:
+
+
+  1. **Binding site definition**: Identify which structural features should anchor
+  the binding site grid, and specify an appropriate grid box size (in Å) for fragment
+  docking.
+
+
+  2. **Screening cascade design**: Propose a two-stage docking protocol using SP followed
+  by XP, including recommended cutoff percentages for advancing compounds between
+  stages.
+
+
+  3. **Pharmacophore hypothesis**: Define a minimal 3-point pharmacophore model based
+  on the described pocket features that fragments should satisfy.
+
+
+  4. **Post-docking prioritization**: Recommend one rescoring method beyond Glide
+  XP GScore to rank final hits, and briefly justify why it is appropriate for fragments
+  in this pocket.'
+target_skills:
+- structure-based-drug-design
+domain: protein-structure
+difficulty: easy

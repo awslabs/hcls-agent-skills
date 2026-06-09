@@ -1,0 +1,37 @@
+id: radiology-preprocessing-09
+prompt: 'A research team is preprocessing 847 T1w MRI scans from a multi-site neuroimaging
+  study (sites: MGH, UCSF, Mayo) acquired on 3T scanners (Siemens Prisma, GE Discovery,
+  Philips Ingenia) with varying voxel sizes (1mm isotropic, 0.8mm isotropic, and 1.2×1×1mm).
+  The pipeline uses ANTs SyN registration to MNI152 1mm space, N4 bias field correction,
+  and HD-BET for skull stripping. During QC review, the team discovers that 73 scans
+  from the Philips Ingenia site show systematically poor MNI registration (mean Dice
+  overlap of subcortical structures = 0.61 vs. 0.84 for other sites), and 31 scans
+  from elderly subjects (age 80+) with significant cortical atrophy show HD-BET failures
+  leaving dura and meninges attached.
+
+
+  **Deliverables requested:**
+
+
+  1. Diagnose the likely root causes for both failure modes, explaining the specific
+  technical mechanisms involved.
+
+
+  2. Provide a corrected preprocessing bash script that addresses the Philips registration
+  failures by modifying the ANTs SyN call with appropriate initialization steps, transform
+  parameters, and any necessary intermediate resampling — assume `antsRegistration`
+  and `antsApplyTransforms` are available.
+
+
+  3. Propose a modified skull stripping strategy for the atrophic brain cases, including
+  a fallback pipeline using FSL BET with specific flag combinations and threshold
+  values that improve dura removal in elderly subjects.
+
+
+  4. Describe a quantitative QC metric (beyond Dice) that could automatically flag
+  future registration failures before manual review, and provide a Python snippet
+  to compute it using nibabel and numpy given a registered image and the MNI template.'
+target_skills:
+- radiology-preprocessing
+domain: imaging
+difficulty: hard

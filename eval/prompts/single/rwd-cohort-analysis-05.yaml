@@ -1,0 +1,37 @@
+id: rwd-cohort-analysis-05
+prompt: 'You are conducting a retrospective cohort study using a large commercial
+  claims database (2018–2023, n = 412,000 insured members) to compare cardiovascular
+  outcomes between patients newly initiated on SGLT2 inhibitors versus DPP-4 inhibitors
+  for type 2 diabetes management. Your target population requires: (1) ≥1 ICD-10 code
+  E11.x within 12 months before index date, (2) no prior cardiovascular event (ICD-10:
+  I21.x, I50.x, I63.x) in a 365-day lookback window, (3) continuous enrollment for
+  180 days pre-index and ≥90 days post-index, and (4) age 40–75 at index date. After
+  applying these criteria, your treated cohort (SGLT2i) contains 8,240 patients and
+  your comparator cohort (DPP-4i) contains 19,580 patients.
+
+
+  Your primary outcome is a 3-point MACE composite (non-fatal MI, non-fatal stroke,
+  CV death) identified via CPT and ICD-10 codes, with a maximum follow-up of 36 months.
+  You have 18 baseline covariates including HbA1c proxy (insulin use flag), hypertension,
+  CKD stage, and statin use.
+
+
+  Please provide:
+
+  1. Python code to estimate propensity scores using logistic regression and perform
+  1:1 nearest-neighbor matching with caliper = 0.2 SD of the log-odds
+
+  2. Standardized mean difference (SMD) calculations before and after matching for
+  all 18 covariates, with a Love plot visualization
+
+  3. Kaplan-Meier curves for MACE-free survival by treatment group with log-rank test
+
+  4. A Cox proportional hazards model with robust standard errors, and Schoenfeld
+  residual test for the proportional hazards assumption
+
+  5. Interpretation of results and recommendations if the PH assumption is violated
+  for the primary treatment variable'
+target_skills:
+- rwd-cohort-analysis
+domain: pharmacoepidemiology
+difficulty: intermediate

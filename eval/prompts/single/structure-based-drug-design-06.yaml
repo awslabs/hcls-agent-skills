@@ -1,0 +1,37 @@
+id: structure-based-drug-design-06
+prompt: 'You are optimizing a series of inhibitors targeting the bromodomain of BRD4
+  (BD1), a well-validated epigenetic target in acute myeloid leukemia. You have completed
+  an initial virtual screening campaign and identified a promising fragment hit (compound
+  **F-17**) with a measured Kd of 42 µM via SPR. The fragment binds in the acetyl-lysine
+  recognition pocket, and a co-crystal structure at 1.9 Å resolution reveals the following
+  key interactions: (1) a conserved water-mediated hydrogen bond to Asn140, (2) a
+  direct H-bond between the fragment''s triazole nitrogen and Tyr97, and (3) hydrophobic
+  contacts with Pro82 and Leu94. The fragment has MW = 187 Da, cLogP = 1.4, and ligand
+  efficiency (LE) = 0.42 kcal/mol/heavy atom.
+
+
+  Your medicinal chemistry team wants to grow this fragment into a lead compound targeting
+  MW < 450 Da and Kd < 100 nM. You have access to Glide SP/XP docking, Prime MM-GBSA
+  rescoring, and a 50-ns MD simulation pipeline.
+
+
+  Please provide:
+
+  1. A fragment-growing strategy specifying which vector(s) to prioritize and why,
+  based on the binding site geometry described
+
+  2. A recommended computational workflow (docking → rescoring → MD) with specific
+  parameter choices and decision criteria at each stage
+
+  3. An assessment of whether induced-fit docking (IFD) is necessary for this target,
+  citing the known flexibility of the WPF shelf and ZA loop regions
+
+  4. The MM-GBSA settings you would use (solvation model, flexibility of residues,
+  sampling method) and the ΔG cutoff you''d apply to triage compounds before synthesis
+
+  5. Two potential liability flags to monitor during lead optimization for this chemical
+  series'
+target_skills:
+- structure-based-drug-design
+domain: protein-structure
+difficulty: intermediate

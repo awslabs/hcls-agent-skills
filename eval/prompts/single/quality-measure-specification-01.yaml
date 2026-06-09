@@ -1,0 +1,43 @@
+id: quality-measure-specification-01
+prompt: 'A regional health plan is preparing for NCQA HEDIS hybrid measurement for
+  the **Breast Cancer Screening (BCS)** measure for measurement year 2024. Their data
+  analytics team has pulled the following summary statistics from their administrative
+  data:
+
+
+  - Total female members aged 52–74: 4,820
+
+  - Members with a bilateral mastectomy claim (ICD-10: Z90.13): 187
+
+  - Members with evidence of mammography (CPT 77067) in the past 27 months: 2,901
+
+  - Members who enrolled mid-year (after January 1, 2024): 634
+
+  - Members with a hospice claim during the measurement year: 43
+
+
+  The team is uncertain about how to correctly build the denominator, apply exclusions,
+  and calculate the final compliance rate. They also want to understand continuous
+  enrollment requirements for this measure.
+
+
+  **Please provide the following:**
+
+
+  1. A step-by-step explanation of how to construct the BCS denominator, including
+  the continuous enrollment rule and the correct age anchor date logic for measurement
+  year 2024.
+
+  2. A clear breakdown of which exclusions apply from the data above and how each
+  should be handled (include which are "required" vs. "allowable" exclusions per NCQA
+  specification).
+
+  3. A calculated numerator and final compliance rate using the figures provided,
+  showing your arithmetic clearly.
+
+  4. Two common audit pitfalls the health plan should watch for when submitting BCS
+  hybrid data to NCQA.'
+target_skills:
+- quality-measure-specification
+domain: healthcare-ops
+difficulty: easy

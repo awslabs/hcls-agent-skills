@@ -1,0 +1,27 @@
+id: clinical-data-standards-07
+prompt: "You are preparing the adverse event frequency tables for a Phase III oncology\
+  \ trial submission to the FDA. Your safety database contains the following coded\
+  \ adverse events (already coded to MedDRA v26.0) that need to be organized for the\
+  \ Clinical Study Report:\n\n- Preferred Terms reported in ≥5% of patients (n=240\
+  \ treatment arm):\n  - Nausea: 52 patients\n  - Vomiting: 41 patients\n  - Fatigue:\
+  \ 38 patients\n  - Decreased appetite: 29 patients\n  - Peripheral sensory neuropathy:\
+  \ 28 patients\n  - Hypokalemia: 22 patients\n  - Constipation: 19 patients\n  -\
+  \ Abdominal pain upper: 14 patients\n  - Abdominal pain: 13 patients\n\nThe medical\
+  \ writer has flagged two issues requiring your input:\n\n**Issue 1:** \"Abdominal\
+  \ pain upper\" and \"Abdominal pain\" are both appearing as separate rows in the\
+  \ PT-level table, but a reviewer suggested these should be collapsed. Explain the\
+  \ correct MedDRA hierarchy relationship between these two terms, identify their\
+  \ shared HLT, and provide a recommendation on whether to present data at PT level,\
+  \ HLT level, or both — including the regulatory rationale.\n\n**Issue 2:** \"Hypokalemia\"\
+  \ needs to be cross-mapped to ICD-10-CM for a companion safety registry that uses\
+  \ ICD-10 coding. Provide the correct ICD-10-CM code with full descriptor, explain\
+  \ the structural logic of where this code sits within the ICD-10-CM chapter/block\
+  \ organization, and note any coding specificity considerations compared to the MedDRA\
+  \ PT.\n\nDeliver: (1) the hierarchy analysis and display recommendation for Issue\
+  \ 1, (2) the ICD-10-CM mapping with structural explanation for Issue 2, and (3)\
+  \ a brief note on whether the 5% threshold calculation should use the PT-level or\
+  \ HLT-level frequency for \"abdominal pain\" terms."
+target_skills:
+- clinical-data-standards
+domain: clinical-data
+difficulty: intermediate

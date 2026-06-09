@@ -1,0 +1,42 @@
+id: imaging-study-design-01
+prompt: 'A research team at a single academic medical center is planning a cross-sectional
+  study to investigate whether T2-weighted MRI volumetric measurements of the hippocampus
+  can serve as a reliable imaging biomarker for distinguishing early Alzheimer''s
+  disease (AD) patients from healthy controls. They have enrolled 45 early AD patients
+  (CDR score 0.5–1.0) and 45 age-matched healthy controls (mean age 68 ± 7 years).
+  All scans will be acquired on a single 3T Siemens Prisma scanner using a 3D MPRAGE
+  sequence (1mm isotropic, TR=2300ms, TE=2.98ms, TI=900ms, flip angle=9°). The team
+  is new to neuroimaging analysis and needs guidance on building their pipeline from
+  scratch.
+
+
+  Please provide the following:
+
+
+  1. **Preprocessing pipeline**: List the essential preprocessing steps (in order)
+  required to prepare the raw MPRAGE images for hippocampal volumetry, briefly explaining
+  the purpose of each step.
+
+
+  2. **Segmentation approach**: Recommend a specific automated segmentation tool or
+  atlas-based method suitable for hippocampal volume extraction in this population,
+  justifying your choice over at least one alternative.
+
+
+  3. **Normalization strategy**: Explain whether hippocampal volumes should be analyzed
+  in native space or normalized (e.g., by total intracranial volume), and provide
+  the specific formula or method you recommend.
+
+
+  4. **Statistical analysis plan**: Describe an appropriate statistical test to compare
+  hippocampal volumes between the two groups, including how to handle potential confounders
+  such as age, sex, and total intracranial volume.
+
+
+  5. **Sample size consideration**: Given the enrolled N=90, comment on whether this
+  sample is likely adequately powered for detecting a clinically meaningful hippocampal
+  volume difference of 8% between groups (assume SD=7%, α=0.05).'
+target_skills:
+- imaging-study-design
+domain: imaging
+difficulty: easy

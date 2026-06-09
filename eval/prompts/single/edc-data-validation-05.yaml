@@ -1,0 +1,41 @@
+id: edc-data-validation-05
+prompt: 'You are working as a clinical data manager on a Phase II oncology trial (STUDY-ONC-2847)
+  with 156 enrolled patients. Your EDC system (Veeva Vault CDMS) exports lab data
+  in a flat CSV format that must be validated before SDTM LB domain conversion. The
+  exported file contains the following columns: `USUBJID`, `VISIT`, `LBTEST`, `LBORRES`,
+  `LBORRESU`, `LBDTC`, `LBNRLO`, `LBNRHI`, and `LBSTAT`.
+
+
+  You''ve identified several recurring data quality issues in recent exports:
+
+  1. Numeric lab values stored as strings with mixed units (e.g., "mg/dL" vs "mg/dl"
+  vs "MG/DL")
+
+  2. Missing `LBDTC` values when `LBSTAT = "NOT DONE"` — these should be allowed,
+  but dates are also missing for completed tests
+
+  3. `LBORRES` contains values like ">1000", "<2.5", or "TNTC" (Too Numerous To Count)
+  that need special handling
+
+  4. Reference range violations where `LBNRLO` > `LBNRHI` (inverted ranges from data
+  entry errors)
+
+
+  Using Python, please provide:
+
+  1. A validation function that checks all four issues above and returns a structured
+  DataFrame of flagged records with an error code, affected field, and descriptive
+  message
+
+  2. A unit normalization function that standardizes common lab unit variants to CDISC
+  controlled terminology (at minimum handle g/dL, mg/dL, 10^3/µL, and %)
+
+  3. A summary report function that groups flags by error type and visit, outputting
+  counts suitable for a data review meeting
+
+  4. Sample test data (minimum 15 rows) covering all four error scenarios, and a demonstration
+  of all three functions applied to that test data'
+target_skills:
+- edc-data-validation
+domain: clinical-data-review
+difficulty: intermediate

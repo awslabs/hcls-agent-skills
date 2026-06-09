@@ -1,0 +1,34 @@
+id: molecular-docking-01
+prompt: 'You have a protein receptor structure (PDB ID: 3HTB) that you''ve already
+  cleaned by removing water molecules and co-crystallized ligands. You now need to
+  set up a complete AutoDock Vina docking run for a small molecule inhibitor with
+  the SMILES string `CC1=CC(=CC(=C1)NC(=O)C2=CC=C(C=C2)CN3CCN(CC3)C)C`. The known
+  binding site is centered at coordinates x=15.190, y=53.903, z=17.198 with a search
+  space of 20×20×20 Å.
+
+
+  Please provide the following deliverables:
+
+
+  1. **Receptor preparation**: Write a Python script using `prepare_receptor4.py`
+  (from MGLTools/AutoDockTools) that takes the cleaned PDB file as input and outputs
+  a PDBQT file, handling hydrogen addition and charge assignment automatically.
+
+
+  2. **Ligand preparation**: Write a Python script that converts the given SMILES
+  string to a 3D-optimized PDBQT file using RDKit for 3D coordinate generation followed
+  by OpenBabel for PDBQT conversion.
+
+
+  3. **Vina configuration**: Provide a complete `config.txt` file for AutoDock Vina
+  using the coordinates and box dimensions specified above, setting exhaustiveness
+  to 12 and requesting the top 5 binding poses.
+
+
+  4. **Results parsing**: Write a Python function `parse_vina_output(log_file)` that
+  reads a Vina log file and returns a list of dictionaries containing `mode`, `affinity_kcal_mol`,
+  `rmsd_lb`, and `rmsd_ub` for each predicted pose.'
+target_skills:
+- molecular-docking
+domain: protein-structure
+difficulty: easy

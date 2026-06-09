@@ -1,0 +1,37 @@
+id: protein-structure-analysis-06
+prompt: 'You have obtained two crystal structures of the kinase domain of a fictional
+  protein **MAPK17**: an apo form (`mapk17_apo.pdb`, chain A, resolution 2.1 Å) and
+  a ligand-bound form (`mapk17_holo.pdb`, chain A, resolution 1.8 Å). Both structures
+  have been deposited with full ATOM records but no HETATM records for solvent. The
+  holo structure contains a small-molecule inhibitor (residue name **INH**, chain
+  A, residue number 401) that you suspect induces an "induced-fit" conformational
+  change in the activation loop (residues 170–195).
+
+
+  **Your tasks:**
+
+
+  1. **Structural superposition**: Write a Python script using Biopython''s `Superimposer`
+  to align the two structures on their Cα atoms (excluding the activation loop residues
+  170–195) and report the global RMSD. Then compute a *local* RMSD restricted to only
+  the activation loop residues to quantify the conformational change.
+
+
+  2. **B-factor analysis**: Extract and plot the per-residue average B-factors for
+  both structures along the sequence. Identify which 5-residue window in the activation
+  loop shows the greatest B-factor difference between apo and holo forms.
+
+
+  3. **Ramachandran analysis**: Using DSSP or manual dihedral calculation, generate
+  φ/ψ angles for residues 165–200 in both structures and flag any residues that fall
+  outside favored regions (>98% contour) in the holo but not the apo form.
+
+
+  4. **Binding pocket detection**: Describe (without requiring fpocket installation)
+  a geometric approach to identify the binding pocket around INH residue 401, using
+  a distance cutoff of 4.5 Å from any INH atom to identify pocket-lining residues.
+  Provide the code and list expected output columns.'
+target_skills:
+- protein-structure-analysis
+domain: protein-structure
+difficulty: intermediate

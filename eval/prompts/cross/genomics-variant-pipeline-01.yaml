@@ -1,0 +1,47 @@
+id: genomics-variant-pipeline-01
+prompt: 'A clinical genomics laboratory is processing a germline WES cohort of 847
+  pediatric patients with suspected hereditary cancer syndromes. Sequencing was performed
+  on Illumina NovaSeq 6000 (2×150 bp, ~100× mean target coverage) using a 5,217-gene
+  panel. Raw data consists of paired FASTQs per sample, and you have a coordinate-sorted
+  BAM and a multi-sample GVCF ready for joint genotyping. The reference genome is
+  GRCh38/hg38.
+
+
+  During analysis, a recurrent variant in **TP53** (NM_000546.6: c.817C>T, p.Arg273Cys)
+  was identified in 14 unrelated probands. ClinVar shows conflicting interpretations
+  (3× Pathogenic, 2× VUS). gnomAD v4 reports an allele frequency of 0.000008 (2 heterozygotes
+  in ~250,000 alleles). REVEL score = 0.94, CADD Phred = 32, SpliceAI delta scores
+  are all <0.05. No functional studies exist in the literature for this exact substitution,
+  though p.Arg273His at the same codon is well-established as a dominant-negative
+  hotspot mutation.
+
+
+  Additionally, a second variant — **BRCA2** (NM_000059.4: c.5946delT, p.Ser1982Argfs*22)
+  — was flagged in 3 probands. SpliceAI scores are irrelevant here, but PVS1 applicability
+  needs careful evaluation given the position (exon 11, upstream of the BRCA2 DNA-binding
+  domain).
+
+
+  Please provide the following concrete deliverables:
+
+
+  1. **QC assessment**: Write a complete shell script using `fastp`, `mosdepth`, and
+  `MultiQC` to evaluate read quality and target coverage for the cohort, assuming
+  `THREADS=8`, `OUT=qc_out`, and WES target intervals in `targets.bed`. Include a
+  threshold-based pass/fail decision for samples with <80× mean coverage.
+
+
+  2. **Variant calling pipeline**: Provide a GATK4 HaplotypeCaller → GenomicsDBImport
+  → GenotypeGVCFs → VQSR command sequence appropriate for a 847-sample WES cohort,
+  including recommended VQSR annotation arguments and tranches for SNVs and indels.
+
+
+  3. **Variant interpretation**: Apply ACMG/AMP 2015 criteria to both variants, explicitly
+  citing each criterion (PS1, PM2, PP3, PVS1, etc.) with justification, and provide
+  a final classification with confidence rationale for clinical reporting.'
+target_skills:
+- genomic-variant-interpretation
+- variant-calling
+- ngs-quality-control
+domain: genomics
+difficulty: easy

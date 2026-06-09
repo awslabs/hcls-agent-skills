@@ -1,0 +1,53 @@
+id: quality-measures-03
+prompt: 'Here is test question #3 of 10:
+
+
+  ---
+
+
+  You are working with a health plan that wants to calculate the **Diabetes Care –
+  HbA1c Testing (CDC) HEDIS measure** for their 2024 measurement year. The plan has
+  provided the following data context:
+
+
+  - **Total attributed members**: 48,200
+
+  - **Members with diabetes diagnosis (ICD-10: E11.x, E10.x)**: 3,840
+
+  - **Measurement year**: January 1, 2024 – December 31, 2024
+
+  - **Continuous enrollment requirement**: 11 out of 12 months with no more than one
+  45-day gap
+
+  - **Age range for denominator**: 18–75 years old
+
+  - **Claims table**: `claims_dx` (columns: member_id, service_date, icd10_code, claim_type)
+
+  - **Enrollment table**: `enrollment` (columns: member_id, enrollment_start, enrollment_end,
+  plan_type)
+
+  - **Lab results table**: `lab_results` (columns: member_id, test_date, test_code,
+  result_value) — HbA1c LOINC codes: 4548-4, 17856-6
+
+
+  After reviewing the data, please provide:
+
+
+  1. A clear explanation of the denominator logic and numerator criteria for this
+  CDC measure
+
+  2. A SQL query that identifies eligible denominator members who meet the continuous
+  enrollment requirement
+
+  3. A second SQL query that identifies numerator-compliant members (those with at
+  least one HbA1c test during the measurement year)
+
+  4. A brief explanation of how you would calculate and report the final measure rate,
+  including how to handle members with exclusions (e.g., ESRD diagnosis, hospice enrollment)
+
+
+  Assume all tables are in a standard relational database (PostgreSQL syntax preferred).'
+target_skills:
+- quality-measures
+domain: healthcare-ops
+difficulty: easy

@@ -1,0 +1,43 @@
+id: cdisc-compliance-08
+prompt: 'A Phase III oncology trial (N=847 patients) is being prepared for FDA submission
+  under SDTM 3.3 / ADaM 1.1 standards. The trial collected tumor assessment data including
+  target lesion measurements, non-target lesion responses, and overall tumor response
+  per RECIST 1.1. The programmers have mapped all tumor data into a single custom
+  domain called "TU" but have encountered several compliance issues during internal
+  review:
+
+
+  1. Target lesion diameter measurements (numeric, in mm) are currently stored in
+  TUORRES with TUSTRESC populated identically and TUSTRESN left null — the reviewer
+  flagged this as non-conformant.
+
+  2. Overall tumor response (CR/PR/SD/PD) is stored in the TU domain alongside individual
+  lesion records, but the SDTM IG specifies a separate RS domain for response records.
+
+  3. A derived "sum of diameters" variable TUSUM has been added directly to TU with
+  no SUPPQUAL or RELREC linkage documented.
+
+  4. The define.xml is missing value-level metadata for TUORRES, which contains both
+  numeric measurements and categorical responses in the same column.
+
+
+  Given this scenario, provide the following deliverables:
+
+  - A corrected domain mapping strategy specifying which variables belong in TU vs.
+  RS, with SDTM variable-level justification
+
+  - The correct population logic for TUORRES, TUSTRESC, and TUSTRESN for numeric lesion
+  measurements
+
+  - A SUPPQUAL structure (variable list with QNAM, QLABEL, QVAL example rows) for
+  handling TUSUM
+
+  - A value-level metadata (VLM) specification for the define.xml TUORRES column covering
+  both measurement and response record types
+
+  - Identification of which issue carries the highest regulatory risk for FDA reviewers
+  and why'
+target_skills:
+- cdisc-compliance
+domain: clinical-data-review
+difficulty: hard

@@ -1,0 +1,43 @@
+id: drug-repurposing-06
+prompt: 'A rare pediatric epilepsy syndrome called **KCNQ3-associated developmental
+  epileptic encephalopathy (DEE)** has been identified in a cohort of 47 patients
+  at your institution. Whole-exome sequencing confirmed gain-of-function variants
+  in KCNQ3 (encoding Kv7.3, a voltage-gated potassium channel subunit). Current standard-of-care
+  seizure management is inadequate in 68% of patients (32/47), and no disease-modifying
+  therapies exist.
+
+
+  Your team wants to pursue a **target-based drug repurposing strategy** using existing
+  approved drugs. You have access to DGIdb, ChEMBL, and OpenTargets. Preliminary literature
+  suggests that Kv7.2/7.3 channel openers (positive modulators) might paradoxically
+  worsen gain-of-function variants, while channel blockers may be therapeutically
+  relevant — but the pharmacology is nuanced.
+
+
+  **Your deliverables:**
+
+
+  1. **Query design**: Describe the specific DGIdb and ChEMBL query parameters you
+  would use to identify approved drugs interacting with KCNQ3 and its heteromeric
+  partner KCNQ2, including which interaction types to filter for (e.g., inhibitor,
+  activator, modulator).
+
+
+  2. **Candidate evaluation**: From this fictional shortlist — *retigabine (ezogabine)*,
+  *XE991*, *linopirdine*, and *carbamazepine* — rank each by repurposing suitability
+  for a KCNQ3 GoF indication, citing mechanism-of-action rationale and known safety
+  profiles.
+
+
+  3. **Evidence hierarchy**: Apply a structured repurposing evidence framework (e.g.,
+  adapted from OpenTargets evidence tiers) to score the top candidate across genetic,
+  pharmacological, and clinical evidence dimensions.
+
+
+  4. **Translatability concern**: Identify one critical pharmacokinetic or safety
+  concern specific to the pediatric population that could derail the top candidate''s
+  clinical translation, and propose a mitigation strategy.'
+target_skills:
+- drug-repurposing
+domain: drug-discovery
+difficulty: intermediate

@@ -1,0 +1,47 @@
+id: drug-repurposing-07
+prompt: 'A rare pediatric neurological disorder called **Striatal Atrophy with Cognitive
+  Decline (SACD)** has been linked to loss-of-function variants in *HDAC7* and upregulation
+  of *BDNF* suppressor *MECP2* (gain-of-function splice variant). A cohort of 47 patients
+  shows elevated CSF levels of pro-inflammatory cytokines IL-6 and TNF-α, alongside
+  reduced synaptic plasticity markers. Your team wants to repurpose approved drugs
+  using a **target-based approach** focused on HDAC7 inhibition and MECP2 modulation.
+
+
+  **Available data:**
+
+  - DGIdb query returns 3 HDAC inhibitors with existing approvals: Vorinostat (HDAC1/2/6
+  primary), Romidepsin (HDAC1/2 primary), and Entinostat (HDAC1/3 primary)
+
+  - ChEMBL binding affinity data: Vorinostat Ki=38nM (HDAC7), Romidepsin Ki=340nM
+  (HDAC7), Entinostat Ki=890nM (HDAC7)
+
+  - All three have known CNS penetration issues (P-gp efflux substrates)
+
+  - OpenTargets association scores for MECP2→neurological disease: 0.74
+
+  - Pediatric safety data is limited for all three compounds
+
+
+  **Deliverables requested:**
+
+
+  1. Rank the three candidates by repurposing evidence strength for SACD, justifying
+  your scoring across at least 4 evidence dimensions (binding affinity, selectivity
+  profile, CNS penetration, pediatric safety)
+
+
+  2. Propose a mechanism-of-action overlap analysis framework comparing HDAC7 inhibition
+  vs. MECP2-pathway modulation as complementary vs. redundant targets
+
+
+  3. Write a Python function that takes a dictionary of drug-target Ki values and
+  CNS penetration scores (0–1 scale) and returns a weighted composite repurposing
+  score
+
+
+  4. Identify the single most critical translational gap and propose one concrete
+  experimental assay to address it'
+target_skills:
+- drug-repurposing
+domain: drug-discovery
+difficulty: intermediate

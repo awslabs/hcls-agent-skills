@@ -1,0 +1,39 @@
+id: quantitative-proteomics-07
+prompt: 'You are running a biomarker discovery study comparing plasma proteomes of
+  24 early-stage pancreatic cancer patients versus 24 healthy controls using label-free
+  quantification (LFQ) on a Orbitrap Exploris 480. After MaxQuant processing, your
+  protein groups matrix contains 1,847 proteins across 48 samples. Upon inspection,
+  you notice the following issues:
+
+
+  1. **Missing values**: 31% of entries are missing. Proteins like CA19-9, TIMP1,
+  and REG1A — known pancreatic cancer markers — are detected in only 60–70% of cancer
+  samples and <10% of controls, suggesting missingness is not at random (MNAR). Meanwhile,
+  mid-abundance housekeeping proteins (GAPDH, ACTB, HSP90AA1) have <5% missingness.
+
+  2. **Batch effects**: Samples were processed across three batches (8 cancer + 8
+  control per batch), and PCA reveals a strong batch-driven PC2 explaining 18% of
+  variance.
+
+  3. **Normalization**: Raw LFQ intensities show a median coefficient of variation
+  of 28% across samples.
+
+
+  Please provide:
+
+  - A recommended normalization strategy with justification, including whether VSN
+  or median centering is more appropriate here
+
+  - A hybrid imputation strategy that handles MNAR and MCAR/MAR proteins differently,
+  with specific method choices (e.g., MinProb, QRILC, kNN) for each category and a
+  decision rule for classifying proteins
+
+  - A differential expression analysis pipeline using limma that incorporates batch
+  correction, with a brief R code sketch showing model formula and key steps
+
+  - An assessment of whether these 1,847 proteins are sufficient for a powered biomarker
+  discovery study at n=24 per group, and what FDR threshold you would apply'
+target_skills:
+- quantitative-proteomics
+domain: proteomics
+difficulty: intermediate

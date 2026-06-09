@@ -1,0 +1,38 @@
+id: dicom-processing-08
+prompt: 'A research team at Northgate Medical Center is running a multi-site neuroimaging
+  study with 847 participants. They''ve encountered a critical issue during DICOM-to-NIfTI
+  conversion using dcm2niix: a subset of Siemens Prisma scanner data (approximately
+  312 subjects from Site B) produces split output files when converted, resulting
+  in multiple NIfTI volumes per expected single 4D fMRI run. Investigation reveals
+  these scans used a multi-band (simultaneous multi-slice) sequence with MB factor=6,
+  TR=800ms, and the DICOM series contain a mix of "MOSAIC" and non-mosaic image types
+  within the same series directory. Additionally, the resulting JSON sidecar files
+  are missing the `SliceTiming` field for these problematic conversions, which is
+  critical for their HCP-style preprocessing pipeline.
+
+
+  Your task is to:
+
+
+  1. Explain the root cause of why dcm2niix splits these specific Siemens multiband
+  DICOM series into multiple files, referencing the relevant DICOM tags and image
+  type attributes that trigger this behavior.
+
+
+  2. Provide a Python script using `pydicom` that pre-processes the DICOM directory
+  by inspecting and sorting files based on the `ImageType` tag (0008,0008) and `ImageComments`
+  tag (0008,0103), separating "SCOUT" or derived images from primary volumetric data
+  before conversion.
+
+
+  3. Write the corrected dcm2niix command-line invocation with appropriate flags to
+  handle mosaic reconstruction and force single 4D output.
+
+
+  4. Provide a Python snippet that programmatically reconstructs the missing `SliceTiming`
+  array in the JSON sidecar using the `MosaicRefAcqTimes` private Siemens CSA header
+  field, assuming you can extract it via `pydicom` from the CSA header bytes.'
+target_skills:
+- dicom-processing
+domain: imaging
+difficulty: hard

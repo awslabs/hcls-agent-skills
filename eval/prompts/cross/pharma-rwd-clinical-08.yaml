@@ -1,0 +1,45 @@
+id: pharma-rwd-clinical-08
+prompt: 'You are a pharmacoepidemiologist at a large health system with access to
+  a commercial claims database containing 4.2 million patients with type 2 diabetes
+  enrolled between January 2018 and December 2023. Your team is tasked with evaluating
+  the real-world effectiveness and hepatotoxicity risk of a newer SGLT2 inhibitor
+  (empagliflozin) versus a DPP-4 inhibitor (sitagliptin) as second-line therapy following
+  metformin.
+
+
+  **Your deliverables are:**
+
+
+  **1. Study Design (Pharmacoepidemiology):** Design a target trial emulation using
+  an active comparator new-user design. Explicitly address: (a) how you will define
+  the new-user washout period (specify the exact lookback window in days), (b) how
+  you will handle immortal time bias given that some patients fill empagliflozin prescriptions
+  but don''t pick them up until 14 days after the index date, (c) whether you will
+  use IPTW with stabilized weights or propensity score matching and why, and (d) how
+  you will apply a marginal structural model to handle time-varying confounding from
+  HbA1c measurements taken every 90 days throughout follow-up.
+
+
+  **2. Cohort Identification Pipeline (RWD Cohort Analysis):** Specify the exact ICD-10-CM
+  code groupings for type 2 diabetes (include at least the E11.xx subcategory logic),
+  the NDC-based approach to identify empagliflozin and sitagliptin fills, and the
+  CPT codes for HbA1c lab measurement. Then calculate PDC over a 12-month follow-up
+  window and define an adherence threshold. Finally, describe the covariate balance
+  diagnostic you will use (target SMD threshold) and outline a Cox proportional hazards
+  model including how you will test the proportional hazards assumption using Schoenfeld
+  residuals.
+
+
+  **3. Hepatotoxicity Outcome Coding (Clinical Data Standards):** Define the hepatotoxicity
+  outcome using both ICD-10-CM codes (specify at least 4 codes covering drug-induced
+  liver injury, hepatic failure, and elevated transaminases) and the corresponding
+  MedDRA hierarchy — identify the correct SOC, at least two HLGTs, three PTs, and
+  their LLTs. Additionally, specify which LOINC codes you would use to confirm hepatotoxicity
+  via lab values (ALT, AST, total bilirubin), and explain your decision to aggregate
+  outcomes at the PT versus HLT level for the primary analysis.'
+target_skills:
+- pharmacoepidemiology
+- rwd-cohort-analysis
+- clinical-data-standards
+domain: pharmacoepidemiology
+difficulty: hard

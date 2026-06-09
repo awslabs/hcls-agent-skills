@@ -1,0 +1,41 @@
+id: protein-structure-analysis-07
+prompt: 'You have obtained two crystal structures of the therapeutic target kinase
+  **DYRK2**: an apo form (**apo_DYRK2.pdb**, chain A, resolution 2.1 Å) and a holo
+  form bound to inhibitor compound **DYR-447** (**holo_DYRK2.pdb**, chain A, resolution
+  1.8 Å). You want to characterize the conformational change upon ligand binding and
+  assess binding pocket druggability.
+
+
+  **Specific tasks:**
+
+
+  1. **Structural superposition**: Write Python code using Biopython''s `Superimposer`
+  to align chain A of both structures on Cα atoms of residues 50–320 (the kinase domain),
+  report the RMSD, and save the superimposed holo structure as `holo_aligned.pdb`.
+
+
+  2. **Per-residue B-factor analysis**: Extract and plot the normalized B-factors
+  for chain A residues 50–320 from both structures. Identify residues where the B-factor
+  difference (|B_holo − B_apo|) exceeds 15 Ų, as these may indicate flexible regions
+  affected by binding.
+
+
+  3. **DSSP secondary structure comparison**: Run DSSP on both structures and identify
+  any secondary structure elements (helices or strands) that change assignment between
+  apo and holo forms within the activation loop region (residues 185–210).
+
+
+  4. **Binding pocket detection**: Using fpocket (via subprocess call), detect pockets
+  in both `apo_DYRK2.pdb` and `holo_aligned.pdb`. Parse the fpocket output to extract
+  the top-3 pockets by druggability score for each structure, and determine whether
+  the ATP-binding site (centered near residue **Lys231**) is captured among them (within
+  8 Å of Lys231 Cα).
+
+
+  Provide complete, runnable Python code for all four tasks with inline comments,
+  and summarize what structural conclusions can be drawn if the ATP-binding pocket
+  druggability score increases in the holo form.'
+target_skills:
+- protein-structure-analysis
+domain: protein-structure
+difficulty: intermediate

@@ -1,0 +1,41 @@
+id: imaging-study-design-05
+prompt: 'You are coordinating a multi-site diffusion MRI study investigating white
+  matter microstructure changes in early Parkinson''s disease across 4 imaging centers
+  (Sites A–D). Each site uses a different 3T scanner (Siemens Prisma, GE Discovery
+  MR750, Philips Ingenia, and Siemens Skyra). Your acquisition protocol specifies
+  64 diffusion directions at b=1000 s/mm², plus 8 b=0 volumes, with 2mm isotropic
+  voxels — but Site C (Philips Ingenia) could only acquire 32 directions due to SAR
+  limits, and Site D used b=1200 s/mm² for the first 47 of its 112 participants before
+  the protocol error was discovered.
+
+
+  Your primary biomarker is tract-based fractional anisotropy (FA) extracted from
+  the corticospinal tract (CST) and uncinate fasciculus (UF) bilaterally. You have
+  280 PD patients and 280 age-matched controls distributed across sites (roughly equal
+  split). You plan to use FSL''s TBSS pipeline followed by ComBat harmonization.
+
+
+  Please provide:
+
+
+  1. A concrete preprocessing decision for Site C''s 32-direction data — specifically
+  whether to include or exclude these participants (n=58), with quantitative justification
+  referencing angular resolution and its impact on FA reliability.
+
+
+  2. A remediation strategy for Site D''s b-value inconsistency, including whether
+  ComBat can handle this as a covariate or whether the 47 affected scans should be
+  excluded.
+
+
+  3. A registration strategy recommendation — TBSS standard-space skeleton vs. study-specific
+  template — given the cross-site variability, with justification.
+
+
+  4. A brief ComBat implementation outline (pseudocode acceptable) showing how site,
+  scanner, and the b-value covariate would be encoded, and which biological covariates
+  of interest must be protected.'
+target_skills:
+- imaging-study-design
+domain: imaging
+difficulty: intermediate

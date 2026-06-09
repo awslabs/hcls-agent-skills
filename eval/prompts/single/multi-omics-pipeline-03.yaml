@@ -1,0 +1,42 @@
+id: multi-omics-pipeline-03
+prompt: 'Here is test question #3 of 10:
+
+
+  ---
+
+
+  I have RNA-seq count data from 847 tumor samples collected across three hospital
+  sites (Site A: 312 samples, Site B: 289 samples, Site C: 246 samples). The raw counts
+  are stored in a matrix called `rna_counts` (genes × samples) with Ensembl gene IDs
+  (e.g., ENSG00000141510) as row names. Before downstream analysis, I need to: (1)
+  correct for site-specific batch effects using ComBat-seq, since these are raw counts
+  rather than normalized values, and (2) convert the Ensembl IDs to HGNC gene symbols
+  using biomaRt so the corrected matrix can be merged with a proteomics dataset that
+  uses HGNC symbols.
+
+
+  Please provide the following deliverables:
+
+
+  1. **Complete R code** that loads the `rna_counts` matrix and a `sample_metadata`
+  data frame (columns: `sample_id`, `batch` [values: "SiteA", "SiteB", "SiteC"], `condition`
+  [values: "tumor", "normal"]) and runs ComBat-seq with `condition` preserved as a
+  biological covariate.
+
+
+  2. **R code using biomaRt** to map Ensembl IDs from the batch-corrected matrix to
+  HGNC symbols, handling duplicates by keeping the row with the highest mean expression
+  across samples, and dropping any unmapped entries.
+
+
+  3. A brief explanation (3–5 sentences) of why ComBat-seq is preferred over standard
+  ComBat for raw count data and what the `covar_mod` argument protects against during
+  batch correction.
+
+
+  Assume the `sva` package (for ComBat-seq) and `biomaRt` are already installed. Use
+  `GRCh38` as the reference genome build.'
+target_skills:
+- multi-omics-pipeline
+domain: multi-omics
+difficulty: easy

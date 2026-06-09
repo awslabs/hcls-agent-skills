@@ -1,0 +1,48 @@
+id: radiology-preprocessing-01
+prompt: 'You are setting up a standard T1-weighted MRI preprocessing pipeline for
+  a neuroimaging study involving 45 healthy adult subjects (ages 25-60). Your raw
+  DICOM data has been converted to NIfTI format using dcm2niix, and you need to prepare
+  the images for voxel-based morphometry (VBM) analysis.
+
+
+  For each subject, you need to complete the following preprocessing steps in the
+  correct order:
+
+  1. Reorient images to standard space
+
+  2. Perform bias field correction
+
+  3. Extract the brain (skull stripping)
+
+  4. Register to MNI152 standard space (2mm resolution)
+
+
+  **Specific constraints:**
+
+  - You are working in an FSL/ANTs hybrid environment (FSL 6.0.5, ANTs 2.3.4)
+
+  - Available GPU resources are limited, so HD-BET should only be used if clearly
+  superior for your use case
+
+  - Target template: MNI152_T1_2mm_brain.nii.gz
+
+  - You must balance processing speed with accuracy for a large cohort
+
+
+  **Deliverables requested:**
+
+  1. Describe the correct sequential order of these preprocessing steps and justify
+  why each step must precede the next
+
+  2. Provide a complete bash script implementing this pipeline using FSL tools (fslreorient2std,
+  N4BiasFieldCorrection, BET, and FLIRT) for a single subject, with appropriate parameters
+
+  3. Specify the key BET fractional intensity threshold you would use and explain
+  your reasoning for healthy adult brains
+
+  4. Explain one common artifact or failure mode at each pipeline stage and how to
+  detect it'
+target_skills:
+- radiology-preprocessing
+domain: imaging
+difficulty: easy

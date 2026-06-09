@@ -1,0 +1,28 @@
+id: biomarker-discovery-10
+prompt: 'A clinical genomics team has developed a 23-gene RNA expression signature
+  (including FOXM1, TOP2A, AURKA, MKI67, and 19 others) to predict 5-year distant
+  recurrence in hormone receptor-positive, HER2-negative early breast cancer. Their
+  discovery cohort is TCGA-BRCA (n=847, 94 events). They used the full cohort to select
+  the 23 genes via univariate Cox regression (p<0.05 threshold), then fit a LASSO-Cox
+  model, then reported a C-index of 0.74 via 10-fold cross-validation. They now have
+  an external validation cohort from METABRIC (n=612, 71 events) and plan to validate
+  this signature before pursuing a clinical trial.
+
+
+  Identify **all sources of data leakage or methodological flaws** in the discovery
+  pipeline, explaining the mechanism by which each inflates apparent performance.
+  Then provide: (1) a corrected analysis pipeline using nested cross-validation with
+  optimism correction, specifying the exact fold structure and what operations belong
+  in inner vs. outer loops; (2) R code implementing this corrected pipeline using
+  `glmnet` and `survival` packages, including proper handling of the 94-event constraint
+  on variable selection; (3) a statistical analysis plan for the METABRIC validation,
+  including the primary metric (justify C-index vs. time-dependent AUC at 5 years),
+  required minimum C-index to claim clinical utility, and how to handle the fact that
+  METABRIC used different RNA profiling technology (Illumina HT-12 microarray vs.
+  TCGA RNA-seq); (4) a decision curve analysis plan specifying the threshold probability
+  range and clinical comparators; and (5) a power calculation justifying whether 71
+  events in METABRIC are sufficient to detect the expected performance with 80% power.'
+target_skills:
+- biomarker-discovery
+domain: single-cell
+difficulty: hard

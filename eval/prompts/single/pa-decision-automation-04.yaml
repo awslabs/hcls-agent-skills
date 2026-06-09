@@ -1,0 +1,38 @@
+id: pa-decision-automation-04
+prompt: 'Here is test question #4 of 10:
+
+
+  ---
+
+
+  Your team has built a rules-based PA decision engine for musculoskeletal procedures
+  and is now analyzing 6 months of historical decisions to identify denial patterns
+  and improve automation rates. You have a dataset of 12,847 PA requests for lumbar
+  spine procedures (CPT codes 22612, 22630, 22633, 27279) with the following characteristics:
+  68% approved, 24% denied, 8% pended for additional review. The top denial reason
+  codes in your data are: CO-50 (not medically necessary, 41% of denials), CO-197
+  (precertification not obtained, 18%), CO-B9 (patient not covered, 12%), and CO-167
+  (diagnosis not covered, 29%).
+
+
+  Your clinical informatics team suspects that specific ICD-10 diagnosis code combinations
+  (particularly M51.16 + M54.5 vs. M51.16 alone) and conservative therapy documentation
+  gaps are driving the CO-50 denials. You also have FHIR PAS bundle data for the most
+  recent 2,400 requests that includes structured clinical notes.
+
+
+  Please provide: (1) a Python implementation of a denial pattern analyzer that segments
+  CO-50 denials by diagnosis code combinations and extracts conservative therapy documentation
+  features from FHIR PAS bundles; (2) a SHAP-based explainability module for an XGBoost
+  PA classifier trained on this data, showing how to generate feature importance plots
+  and individual prediction explanations; (3) specific rules engine logic (pseudo-code
+  or Python) to auto-approve cases where M51.16 + M54.5 appear together with documented
+  6-week conservative therapy; and (4) recommendations for reducing the pended rate
+  from 8% to under 3% based on the denial pattern analysis.
+
+
+  ---'
+target_skills:
+- pa-decision-automation
+domain: healthcare-ops
+difficulty: intermediate

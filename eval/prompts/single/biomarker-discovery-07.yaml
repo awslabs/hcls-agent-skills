@@ -1,0 +1,41 @@
+id: biomarker-discovery-07
+prompt: 'A research team has collected whole-blood RNA-seq data (18,432 genes after
+  QC) from 210 patients with systemic lupus erythematosus (SLE) enrolled in a 36-month
+  prospective cohort. The goal is to build a transcriptomic signature predicting time-to-first
+  severe flare (defined as SLEDAI-2K increase ≥8). During follow-up, 74 patients experienced
+  a severe flare (35% event rate). Baseline clinical covariates include age, sex,
+  ethnicity, baseline SLEDAI-2K score, complement C3/C4 levels, and anti-dsDNA titer.
+
+
+  The team plans to use LASSO-Cox regression for feature selection, followed by a
+  prognostic index score. They have already standardized gene expression values using
+  the full dataset before splitting into train/test sets, and they intend to evaluate
+  model performance using the concordance index (C-index) on the held-out test set
+  only.
+
+
+  Please provide:
+
+
+  1. **Identify and explain** the data leakage problem in their current preprocessing
+  pipeline and its expected impact on reported C-index.
+
+  2. **Propose a corrected analysis workflow** using nested cross-validation appropriate
+  for this sample size and event count, specifying fold choices and justifying them
+  using the events-per-variable (EPV) rule.
+
+  3. **Recommend two complementary performance metrics** beyond C-index that are specifically
+  suited for time-to-event biomarker evaluation, explaining why each is appropriate
+  here.
+
+  4. **Design an external validation strategy**: the team has access to a second cohort
+  of 95 SLE patients (28 events) from a different academic center. Describe what steps
+  are required before applying the discovered signature to this cohort, including
+  any recalibration considerations.
+
+  5. **Write Python pseudocode** (using scikit-survival or lifelines conventions)
+  illustrating the corrected nested CV loop with leakage-free preprocessing.'
+target_skills:
+- biomarker-discovery
+domain: single-cell
+difficulty: intermediate

@@ -1,0 +1,42 @@
+id: proteomics-analysis-03
+prompt: 'You have completed a label-free quantification (LFQ) proteomics experiment
+  comparing tumor tissue from 8 colorectal cancer patients versus 8 healthy colon
+  tissue controls. MaxQuant processed the raw files and produced a `proteinGroups.txt`
+  file containing LFQ intensity columns named `LFQ intensity T1` through `LFQ intensity
+  T8` (tumor) and `LFQ intensity C1` through `LFQ intensity C8` (control).
+
+
+  Please provide complete R code that accomplishes the following:
+
+
+  1. **Data loading and filtering**: Read the `proteinGroups.txt` file, remove contaminants
+  (marked with `+` in the `Potential contaminant` column), reverse sequences, and
+  proteins identified only by site. Filter to retain only proteins quantified in at
+  least 6 out of 8 samples in at least one group.
+
+
+  2. **Log2 transformation and normalization**: Apply log2 transformation to LFQ intensities
+  (replacing zeros with NA first), then perform median centering normalization across
+  all samples.
+
+
+  3. **Missing value imputation**: Impute remaining missing values using a left-censored
+  approach (drawing from a downshifted, narrowed normal distribution with shift =
+  1.8 and width = 0.3 of the sample distribution).
+
+
+  4. **Differential expression with limma**: Set up a design matrix for tumor vs.
+  control comparison, run limma with `eBayes`, and extract results with adjusted p-value
+  < 0.05 and |log2FC| > 1 as significance thresholds.
+
+
+  5. **Volcano plot**: Generate a publication-ready volcano plot using `ggplot2`,
+  highlighting significant proteins in red, labeling the top 10 most significant hits
+  by gene name, and including proper axis labels and a significance threshold line.
+
+
+  The code should be fully executable and include comments explaining each major step.'
+target_skills:
+- proteomics-analysis
+domain: proteomics
+difficulty: easy

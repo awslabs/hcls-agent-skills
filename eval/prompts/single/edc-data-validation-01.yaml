@@ -1,0 +1,50 @@
+id: edc-data-validation-01
+prompt: 'You are working as a clinical data manager on a Phase II oncology trial with
+  847 enrolled patients. Your EDC system (Medidata Rave) exports data in CSV format,
+  and you need to perform basic vital signs validation before database lock.
+
+
+  The exported vital signs dataset contains the following columns: `USUBJID`, `VISIT`,
+  `VSDAT` (date of measurement), `VSTESTCD` (test code), `VSORRES` (original result
+  as string), `VSORRESU` (original unit), `VSBLFL` (baseline flag, Y/N).
+
+
+  Your protocol defines the following physiologically plausible ranges for adult oncology
+  patients:
+
+  - Systolic BP (`SYSBP`): 70–200 mmHg
+
+  - Diastolic BP (`DIABP`): 40–120 mmHg
+
+  - Heart Rate (`HR`): 40–150 bpm
+
+  - Temperature (`TEMP`): 35.0–41.0 °C
+
+  - Respiratory Rate (`RESP`): 8–30 breaths/min
+
+  - Oxygen Saturation (`OXYSAT`): 85–100 %
+
+
+  Please provide the following deliverables:
+
+
+  1. **Python code** that reads the CSV export, converts `VSORRES` to numeric (handling
+  non-numeric entries gracefully), and flags any records outside the protocol-defined
+  ranges with a new column `OUT_OF_RANGE` (True/False).
+
+
+  2. **A summary function** that prints the count and percentage of out-of-range records
+  per `VSTESTCD`, formatted as a readable report.
+
+
+  3. **A query generation snippet** that outputs a separate DataFrame containing only
+  flagged records with columns: `USUBJID`, `VISIT`, `VSDAT`, `VSTESTCD`, `VSORRES`,
+  `VSORRESU`, and a `QUERY_TEXT` column containing a human-readable description of
+  the issue (e.g., "HR value 160 bpm exceeds upper limit of 150 bpm").
+
+
+  Assume the CSV file path is `"vs_export.csv"` and use pandas for all operations.'
+target_skills:
+- edc-data-validation
+domain: clinical-data-review
+difficulty: easy

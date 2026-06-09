@@ -1,0 +1,44 @@
+id: trajectory-analysis-02
+prompt: 'Here is test question #2 of 10:
+
+
+  ---
+
+
+  I have a scRNA-seq dataset of 4,200 human hematopoietic stem and progenitor cells
+  (HSPCs) from 3 healthy donors, already preprocessed and stored in an AnnData object
+  (`adata`) with UMAP coordinates, PCA embeddings, and cell type annotations in `adata.obs[''cell_type'']`
+  (categories: HSC, CMP, GMP, MEP, Monocyte, Erythrocyte). I want to infer differentiation
+  trajectories using diffusion pseudotime (DPT) to understand the branching structure
+  between the myeloid (HSC→CMP→GMP→Monocyte) and erythroid (HSC→CMP→MEP→Erythrocyte)
+  lineages.
+
+
+  Please provide:
+
+
+  1. **Step-by-step Python code** using Scanpy to compute a diffusion map, set the
+  root cell (use the HSC cluster centroid as root), and calculate DPT pseudotime values
+  stored in `adata.obs[''dpt_pseudotime'']`.
+
+
+  2. **PAGA graph construction code** to visualize the connectivity between cell type
+  clusters, including how to threshold the PAGA adjacency matrix (suggest an appropriate
+  threshold value) to remove spurious edges.
+
+
+  3. A **visualization snippet** that produces a single figure with two panels: (a)
+  UMAP colored by DPT pseudotime and (b) the PAGA graph overlaid on UMAP.
+
+
+  4. A brief explanation (3-5 sentences) of how to interpret the PAGA connectivity
+  scores and what a score above your suggested threshold biologically implies in this
+  hematopoiesis context.
+
+
+  Assume standard Scanpy imports are already loaded (`import scanpy as sc`, `import
+  matplotlib.pyplot as plt`).'
+target_skills:
+- trajectory-analysis
+domain: single-cell
+difficulty: easy

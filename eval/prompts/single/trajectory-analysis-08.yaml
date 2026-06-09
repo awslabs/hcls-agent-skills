@@ -1,0 +1,41 @@
+id: trajectory-analysis-08
+prompt: 'Here is test question #8 of 10:
+
+
+  ---
+
+
+  You are analyzing a 14,500-cell single-cell RNA-seq dataset of human hematopoietic
+  stem cell (HSC) differentiation toward erythroid and myeloid lineages. After running
+  scVelo in dynamical mode, you encounter a troubling situation: the RNA velocity
+  arrows for a cluster of 800 cells annotated as "Common Myeloid Progenitors" (CMPs)
+  point in the opposite direction from what the PAGA graph and diffusion pseudotime
+  (DPT) analysis suggest. Specifically, DPT places CMPs at pseudotime ~0.35 (intermediate),
+  PAGA shows strong connectivity (>0.15) between CMPs and both HSCs and Granulocyte-Monocyte
+  Progenitors (GMPs), but scVelo velocity arrows reverse-point toward HSCs rather
+  than forward toward GMPs. The top velocity genes driving this reversal include ELANE,
+  MPO, and AZU1. Additionally, CellRank fate probability analysis assigns CMPs only
+  12% probability toward the myeloid terminal state, which contradicts known biology.
+
+
+  Please provide:
+
+  1. A diagnostic framework explaining at least four biological or technical reasons
+  why this velocity-pseudotime conflict might arise for these specific genes in this
+  cell type
+
+  2. Concrete scVelo parameter adjustments and QC checks (with specific Python code
+  using scVelo ≥0.2.4) to investigate and potentially resolve the conflict
+
+  3. A strategy for reconciling conflicting trajectory signals across DPT, PAGA, and
+  RNA velocity when they disagree, including how to weight each method''s evidence
+
+  4. Recommendations for CellRank-specific fixes (kernel weighting, terminal state
+  re-identification) with example code to improve the fate probability estimates
+
+
+  ---'
+target_skills:
+- trajectory-analysis
+domain: single-cell
+difficulty: hard

@@ -1,0 +1,39 @@
+id: scrna-seq-pipeline-06
+prompt: 'You are analyzing a single-cell RNA-seq dataset from a study of 8 Crohn''s
+  disease patients and 6 healthy controls. After loading the data from individual
+  10X Genomics output directories and concatenating into a single AnnData object (total
+  ~45,000 cells), you''ve completed basic QC filtering (min_genes=200, max_genes=5000,
+  mt_threshold=20%). The raw counts are stored in `adata.raw`.
+
+
+  During downstream analysis, you notice that UMAP visualization shows cells clustering
+  primarily by patient of origin rather than by cell type, suggesting strong batch
+  effects. You plan to use Harmony for batch correction using the "sample_id" column
+  in `adata.obs`.
+
+
+  However, you also observe that two specific marker genes — **MUC2** (goblet cell
+  marker) and **BEST4** (rare colonocyte marker) — are consistently filtered out during
+  highly variable gene (HVG) selection using default Scanpy parameters (`n_top_genes=2000`,
+  `flavor=''seurat''`).
+
+
+  Please provide:
+
+  1. A complete Scanpy code pipeline from normalization through UMAP visualization
+  with Harmony batch correction, including the specific steps to ensure MUC2 and BEST4
+  are retained in the feature set used for downstream analysis despite not being selected
+  as HVGs
+
+  2. Leiden clustering parameters appropriate for identifying rare cell populations
+  (BEST4+ colonocytes represent ~0.5% of epithelial cells)
+
+  3. An explanation of why rare cell-type markers are frequently excluded during standard
+  HVG selection and what biological/technical factors contribute to this
+
+  4. Code to verify that batch correction has improved mixing of patient samples using
+  a quantitative metric'
+target_skills:
+- scrna-seq-pipeline
+domain: single-cell
+difficulty: intermediate

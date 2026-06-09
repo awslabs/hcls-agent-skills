@@ -1,0 +1,50 @@
+id: ngs-quality-control-08
+prompt: 'You are running a WES pipeline on 48 tumor-normal pairs from a colorectal
+  cancer cohort. After processing, MultiQC aggregates the following concerning patterns
+  across samples:
+
+
+  - 6 samples show FastQC "WARN" on per-base sequence content (positions 1-10)
+
+  - 3 samples have adapter content flagging >5% at read tails (TruSeq adapters confirmed)
+
+  - 11 samples exhibit insert size distributions (Picard CollectInsertSizeMetrics)
+  with a bimodal peak at ~150bp AND ~450bp
+
+  - Mean target coverage is 87x but 4 samples fall below 30x on-target despite passing
+  total read count QC (>120M read pairs)
+
+  - mosdepth reports that the gene *MLH1* (a critical mismatch repair gene in this
+  cohort) has 23 consecutive bases with 0x coverage in 31/48 samples
+
+
+  Your target intervals are defined by a standard Agilent SureSelect Human All Exon
+  v7 BED file.
+
+
+  **Deliverables:**
+
+
+  1. Diagnose the most likely technical cause for each of the five QC anomalies described
+  above, distinguishing between library prep artifacts, bioinformatic pipeline issues,
+  and genuine biological signals where relevant.
+
+
+  2. Write a `fastp` command that addresses the adapter trimming issue and the per-base
+  sequence content artifact simultaneously, with parameters justified for WES data
+  at this coverage depth.
+
+
+  3. Explain why samples can pass total read count QC yet fail on-target coverage,
+  and write a `mosdepth` command that would have caught this discrepancy earlier in
+  the pipeline.
+
+
+  4. For the *MLH1* coverage dropout affecting 31/48 samples, propose a systematic
+  investigation workflow (including specific commands using samtools and bedtools)
+  to determine whether this is a capture probe gap, a mapping artifact, or a recurrent
+  deletion in the tumor samples.'
+target_skills:
+- ngs-quality-control
+domain: genomics
+difficulty: hard

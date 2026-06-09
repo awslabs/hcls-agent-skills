@@ -1,0 +1,40 @@
+id: risk-adjustment-04
+prompt: 'You are building a risk adjustment pipeline for a Medicare Advantage plan
+  with 12,000 members. Your claims data warehouse contains an `icd10_claims` table
+  with columns: `member_id`, `dos` (date of service), `icd10_code`, `provider_npi`,
+  and `claim_type` (values: ''IP'', ''OP'', ''PB''). You need to implement **disease
+  hierarchy resolution** per CMS-HCC Model V28, where more specific HCCs suppress
+  less specific ones within the same disease group.
+
+
+  Specifically, you''ve identified that 847 members have conflicting HCC assignments
+  in the diabetes hierarchy (HCC 17, 18, 19) and the cardiovascular hierarchy (HCC
+  223, 224, 226). Without proper hierarchy resolution, RAF scores are being inflated
+  by an estimated 0.08–0.12 per affected member.
+
+
+  **Deliverables required:**
+
+
+  1. **Python function** `resolve_hcc_hierarchy(member_hcc_list, hierarchy_map)` that
+  accepts a list of raw HCC codes for a member and a hierarchy dictionary, and returns
+  only the highest-specificity HCC(s) after suppression — include logic for both the
+  diabetes and cardiovascular hierarchies.
+
+
+  2. **SQL query** that joins `icd10_claims` to a staging table `icd10_hcc_crosswalk`
+  (columns: `icd10_code`, `hcc_code`, `hcc_label`), aggregates all HCCs per member
+  for the current measurement year (2024), and flags members where hierarchy conflicts
+  exist across the two disease groups mentioned above.
+
+
+  3. **Brief explanation** (3–5 sentences) of how CMS defines hierarchy suppression
+  rules in V28 and why double-counting these conditions inflates RAF scores incorrectly.
+
+
+  Assume the hierarchy map for diabetes is `{17: supersedes [18, 19], 18: supersedes
+  [19]}` and for cardiovascular is `{223: supersedes [224, 226], 224: supersedes [226]}`.'
+target_skills:
+- risk-adjustment
+domain: healthcare-ops
+difficulty: intermediate

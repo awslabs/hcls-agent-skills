@@ -1,0 +1,31 @@
+id: molecular-docking-10
+prompt: 'You are conducting a covalent docking campaign targeting KRAS G12C using
+  AutoDock Vina''s covalent docking mode. Your prepared receptor (KRAS_G12C_prepared.pdbqt)
+  has the catalytic cysteine C12 coordinates at (x=3.42, y=17.81, z=22.14). You have
+  a library of 847 acrylamide-based warhead compounds in SDF format, and you''ve already
+  run a standard (non-covalent) Vina screen with the following grid box parameters:
+  center_x=3.42, center_y=17.81, center_z=22.14, size_x=20, size_y=20, size_z=20,
+  exhaustiveness=16.
+
+
+  Upon reviewing results, you notice three problems: (1) 23% of top-ranked poses show
+  the acrylamide warhead pointing away from C12 (distance >6Å), (2) two known covalent
+  inhibitors (AMG-510 analog, compound IDs CYS_REF_001 and CYS_REF_002) rank only
+  in the 340th and 412th positions despite validated IC50 values of 18 nM and 34 nM
+  respectively, (3) several high-scoring poses have warhead-to-C12 distances of 1.2–1.8Å
+  suggesting steric clashes rather than productive geometry.
+
+
+  Please provide: (a) A technical explanation of why standard Vina scoring fails for
+  covalent warhead compounds and what scoring artifacts produce these three failure
+  modes; (b) A complete Python script using RDKit and subprocess to post-process Vina
+  output PDBQT files, filter poses by warhead-to-C12 distance (2.5–4.5Å threshold),
+  and re-rank using a composite score combining Vina affinity and a geometric penalty
+  term; (c) Recommended Vina parameters or alternative covalent docking protocols
+  (including specific AutoDock-GPU or CovDock considerations) to improve enrichment
+  of true covalent binders; (d) A validation strategy using the two reference compounds
+  to benchmark your corrected protocol.'
+target_skills:
+- molecular-docking
+domain: protein-structure
+difficulty: hard

@@ -1,0 +1,53 @@
+id: quality-measures-06
+prompt: 'Here is test question #6 of 10:
+
+
+  ---
+
+
+  You are working with a regional health plan that needs to calculate the **Diabetes
+  Care – HbA1c Poor Control (CDC) HEDIS measure** for their 2024 measurement year.
+  The plan has provided the following context:
+
+
+  - **Population**: 12,847 continuously enrolled commercial members aged 18–75 with
+  a diabetes diagnosis
+
+  - **Measurement year**: January 1, 2024 – December 31, 2024
+
+  - **Continuous enrollment requirement**: Members must have 11 out of 12 months of
+  enrollment with no gaps greater than 45 days
+
+  - **Claims tables available**: `medical_claims`, `pharmacy_claims`, `lab_results`,
+  `member_enrollment`
+
+  - **Known data issues**: Lab results sometimes contain duplicate HbA1c readings
+  within 14 days (same encounter, different processing dates); some members have ICD-10
+  codes for gestational diabetes (O24.x) that should be excluded
+
+
+  Please provide the following deliverables:
+
+
+  1. **Denominator logic**: Describe the full inclusion/exclusion criteria for the
+  CDC HbA1c Poor Control measure denominator, including how to handle the gestational
+  diabetes exclusion and the continuous enrollment check.
+
+
+  2. **Numerator logic**: Explain what qualifies a member for the numerator (poor
+  control defined as most recent HbA1c > 9.0%) and how to select the "most recent"
+  result when duplicates exist within a 14-day window.
+
+
+  3. **SQL query**: Write a complete SQL query against the four tables listed above
+  that builds the denominator, applies the numerator logic with duplicate handling,
+  and outputs a final measure rate as a percentage.
+
+
+  4. **Care gap identification**: Describe how to flag members in the denominator
+  who are missing any HbA1c result entirely during the measurement year as a separate
+  care gap category.'
+target_skills:
+- quality-measures
+domain: healthcare-ops
+difficulty: intermediate

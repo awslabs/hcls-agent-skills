@@ -1,0 +1,44 @@
+id: variant-calling-02
+prompt: 'Here is test question #2 of 10:
+
+
+  ---
+
+
+  You are setting up a germline variant calling pipeline for a cohort of 45 healthy
+  volunteers as part of a pharmacogenomics study. Sequencing was performed on an Illumina
+  NovaSeq 6000 using a whole-exome capture kit (Twist Bioscience Comprehensive Exome,
+  ~36 Mb target), generating paired-end 150 bp reads at a mean target coverage of
+  80×. Raw FASTQ files have already been adapter-trimmed and are ready for alignment.
+
+
+  Your compute environment runs GATK 4.3.0, BWA-MEM2 2.2.1, Samtools 1.17, and Picard
+  3.0 on a SLURM cluster with nodes having 32 cores and 128 GB RAM each.
+
+
+  Please provide the following:
+
+
+  1. **A step-by-step pipeline outline** covering alignment through joint genotyping,
+  including all major GATK best-practices steps (mark duplicates, BQSR, HaplotypeCaller
+  in GVCF mode, GenomicsDBImport, GenotypeGVCFs).
+
+
+  2. **A complete bash script** for the per-sample steps (BWA-MEM2 alignment through
+  HaplotypeCaller GVCF generation) for a single sample named `SAMPLE_001`, with appropriate
+  SLURM headers, thread counts, and memory settings for the cluster described above.
+
+
+  3. **A recommendation on variant filtering strategy** — specifically whether to
+  use VQSR or hard filters for this cohort size and data type, with justification.
+  If recommending VQSR, specify which annotation features to include for SNPs and
+  indels. If recommending hard filters, provide the exact GATK-recommended filter
+  expressions.
+
+
+  4. **The key WES-specific parameters** that differ from a WGS run in HaplotypeCaller
+  and GenotypeGVCFs, including the interval list usage and any coverage-related flags.'
+target_skills:
+- variant-calling
+domain: genomics
+difficulty: easy

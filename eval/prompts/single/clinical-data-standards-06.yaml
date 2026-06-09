@@ -1,0 +1,53 @@
+id: clinical-data-standards-06
+prompt: 'A clinical trial for a novel rheumatology compound has completed Phase 2,
+  and your team is preparing the adverse event summary tables for a regulatory submission.
+  You have the following raw AE terms reported by investigators across 340 patients:
+
+
+  - "joint pain" (n=47)
+
+  - "arthralgia" (n=31)
+
+  - "knee pain" (n=22)
+
+  - "polyarthralgia" (n=18)
+
+  - "hip pain" (n=15)
+
+  - "musculoskeletal stiffness" (n=12)
+
+  - "elevated liver enzymes" (n=28)
+
+  - "hepatic enzyme increased" (n=19)
+
+  - "ALT increased" (n=24)
+
+  - "AST increased" (n=17)
+
+  - "transaminases increased" (n=11)
+
+
+  Your regulatory team is debating whether to present the AE frequency tables at the
+  **Preferred Term (PT)** level or aggregate up to the **High Level Term (HLT)** level
+  for the primary summary, given that the compound''s mechanism involves both musculoskeletal
+  and hepatic pathways.
+
+
+  Please provide the following:
+
+  1. The correct MedDRA coding pathway (LLT→PT→HLT→HLGT→SOC) for at least three of
+  the investigator terms above, including which SOC each falls under.
+
+  2. A recommendation on whether to present AEs at PT or HLT level for this submission,
+  with specific justification referencing regulatory guidance principles and the clinical
+  context of this compound.
+
+  3. Identify any investigator terms that are **already at the PT level** versus those
+  that would require upward mapping from LLT.
+
+  4. Flag any potential **double-counting risk** in the hepatic enzyme cluster and
+  explain how to handle it per MedDRA best practices.'
+target_skills:
+- clinical-data-standards
+domain: clinical-data
+difficulty: intermediate

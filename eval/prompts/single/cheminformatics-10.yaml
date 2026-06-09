@@ -1,0 +1,54 @@
+id: cheminformatics-10
+prompt: 'Here is test question #10 of 10:
+
+
+  ---
+
+
+  You are analyzing a set of five compounds from an HTS campaign that showed promising
+  activity against a kinase target, but your medicinal chemistry team suspects some
+  hits may be artifactual. The compounds (as SMILES) are:
+
+
+  1. **Cpd-A**: `c1ccc2c(c1)cc1ccc3cccc4ccc2c1c34` (coronene)
+
+  2. **Cpd-B**: `O=C1C=CC(=O)c2ccccc21` (1,2-naphthoquinone)
+
+  3. **Cpd-C**: `CC(C)Cc1ccc(C(C)C(=O)O)cc1` (ibuprofen)
+
+  4. **Cpd-D**: `Brc1ccc(CNc2ncnc3[nH]ccc23)cc1` (fictional kinase fragment)
+
+  5. **Cpd-E**: `O=C(CCCN1CCC(n2c(=O)[nH]c3ccccc32)CC1)Nc1ccc(F)cc1` (fictional drug-like
+  compound)
+
+
+  Your tasks are:
+
+
+  1. **PAINS/Problematic substructure detection**: Using RDKit''s FilterCatalog with
+  PAINS_A, PAINS_B, PAINS_C, and Brenk filters, write Python code to identify which
+  compounds flag as problematic and explain *why* each flagged compound is considered
+  a potential assay interference compound.
+
+
+  2. **Lipinski + Veber druglikeness**: Compute MW, LogP (Crippen), HBD, HBA, TPSA,
+  and rotatable bonds for all five compounds. Flag any violations and rank compounds
+  by overall druglikeness.
+
+
+  3. **Fingerprint similarity matrix**: Generate Morgan fingerprints (radius=2, nBits=2048)
+  and compute a full pairwise Tanimoto similarity matrix. Identify any compound pair
+  with similarity >0.35 and discuss structural implications.
+
+
+  4. **Recommendation**: Based on all analyses, which compounds would you prioritize
+  for follow-up synthesis and why? Are there structural modifications to rescue any
+  flagged compounds?
+
+
+  Provide complete, runnable Python code using RDKit for tasks 1–3, plus a written
+  recommendation for task 4.'
+target_skills:
+- cheminformatics
+domain: drug-discovery
+difficulty: hard

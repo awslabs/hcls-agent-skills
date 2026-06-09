@@ -1,0 +1,42 @@
+id: aws-genai-ml-architect-10
+prompt: 'A regional cancer center is building a multi-modal AI platform to support
+  oncologists with treatment decisions. The system must integrate three data sources:
+  (1) 2.3 million de-identified pathology reports stored in S3 as unstructured text,
+  (2) a real-time feed of structured genomic variant data from an Illumina sequencer
+  (average 847 variants per patient, FASTQ→VCF pipeline already exists), and (3) a
+  proprietary drug-response knowledge base with 94,000 curated drug-gene interaction
+  records maintained in Aurora PostgreSQL.
+
+
+  The oncology team wants a conversational interface where clinicians can query: "Given
+  this patient''s BRCA2 c.5946delT variant and HER2-positive pathology, what treatment
+  protocols show highest efficacy?" The system must return answers with source citations,
+  confidence scores, and flag any PHI that may have inadvertently appeared in retrieved
+  chunks.
+
+
+  Constraints: The center holds a BAA with AWS. Latency must be under 8 seconds end-to-end.
+  The genomic variant data is considered PHI under their IRB protocol. They have a
+  $45,000/month infrastructure budget. Their ML team has strong Python skills but
+  limited MLOps experience.
+
+
+  Deliverables requested:
+
+  1. A complete AWS architecture diagram description (components, data flows, security
+  boundaries)
+
+  2. A recommendation on whether to use Bedrock with RAG vs. fine-tuned SageMaker
+  endpoint for the LLM layer, with justification
+
+  3. A Python code snippet showing how to implement the PHI detection and redaction
+  step before chunks enter the vector store
+
+  4. Estimated monthly cost breakdown across major services
+
+  5. Identification of the top three architectural risks specific to this genomics+NLP
+  hybrid retrieval pattern and mitigation strategies'
+target_skills:
+- aws-genai-ml-architect
+domain: cross-domain
+difficulty: hard

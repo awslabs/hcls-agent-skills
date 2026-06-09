@@ -1,0 +1,43 @@
+id: biomarker-discovery-01
+prompt: 'A clinical research team has collected gene expression data from 847 breast
+  cancer patients (Stage II-III) using RNA-seq. They have 23,000 genes measured at
+  diagnosis and want to build a prognostic biomarker signature to predict 5-year distant
+  recurrence-free survival. The dataset contains 312 recurrence events. They plan
+  to use LASSO Cox regression for feature selection and have already identified 18
+  candidate genes (including ESR1, MKI67, AURKA, BIRC5, and 14 others) based on prior
+  literature.
+
+
+  The team''s current plan is to:
+
+  1. Run LASSO on the full 847-patient dataset to select genes
+
+  2. Fit a final Cox model using selected genes on the same data
+
+  3. Report the C-index from this same dataset as performance
+
+
+  Please provide:
+
+
+  **A)** Identify all data leakage and methodological problems in their current plan,
+  explaining why each issue inflates apparent model performance.
+
+
+  **B)** Propose a corrected analysis pipeline using nested cross-validation, specifying
+  the inner and outer loop roles, what gets optimized in each loop, and how to handle
+  the pre-selected 18 candidate genes versus the full 23,000-gene pool.
+
+
+  **C)** Recommend appropriate performance metrics beyond the basic C-index for a
+  time-to-event outcome, including at least one metric that accounts for competing
+  risks or time-varying discrimination.
+
+
+  **D)** Given 312 events and their goal of building a parsimonious clinical signature,
+  calculate whether they have sufficient events per variable (EPV) if their final
+  model contains 8 genes, and advise on the maximum defensible model complexity.'
+target_skills:
+- biomarker-discovery
+domain: single-cell
+difficulty: easy

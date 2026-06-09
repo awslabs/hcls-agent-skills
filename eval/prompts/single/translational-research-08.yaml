@@ -1,0 +1,42 @@
+id: translational-research-08
+prompt: 'Here is test question #8 of 10:
+
+
+  ---
+
+
+  Your team has generated the following multimodal dataset for **KCNQ3** as a therapeutic
+  target in pediatric absence epilepsy:
+
+
+  - **GWAS**: rs7291453 (KCNQ3 locus) reaches genome-wide significance (p = 3.2×10⁻⁹)
+  in 1,840 cases vs. 6,200 controls, but effect size is modest (OR = 1.31)
+
+  - **eQTL**: The same variant is a cis-eQTL in cortical tissue (GTEx v8, β = −0.44,
+  FDR < 0.01), reducing KCNQ3 expression
+
+  - **Mendelian Randomization**: Two-sample MR using 6 independent instruments yields
+  IVW OR = 1.67 (95% CI: 1.18–2.36) for reduced KCNQ3 expression → absence epilepsy
+  risk, but MR-Egger intercept test flags possible pleiotropy (p = 0.047)
+
+  - **Mouse model**: Kcnq3 heterozygous knockout shows 40% increase in spike-wave
+  discharge frequency (EEG-confirmed), but only on a C57BL/6J background; the FVB/N
+  congenic shows no phenotype
+
+  - **Existing drug**: Retigabine (a KCNQ2/3 opener) was withdrawn for retinal pigment
+  toxicity at doses used in adult focal epilepsy; a next-gen analog **RTG-441** shows
+  10× selectivity for KCNQ3 over KCNQ2 in vitro with no retinal signal in 28-day rat
+  tox
+
+
+  Given these conflicting and incomplete signals, provide: (1) a structured target
+  confidence scorecard rating genetic, functional, and safety evidence with explicit
+  go/no-go thresholds; (2) a critical analysis of whether the MR pleiotropy concern
+  is disqualifying; (3) a recommended translational experiment to resolve the mouse
+  background discrepancy before IND filing; and (4) a proposed Phase 2a trial design
+  for RTG-441 in pediatric absence epilepsy including primary endpoint, key inclusion/exclusion
+  criteria, and a biomarker strategy.'
+target_skills:
+- translational-research
+domain: cross-domain
+difficulty: hard

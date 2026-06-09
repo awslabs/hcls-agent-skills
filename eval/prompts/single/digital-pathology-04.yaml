@@ -1,0 +1,36 @@
+id: digital-pathology-04
+prompt: 'You are building a multiple-instance learning (MIL) pipeline for predicting
+  microsatellite instability (MSI) status from H&E-stained colorectal cancer whole-slide
+  images. Your dataset consists of 312 TCGA-CRC slides (187 MSS, 125 MSI-H) stored
+  as SVS files. You plan to use the UNI foundation model for patch-level feature extraction
+  followed by an ABMIL (Attention-Based MIL) aggregator for slide-level classification.
+
+
+  Your specific requirements are:
+
+  - Extract non-overlapping 256×256 patches at **0.5 mpp** (20× equivalent) from tissue
+  regions only, using TIAToolbox''s tissue masker with a minimum tissue coverage threshold
+  of 0.75
+
+  - Generate UNI embeddings (1024-dimensional) for each patch, processing in batches
+  of 64 with mixed-precision inference
+
+  - Implement a simple ABMIL aggregator in PyTorch with a 2-layer attention network
+  (hidden dim 256) that outputs both the slide-level prediction and the attention
+  weights for each patch
+
+  - Handle class imbalance using weighted random sampling during training (compute
+  weights from the 187/125 split)
+
+  - After training, produce an attention heatmap overlaid on the original WSI thumbnail
+  for a given slide, coloring patches by their attention weight using a viridis colormap
+
+
+  Please provide: (1) complete TIAToolbox code for tissue-masked patch extraction
+  and UNI embedding generation, (2) the ABMIL model class with the attention mechanism,
+  (3) the weighted sampler setup, and (4) the attention heatmap visualization function.
+  Include all necessary imports and assume UNI weights are available at `/models/uni_weights.pth`.'
+target_skills:
+- digital-pathology
+domain: imaging
+difficulty: intermediate

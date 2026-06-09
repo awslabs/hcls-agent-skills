@@ -1,0 +1,38 @@
+id: pa-clinical-policy-10
+prompt: 'A 58-year-old patient with treatment-resistant major depressive disorder
+  (TRD) has failed adequate trials of sertraline (200mg/day × 8 weeks), escitalopram
+  (20mg/day × 10 weeks), and venlafaxine XR (225mg/day × 12 weeks), all documented
+  with PHQ-9 scores showing <25% improvement. The treating psychiatrist is requesting
+  prior authorization for esketamine nasal spray (Spravato) through a commercial payer
+  (BlueCross BlueShield of Tennessee) whose clinical policy requires "failure of at
+  least 2 adequate antidepressant trials from different classes" and mandates REMS
+  certification documentation. The patient also has a comorbid history of substance
+  use disorder (alcohol, in remission 14 months) and dissociative episodes, which
+  the payer''s policy lists as "relative contraindications requiring medical director
+  review."
+
+
+  The PA request was submitted via FHIR Da Vinci PAS on January 15th and received
+  a pend status (not denial) with a request for additional clinical documentation
+  within 7 business days.
+
+
+  Please provide:
+
+  1. A clinical necessity argument addressing the step therapy requirements and the
+  relative contraindications, citing relevant FDA labeling and clinical trial data
+  (TRANSFORM-2, SUSTAIN-1)
+
+  2. A structured list of specific documentation artifacts the provider should submit
+  to satisfy the payer''s additional information request
+
+  3. A sample FHIR R4 JSON snippet for a `ClaimResponse` resource reflecting the pend
+  status with an extension for the documentation deadline
+
+  4. A peer-to-peer review talking points outline the psychiatrist should use if the
+  case escalates to medical director review, specifically addressing the substance
+  use history concern'
+target_skills:
+- pa-clinical-policy
+domain: healthcare-ops
+difficulty: hard

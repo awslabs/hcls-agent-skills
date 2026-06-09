@@ -1,0 +1,45 @@
+id: risk-adjustment-strategy-04
+prompt: 'A Medicare Advantage plan with 42,000 members is navigating the CMS-HCC model
+  transition for payment year 2025, where CMS applies a blended rate of 67% V28 and
+  33% V24. Your analytics team has pulled the following aggregate data from the member
+  population:
+
+
+  - 8,400 members have HCCs that map identically in both V24 and V28
+
+  - 3,200 members have HCCs present in V24 that were **deleted or recategorized**
+  in V28 (net RAF impact: −0.18 average per affected member)
+
+  - 1,900 members have new V28 HCC opportunities not previously captured under V24
+  (net RAF impact: +0.11 average per affected member)
+
+  - Current average plan RAF score under pure V24: 1.043
+
+  - Estimated pure V28 RAF score: 0.971
+
+
+  Given this transition scenario, please provide the following deliverables:
+
+
+  1. **Blended RAF score calculation**: Show the step-by-step arithmetic to compute
+  the plan''s expected blended RAF score for payment year 2025 using the 67/33 weighting.
+
+
+  2. **Revenue impact estimate**: Assuming a benchmark rate of $850 PMPM, calculate
+  the approximate annual revenue difference between the blended score and the pure
+  V24 score across all 42,000 members.
+
+
+  3. **Prioritization framework**: Identify which member segment (the 3,200 with V24
+  deletions or the 1,900 with V28 opportunities) should receive higher priority for
+  coding gap intervention in 2025, and explain the strategic rationale using both
+  financial and compliance considerations.
+
+
+  4. **Documentation guidance**: Describe two audit-defensible documentation requirements
+  that providers must meet to support newly captured V28 HCC codes during chart review
+  activities.'
+target_skills:
+- risk-adjustment-strategy
+domain: healthcare-ops
+difficulty: intermediate

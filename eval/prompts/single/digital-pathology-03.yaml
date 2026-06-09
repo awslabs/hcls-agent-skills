@@ -1,0 +1,47 @@
+id: digital-pathology-03
+prompt: 'Here is test question #3 of 10:
+
+
+  ---
+
+
+  You are working with a cohort of 847 H&E-stained whole-slide images from the CAMELYON16
+  dataset stored as `.svs` files on a local Linux workstation. You need to extract
+  256×256 pixel patches at a resolution of 0.5 microns-per-pixel (mpp) for downstream
+  feature extraction using the H-optimus-0 foundation model.
+
+
+  Your pipeline must:
+
+  1. Use **TIAToolbox** to read each slide and verify its available magnification
+  levels and mpp values using `WSIReader`
+
+  2. Generate a tissue mask using Otsu thresholding at a thumbnail resolution (mpp=8.0)
+  to exclude background, pen marks, and artifacts
+
+  3. Extract non-overlapping 256×256 patches at 0.5 mpp only from tissue-covered regions
+  (requiring ≥75% tissue coverage per patch)
+
+  4. Save patch coordinates to a CSV file with columns: `slide_id`, `x`, `y`, `patch_width`,
+  `patch_height`, `mpp`
+
+
+  Please provide:
+
+  - **Complete Python code** using TIAToolbox that implements steps 1–4 for a single
+  slide, with clear comments
+
+  - A brief explanation of how `PatchExtractor` or equivalent TIAToolbox utilities
+  handle the mpp-to-pixel-level conversion internally
+
+  - A one-paragraph recommendation on how to handle slides where the native scan resolution
+  is 0.25 mpp (40× objective) versus slides scanned at 0.5 mpp (20× objective), specifically
+  regarding whether to downsample or use the existing pyramid level
+
+
+  Assume TIAToolbox version 1.5.1 is installed and H-optimus-0 weights are available
+  locally at `/models/h_optimus_0/`.'
+target_skills:
+- digital-pathology
+domain: imaging
+difficulty: easy

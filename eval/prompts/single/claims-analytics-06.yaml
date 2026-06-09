@@ -1,0 +1,45 @@
+id: claims-analytics-06
+prompt: 'A regional health plan has extracted 6 months of professional claims data
+  (approximately 2.3 million claim lines) into a PostgreSQL database with the following
+  schema:
+
+
+  **claims** table: `claim_id, provider_npi, service_date, place_of_service, cpt_code,
+  icd10_primary, icd10_secondary, billed_amount, allowed_amount, units, modifier_1,
+  modifier_2, patient_id`
+
+
+  **providers** table: `provider_npi, specialty_taxonomy, zip_code, group_npi`
+
+
+  The compliance team suspects a subset of internal medicine providers (taxonomy code
+  `207R00000X`) are upcoding Evaluation & Management office visits. Specifically,
+  they want to identify providers who bill 99215 (high-complexity E&M) at disproportionately
+  high rates compared to specialty peers, and cross-reference these outliers against
+  suspiciously round billed amounts using Benford''s Law.
+
+
+  **Deliverables requested:**
+
+
+  1. A SQL query that calculates each internal medicine provider''s E&M code distribution
+  (99211–99215) as percentages, then flags providers where 99215 exceeds 2 standard
+  deviations above the specialty mean.
+
+
+  2. Python code using pandas that applies Benford''s Law analysis to the `billed_amount`
+  field for the flagged providers only, comparing the observed first-digit distribution
+  against expected Benford frequencies, and outputs a chi-square p-value per provider.
+
+
+  3. A composite risk score formula (combining E&M upcoding percentile rank and Benford
+  deviation) that produces a single 0–100 score per provider, with explanation of
+  the weighting rationale.
+
+
+  4. Brief recommendations on which providers (score thresholds) should be escalated
+  to a Special Investigations Unit versus flagged for routine medical record review.'
+target_skills:
+- claims-analytics
+domain: healthcare-ops
+difficulty: intermediate

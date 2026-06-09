@@ -1,0 +1,40 @@
+id: pharmacoepidemiology-02
+prompt: 'A health system researcher wants to study whether metformin reduces the risk
+  of colorectal cancer compared to sulfonylureas among newly diagnosed type 2 diabetes
+  patients using electronic health records from 2010–2022. The database contains 48,000
+  patients who initiated metformin and 12,000 who initiated a sulfonylurea as their
+  first antidiabetic medication, with no prior diabetes medication use in the 12-month
+  baseline period.
+
+
+  The researcher is concerned about several methodological issues and asks for your
+  guidance on the following:
+
+
+  1. **Study design**: Explain why an active comparator new-user design is appropriate
+  here, and identify what biases this design specifically addresses compared to a
+  naive cohort study using all metformin users versus non-users.
+
+
+  2. **Cohort definition**: Define the index date, specify what washout period criteria
+  should be applied, and explain how to handle patients who switch medications within
+  the first 90 days of follow-up.
+
+
+  3. **Propensity score approach**: Given the 4:1 imbalance in cohort sizes (48,000
+  metformin vs. 12,000 sulfonylurea users), recommend whether to use propensity score
+  matching, inverse probability of treatment weighting (IPTW), or overlap weighting
+  — providing one concrete reason to prefer your chosen method over the alternatives
+  in this specific scenario.
+
+
+  4. **Outcome timing**: Colorectal cancer typically has a long latency period. Describe
+  how you would define a minimum induction period (lag time) and explain why ignoring
+  this would bias results toward the null.
+
+
+  Please provide concise but complete answers to each of the four components.'
+target_skills:
+- pharmacoepidemiology
+domain: pharmacoepidemiology
+difficulty: easy

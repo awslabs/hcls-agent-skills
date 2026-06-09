@@ -1,0 +1,39 @@
+id: rna-seq-analysis-03
+prompt: 'A researcher has collected bulk RNA-seq data from 6 human tissue samples
+  (3 healthy controls, 3 disease samples) and wants to perform alignment using STAR.
+  The raw FASTQ files are paired-end, 150bp reads, and the reference genome is GRCh38
+  with Ensembl annotation (GRCh38.109 GTF file). The researcher has a server with
+  32 CPU cores and 128GB RAM available.
+
+
+  Before running alignment, they need to build a STAR genome index. The researcher
+  is unsure about the appropriate `--genomeSAindexNbases` parameter and whether to
+  include the GTF file during index generation. They also want to implement two-pass
+  alignment to improve detection of novel splice junctions across their 6 samples.
+
+
+  Please provide the following:
+
+
+  1. **Index generation command**: Write the complete STAR command to generate a genome
+  index for GRCh38, using appropriate parameters for the available compute resources.
+  Explain the logic behind `--genomeSAindexNbases` for a standard human genome.
+
+
+  2. **Two-pass alignment strategy**: Explain the difference between STAR''s built-in
+  two-pass mode (`--twopassMode Basic`) versus manually running two separate passes,
+  and recommend which approach is more appropriate for this 6-sample experiment.
+
+
+  3. **Alignment command**: Write a complete STAR alignment command for one sample
+  (sample ID: `CTRL_01`, with input files `CTRL_01_R1.fastq.gz` and `CTRL_01_R2.fastq.gz`),
+  including parameters for generating a coordinate-sorted BAM file suitable for downstream
+  use with featureCounts.
+
+
+  4. **Key output files**: List the three most important output files produced by
+  STAR alignment and briefly describe what each contains.'
+target_skills:
+- rna-seq-analysis
+domain: genomics
+difficulty: easy

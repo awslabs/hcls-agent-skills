@@ -1,0 +1,40 @@
+id: structure-based-drug-design-02
+prompt: 'You are beginning a structure-based drug design campaign targeting the kinase
+  domain of a fictional oncology target, **FLK3** (Fictional Leucine Kinase 3), which
+  has been implicated in 34% of cases of a rare pediatric sarcoma. A co-crystal structure
+  has been solved at 2.1 Å resolution (PDB-like entry: FLK3_apo), revealing a well-defined
+  ATP-binding pocket with the following characteristics:
+
+
+  - Pocket volume: ~820 Å³
+
+  - Hydrophobic contacts: Leu83, Val135, Ala152
+
+  - Hinge region residues: Glu101, Met103
+
+  - A conserved DFG motif (Asp168-Phe169-Gly170) in the **DFG-in** conformation
+
+  - A shallow, partially solvent-exposed allosteric site adjacent to the αC-helix
+  (~310 Å³)
+
+
+  You have 50,000 compounds available in your corporate library for virtual screening.
+
+
+  **Please provide the following:**
+
+
+  1. A brief druggability assessment of both the ATP-binding pocket and the allosteric
+  site, with a recommendation on which to prioritize and why.
+
+  2. A recommended virtual screening cascade (at least 3 stages) for the ATP-binding
+  pocket, specifying the docking strategy (rigid vs. induced fit), an appropriate
+  scoring function for each stage, and approximate compound attrition at each step.
+
+  3. Given the DFG-in conformation, explain whether a Type I or Type II inhibitor
+  strategy is more appropriate at this stage of the campaign, and identify one key
+  structural feature you would look for in top-scoring poses to validate binding mode.'
+target_skills:
+- structure-based-drug-design
+domain: protein-structure
+difficulty: easy

@@ -1,0 +1,47 @@
+id: genomic-variant-interpretation-05
+prompt: 'A 34-year-old woman with a strong family history of breast and ovarian cancer
+  undergoes germline panel testing. The laboratory reports the following variant:
+  **BRCA2 c.7976+3A>G** (NM_000059.4).
+
+
+  Available evidence:
+
+  - **SpliceAI scores**: Donor loss = 0.61, Acceptor loss = 0.02, Donor gain = 0.08,
+  Acceptor gain = 0.01
+
+  - **gnomAD v3.1 (non-cancer)**: 2 heterozygous alleles observed out of 152,310 total
+  alleles (no homozygotes)
+
+  - **ClinVar**: 1 submission classified as VUS (single submitter, no assertion criteria
+  provided); no other submissions
+
+  - **RNA splicing study (published, n=12 carriers)**: Shows partial exon skipping
+  in approximately 40% of transcripts; remaining 60% show normal splicing
+
+  - **REVEL score**: 0.34 (note: intronic variant — REVEL not applicable)
+
+  - **In silico tools (MaxEntScan)**: Predicts 55% reduction in donor splice site
+  strength
+
+  - **Family history**: 3 affected first-degree relatives with breast cancer; co-segregation
+  data unavailable
+
+
+  Please provide:
+
+  1. A systematic ACMG/AMP 2015 criteria assessment, explicitly stating which criteria
+  apply (with strength levels) and which do not, with justification for each decision
+
+  2. A final variant classification with confidence rationale
+
+  3. An interpretation of the partial splicing result and whether it supports or refutes
+  pathogenicity
+
+  4. Clinical reporting language suitable for a germline laboratory report
+
+  5. One specific additional piece of evidence that would most efficiently resolve
+  the classification'
+target_skills:
+- genomic-variant-interpretation
+domain: genomics
+difficulty: intermediate

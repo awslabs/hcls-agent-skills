@@ -1,0 +1,32 @@
+id: cdisc-compliance-10
+prompt: 'A Phase III oncology trial (N=847) is being prepared for FDA eCTD submission
+  under SDTM 3.3 / ADaM 1.1 standards. The trial collected tumor assessment data using
+  RECIST 1.1 criteria, including target lesion measurements, non-target lesion responses,
+  and overall response assessments performed at each visit. The SDTM programmer has
+  mapped all tumor response data into the TU (Tumor/Lesion Identification) and TR
+  (Tumor/Lesion Results) domains, but the overall response assessment (per investigator
+  and per independent review committee [IRC]) has been placed in RS (Disease Response)
+  domain.
+
+
+  A compliance review has flagged three issues: (1) The RS domain is using a non-standard
+  RSORRES value of "NON-CR/NON-PD" for non-target-only patients, which doesn''t match
+  the current CDISC CT for RS.RSORRESU; (2) Lesion-level percentage change from baseline
+  calculations are stored in TR.TRSTRESN but the corresponding TRSTRESU is populated
+  as "%" for some records and left null for others inconsistently; (3) The IRC assessment
+  dates differ from investigator dates, and both are currently stored in RS using
+  RSEVAL="INVESTIGATOR" and RSEVAL="INDEPENDENT ASSESSOR" respectively, but the downstream
+  ADRS (ADaM Response dataset) is only deriving confirmed BOR using investigator assessments
+  despite the SAP specifying IRC as the primary endpoint.
+
+
+  Please provide: (1) A detailed CDISC compliance analysis of each flagged issue with
+  reference to specific SDTM IG and CDISC CT guidance; (2) Recommended corrections
+  for the SDTM domains including any SUPPQUAL usage if needed; (3) ADaM ADRS dataset
+  design recommendations to correctly implement dual-assessor BOR derivation; (4)
+  Sample SAS code demonstrating the IRC-based confirmed BOR derivation logic following
+  ADaM BDS conventions.'
+target_skills:
+- cdisc-compliance
+domain: clinical-data-review
+difficulty: hard

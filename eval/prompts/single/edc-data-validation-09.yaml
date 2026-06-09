@@ -1,0 +1,45 @@
+id: edc-data-validation-09
+prompt: 'You are conducting SDTM validation for a Phase III oncology trial (STUDY-ONC-2847)
+  with 340 subjects across 12 sites. The trial collected adverse events (AE domain),
+  concomitant medications (CM domain), and tumor assessments (TU domain). During SDTM
+  mapping, your team has identified several structural and temporal inconsistencies
+  that must be resolved before FDA submission.
+
+
+  **Specific issues identified:**
+
+
+  1. **AE-CM temporal overlap**: 47 subjects have concomitant medications with `CMSTDTC`
+  dates that precede the corresponding `AESTDTC` by more than 14 days, but the medications
+  are flagged as AE-related (`CMINDC` contains the AE term). This may indicate either
+  data entry errors or prophylactic medication use.
+
+
+  2. **TU-AE cross-domain inconsistency**: 23 subjects have progressive disease recorded
+  in TU (`TUORRES = "PROGRESSIVE DISEASE"`) but no corresponding AE of "Disease Progression"
+  or study discontinuation record within 30 days.
+
+
+  3. **AEDECOD controlled terminology**: 156 unique verbatim terms in `AETERM` were
+  mapped to MedDRA LLT codes, but 12 terms have `AEDECOD` values that do not match
+  the MedDRA v26.1 dictionary (possible version mismatch or mapping errors).
+
+
+  **Deliverables requested:**
+
+
+  - Write Python code using `pandas` that performs all three cross-domain validation
+  checks, loading AE, CM, and TU datasets from SAS XPT files
+
+  - For each check, generate a subject-level findings report with specific USUBJID,
+  the conflicting values, and a severity flag (Critical/Warning/Informational)
+
+  - Include a MedDRA terminology lookup function that compares `AEDECOD` against a
+  provided reference CSV containing valid MedDRA v26.1 LLT terms
+
+  - Output a consolidated validation summary report as both a CSV and a formatted
+  text file mimicking Pinnacle 21 output style'
+target_skills:
+- edc-data-validation
+domain: clinical-data-review
+difficulty: hard

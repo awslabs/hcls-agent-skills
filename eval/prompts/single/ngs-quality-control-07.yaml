@@ -1,0 +1,46 @@
+id: ngs-quality-control-07
+prompt: 'You have completed initial sequencing of a whole-exome sequencing (WES) cohort
+  of 48 tumor-normal pairs. The sequencing facility has delivered paired FASTQs for
+  each sample, and you''ve generated coordinate-sorted BAMs after alignment. Before
+  proceeding to variant calling, your lab requires a formal QC gate with specific
+  pass/fail thresholds:
+
+
+  - Mean on-target coverage ≥ 100× for tumor samples, ≥ 50× for normal samples
+
+  - Duplicate rate < 25%
+
+  - On-target rate (% bases overlapping target regions) ≥ 70%
+
+  - Insert size median between 150–250 bp
+
+  - Per-base sequence quality (Phred) ≥ Q30 for ≥ 80% of bases
+
+
+  Your target BED file is `targets.bed`, and the reference is `ref.fasta`. You have
+  access to fastp, FastQC, mosdepth, Picard CollectHsMetrics, and MultiQC. Assume
+  the standard file naming convention: `{sample_id}_R1.fastq.gz`, `{sample_id}_R2.fastq.gz`,
+  and `{sample_id}.bam`.
+
+
+  Please provide:
+
+
+  1. A bash script that runs the complete per-sample QC pipeline for a single sample
+  (parameterized by `SAMPLE_ID` and `SAMPLE_TYPE` as "tumor" or "normal"), incorporating
+  all tools needed to collect metrics for each threshold above. Use `THREADS=8` and
+  `OUT=qc_out`.
+
+
+  2. A Python script that parses the mosdepth summary output and Picard `CollectHsMetrics`
+  output for all 96 samples, applies the pass/fail thresholds, and produces a TSV
+  report flagging failed samples with the specific metrics that caused failure.
+
+
+  3. An explanation of why `CollectHsMetrics` is preferred over `CollectWgsMetrics`
+  for this experiment, and what the `BAIT_INTERVALS` vs `TARGET_INTERVALS` distinction
+  means in practice.'
+target_skills:
+- ngs-quality-control
+domain: genomics
+difficulty: intermediate

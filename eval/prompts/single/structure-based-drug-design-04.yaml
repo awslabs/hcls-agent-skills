@@ -1,0 +1,38 @@
+id: structure-based-drug-design-04
+prompt: 'You are optimizing a series of inhibitors targeting the bromodomain of BRD4
+  (BD1), a well-validated epigenetic target in acute myeloid leukemia. You have completed
+  an initial docking campaign and now have 15 lead compounds with experimental IC50
+  values ranging from 8 nM to 2.3 µM. Your docking was performed using Glide SP with
+  default settings, and the predicted docking scores correlate poorly with experimental
+  activity (R² = 0.21). The crystal structure used (PDB: 3MXF) shows the conserved
+  asparagine (N140) and the WPF shelf region as key pharmacophoric features. Three
+  of your most potent compounds (IC50 < 50 nM) show unexpected binding poses where
+  the acetyl-lysine mimetic group points away from N140.
+
+
+  Given this scenario, provide the following:
+
+
+  1. Diagnose at least three specific reasons why the Glide SP docking scores are
+  failing to correlate with experimental data for this target class, referencing known
+  limitations relevant to bromodomain binding.
+
+
+  2. Recommend a refined computational protocol to improve pose prediction and scoring,
+  specifying which methods to apply sequentially (e.g., IFD, MM-GBSA, FEP) and the
+  rationale for each step.
+
+
+  3. For the three potent outlier compounds with inverted binding poses, propose a
+  hypothesis explaining their activity and describe what additional structural or
+  biophysical experiments (e.g., ITC, HDX-MS, X-ray co-crystallography) you would
+  prioritize to validate or refute this hypothesis.
+
+
+  4. Define a pharmacophore model based on BRD4 BD1 biology that could be used to
+  filter the remaining 847 virtual screening hits, listing exactly four pharmacophoric
+  features with their spatial constraints.'
+target_skills:
+- structure-based-drug-design
+domain: protein-structure
+difficulty: intermediate

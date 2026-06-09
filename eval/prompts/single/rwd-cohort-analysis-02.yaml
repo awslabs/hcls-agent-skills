@@ -1,0 +1,52 @@
+id: rwd-cohort-analysis-02
+prompt: 'Here is test question #2 of 10:
+
+
+  ---
+
+
+  You are analyzing a claims database of **42,800 commercially insured patients**
+  diagnosed with Type 2 diabetes (ICD-10: E11.xx) between January 2019 and December
+  2021. You want to compare 90-day all-cause hospitalization rates between patients
+  initiated on SGLT2 inhibitors (NDC codes provided for empagliflozin, dapagliflozin,
+  canagliflozin) versus GLP-1 receptor agonists (semaglutide, liraglutide, dulaglutide).
+
+
+  **Cohort criteria:**
+
+  - ≥1 inpatient or ≥2 outpatient E11.xx claims within 12 months
+
+  - New user design: no fills of either drug class in the prior 12-month baseline
+  period
+
+  - Index date = first qualifying prescription fill
+
+  - Minimum 6 months of continuous enrollment pre-index
+
+  - Exclude patients with ESRD (ICD-10: N18.6) or prior heart failure (I50.xx)
+
+
+  After applying these criteria, your SGLT2i cohort has **8,340 patients** and GLP-1
+  cohort has **6,190 patients**.
+
+
+  **Please provide:**
+
+  1. Python code to calculate **Proportion of Days Covered (PDC)** over a 12-month
+  follow-up window for each cohort, handling gaps, early discontinuation, and switching
+  events
+
+  2. Code to estimate **propensity scores** using logistic regression with at least
+  8 baseline covariates (age, sex, Charlson Comorbidity Index, prior insulin use,
+  HbA1c proxy, hypertension, obesity, prior hospitalizations), then perform 1:1 nearest-neighbor
+  matching with caliper = 0.2 SD of logit PS
+
+  3. **Standardized Mean Difference (SMD) table** before and after matching, with
+  a threshold flag for imbalance (SMD > 0.10)
+
+  4. Brief interpretation of what PDC threshold (e.g., ≥0.80) you would apply and
+  why it matters for this comparison'
+target_skills:
+- rwd-cohort-analysis
+domain: pharmacoepidemiology
+difficulty: easy

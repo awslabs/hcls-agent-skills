@@ -1,0 +1,36 @@
+id: dicom-processing-05
+prompt: 'You are working as a neuroimaging data engineer at a research hospital. A
+  clinical team has collected a resting-state fMRI study with 42 participants. The
+  raw DICOM files are stored in a flat directory structure (all series mixed together)
+  under `/data/raw_dicoms/`, where each file follows the naming convention `IM_<PatientID>_<SeriesNumber>_<InstanceNumber>.dcm`.
+  The study includes three series per participant: a T1-weighted anatomical (SeriesDescription:
+  "T1_MPRAGE"), a resting-state BOLD (SeriesDescription: "rfMRI_REST"), and a field
+  map (SeriesDescription: "GRE_FIELDMAP").
+
+
+  Your task is to build a Python-based pipeline that:
+
+
+  1. **Sorts** the flat DICOM directory into a per-subject, per-series folder hierarchy
+  (e.g., `/data/sorted/<PatientID>/<SeriesDescription>/`) using `pydicom` to read
+  headers
+
+  2. **Converts** each sorted series to NIfTI format using `dcm2niix` called via Python''s
+  `subprocess` module, with compression enabled (`-z y`), verbose output (`-v y`),
+  and output filenames following the pattern `<PatientID>_<SeriesDescription>`
+
+  3. **Validates** the conversion by checking that for each participant, exactly three
+  `.nii.gz` files were generated and that the BOLD series NIfTI has a 4th dimension
+  (timepoints) greater than 100, using `nibabel`
+
+  4. **Logs** any failures (missing files, dimension mismatches) to a structured CSV
+  report at `/data/conversion_report.csv` with columns: `participant_id`, `series`,
+  `status`, `notes`
+
+
+  Provide complete, runnable Python code with appropriate error handling, and briefly
+  explain any dcm2niix flags you chose beyond those specified.'
+target_skills:
+- dicom-processing
+domain: imaging
+difficulty: intermediate

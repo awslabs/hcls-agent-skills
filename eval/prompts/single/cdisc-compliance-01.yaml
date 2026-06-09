@@ -1,0 +1,45 @@
+id: cdisc-compliance-01
+prompt: 'A pharmaceutical company is preparing SDTM datasets for an FDA submission
+  of a Phase III oncology trial (Study XYZ-2024) involving 342 patients. The clinical
+  data collection captured several non-standard variables in the adverse events (AE)
+  case report form that need to be mapped to SDTM domain structures.
+
+
+  The following non-standard AE variables were collected:
+
+  - **AETOXGRD**: NCI-CTCAE toxicity grade (values: 1–5)
+
+  - **AERELNM2**: Causality assessment by a second investigator (Yes/No/Unknown)
+
+  - **AECYCNUM**: Treatment cycle number during which the AE occurred (numeric, 1–12)
+
+  - **AEPORTDT**: Patient-reported onset date (separate from investigator-recorded
+  onset date)
+
+
+  Your task is to provide the following deliverables:
+
+
+  1. **Domain mapping decision**: For each of the four variables above, determine
+  whether it should be placed in the core AE domain or in a SUPPQUAL (SUPPAE) dataset.
+  Justify each decision referencing SDTM Implementation Guide rules for standard vs.
+  non-standard variables.
+
+
+  2. **SUPPAE structure**: Provide the required SUPPAE variable layout (column names
+  and example rows) for any variables you route to SUPPQUAL, using realistic fictional
+  patient data for 2 subjects (USUBJID: XYZ-2024-001 and XYZ-2024-002).
+
+
+  3. **Controlled terminology check**: Identify which CDISC controlled terminology
+  codelist(s) apply to AETOXGRD and AERELNM2, and specify the correct submission values
+  that should appear in the dataset.
+
+
+  4. **Define.xml consideration**: Briefly describe what value-level metadata entries
+  would be needed in define.xml for the SUPPAE QVAL variable to satisfy FDA technical
+  conformance requirements.'
+target_skills:
+- cdisc-compliance
+domain: clinical-data-review
+difficulty: easy

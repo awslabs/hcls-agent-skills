@@ -1,0 +1,43 @@
+id: risk-adjustment-strategy-08
+prompt: 'A Medicare Advantage plan is navigating the 2024-2025 blended transition
+  period between CMS-HCC V24 and V28 models. Their analytics team has pulled the following
+  member cohort data for prospective risk adjustment prioritization:
+
+
+  - **Cohort A**: 1,200 members with documented Type 2 diabetes with CKD Stage 3 (ICD-10:
+  E11.65 + N18.3). Under V24 these map to HCC 18 + HCC 136; under V28 the mapping
+  shifts significantly.
+
+  - **Cohort B**: 890 members with Major Depressive Disorder, recurrent, moderate
+  (ICD-10: F33.1), which gains a new HCC assignment in V28 but had no RAF contribution
+  in V24.
+
+  - **Cohort C**: 340 members with documented morbid obesity (E66.01) plus osteoarthritis
+  of the knee (M17.11), where a disease interaction coefficient exists in V28 but
+  not V24.
+
+
+  The plan uses a 67%/33% V24/V28 blend for 2024 and a 33%/67% blend for 2025.
+
+
+  **Deliverables requested:**
+
+
+  1. Calculate the **blended RAF contribution differential** for each cohort between
+  2024 and 2025, using representative coefficient values (you may use published CMS
+  reference values or clearly stated assumptions).
+
+  2. Identify which cohort should receive **highest prioritization** for prospective
+  chart review outreach in Q1 2025 and explain the strategic rationale.
+
+  3. Describe the **audit-defensible documentation requirements** that would be necessary
+  to support HCC capture for Cohort B under V28, given that MDD recurrent moderate
+  is a newly mapped condition.
+
+  4. Flag any **disease hierarchy conflicts** that could suppress RAF credit within
+  Cohort A under V28 and recommend ICD-10 specificity improvements to maximize compliant
+  capture.'
+target_skills:
+- risk-adjustment-strategy
+domain: healthcare-ops
+difficulty: hard

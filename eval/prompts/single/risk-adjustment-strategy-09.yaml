@@ -1,0 +1,43 @@
+id: risk-adjustment-strategy-09
+prompt: 'A Medicare Advantage plan is navigating the 2025 payment year transition
+  where CMS applies a blended risk score using 33% V28 and 67% V24 model weights.
+  Your analytics team has identified a cohort of 1,200 members with the following
+  characteristics:
+
+
+  - 340 members have Type 2 diabetes with CKD Stage 3 (ICD-10: E11.65 + N18.3), currently
+  mapped under V24 HCC 18+136 but experiencing mapping changes in V28
+
+  - 280 members have Major Depressive Disorder, recurrent, moderate (ICD-10: F33.1),
+  which maps to HCC 59 in V24 but is dropped entirely from V28
+
+  - 580 members have Morbid Obesity (ICD-10: E66.01) with BMI ≥ 40 documented, mapped
+  to HCC 22 in V24 but recategorized in V28
+
+
+  For this cohort, provide the following deliverables:
+
+
+  1. **Blended RAF Impact Analysis**: Calculate the directional RAF score impact per
+  member segment under the 33/67 blend, identifying which segment experiences the
+  greatest revenue erosion and quantifying the approximate per-member-per-month (PMPM)
+  risk given an average RAF-to-payment conversion of $850 per 0.1 RAF unit annually.
+
+
+  2. **Hierarchical Conflict Assessment**: For the diabetes+CKD members, explain how
+  V28 disease interaction hierarchies differ from V24 and whether the combination
+  still triggers an interaction coefficient or collapses into a single HCC.
+
+
+  3. **Coding Gap Prioritization Framework**: Design a prioritization matrix for retrospective
+  chart review that ranks these three segments by ROI, considering both recapture
+  probability and model-version-weighted revenue impact.
+
+
+  4. **Audit-Defensible Documentation Standards**: Specify the clinical documentation
+  requirements that would satisfy both V24 and V28 mapping criteria simultaneously
+  for the obesity segment, minimizing audit risk during the transition year.'
+target_skills:
+- risk-adjustment-strategy
+domain: healthcare-ops
+difficulty: hard

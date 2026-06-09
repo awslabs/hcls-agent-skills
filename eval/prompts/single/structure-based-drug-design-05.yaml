@@ -1,0 +1,37 @@
+id: structure-based-drug-design-05
+prompt: 'You are running a structure-based virtual screening campaign against a novel
+  allosteric site on KRASG12C (PDB: 7LFB) that you have identified through a 500 ns
+  molecular dynamics simulation. The pocket shows significant flexibility, with an
+  average RMSD of 2.8 Å across the trajectory and two dominant conformational states
+  (State A: 62% occupancy, State B: 38% occupancy). Your compound library contains
+  850,000 molecules from the Enamine REAL database, pre-filtered to drug-like properties
+  (MW ≤ 450, cLogP ≤ 4.5, HBD ≤ 3).
+
+
+  Given these constraints, provide the following:
+
+
+  1. **Screening cascade design**: Propose a multi-stage virtual screening funnel
+  with specific cutoffs at each stage, justifying why each filter is appropriate given
+  the pocket flexibility data. Include approximate compound counts surviving each
+  stage.
+
+
+  2. **Docking strategy**: Recommend whether to use rigid receptor docking, ensemble
+  docking, or induced-fit docking for this target, citing the RMSD and occupancy data
+  to justify your choice. Specify which conformational states to include and why.
+
+
+  3. **Scoring function selection**: Compare at least two scoring functions appropriate
+  for allosteric sites (e.g., Glide SP vs. XP, or GOLD ChemScore vs. GoldScore) and
+  recommend one for primary screening versus one for rescoring the top hits.
+
+
+  4. **MD validation protocol**: Outline a 3-step post-docking MD validation workflow
+  to confirm that top-ranked compounds (top 500 after docking) remain stably bound
+  in the allosteric pocket, including simulation length, key geometric descriptors
+  to monitor, and MM-GBSA rescoring parameters.'
+target_skills:
+- structure-based-drug-design
+domain: protein-structure
+difficulty: intermediate

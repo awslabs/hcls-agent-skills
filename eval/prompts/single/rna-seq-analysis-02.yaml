@@ -1,0 +1,33 @@
+id: rna-seq-analysis-02
+prompt: 'You are setting up a STAR genome index for human RNA-seq data from 15 tumor
+  samples. Your reference files are GRCh38 primary assembly (hg38.fa) and Ensembl
+  v104 annotation (Homo_sapiens.GRCh38.104.gtf). The compute cluster nodes have 64GB
+  RAM available per job, and your reads are 150bp paired-end from an Illumina NovaSeq
+  6000.
+
+
+  Please provide the following:
+
+
+  1. **The exact STAR command** to generate the genome index, specifying appropriate
+  values for `--genomeSAindexNbases`, `--sjdbOverhang`, and `--runThreadN` (assume
+  8 CPU cores available). Explain why you chose each parameter value.
+
+
+  2. **A two-pass alignment command** for a single sample (sample ID: TUMOR_001, with
+  input files `TUMOR_001_R1.fastq.gz` and `TUMOR_001_R2.fastq.gz`), including flags
+  to output a coordinate-sorted BAM file suitable for downstream featureCounts quantification.
+  Include appropriate settings for `--outSAMtype`, `--outSAMattributes`, and `--quantMode`.
+
+
+  3. **A brief explanation** of why two-pass alignment is preferred over single-pass
+  for discovering novel splice junctions, and under what circumstances you might skip
+  the two-pass approach to save compute time.
+
+
+  4. **One common mistake** researchers make when setting `--sjdbOverhang` and how
+  it affects alignment quality.'
+target_skills:
+- rna-seq-analysis
+domain: genomics
+difficulty: easy

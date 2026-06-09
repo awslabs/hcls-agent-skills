@@ -1,0 +1,46 @@
+id: radiology-preprocessing-10
+prompt: 'A research team is processing a cohort of 847 T1w MRI scans from elderly
+  patients (ages 70-95) with suspected neurodegeneration. They are encountering significant
+  failures in their preprocessing pipeline and need expert troubleshooting assistance.
+
+
+  **Current pipeline (in order):**
+
+  1. `fslreorient2std` for orientation standardization
+
+  2. HD-BET for skull stripping (default parameters)
+
+  3. N4BiasFieldCorrection (50 iterations, 4 levels, convergence threshold 0.001)
+
+  4. ANTs SyN registration to MNI152 2mm template
+
+
+  **Observed problems:**
+
+  - HD-BET fails completely on ~23% of scans (196 cases), predominantly those with
+  severe cortical atrophy (estimated brain/intracranial volume ratio < 0.72)
+
+  - N4 correction is producing intensity inversions in periventricular regions for
+  ~8% of scans with severe white matter hyperintensities (Fazekas scale 3)
+
+  - SyN registration shows mean Dice overlap of only 0.71 for subcortical structures
+  (target: >0.85), with failures concentrated in scans where ventricular volume exceeds
+  85th percentile
+
+
+  **Your deliverables:**
+
+  1. Diagnose the root cause of each failure mode with mechanistic explanation
+
+  2. Provide a revised pipeline with specific parameter modifications or tool substitutions
+  to address each issue
+
+  3. Write complete Python/shell code implementing the revised pipeline using ANTs,
+  FSL, and SimpleITK
+
+  4. Propose a QC metric suite (with threshold values) to automatically flag problematic
+  cases before they enter the pipeline'
+target_skills:
+- radiology-preprocessing
+domain: imaging
+difficulty: hard

@@ -1,0 +1,44 @@
+id: rna-seq-analysis-08
+prompt: 'You are analyzing a bulk RNA-seq dataset from a rare pediatric brain tumor
+  study comparing 8 tumor samples vs. 6 normal brain tissue controls. After running
+  STAR two-pass alignment against GRCh38 with default parameters, you notice the following
+  QC metrics from your alignment logs:
+
+
+  - Tumor samples: uniquely mapped reads 87-91%, multi-mapped reads 4-6%
+
+  - Normal samples: uniquely mapped reads 61-68%, multi-mapped reads 18-24%
+
+
+  The normal samples were processed at a different sequencing facility 14 months prior
+  to the tumor samples, and library preparation used a different rRNA depletion kit.
+  Salmon quasi-mapping with the same GRCh38 transcriptome shows concordant patterns:
+  normal samples have substantially higher mapping rates to non-coding RNA loci.
+
+
+  You run DESeq2 and obtain 3,847 differentially expressed genes (FDR < 0.05, |log2FC|
+  > 1). However, a colleague suggests the batch effect and mapping rate discrepancy
+  may be inflating your DE gene count and that you should investigate potential technical
+  confounders before trusting these results.
+
+
+  Please provide:
+
+  1. A diagnostic plan to determine whether the mapping discrepancy reflects a true
+  biological signal (e.g., ncRNA expression differences) or technical batch artifact,
+  including specific tools and metrics to examine
+
+  2. A corrected DESeq2 analysis strategy incorporating appropriate batch correction,
+  with complete R code using tximport to load Salmon output and DESeq2 for the final
+  model, explicitly handling the batch covariate
+
+  3. Recommendations for how to validate that your batch correction approach has not
+  removed true biological signal, referencing at least two independent validation
+  strategies
+
+  4. Discussion of whether the 3,847 DE genes should be trusted, partially trusted,
+  or discarded pending further analysis'
+target_skills:
+- rna-seq-analysis
+domain: genomics
+difficulty: hard

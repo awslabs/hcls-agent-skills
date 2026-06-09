@@ -1,0 +1,48 @@
+id: pharmacoepidemiology-03
+prompt: 'A health system researcher wants to study whether metformin reduces the risk
+  of colorectal cancer compared to sulfonylureas among patients with newly diagnosed
+  type 2 diabetes using electronic health records from a large integrated health system
+  (n = 45,000 patients diagnosed between 2010–2020).
+
+
+  The researcher has identified the following cohort characteristics:
+
+  - Mean age: 58 years; 52% female
+
+  - Median follow-up: 4.2 years
+
+  - Colorectal cancer events: 312
+
+  - Some patients had prior diabetes medication fills before their "index date" (approximately
+  18% of the cohort)
+
+  - The dataset includes time-varying covariates: HbA1c measurements (quarterly),
+  BMI updates, and concomitant medication use
+
+
+  Please provide the following:
+
+
+  1. **Cohort definition**: Explain how to properly implement a new-user active comparator
+  design, including how to handle the 18% of patients with prior medication fills
+  and what washout period criteria to apply.
+
+
+  2. **Index date specification**: Describe how to correctly assign the index date
+  to avoid immortal time bias, using a concrete example with hypothetical patient
+  timelines.
+
+
+  3. **Propensity score approach**: Recommend whether to use propensity score matching,
+  IPTW, or stratification for this study, and justify your choice given the sample
+  size and event count. Calculate the approximate events-per-variable ratio if 25
+  covariates are included in the propensity score model.
+
+
+  4. **Time-varying confounding**: Explain whether marginal structural models are
+  needed here given the time-varying HbA1c data, and under what specific conditions
+  they would become necessary.'
+target_skills:
+- pharmacoepidemiology
+domain: pharmacoepidemiology
+difficulty: easy

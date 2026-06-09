@@ -1,0 +1,48 @@
+id: pa-decision-automation-07
+prompt: 'Here is test question #7 of 10:
+
+
+  ---
+
+
+  Your team has built a gradient boosted PA classifier trained on 48,000 historical
+  prior authorization decisions for specialty medications (biologics for rheumatoid
+  arthritis, psoriasis, and Crohn''s disease). The model achieves 87% accuracy overall,
+  but your medical director has flagged a concerning pattern: approval rates for members
+  in ZIP codes with median household income below $45,000 are 23% lower than for members
+  in higher-income ZIP codes, even after controlling for clinical severity scores.
+  The model uses 34 features including: CPT/HCPCS codes, ICD-10 diagnosis codes, prior
+  medication history (step therapy compliance), lab values (CRP, ESR, HAQ-DI scores),
+  prescriber NPI specialty, days supply requested, and member ZIP code.
+
+
+  Please provide the following deliverables:
+
+
+  1. **Bias audit methodology**: Describe a systematic approach to identify which
+  features are proxying for socioeconomic status and driving the disparity, including
+  specific statistical tests to run.
+
+
+  2. **SHAP analysis code**: Write Python code using the `shap` library to decompose
+  feature contributions for the low-income vs. high-income cohorts, generating a comparative
+  summary plot and a data frame showing mean absolute SHAP values per feature per
+  cohort.
+
+
+  3. **Feature remediation strategy**: Recommend which features to remove, transform,
+  or replace to reduce the disparity while preserving clinical validity, with justification
+  for each decision.
+
+
+  4. **Re-evaluation metrics**: Define at least three fairness metrics (beyond demographic
+  parity) you would use to validate the remediated model, including the acceptable
+  threshold for each metric before deployment.
+
+
+  Assume the model is implemented in scikit-learn with XGBoost and you have access
+  to the full training dataset.'
+target_skills:
+- pa-decision-automation
+domain: healthcare-ops
+difficulty: intermediate

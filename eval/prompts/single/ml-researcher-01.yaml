@@ -1,0 +1,43 @@
+id: ml-researcher-01
+prompt: 'You are building a 30-day hospital readmission prediction model using EHR
+  data from a single academic medical center. Your dataset contains 45,000 patient
+  encounters spanning January 2018 to December 2023, with a readmission rate of 12%.
+  Features include 847 ICD-10 diagnosis codes, 312 procedure codes, 94 lab values
+  (with ~35% missingness), 18 vital sign summary statistics, and free-text discharge
+  summaries averaging 420 words each.
+
+
+  You plan to train an XGBoost model and evaluate it with AUROC, then deploy it prospectively
+  starting in 2024.
+
+
+  Please provide the following:
+
+
+  1. **Data splitting strategy**: Explain how you should split this dataset given
+  the temporal nature of the data and the planned prospective deployment. Why would
+  a random 80/20 split be problematic here?
+
+
+  2. **Metric selection**: The clinical team wants to use the model to trigger a care-coordination
+  intervention costing $200 per patient. Given the class imbalance and cost context,
+  critique the sole use of AUROC and recommend at least two additional metrics with
+  justification.
+
+
+  3. **Missingness handling**: Propose a concrete strategy for the 94 lab values with
+  ~35% missingness, distinguishing between data missing at random (MAR) versus missing
+  not at random (MNAR) and how each should be handled differently.
+
+
+  4. **Calibration**: Describe how you would assess and improve model calibration,
+  and explain why calibration matters more than discrimination alone for this specific
+  deployment use case.
+
+
+  Keep recommendations specific and actionable, referencing any relevant reporting
+  guidelines or frameworks where appropriate.'
+target_skills:
+- ml-researcher
+domain: cross-domain
+difficulty: easy

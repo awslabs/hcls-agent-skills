@@ -1,0 +1,36 @@
+id: multi-omics-pipeline-02
+prompt: 'You are analyzing RNA-seq data from a colorectal cancer study involving 120
+  tumor samples collected across three clinical sites (Site A: 45 samples, Site B:
+  38 samples, Site C: 37 samples). After initial QC, you have a raw count matrix stored
+  as a CSV file (`counts_matrix.csv`) with 18,432 genes as rows (using Ensembl gene
+  IDs like ENSG00000141510) and 120 samples as columns. You need to prepare this data
+  for downstream multi-omics integration.
+
+
+  Before integration, you must: (1) map all Ensembl gene IDs to HGNC gene symbols
+  using biomaRt in R, handling cases where multiple Ensembl IDs map to the same HGNC
+  symbol by keeping the one with the highest mean expression, and (2) apply ComBat-seq
+  batch correction to remove site-specific technical variation while preserving biological
+  variance, treating the three clinical sites as batches.
+
+
+  Please provide the following deliverables:
+
+
+  1. **Complete R code** that loads the count matrix, performs Ensembl-to-HGNC ID
+  mapping using the `biomaRt` package (connecting to the GRCh38 Ensembl mirror), and
+  resolves duplicate mappings as described above.
+
+
+  2. **Complete R code** for running ComBat-seq from the `sva` package on the deduplicated
+  count matrix, with site identity as the batch variable. Assume a metadata data frame
+  called `sample_metadata` exists with columns `sample_id` and `site`.
+
+
+  3. **Brief explanation** (3-5 sentences) of why raw counts rather than normalized
+  values should be used as input to ComBat-seq, and what statistical model ComBat-seq
+  uses internally to handle count data.'
+target_skills:
+- multi-omics-pipeline
+domain: multi-omics
+difficulty: easy

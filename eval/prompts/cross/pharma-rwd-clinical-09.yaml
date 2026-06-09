@@ -1,0 +1,65 @@
+id: pharma-rwd-clinical-09
+prompt: 'You are a pharmacoepidemiologist at a large health system that has linked
+  Medicare claims data (2018–2022, n = 847,000 beneficiaries) with EHR records. Your
+  team is designing a real-world study to evaluate whether sodium-glucose cotransporter-2
+  (SGLT2) inhibitors reduce the risk of hospitalized heart failure compared with dipeptidyl
+  peptidase-4 (DPP-4) inhibitors among adults with type 2 diabetes. The study must
+  follow a new-user active comparator design emulating a hypothetical target trial.
+
+
+  **Specific constraints and parameters:**
+
+  - Cohort entry requires ≥1 NDC-based dispensing of either drug class with no prior
+  use in a 365-day washout period
+
+  - The primary outcome is first hospitalization for heart failure, coded as ICD-10
+  principal discharge diagnosis I50.x (any subcode)
+
+  - Key time-varying confounders include HbA1c (LOINC 4548-4), eGFR (LOINC 33914-3),
+  and loop diuretic use
+
+  - The analysis must handle time-varying confounding using marginal structural models
+  with stabilized inverse probability of treatment weights (IPTW)
+
+  - Covariate balance must be assessed using standardized mean differences (SMD) at
+  baseline
+
+  - You must address potential unmeasured confounding using E-values
+
+
+  **Deliverables requested:**
+
+
+  1. Write the complete cohort identification logic, specifying the ICD-10 codes for
+  type 2 diabetes (E11.x grouping rationale), the NDC code strategy for both drug
+  classes, and how you would use CPT codes to confirm active clinical encounters at
+  baseline.
+
+
+  2. Describe how to correctly map the primary outcome (I50.x) within the MedDRA hierarchy
+  — identify the appropriate Preferred Term, High Level Term, and System Organ Class
+  — and explain why using the principal discharge diagnosis ICD-10 code rather than
+  any-position coding matters for outcome specificity.
+
+
+  3. Specify the full marginal structural model setup: the treatment and censoring
+  weight models, the stabilized weight formula, how you would incorporate the time-varying
+  LOINC-based lab values, and how to handle patients with extreme weights (>99th percentile
+  truncation vs. trimming tradeoffs).
+
+
+  4. Calculate the PDC for SGLT2 inhibitor adherence over 12 months for a fictional
+  patient with three fills: Day 1 (90-day supply), Day 95 (90-day supply), and Day
+  200 (30-day supply), and explain how non-adherence would be handled as a time-varying
+  covariate in the MSM.
+
+
+  5. Compute the E-value for a hazard ratio of 0.72 (95% CI lower bound 0.61) and
+  interpret what unmeasured confounder strength would be required to explain away
+  the observed association.'
+target_skills:
+- pharmacoepidemiology
+- rwd-cohort-analysis
+- clinical-data-standards
+domain: pharmacoepidemiology
+difficulty: hard

@@ -1,0 +1,48 @@
+id: risk-adjustment-05
+prompt: 'Here is test question #5 of 10:
+
+
+  ---
+
+
+  You are building a CMS-HCC risk adjustment pipeline for a Medicare Advantage plan
+  with 12,000 members. Your claims data warehouse contains an `icd10_claims` table
+  with columns `(member_id, dos, icd10_code, provider_npi)` and a `member_demographics`
+  table with columns `(member_id, age, sex, medicaid_dual_flag, orig_disabled_flag,
+  new_enrollee_flag)`. You are using the CMS-HCC Model V28 coefficients for payment
+  year 2024.
+
+
+  Your analytics team has identified that approximately 1,800 members have pharmacy
+  claims for insulin (NDC codes mapped to diabetes management) but lack a corresponding
+  HCC 37 (Diabetes without Complication) or HCC 38 (Diabetes with Chronic Complications)
+  diagnosis code in the current measurement year. These represent potential Rx-proxy
+  coding gaps.
+
+
+  Please deliver the following:
+
+
+  1. **Python function** `resolve_hcc_hierarchy(hcc_list: list[int]) -> list[int]`
+  that applies V28 disease hierarchy rules specifically for the diabetes and cardiovascular
+  HCC families (HCCs 37, 38, 85, 86, 87, 96, 110, 111), removing dominated codes per
+  CMS hierarchy tables.
+
+
+  2. **SQL query** that identifies members with insulin NDC claims (assume a reference
+  table `insulin_ndcs(ndc_code)` exists) but no diabetes HCC in the current year,
+  flagging them as Rx-proxy coding gaps with their estimated RAF impact using a placeholder
+  coefficient of 0.302 for HCC 37.
+
+
+  3. **Python snippet** that calculates a member''s total RAF score by summing demographic
+  segment coefficients plus HCC coefficients from a provided dictionary, then applies
+  the coding gap projection to show before/after RAF scores for the 1,800 flagged
+  members in aggregate.
+
+
+  Assume community non-dual, non-originally-disabled segment for all demographic lookups.'
+target_skills:
+- risk-adjustment
+domain: healthcare-ops
+difficulty: intermediate

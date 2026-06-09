@@ -1,0 +1,49 @@
+id: aws-genai-ml-architect-09
+prompt: 'A regional children''s hospital network (8 facilities, ~340,000 pediatric
+  patients) is building a federated clinical NLP pipeline to extract structured phenotype
+  data from unstructured pediatric EHR notes for a rare disease registry. The pipeline
+  must identify 23 specific rare disease phenotypes (including CHARGE syndrome, Kabuki
+  syndrome, and Smith-Lemli-Opitz syndrome) from free-text clinical notes written
+  by pediatricians, geneticists, and specialists.
+
+
+  **Constraints and requirements:**
+
+  - Notes contain PHI and cannot leave individual hospital VPCs
+
+  - Each facility has variable data volumes (smallest: 2,000 notes/month; largest:
+  89,000 notes/month)
+
+  - Ground truth labels exist for only 3 of the 23 phenotypes (n=1,200 labeled examples
+  total)
+
+  - Must achieve >0.85 F1 on phenotype extraction before registry submission
+
+  - IRB prohibits sending raw notes to any third-party API (including Bedrock)
+
+  - Target latency: batch processing acceptable, results within 6 hours of note creation
+
+  - Budget constraint: $180,000/year across all facilities
+
+
+  **Deliverables requested:**
+
+  1. Federated learning architecture diagram (described textually) using SageMaker
+  across 8 hospital VPCs, including how model aggregation occurs without PHI leaving
+  each facility
+
+  2. Strategy for handling the semi-supervised learning challenge (23 phenotypes,
+  only 3 labeled) using AWS-native tooling
+
+  3. Specific SageMaker component choices (training instances, containers, orchestration)
+  with cost breakdown justifying the $180K budget
+
+  4. MLOps pipeline design for model versioning and performance monitoring that satisfies
+  IRB and potential FDA SaMD oversight requirements
+
+  5. Fallback architecture if federated learning proves infeasible for the 2 smallest
+  facilities with limited compute'
+target_skills:
+- aws-genai-ml-architect
+domain: cross-domain
+difficulty: hard

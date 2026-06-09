@@ -1,0 +1,34 @@
+id: quantitative-proteomics-05
+prompt: 'You are conducting a biomarker discovery study comparing plasma proteomes
+  of 24 treatment-naive colorectal cancer patients versus 24 age/sex-matched healthy
+  controls. Samples were processed using a TMT-16plex experiment across two separate
+  mass spectrometry batches (12 cancer + 12 control per batch), with a pooled reference
+  channel included in each batch for cross-batch normalization. Data was acquired
+  on an Orbitrap Fusion and processed in Proteome Discoverer, yielding 3,847 protein
+  groups. After initial QC, you notice the following issues:
+
+
+  1. The within-batch CV for the pooled reference channels is acceptable (~8%), but
+  between-batch median log2-ratios show a systematic 0.31 offset for cancer samples
+  specifically (not controls), suggesting batch-specific sample handling differences.
+
+  2. Approximately 22% of protein groups have missing TMT reporter ion intensities,
+  with missingness strongly enriched in low-abundance proteins and concentrated in
+  one specific cancer sample subset (8 of 24 cancer patients show >40% missing values).
+
+  3. A known ratio compression artifact is suspected because spike-in standards at
+  5-fold true ratio are being measured at ~2.8-fold.
+
+
+  Please provide: (a) a step-by-step normalization strategy that accounts for the
+  asymmetric batch effect, (b) a recommendation for handling the missing values given
+  the likely missing-not-at-random mechanism, (c) a quantitative correction approach
+  for ratio compression and its expected impact on differential expression fold-changes,
+  and (d) R code using limma to perform differential expression analysis incorporating
+  batch as a covariate, including how to set up the design matrix and interpret the
+  resulting volcano plot for the top 10 hits including hypothetical proteins CRC-marker
+  COLEC11, FGA, and LRG1.'
+target_skills:
+- quantitative-proteomics
+domain: proteomics
+difficulty: intermediate

@@ -1,0 +1,43 @@
+id: cdisc-compliance-05
+prompt: 'A mid-size CRO is preparing SDTM datasets for an FDA NDA submission of a
+  cardiovascular drug trial (Study CV-2024-041, N=847 patients). The laboratory domain
+  (LB) contains 312 unique lab tests, but the sponsor collected 18 additional non-standard
+  analytes — including novel biomarkers like CardioStress-1 (CS1), Myocardial Remodeling
+  Index (MRI-b), and Fibro-Calcification Peptide (FCP) — that have no corresponding
+  CDISC Controlled Terminology (CT) codes in the LBTESTCD/LBTEST codelist (using CDISC
+  CT version 2023-09-29).
+
+
+  The team is debating whether to: (a) create sponsor-defined extensions in the LB
+  domain using non-standard LBTESTCD values, (b) move all 18 biomarkers into a SUPPQUAL
+  dataset (SUPPLB), or (c) create a separate FINDINGS domain (e.g., BM domain for
+  biomarkers).
+
+
+  Additional constraints:
+
+  - Three of the biomarkers (CS1, MRI-b, FCP) are primary efficacy endpoints feeding
+  into the ADaM BDS dataset (ADLBBM)
+
+  - The define.xml must include value-level metadata for all non-standard variables
+
+  - The FDA Study Data Technical Conformance Guide (STDCG v5.0) must be followed
+
+
+  Please provide:
+
+  1. A recommendation on the correct SDTM approach for handling these 18 non-standard
+  biomarkers, with justification citing SDTM IG v3.3 rules
+
+  2. A concrete SUPPLB structure example (variable names, rows) for at least two of
+  the biomarkers
+
+  3. The define.xml value-level metadata entries required for the non-standard LBTESTCD
+  values
+
+  4. How the ADaM ADLBBM dataset should reference and trace back to the SDTM source
+  for the three primary endpoint biomarkers'
+target_skills:
+- cdisc-compliance
+domain: clinical-data-review
+difficulty: intermediate

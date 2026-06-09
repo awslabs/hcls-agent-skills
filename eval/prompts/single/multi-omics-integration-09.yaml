@@ -1,0 +1,43 @@
+id: multi-omics-integration-09
+prompt: 'You are conducting a multi-omics study of treatment-resistant schizophrenia
+  (TRS) involving 47 patients and 52 healthy controls. You have collected four omics
+  layers, but with incomplete overlap: whole-blood RNA-seq (n=99 complete), plasma
+  proteomics via Olink Proximity Extension Assay covering 1,463 proteins (n=87), DNA
+  methylation via EPIC array (n=78), and untargeted serum metabolomics via LC-MS (n=61).
+  Only 44 samples have all four layers present simultaneously. Batch effects are substantial:
+  RNA-seq was processed in three batches over 18 months, proteomics in two batches,
+  and metabolomics across four instrument runs with known signal drift.
+
+
+  You want to identify multi-omic signatures distinguishing TRS from controls while
+  preserving statistical power despite incomplete overlap. A colleague suggests simply
+  restricting analysis to the 44 complete cases; another recommends running MOFA+
+  with missing data imputation; a third proposes SNF on pairwise complete subsets
+  followed by spectral clustering.
+
+
+  Provide the following deliverables:
+
+
+  1. A critical comparison of the three proposed strategies, explicitly addressing
+  how each handles the missing-data structure and batch effects, including any assumptions
+  that could be violated in this dataset.
+
+
+  2. Your recommended integration pipeline with justification, specifying which batch
+  correction methods to apply per omics layer before integration (name specific algorithms
+  and parameters).
+
+
+  3. Python or R code implementing MOFA+ with appropriate handling of the partial
+  overlap and batch covariates, using realistic variable names matching this study
+  (e.g., `trs_rna`, `trs_prot`, `trs_meth`, `trs_metab`).
+
+
+  4. After factor extraction, describe how you would perform enrichment analysis on
+  the top multi-omic factor loadings, specifying which databases and statistical thresholds
+  to use for each omics layer.'
+target_skills:
+- multi-omics-integration
+domain: multi-omics
+difficulty: hard

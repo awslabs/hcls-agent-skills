@@ -1,0 +1,42 @@
+id: cell-type-annotation-04
+prompt: 'You have completed a scRNA-seq experiment on human peripheral blood mononuclear
+  cells (PBMCs) from 12 healthy donors, processed with Scanpy. Your AnnData object
+  (`adata`) contains 45,000 cells with 18 Leiden clusters (resolution 0.8), UMAP coordinates
+  stored in `adata.obsm[''X_umap'']`, and raw counts in `adata.layers[''counts'']`.
+  Log-normalized data is in `adata.X`.
+
+
+  You want to annotate cell types using **two complementary approaches** and then
+  reconcile the results:
+
+
+  1. **CellTypist** with the `Immune_All_High.pkl` model, using majority voting per
+  Leiden cluster (not per cell)
+
+  2. **Marker-based annotation** using the following canonical markers: T cells (CD3D,
+  CD3E), CD4+ T (CD4, IL7R), CD8+ T (CD8A, CD8B), NK cells (GNLY, NKG7), B cells (CD19,
+  MS4A1), Monocytes (CD14, LYZ, FCGR3A), Dendritic cells (FCER1A, CST3), and Platelets
+  (PPBP, PF4)
+
+
+  **Deliverables:**
+
+
+  1. Complete Python code to run CellTypist with majority voting and store results
+  in `adata.obs[''celltypist_label'']`
+
+  2. Code to generate a **dot plot** showing expression of all listed marker genes
+  across the 18 Leiden clusters
+
+  3. A function `reconcile_annotations(adata)` that compares CellTypist labels with
+  a manually-provided dictionary `manual_labels` (mapping cluster IDs to cell type
+  strings) and flags any clusters where the two methods disagree, returning a pandas
+  DataFrame summary with columns: `cluster`, `celltypist_label`, `manual_label`, `agreement`,
+  `mean_confidence`
+
+  4. Brief recommendations (as code comments) for handling the 2-3 clusters most likely
+  to show disagreement in a PBMC dataset'
+target_skills:
+- cell-type-annotation
+domain: single-cell
+difficulty: intermediate

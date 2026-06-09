@@ -1,0 +1,41 @@
+id: rwd-cohort-analysis-09
+prompt: 'You are conducting a real-world evidence study using a commercial claims
+  database (2018–2023, n=847,000 covered lives) to compare time-to-first-major-adverse-cardiovascular-event
+  (MACE) between two SGLT2 inhibitors: empagliflozin (NDC prefix 00597-0182) and dapagliflozin
+  (NDC prefix 00310-0604) in patients with type 2 diabetes and established cardiovascular
+  disease.
+
+
+  **Cohort definition:** Index date = first prescription fill after ≥12-month washout.
+  Require ICD-10 codes E11.x (T2D) plus at least one of I21.x, I25.x, or I50.x within
+  24 months pre-index. Exclude patients with eGFR-related codes N18.4/N18.5 at baseline.
+  After applying all criteria, your treated cohorts are: empagliflozin n=4,312; dapagliflozin
+  n=3,891.
+
+
+  **Complication:** Preliminary diagnostics reveal that the proportional hazards assumption
+  is violated for the diabetes duration covariate (Schoenfeld residual p=0.003) and
+  that 14% of patients switch between the two SGLT2 inhibitors within 6 months of
+  index.
+
+
+  Please provide:
+
+  1. A propensity score model specification (covariates list, logistic regression
+  setup) and SMD threshold justification for acceptable balance
+
+  2. Python code implementing stabilized inverse probability of treatment weighting
+  (IPTW) with trimming at the 1st/99th percentile
+
+  3. A strategy for handling the non-proportional hazards violation — including whether
+  to use time-varying coefficients or stratification — with supporting diagnostic
+  code
+
+  4. An approach for managing treatment switchers (intention-to-treat vs. per-protocol
+  censoring) and its impact on the MACE hazard ratio estimate
+
+  5. Interpretation guidance for the final weighted Cox model output given these complications'
+target_skills:
+- rwd-cohort-analysis
+domain: pharmacoepidemiology
+difficulty: hard

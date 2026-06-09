@@ -1,0 +1,42 @@
+id: genomic-variant-interpretation-06
+prompt: 'A 34-year-old woman with a strong family history of breast and ovarian cancer
+  undergoes germline panel testing. The laboratory reports the following variant in
+  **BRCA2**: `NM_000059.4(BRCA2):c.7976+3A>G`.
+
+
+  Available evidence:
+
+  - **SpliceAI scores**: Donor loss = 0.61, Acceptor loss = 0.04, Donor gain = 0.02,
+  Acceptor gain = 0.01
+
+  - **gnomAD v3.1.2**: 2 heterozygous alleles observed out of 251,348 total alleles
+  (no homozygotes)
+
+  - **ClinVar**: 1 submission classified as VUS (single submitter, no functional data
+  cited)
+
+  - **RNA splicing study** (published, peer-reviewed): The variant causes partial
+  retention of intron 17 in ~40% of transcripts, introducing a premature stop codon;
+  ~60% of transcripts appear to be wild-type
+
+  - **BRCA2 inheritance**: Autosomal dominant; haploinsufficiency is the established
+  disease mechanism
+
+
+  Please provide the following:
+
+  1. Evaluate which ACMG/AMP 2015 criteria apply (both supporting and against pathogenicity),
+  explicitly addressing PVS1 applicability given the partial splicing effect and the
+  residual wild-type transcript percentage
+
+  2. Assign a final variant classification with justification
+
+  3. Explain how the 40% aberrant splicing threshold influences PVS1 strength (Strong
+  vs. Very Strong) according to current ClinGen SVI guidance
+
+  4. Describe what additional evidence would most efficiently resolve any remaining
+  uncertainty in this classification'
+target_skills:
+- genomic-variant-interpretation
+domain: genomics
+difficulty: intermediate

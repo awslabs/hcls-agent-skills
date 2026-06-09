@@ -1,0 +1,45 @@
+id: claims-analytics-07
+prompt: 'Here is test question #7 of 10:
+
+
+  ---
+
+
+  You are a claims analytics engineer at a regional health plan processing approximately
+  2.3 million professional claims per month. Your compliance team suspects a subset
+  of providers may be engaged in **unbundling** — billing component procedure codes
+  separately when a comprehensive bundled code should have been used. Specifically,
+  you''ve flagged 847 distinct provider NPIs whose CPT code co-occurrence patterns
+  look suspicious.
+
+
+  Your task is to build a programmatic NCCI (National Correct Coding Initiative) edit
+  validation pipeline. You have access to:
+
+  - A PostgreSQL `claims` table with columns: `claim_id`, `npi`, `service_date`, `cpt_code`,
+  `modifier`, `units`, `billed_amount`, `place_of_service`
+
+  - A `ncci_edits` reference table with columns: `column1_code`, `column2_code`, `modifier_indicator`
+  (0 = modifier not allowed, 1 = modifier allowed), `effective_date`, `deletion_date`
+
+
+  **Deliverables:**
+
+
+  1. Write a **SQL query** that identifies all claim lines where a provider billed
+  both a Column 1 and Column 2 code pair on the same date of service for the same
+  patient (`member_id` also available in `claims`), flagging whether a valid modifier
+  (59, XE, XS, XP, XU) was present to override the edit.
+
+
+  2. Write a **Python function** using pandas that takes the query results and calculates
+  a per-provider "unbundling score" — a weighted metric combining: violation frequency,
+  total dollars at risk, and percentage of same-day pairs lacking valid modifiers.
+
+
+  3. Provide a **ranked output schema** (column names + descriptions) for a provider
+  watchlist report suitable for audit prioritization.'
+target_skills:
+- claims-analytics
+domain: healthcare-ops
+difficulty: intermediate

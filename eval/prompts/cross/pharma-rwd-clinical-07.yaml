@@ -1,0 +1,51 @@
+id: pharma-rwd-clinical-07
+prompt: 'Here is the research question:
+
+
+  ---
+
+
+  You are designing a real-world evidence study using a large US commercial claims
+  database (Optum Clinformatics, 2016–2023, ~42 million continuously enrolled members)
+  to evaluate whether empagliflozin initiators have a lower risk of hospitalized heart
+  failure compared to sitagliptin initiators among adults with type 2 diabetes. The
+  study must rigorously address confounding by indication and other methodological
+  threats common in pharmacoepidemiology.
+
+
+  **Please provide all of the following deliverables:**
+
+
+  **1. Study Design Specification (Pharmacoepidemiology):** Describe a complete target
+  trial emulation protocol, including: (a) how to implement a new-user active comparator
+  design with a 180-day washout period, (b) how to handle time-varying confounding
+  from metformin add-on therapy using marginal structural models with stabilized IPTW
+  weights, (c) how to avoid immortal time bias in the index date assignment, and (d)
+  how to compute an E-value for the primary hazard ratio estimate of 0.74 (95% CI:
+  0.61–0.89) to assess sensitivity to unmeasured confounding.
+
+
+  **2. Cohort Identification Pipeline (RWD Cohort Analysis):** Provide the specific
+  code-based inclusion/exclusion logic using: (a) NDC codes to identify empagliflozin
+  and sitagliptin dispensings, (b) ICD-10-CM codes to confirm type 2 diabetes diagnosis
+  (at least 2 outpatient claims within 12 months), (c) CPT codes to exclude patients
+  with prior heart failure hospitalization, and (d) calculation of 12-month pre-index
+  PDC for any antidiabetic agent as a baseline adherence covariate. Also describe
+  propensity score estimation, SMD balance diagnostics (threshold SMD < 0.10), and
+  a Kaplan-Meier curve specification for time-to-first hospitalized heart failure.
+
+
+  **3. Outcome Coding and Terminology Mapping (Clinical Data Standards):** The primary
+  outcome is "hospitalized heart failure." Provide: (a) the ICD-10-CM codes you would
+  use (distinguishing systolic vs. diastolic subtypes), (b) the corresponding MedDRA
+  Preferred Term and its placement in the SOC/HLGT/HLT hierarchy, (c) the relevant
+  SNOMED CT concept IDs for heart failure subtypes, and (d) a brief justification
+  for whether to define the outcome at the ICD-10 code level or aggregate to MedDRA
+  HLT level for the primary analysis, given the tradeoffs in specificity versus statistical
+  power with an expected 1,847 outcome events.'
+target_skills:
+- pharmacoepidemiology
+- rwd-cohort-analysis
+- clinical-data-standards
+domain: pharmacoepidemiology
+difficulty: intermediate

@@ -1,0 +1,41 @@
+id: scrna-seq-pipeline-02
+prompt: 'You have just loaded a 10X Genomics dataset from a healthy donor PBMC sample
+  into an AnnData object. The raw count matrix contains 8,500 cells and 33,000 genes.
+  Before proceeding with downstream analysis, you need to perform quality control
+  filtering to remove low-quality cells and potential doublets based on standard QC
+  metrics.
+
+
+  Your initial exploration reveals the following distribution of QC metrics across
+  cells:
+
+  - Total counts (n_counts): range 200–45,000, median ~2,800
+
+  - Number of genes detected (n_genes): range 150–6,500, median ~1,100
+
+  - Percentage of mitochondrial reads (pct_counts_mt): range 0.1%–42%, median ~4.5%
+
+
+  Using Scanpy, please provide:
+
+
+  1. **Python code** to calculate and add QC metrics to the AnnData object using `sc.pp.calculate_qc_metrics()`,
+  including identification of mitochondrial genes (genes starting with "MT-").
+
+
+  2. **Recommended filtering thresholds** for n_genes (both minimum and maximum),
+  n_counts (minimum), and pct_counts_mt (maximum) based on the distributions described
+  above, with a brief justification for each threshold choice.
+
+
+  3. **Python code** to apply these filters sequentially to the AnnData object and
+  print the number of cells remaining after each filtering step.
+
+
+  4. A short explanation of why removing cells with an **unusually high** number of
+  detected genes (n_genes > some upper threshold) is important in scRNA-seq QC, and
+  what biological or technical artifact this step helps address.'
+target_skills:
+- scrna-seq-pipeline
+domain: single-cell
+difficulty: easy

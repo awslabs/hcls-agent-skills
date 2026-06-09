@@ -1,0 +1,41 @@
+id: quantitative-proteomics-09
+prompt: 'You are analyzing a DIA-based plasma proteomics dataset from a longitudinal
+  study tracking 45 cancer patients across three timepoints (baseline, 6-week, 12-week
+  post-treatment). Spectronaut 17 processed the raw data using default settings, producing
+  a precursor-level matrix with ~4,200 proteins. You observe the following issues:
+
+
+  1. **Missing data pattern**: Proteins APCS, CFB, and LBP show >60% missing values
+  concentrated specifically in the 12-week timepoint across all patients, while ~800
+  other proteins have <5% missingness scattered randomly.
+
+  2. **Batch effects**: Samples were run in three LC-MS batches corresponding exactly
+  to the three timepoints, making batch correction and biological signal inseparable.
+
+  3. **Dynamic range compression**: Highly abundant proteins (e.g., ALB, FGA) show
+  suspiciously low CV (<2%) across all conditions, while mid-abundance proteins show
+  CV of 15-25%.
+
+
+  Your tasks:
+
+  - Classify the missing data mechanism for APCS/CFB/LBP versus the 800 other proteins
+  and justify which imputation method (MinProb, QRILC, kNN, or local minimum) is appropriate
+  for each
+
+  - Propose a normalization strategy that accounts for the dynamic range issue without
+  over-correcting mid-abundance proteins
+
+  - Explain why the batch-timepoint confounding is statistically irrecoverable and
+  describe what limited analyses remain valid
+
+  - Write R pseudocode using `limma` to model the longitudinal structure with a patient
+  random effect, acknowledging the confounding constraint
+
+  - Identify two proteins from {APCS, CFB, LBP, ALB, FGA} that should be excluded
+  from differential expression analysis and explain why each warrants exclusion for
+  different reasons'
+target_skills:
+- quantitative-proteomics
+domain: proteomics
+difficulty: hard

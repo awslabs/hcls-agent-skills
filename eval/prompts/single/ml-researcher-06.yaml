@@ -1,0 +1,45 @@
+id: ml-researcher-06
+prompt: 'Here is test question #6 of 10:
+
+
+  ---
+
+
+  You are designing an ML pipeline to predict 30-day hospital readmission in a cohort
+  of 42,000 adult patients with heart failure, drawn from three academic medical centers
+  (Site A: n=18,000; Site B: n=14,000; Site C: n=10,000). The outcome prevalence is
+  22% overall but varies by site (Site A: 19%, Site B: 24%, Site C: 26%). Features
+  include structured EHR data: 47 lab values, 12 vital sign summaries, 8 comorbidity
+  flags (including CKD stage, NYHA class, EF category), insurance type, and ZIP-code-level
+  SDoH indices. You plan to compare logistic regression with L2 regularization, XGBoost,
+  and a TabNet architecture.
+
+
+  Please provide:
+
+
+  1. **A cross-validation strategy** that prevents temporal leakage (data spans 2017–2023)
+  and tests site generalization — specify fold construction, how sites are handled,
+  and any nested CV structure for hyperparameter tuning.
+
+
+  2. **A metric selection rationale** addressing the class imbalance and clinical
+  utility context; specifically compare AUROC vs. AUPRC vs. net benefit (decision
+  curve analysis) and recommend which should be primary, secondary, and exploratory.
+
+
+  3. **A fairness audit plan** examining at minimum three patient subgroups relevant
+  to this population, naming specific disparity metrics you would compute and thresholds
+  you would flag as problematic.
+
+
+  4. **A calibration assessment protocol** including which calibration methods to
+  apply post-hoc if needed, and how to evaluate calibration across sites separately.
+
+
+  5. **A brief TRIPOD+AI checklist note** identifying the two or three items most
+  likely to be under-reported for this specific study design.'
+target_skills:
+- ml-researcher
+domain: cross-domain
+difficulty: intermediate

@@ -1,0 +1,44 @@
+id: trajectory-analysis-01
+prompt: 'Here is test question #1 of 10:
+
+
+  ---
+
+
+  You are analyzing a single-cell RNA-seq dataset of 8,432 hematopoietic stem and
+  progenitor cells (HSPCs) from human bone marrow, spanning differentiation toward
+  erythroid, myeloid, and lymphoid lineages. The dataset has been preprocessed and
+  clustered into 12 cell populations including HSCs, MPPs, CMPs, GMPs, MEPs, and terminal
+  cell types. You want to infer differentiation trajectories using diffusion pseudotime
+  (DPT) implemented in Scanpy.
+
+
+  **Your tasks:**
+
+
+  1. Write Python code using Scanpy to compute a diffusion map and then calculate
+  DPT, using the HSC cluster (cluster label `"HSC"`) as the root cell. Assume the
+  AnnData object is named `adata` and has already been PCA-reduced with 30 components
+  stored in `adata.obsm["X_pca"]`.
+
+
+  2. After computing pseudotime, explain how you would identify which cells belong
+  to the erythroid versus myeloid branch using the pseudotime values and existing
+  cluster annotations.
+
+
+  3. The diffusion map produces 15 components by default. Explain how you would determine
+  the optimal number of diffusion components to retain, and what biological signal
+  you risk losing if you use too few (e.g., only 3 components).
+
+
+  4. Describe one key limitation of DPT compared to RNA velocity-based methods like
+  scVelo for this specific hematopoiesis dataset.
+
+
+  Provide complete, runnable code for task 1, and concise written answers for tasks
+  2–4.'
+target_skills:
+- trajectory-analysis
+domain: single-cell
+difficulty: easy

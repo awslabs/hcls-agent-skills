@@ -1,0 +1,33 @@
+id: rna-seq-analysis-10
+prompt: 'You are analyzing a bulk RNA-seq dataset comparing treatment-resistant vs.
+  treatment-sensitive tumor samples (n=8 per group). After running STAR two-pass alignment
+  against GRCh38 with the following parameters: `--outSAMtype BAM SortedByCoordinate
+  --outFilterMultimapNmax 20 --alignSJoverhangMin 8 --alignSJDBoverhangMin 1`, you
+  quantified expression using both Salmon (quasi-mapping, with `--gcBias --seqBias`
+  flags) and featureCounts (with `-p -B -C` flags for paired-end reads). When you
+  import both quantification results into DESeq2, you observe dramatically different
+  results: Salmon/tximport identifies 847 differentially expressed genes (FDR < 0.05,
+  |log2FC| > 1), while featureCounts identifies only 312 DEGs, with an overlap of
+  just 203 genes. Three biologically important candidate genes — *ABCB1*, *CYP3A4*,
+  and *TP53* — show significant DE only in the Salmon results but not featureCounts.
+
+
+  Please provide:
+
+  1. A mechanistic explanation for why Salmon and featureCounts produce such divergent
+  results in this specific context, focusing on at least three technical factors
+
+  2. The correct tximport code to properly import Salmon quantification files while
+  accounting for the offset matrix (inferential replicates), and the corresponding
+  DESeq2 setup
+
+  3. A validation strategy to determine which quantification method is more reliable
+  for these three specific genes, including IGV visualization checkpoints and a specific
+  RT-qPCR primer design consideration for *ABCB1* given its known multi-exon structure
+
+  4. A recommendation on whether to use `tximport` with `type="salmon"` vs `type="summarizedexperiment"`
+  for this experimental design, with justification'
+target_skills:
+- rna-seq-analysis
+domain: genomics
+difficulty: hard

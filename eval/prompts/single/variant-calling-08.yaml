@@ -1,0 +1,46 @@
+id: variant-calling-08
+prompt: 'Here is test question #8 of 10:
+
+
+  ---
+
+
+  You are analyzing a cohort of 47 pediatric acute lymphoblastic leukemia (ALL) patients
+  with matched tumor/normal pairs sequenced on Illumina NovaSeq 6000 at 120x tumor
+  / 60x normal WGS coverage. Your somatic calling pipeline uses GATK4 Mutect2, but
+  you are observing an unusually high false positive rate (~40%) in a specific genomic
+  context: tandem repeat regions flanking the PAX5 and ETV6 loci. After investigation,
+  you suspect the issue stems from a combination of (1) PCR-based library prep introducing
+  strand bias artifacts, (2) germline variants in these regions being miscalled as
+  somatic due to improperly configured Panel of Normals (PoN), and (3) possible tumor-in-normal
+  contamination estimated at 8-12% by GetPileupSummaries/CalculateContamination.
+
+
+  Given these compounding factors, provide the following:
+
+
+  1. A diagnostic checklist (with specific GATK FilterMutectCalls thresholds and INFO/FORMAT
+  fields to inspect) to distinguish which of the three sources is the dominant contributor
+  for a given variant.
+
+
+  2. A revised Mutect2 command-line invocation with arguments specifically tuned for
+  tandem repeat regions and high contamination scenarios, including appropriate `--f1r2`
+  artifact priors and `--max-reads-per-alignment-start` settings.
+
+
+  3. A strategy for rebuilding the PoN using the 47 normals in this cohort, including
+  minimum normal count recommendations and how to handle the 8-12% tumor-in-normal
+  contamination when selecting normals for PoN construction.
+
+
+  4. A Python or bash post-filtering script that flags variants where `TLOD < 6.0`
+  AND `SB` (strand bias Fisher score) exceeds 20 AND the variant falls within a homopolymer
+  run > 5 bp, using a VCF input file.
+
+
+  ---'
+target_skills:
+- variant-calling
+domain: genomics
+difficulty: hard

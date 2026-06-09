@@ -1,0 +1,37 @@
+id: ml-researcher-04
+prompt: 'You are developing a mortality prediction model for ICU patients using EHR
+  data from three hospital sites: a large academic medical center (Site A: 12,400
+  patients), a community hospital (Site B: 3,100 patients), and a rural critical access
+  hospital (Site C: 890 patients). The 30-day mortality rate is 18% at Site A, 22%
+  at Site B, and 31% at Site C. You plan to use gradient boosting (XGBoost) with 47
+  features including vitals, labs (lactate, creatinine, BNP), SOFA score components,
+  and free-text nursing notes encoded via a pretrained clinical BERT embedding.
+
+
+  Key concerns include: (1) the rural site has substantially higher mortality and
+  smaller sample size, (2) nursing note documentation practices differ significantly
+  across sites, (3) the model will eventually be submitted to FDA as a Software as
+  a Medical Device (SaMD), and (4) a previous internal model showed AUROC of 0.81
+  but was later found to have temporal leakage.
+
+
+  Please provide:
+
+  1. A detailed cross-validation strategy that prevents temporal leakage and properly
+  handles multi-site data, specifying train/validation/test splits with patient counts
+
+  2. A recommended evaluation metric suite explaining why AUROC alone is insufficient
+  here, including calibration assessment approach
+
+  3. A subgroup fairness audit plan covering at minimum three clinically relevant
+  demographic axes
+
+  4. Identification of at least three specific pipeline risks beyond temporal leakage
+  given the mixed structured/unstructured data and site heterogeneity
+
+  5. A mapping of your evaluation framework to FDA PCCP requirements for an adaptive
+  SaMD, noting which validation evidence gaps remain'
+target_skills:
+- ml-researcher
+domain: cross-domain
+difficulty: intermediate

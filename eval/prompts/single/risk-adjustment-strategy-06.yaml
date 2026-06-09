@@ -1,0 +1,42 @@
+id: risk-adjustment-strategy-06
+prompt: 'A Medicare Advantage plan serving 42,000 members is currently in the 2024
+  payment year transition period where CMS applies a blended model methodology (67%
+  V28 / 33% V24). Your analytics team has pulled a cohort of 3,800 members who have
+  at least one HCC mapped under V24 but whose conditions either map differently or
+  are eliminated entirely under V28. Specifically, you''ve identified the following
+  breakdown:
+
+
+  - 1,200 members with HCC 18 (Diabetes with Chronic Complications) under V24, which
+  splits into multiple refined categories under V28
+
+  - 950 members with HCC 85 (Congestive Heart Failure) under V24, which maps to V28
+  HCC 224/225 depending on acuity specificity
+
+  - 650 members with HCC 108 (Vascular Disease) under V24, which is eliminated as
+  a standalone category in V28
+
+  - 1,000 members with various musculoskeletal HCCs that are consolidated or removed
+  in V28
+
+
+  Given this transition scenario, please provide:
+
+
+  1. A quantitative framework explaining how the blended RAF score is calculated for
+  a single member who has V24-only HCCs versus a member whose HCCs map cleanly in
+  both models
+
+  2. A prioritization matrix ranking which of the four member cohorts above should
+  receive the most urgent coding gap intervention and clinical documentation improvement
+  (CDI) outreach, with specific rationale based on RAF impact
+
+  3. Concrete ICD-10 coding guidance for the CHF cohort (950 members) to achieve audit-defensible
+  V28 specificity mapping
+
+  4. A risk mitigation recommendation for the 650 members whose V24 HCC 108 has no
+  direct V28 equivalent'
+target_skills:
+- risk-adjustment-strategy
+domain: healthcare-ops
+difficulty: intermediate

@@ -1,0 +1,49 @@
+id: ehr-data-parsing-01
+prompt: 'Here is a straightforward HL7v2 parsing question:
+
+
+  ---
+
+
+  You have received the following HL7v2 ORU^R01 message from a laboratory system and
+  need to extract key data elements into a structured format for downstream processing:
+
+
+  ```
+
+  MSH|^~\&|LAB_SYS|CITY_HOSP|EHR_APP|CITY_HOSP|20240315143022||ORU^R01|MSG004821|P|2.5
+
+  PID|1||PT-998271^^^CITY_HOSP^MR||Thornton^Marcus^Allen||19780612|M|||742 Elm Street^^Springfield^IL^62704||555-847-2291
+
+  OBR|1|ORD-55123|LAB-88432|80053^Comprehensive Metabolic Panel^CPT|||20240315130000
+
+  OBX|1|NM|2345-7^Glucose^LN||97|mg/dL|70-99||||F|||20240315141500
+
+  OBX|2|NM|2160-0^Creatinine^LN||1.1|mg/dL|0.7-1.3||||F|||20240315141500
+
+  OBX|3|NM|17861-6^Calcium^LN||10.8|mg/dL|8.5-10.2|H|||F|||20240315141500
+
+  OBX|4|NM|2823-3^Potassium^LN||3.3|mmol/L|3.5-5.1|L|||F|||20240315141500
+
+  ```
+
+
+  Please provide the following deliverables:
+
+
+  1. A Python function `parse_oru_message(hl7_text)` that uses the `hl7` library (or
+  plain string parsing) to extract patient demographics from the PID segment and all
+  lab results from OBX segments.
+
+  2. The function should return a pandas DataFrame with columns: `patient_id`, `patient_name`,
+  `dob`, `gender`, `test_code`, `test_name`, `value`, `unit`, `reference_range`, and
+  `abnormal_flag`.
+
+  3. A brief data quality check that flags any OBX results where the value falls outside
+  the provided reference range, confirming consistency with the abnormal flag field.
+
+  4. Show the expected DataFrame output for this specific message.'
+target_skills:
+- ehr-data-parsing
+domain: clinical-data
+difficulty: easy

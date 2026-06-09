@@ -1,0 +1,36 @@
+id: drug-repurposing-10
+prompt: 'Here is test question #10 of 10:
+
+
+  ---
+
+
+  You are evaluating **baricitinib** (a JAK1/JAK2 inhibitor approved for rheumatoid
+  arthritis) as a repurposing candidate for **treatment-resistant major depressive
+  disorder (TR-MDD)**, motivated by a neuroinflammation hypothesis. Your team has
+  the following data from a retrospective cohort analysis of 847 RA patients on baricitinib:
+  23% showed clinically significant improvement on PHQ-9 scores (≥5 point reduction)
+  versus 11% in the methotrexate comparator arm (p=0.003), but this cohort had 68%
+  female patients, mean age 54, and high baseline CRP (mean 18 mg/L).
+
+
+  Complicating factors include: (1) OpenTargets scores baricitinib''s target JAK1
+  at 0.31 for MDD (genetic association), while IL-6 receptor scores 0.67; (2) a recent
+  CMap/L1000 query shows baricitinib''s transcriptomic signature has cosine similarity
+  of 0.41 with ketamine''s signature in neuronal cell lines; (3) DGIdb flags a potential
+  interaction between baricitinib and CYP2C19-metabolized antidepressants common in
+  TR-MDD populations; and (4) existing safety data shows dose-dependent thrombosis
+  risk (VTE incidence 0.6/100 patient-years at 2mg, 1.4/100 at 4mg).
+
+
+  Please provide: (a) a structured evidence-strength ranking using a repurposing evidence
+  hierarchy framework, explicitly addressing the confounds in the cohort data; (b)
+  a mechanistic hypothesis reconciling the JAK-STAT pathway with antidepressant activity,
+  citing the OpenTargets and CMap findings; (c) Python code to query DGIdb''s API
+  for JAK1/JAK2 interactions relevant to neuropsychiatric indications and flag the
+  CYP2C19 interaction risk; and (d) a go/no-go recommendation with the minimum trial
+  design requirements needed to de-risk the VTE safety signal before a Phase II study.'
+target_skills:
+- drug-repurposing
+domain: drug-discovery
+difficulty: hard

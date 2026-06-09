@@ -1,0 +1,36 @@
+id: pharmacoepidemiology-09
+prompt: 'Here is test question #9 of 10:
+
+
+  ---
+
+
+  You are designing a pharmacoepidemiologic study using a large US commercial claims
+  database (2010–2022, ~8 million continuously enrolled adults) to evaluate whether
+  GLP-1 receptor agonists (GLP-1 RAs) reduce the risk of incident heart failure hospitalization
+  compared to DPP-4 inhibitors in patients with type 2 diabetes. Your preliminary
+  cohort identification reveals 47,200 new users of GLP-1 RAs and 61,800 new users
+  of DPP-4 inhibitors after applying a 365-day washout period. However, you discover
+  three serious methodological complications: (1) approximately 18% of GLP-1 RA users
+  have a 30–180 day gap between their index prescription date and their first observable
+  refill, creating potential immortal time; (2) many patients switch between drug
+  classes or add insulin during follow-up, inducing time-varying confounding by HbA1c
+  trajectory (unmeasured) and weight (partially measured via BMI codes); and (3) a
+  substantial number of patients (n=9,400) initiated GLP-1 RAs specifically following
+  a recent cardiovascular event within 90 days, suggesting strong confounding by indication
+  that may not be fully captured by your 47-variable propensity score.
+
+
+  Please provide: (a) a precise operational definition of the index date and follow-up
+  period that eliminates the immortal time bias described, with explicit justification;
+  (b) a step-by-step analytic strategy using marginal structural models with stabilized
+  IPTW to handle the time-varying confounding, including how you would specify the
+  weight models given the partially unmeasured confounder; (c) a quantitative bias
+  analysis plan using E-values and at least one negative control outcome to bound
+  the residual confounding from the post-cardiovascular-event subgroup; and (d) R
+  pseudocode implementing the stabilized weight calculation and a truncation sensitivity
+  analysis at the 1st/99th percentiles.'
+target_skills:
+- pharmacoepidemiology
+domain: pharmacoepidemiology
+difficulty: hard

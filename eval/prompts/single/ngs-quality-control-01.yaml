@@ -1,0 +1,24 @@
+id: ngs-quality-control-01
+prompt: "You have just received paired-end FASTQ files (`sample_R1.fastq.gz` and `sample_R2.fastq.gz`)\
+  \ from a whole-genome sequencing run on an Illumina NovaSeq 6000. Before proceeding\
+  \ with variant calling, your team requires a comprehensive initial quality assessment\
+  \ of the raw reads. You have access to a compute node with `THREADS=8` and want\
+  \ all outputs written to `OUT=qc_out`.\n\n**Your tasks:**\n\n1. **Run FastQC** on\
+  \ both FASTQ files simultaneously using all available threads, directing HTML reports\
+  \ and zip archives to the `OUT` directory. Provide the exact shell command.\n\n\
+  2. **Run fastp** to perform adapter trimming and quality filtering on the paired\
+  \ reads. Use the following parameters:\n   - Minimum read length after trimming:\
+  \ 50 bp\n   - Quality cutoff for sliding window trimming: Q20\n   - Enable automatic\
+  \ adapter detection\n   - Use all available threads\n   - Output trimmed reads as\
+  \ `sample_trimmed_R1.fastq.gz` and `sample_trimmed_R2.fastq.gz` in `OUT`\n   - Generate\
+  \ both JSON and HTML reports in `OUT`\n   Provide the exact shell command.\n\n3.\
+  \ **Run FastQC again** on the trimmed reads to confirm quality improvement. Provide\
+  \ the exact shell command.\n\n4. **Aggregate all FastQC and fastp reports** using\
+  \ MultiQC into a single summary report in `OUT`. Provide the exact shell command.\n\
+  \n5. **List three key metrics** you would examine in the MultiQC report to decide\
+  \ whether the trimmed reads are acceptable for downstream WGS variant calling, and\
+  \ briefly explain the threshold or expectation for each metric."
+target_skills:
+- ngs-quality-control
+domain: genomics
+difficulty: easy

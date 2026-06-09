@@ -1,0 +1,47 @@
+id: genomic-variant-interpretation-02
+prompt: 'A 34-year-old woman with a strong family history of breast and ovarian cancer
+  undergoes germline genetic testing. The laboratory report identifies the following
+  variant in BRCA2: NM_000059.4(BRCA2):c.5946del (p.Ser1982ArgfsTer22).
+
+
+  The following evidence is available:
+
+  - Variant type: single nucleotide deletion causing frameshift
+
+  - gnomAD v3.1 allele frequency: 0.000008 (2 heterozygous alleles observed, 0 homozygous)
+
+  - ClinVar submissions: 47 submissions, all classified as Pathogenic, no conflicting
+  interpretations
+
+  - Family history: two first-degree relatives with breast cancer, one with ovarian
+  cancer
+
+  - Functional data: not available
+
+  - BRCA2 is a well-established tumor suppressor gene with ClinGen definitive gene-disease
+  validity for hereditary breast and ovarian cancer
+
+
+  Using the ACMG/AMP 2015 five-tier classification framework, please provide the following
+  deliverables:
+
+
+  1. Identify and justify which specific ACMG/AMP criteria apply to this variant (e.g.,
+  PVS1, PS1–PS4, PM1–PM6, PP1–PP5, BA1, BS1–BS4, BP1–BP7), explaining why each criterion
+  is met or not met.
+
+
+  2. Combine the applicable criteria according to the ACMG/AMP rules to arrive at
+  a final classification (Pathogenic, Likely Pathogenic, VUS, Likely Benign, or Benign).
+
+
+  3. Briefly explain whether PVS1 is appropriate here given the variant type and gene
+  context, including any caveats about loss-of-function mechanisms.
+
+
+  4. State the clinical reporting recommendation for this patient given the final
+  classification.'
+target_skills:
+- genomic-variant-interpretation
+domain: genomics
+difficulty: easy

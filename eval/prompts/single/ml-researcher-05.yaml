@@ -1,0 +1,40 @@
+id: ml-researcher-05
+prompt: 'You are developing a deep learning model to predict 30-day hospital readmission
+  from chest X-rays combined with structured EHR data (age, comorbidities, lab values)
+  at a large academic medical center. Your dataset contains 47,832 patients from 2015–2022,
+  with a readmission rate of 11.3%. The imaging cohort skews heavily toward patients
+  over 65 (68% of cases), and you have site data from three hospital campuses that
+  differ in patient demographics and imaging equipment (two GE systems, one Siemens).
+
+
+  You plan to use a dual-encoder architecture: a pretrained CheXNet-style CNN for
+  imaging and a transformer for tabular EHR features, with late fusion. You want this
+  model to eventually support a FDA 510(k) submission as a Software as a Medical Device
+  (SaMD).
+
+
+  Please provide:
+
+
+  1. A detailed data splitting strategy that accounts for temporal leakage, site generalization,
+  and patient-level independence — specify exact train/validation/test proportions
+  and how you would handle the multi-site structure.
+
+
+  2. A complete evaluation framework including which primary and secondary metrics
+  to use given the class imbalance, how to assess calibration, and how to construct
+  a decision curve analysis for clinical utility at a readmission intervention threshold
+  of 15–25% predicted probability.
+
+
+  3. A fairness audit plan targeting age groups (18–50, 51–64, 65–79, 80+), sex, and
+  insurance type (Medicare, Medicaid, private, uninsured) — specify which disparity
+  metrics to compute and what thresholds you would flag as problematic.
+
+
+  4. A brief mapping of how your experimental design maps to TRIPOD+AI reporting requirements
+  and two specific PROBAST domains most at risk of bias in this setup.'
+target_skills:
+- ml-researcher
+domain: cross-domain
+difficulty: intermediate

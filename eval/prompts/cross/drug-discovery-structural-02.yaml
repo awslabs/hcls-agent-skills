@@ -1,0 +1,51 @@
+id: drug-discovery-structural-02
+prompt: 'Here is the research question:
+
+
+  ---
+
+
+  You are a computational drug discovery scientist working on a rare pediatric neuroblastoma
+  variant driven by aberrant overexpression of **PHGK2** (a fictional serine/threonine
+  kinase), identified in a cohort of 47 patients at your institution. Whole-exome
+  sequencing confirms a recurrent gain-of-function mutation (G412R) that locks the
+  kinase in an active conformation. A crystallography collaborator has provided a
+  2.1 Å resolution structure of PHGK2-G412R in complex with a weak fragment hit (**F-0047**,
+  SMILES: `c1ccc(NC(=O)Cc2ccncc2)cc1`, IC₅₀ = 18 µM) bound at the ATP-binding site.
+  You have also identified a shallow, previously uncharacterized pocket adjacent to
+  the αC-helix that may represent an allosteric site.
+
+
+  **Your task is to deliver the following:**
+
+
+  1. **Repurposing Analysis:** Query conceptually against DGIdb and OpenTargets to
+  identify at least three FDA-approved kinase inhibitors with documented activity
+  against PHGK2 orthologs or structurally homologous kinases (assume PHGK2 shares
+  67% sequence identity with DYRK1A and 54% with CDK5). Rank these candidates using
+  a repurposing evidence hierarchy that accounts for mechanism-of-action overlap,
+  existing pediatric safety data, and blood-brain barrier penetration. Justify your
+  top candidate for immediate in vitro validation.
+
+
+  2. **Cheminformatics Triage:** Using RDKit-based analysis, evaluate fragment hit
+  F-0047 against Lipinski Ro5 and Veber rules, flag any PAINS substructures, compute
+  its Morgan fingerprint (radius=2, 2048 bits), and calculate Tanimoto similarity
+  against your top repurposing candidate. Propose two specific matched molecular pair
+  transformations to improve the fragment''s potency and ADMET profile while preserving
+  the hinge-binding pharmacophore.
+
+
+  3. **Structure-Based Design Strategy:** Given the 2.1 Å structure and the two binding
+  sites identified, design a dual-site virtual screening cascade specifying: (a) how
+  to assess druggability of the allosteric αC-helix pocket using fpocket or SiteMap
+  criteria, (b) which docking protocol and scoring function to apply at each site,
+  (c) whether induced-fit or rigid docking is appropriate for the G412R mutant, and
+  (d) how MM-GBSA rescoring should be prioritized given the pediatric CNS indication
+  constraints.'
+target_skills:
+- drug-repurposing
+- cheminformatics
+- structure-based-drug-design
+domain: drug-discovery
+difficulty: easy

@@ -1,0 +1,42 @@
+id: quantitative-proteomics-08
+prompt: 'You are conducting a biomarker discovery study comparing plasma proteomes
+  of 12 treatment-responders vs 12 non-responders to an immunotherapy regimen. You
+  used a 16-plex TMT experiment with an internal reference standard (IRS) pooled sample
+  occupying one channel, run across two TMT batches (8 samples + IRS per batch). After
+  database searching with Proteome Discoverer, you have 4,847 quantified proteins,
+  but notice the following issues:
+
+
+  1. **Ratio compression**: Reporter ion signals show ~40% compression estimated from
+  a dilution series of spike-in proteins (e.g., UPS2 standard).
+
+  2. **Missing values**: 23% of protein-level TMT intensities are missing, with proteins
+  like APOC3, CFH, and SERPINA3 showing >60% missingness concentrated in the non-responder
+  group (suggesting MNAR).
+
+  3. **Batch effects**: PCA shows clear separation by batch (PC1 = 31% variance) rather
+  than by biological group.
+
+
+  Given these specific issues, provide:
+
+
+  (a) A step-by-step normalization and batch correction pipeline appropriate for IRS-TMT
+  data, explaining why median centering alone is insufficient here.
+
+
+  (b) A principled imputation strategy that handles the mixture of MCAR and MNAR proteins
+  differently — specify cutoffs and methods for each category.
+
+
+  (c) R code implementing the IRS normalization followed by ComBat batch correction,
+  then hybrid imputation using `imputeLCMD` and `impute` packages.
+
+
+  (d) An assessment of whether ratio compression at 40% severity warrants fold-change
+  correction before differential expression with `limma`, and if so, provide the correction
+  formula using the spike-in calibration curve slope.'
+target_skills:
+- quantitative-proteomics
+domain: proteomics
+difficulty: hard

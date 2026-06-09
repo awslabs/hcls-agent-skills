@@ -1,0 +1,41 @@
+id: multi-omics-pipeline-07
+prompt: 'You are analyzing a multi-omics dataset from a colorectal cancer study involving
+  87 tumor samples collected across three clinical sites (Boston, Houston, and Toronto).
+  Each sample has RNA-seq count data (~18,000 genes) and reverse-phase protein array
+  (RPPA) measurements for 212 proteins. The RNA-seq data uses Ensembl gene IDs (e.g.,
+  ENSG00000141736) while the RPPA data uses antibody names that map loosely to UniProt
+  accessions.
+
+
+  Before integration, you suspect strong batch effects tied to clinical site in the
+  RNA-seq data. You also need to harmonize feature identifiers so that overlapping
+  genes/proteins can be linked across layers.
+
+
+  **Deliverables:**
+
+
+  1. **Batch correction code**: Write R code using `ComBat-seq` (from the `sva` package)
+  to correct the RNA-seq count matrix for site-level batch effects, preserving a `tumor_stage`
+  covariate (stages I–IV distributed as 12, 28, 31, 16 samples respectively across
+  sites).
+
+
+  2. **ID harmonization**: Write R code using `biomaRt` to map the Ensembl IDs to
+  HGNC symbols and UniProt accessions simultaneously, then filter to only the 212
+  proteins present in the RPPA panel (provided as a character vector `rppa_uniprot_ids`).
+
+
+  3. **MOFA2 integration**: After harmonization and batch correction, write R code
+  to prepare a MOFA2 `MultiAssayExperiment` object with both omics layers and train
+  a MOFA2 model requesting 10 latent factors, setting `spikeslab_weights = TRUE` and
+  a convergence tolerance of `1e-6`.
+
+
+  4. **Brief rationale**: Explain in 3–5 sentences why `spikeslab_weights = TRUE`
+  is appropriate for this sparse multi-omics scenario and what the latent factors
+  represent biologically.'
+target_skills:
+- multi-omics-pipeline
+domain: multi-omics
+difficulty: intermediate

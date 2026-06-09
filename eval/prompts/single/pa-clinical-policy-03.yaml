@@ -1,0 +1,47 @@
+id: pa-clinical-policy-03
+prompt: 'A 58-year-old patient with moderate-to-severe plaque psoriasis (BSA 22%,
+  PASI score 18) has been prescribed secukinumab (Cosentyx) 300mg by their dermatologist.
+  The patient''s commercial insurance plan (BlueCrest Health PPO) has denied the prior
+  authorization request, citing failure to meet step therapy requirements. The denial
+  letter states the patient must first try and fail two conventional systemic therapies
+  (methotrexate AND cyclosporine) before biologic approval.
+
+
+  The patient''s chart documents the following history:
+
+  - Methotrexate trial: 6 months at 20mg/week, discontinued due to hepatotoxicity
+  (ALT 3x ULN)
+
+  - No cyclosporine trial documented
+
+  - History of stage 2 chronic kidney disease (eGFR 52 mL/min/1.73m²)
+
+  - Previous diagnosis of hypertension
+
+
+  Given this clinical scenario, please provide:
+
+
+  1. **Step therapy exception analysis**: Evaluate whether the patient qualifies for
+  a step therapy exception under standard payer clinical criteria and cite the specific
+  clinical justification for waiving the cyclosporine requirement given the documented
+  comorbidities.
+
+
+  2. **Appeal letter framework**: Outline the key clinical arguments and supporting
+  documentation that should be included in a Level 1 administrative appeal for this
+  PA denial, including which medical necessity criteria are most relevant.
+
+
+  3. **Peer-to-peer talking points**: Draft 3-4 concise clinical talking points a
+  dermatologist should raise during a peer-to-peer review call with the medical director,
+  referencing relevant clinical guidelines (AAD, ACR, or similar).
+
+
+  4. **Escalation pathway**: If the Level 1 appeal is denied, describe the next steps
+  in the appeals process including any state-level protections or external independent
+  review options that may apply.'
+target_skills:
+- pa-clinical-policy
+domain: healthcare-ops
+difficulty: easy

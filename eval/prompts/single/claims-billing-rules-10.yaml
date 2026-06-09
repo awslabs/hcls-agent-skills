@@ -1,0 +1,35 @@
+id: claims-billing-rules-10
+prompt: 'A regional Medicare Advantage plan is conducting a targeted audit after their
+  data analytics team flagged a high-volume orthopedic group practice (Pinnacle Orthopedics,
+  NPI: fictional) for suspicious billing patterns across 847 claims submitted over
+  Q1-Q2 2024.
+
+
+  The flagged patterns include: (1) Modifier 59 appended to CPT 27447 (total knee
+  arthroplasty) alongside CPT 27370 (injection for knee arthrography) on the same
+  date of service in 34% of claims, bypassing an active NCCI edit pair; (2) E&M code
+  99215 billed with Modifier 25 on the same DOS as the surgical procedure in 71% of
+  cases, compared to a 12% national benchmark; (3) CPT 20610 (arthrocentesis, major
+  joint) billed during the 90-day global surgery period of CPT 27447 without a valid
+  exception modifier in 156 claims; (4) Bilateral procedure modifier 50 appended to
+  CPT 27447 with full fee schedule reimbursement claimed rather than the standard
+  150% bilateral adjustment.
+
+
+  The practice has submitted a rebuttal claiming all Modifier 59 usage reflects "distinct
+  procedural services" and that the high Modifier 25 rate reflects their complex patient
+  population.
+
+
+  Please provide: (1) A structured NCCI edit analysis for each flagged pattern, identifying
+  whether the modifier indicator allows override and under what clinical circumstances;
+  (2) An assessment of whether each pattern more likely represents coding error, waste,
+  or intentional fraud, with supporting rationale; (3) Specific documentation elements
+  the auditors should request to validate or refute the practice''s rebuttal; (4)
+  A recommended overpayment calculation methodology for the bilateral modifier issue;
+  and (5) Criteria for escalating this case from a compliance audit to a formal FWA
+  investigation referral.'
+target_skills:
+- claims-billing-rules
+domain: healthcare-ops
+difficulty: hard

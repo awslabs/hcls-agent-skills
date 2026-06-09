@@ -1,0 +1,42 @@
+id: translational-research-01
+prompt: 'A preclinical team has identified **KARN2** (a fictional kinase) as a potential
+  therapeutic target for amyotrophic lateral sclerosis (ALS). They have the following
+  data package:
+
+
+  - **In vitro**: KARN2 knockdown in iPSC-derived motor neurons reduces TDP-43 mislocalization
+  by 45% (n=3 independent lines, p=0.03)
+
+  - **In vivo**: KARN2 knockout mice show 15% improvement in rotarod performance at
+  12 weeks in the SOD1-G93A model (n=10/group, p=0.04), but no survival benefit was
+  observed
+
+  - **Human genetics**: A single GWAS study (n=2,400 ALS cases, 3,100 controls) reports
+  one SNP near KARN2 with OR=1.18 (95% CI: 1.02–1.37); no eQTL or Mendelian randomization
+  data available
+
+  - **Biomarker**: Plasma phospho-KARN2 levels are elevated in 60 ALS patients vs.
+  40 controls (AUC=0.71)
+
+
+  The team is debating whether to advance KARN2 into a first-in-human (FIH) study
+  within 18 months.
+
+
+  **Please provide:**
+
+  1. A structured target validation scorecard assessing the strength of evidence across
+  genetic, preclinical, and biomarker dimensions
+
+  2. An identification of the **three most critical gaps** that must be addressed
+  before FIH
+
+  3. A prioritized 12-month preclinical plan (with specific experiments) to close
+  those gaps
+
+  4. A recommendation on whether the 18-month FIH timeline is realistic, with explicit
+  go/no-go criteria'
+target_skills:
+- translational-research
+domain: cross-domain
+difficulty: easy

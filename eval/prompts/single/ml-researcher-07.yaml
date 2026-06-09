@@ -1,0 +1,37 @@
+id: ml-researcher-07
+prompt: 'You are conducting a multi-site retrospective study to predict 30-day hospital
+  readmission in heart failure patients using structured EHR data from three health
+  systems: Mercy General (n=12,400 patients, 2015–2021), St. Raphael Medical Center
+  (n=8,750 patients, 2017–2022), and Northbrook Community Hospital (n=4,200 patients,
+  2019–2023). Your feature set includes 47 variables: demographics (age, sex, race/ethnicity),
+  12 lab values at discharge (BNP, creatinine, sodium, etc.), 8 vitals, medication
+  classes (ACE inhibitors, beta-blockers, diuretics, etc.), comorbidities via ICD-10
+  codes, and prior utilization. The outcome prevalence is 18% at Mercy, 22% at St.
+  Raphael, and 15% at Northbrook. You plan to train on Mercy + St. Raphael and externally
+  validate on Northbrook.
+
+
+  Please provide:
+
+
+  1. A complete cross-validation strategy for the training set that prevents temporal
+  leakage and accounts for site clustering, with explicit rationale for your choices.
+
+  2. A recommendation on whether to use AUROC or AUPRC as the primary metric given
+  the class imbalance and clinical context, plus two additional metrics you would
+  report and why.
+
+  3. A calibration assessment plan, including which calibration method you would apply
+  post-hoc and how you would visualize and statistically test calibration on the external
+  validation set.
+
+  4. A fairness audit design specifying which subgroups to evaluate, which fairness
+  metric(s) to apply, and a decision threshold strategy that balances sensitivity
+  and equity across race/ethnicity groups.
+
+  5. A brief checklist (5–7 items) of TRIPOD+AI reporting elements specific to this
+  multi-site temporal design.'
+target_skills:
+- ml-researcher
+domain: cross-domain
+difficulty: intermediate

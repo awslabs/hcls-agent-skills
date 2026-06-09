@@ -1,0 +1,43 @@
+id: molecular-docking-07
+prompt: 'You are preparing a structure-based virtual screen of 2,500 compounds against
+  the kinase domain of a fictional target protein **KDR7** (PDB-like structure saved
+  as `kdr7_apo.pdb`, resolution 2.1 Å). Your crystallographer colleague has identified
+  the ATP-binding pocket centered at coordinates **x=14.3, y=−22.7, z=8.9** with an
+  approximate binding cavity of **25 × 22 × 20 Å**.
+
+
+  Before running the full screen, you want to validate your docking setup by redocking
+  the co-crystallized inhibitor **LIG-441** (provided as `lig441.mol2`). A successful
+  redock should reproduce the crystal pose with **RMSD ≤ 2.0 Å**.
+
+
+  Your ligand library (`library_2500.sdf`) was downloaded from an internal database
+  and has not been cleaned. Vina will run on a workstation with **8 CPU cores**, and
+  you want to use **exhaustiveness=16** for the validation step and **exhaustiveness=8**
+  for the full screen to balance speed and accuracy.
+
+
+  Please provide:
+
+
+  1. A complete **Python or shell script pipeline** that (a) prepares `kdr7_apo.pdb`
+  as a PDBQT receptor using AutoDockTools/`prepare_receptor4.py`, (b) converts and
+  prepares `lig441.mol2` to PDBQT for redocking, and (c) runs Vina with the correct
+  grid box parameters.
+
+
+  2. A **Python script** to parse the Vina output log, extract the top binding affinity
+  and RMSD values, and flag whether the redocking validation passes.
+
+
+  3. A **batch virtual screening script** that iterates over all compounds in `library_2500.sdf`,
+  prepares each ligand, runs Vina, and collects results into a CSV with columns: `compound_id`,
+  `best_affinity_kcal_mol`, `rmsd_lb`, `rmsd_ub`.
+
+
+  4. **Three practical recommendations** for handling likely failure cases in ligand
+  preparation for a dirty 2,500-compound SDF file.'
+target_skills:
+- molecular-docking
+domain: protein-structure
+difficulty: intermediate

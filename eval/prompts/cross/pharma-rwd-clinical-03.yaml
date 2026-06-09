@@ -1,0 +1,58 @@
+id: pharma-rwd-clinical-03
+prompt: 'You are a pharmacoepidemiologist at a large integrated health system with
+  access to a linked claims-EHR database containing 2.4 million commercially insured
+  adults (2018–2023). Your team is designing a real-world study to evaluate whether
+  sodium-glucose cotransporter-2 (SGLT2) inhibitors reduce the risk of acute kidney
+  injury (AKI) compared to dipeptidyl peptidase-4 (DPP-4) inhibitors in patients with
+  type 2 diabetes and moderate chronic kidney disease (CKD stage G3a–G3b, defined
+  by eGFR 30–59 mL/min/1.73m²).
+
+
+  **Your specific constraints and data parameters:**
+
+  - The database contains 187,400 patients with T2D and at least one eGFR measurement
+  in the target range
+
+  - Medication exposure is captured via NDC codes; diagnoses via ICD-10-CM; AKI must
+  be identified from both inpatient claims and outpatient lab values
+
+  - Follow-up ranges from 30 days to 48 months; approximately 23% of patients switch
+  or discontinue therapy within 6 months
+
+  - Unmeasured confounders include dietary sodium intake and over-the-counter NSAID
+  use
+
+
+  **Provide the following concrete deliverables:**
+
+
+  1. **Study design specification**: Describe how you would implement a new-user active
+  comparator design with target trial emulation, explicitly addressing how to define
+  the index date, washout period length, and how to handle immortal time bias given
+  that some patients have a gap between prescription date and first fill.
+
+
+  2. **Cohort identification code logic**: Write pseudocode (or annotated SQL logic)
+  for identifying the SGLT2i and DPP-4i new-user cohorts using NDC code categories,
+  and define the AKI outcome using the appropriate ICD-10-CM codes (including the
+  relevant code range) AND laboratory criteria (serum creatinine rise thresholds per
+  KDIGO criteria).
+
+
+  3. **Propensity score and survival analysis plan**: Specify whether to use IPTW
+  with stabilized weights or 1:1 PS matching for this setting (justify given the 23%
+  early discontinuation), describe how to assess covariate balance using SMD thresholds,
+  and outline a marginal structural Cox model to handle time-varying confounding from
+  eGFR drift and concomitant nephrotoxin use.
+
+
+  4. **Unmeasured confounding and bias analysis**: Calculate or describe how to compute
+  an E-value for a hypothetical hazard ratio of 0.74 (favoring SGLT2i), and propose
+  two negative control outcomes (with their MedDRA Preferred Terms and ICD-10-CM codes)
+  to empirically assess residual confounding.'
+target_skills:
+- pharmacoepidemiology
+- rwd-cohort-analysis
+- clinical-data-standards
+domain: pharmacoepidemiology
+difficulty: easy

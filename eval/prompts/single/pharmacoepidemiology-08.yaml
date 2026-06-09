@@ -1,0 +1,54 @@
+id: pharmacoepidemiology-08
+prompt: 'Here is test question #8 of 10:
+
+
+  ---
+
+
+  You are designing a pharmacoepidemiologic study using a large US commercial claims
+  database (2010–2022, ~8 million continuously enrolled adults) to evaluate whether
+  long-term use of proton pump inhibitors (PPIs) causes chronic kidney disease (CKD).
+  A major methodological concern is **time-varying confounding**: NSAID use, hypertension
+  diagnoses, and diabetes diagnoses all predict both continued PPI use and CKD risk,
+  and these covariates change over follow-up.
+
+
+  **Specific parameters:**
+
+  - 142,000 new PPI users (≥30-day supply within 90-day window, no prior PPI use in
+  12-month washout)
+
+  - Active comparator: 89,000 new H2-receptor antagonist (H2RA) users with identical
+  washout criteria
+
+  - Outcome: incident CKD (eGFR-based diagnosis codes, ≥2 claims 90 days apart)
+
+  - Median follow-up: 3.1 years; maximum 8 years
+
+  - Time-varying covariates updated quarterly: NSAID use, ACE inhibitor use, HbA1c-proxy
+  codes, blood pressure medication intensification
+
+  - Concern: patients who develop early renal biomarker changes may be switched off
+  PPIs before CKD diagnosis (treatment-confounder feedback)
+
+
+  **Deliverables requested:**
+
+  1. Explain precisely why standard time-updated Cox regression fails here and what
+  bias direction you would expect
+
+  2. Specify a complete marginal structural model (MSM) implementation plan including:
+  weight numerator/denominator model specifications, how to handle censoring weights,
+  and stabilized weight diagnostics (with acceptable weight range thresholds)
+
+  3. Provide R pseudocode using the `ipw` or `WeightIt` package to estimate stabilized
+  IPTW weights with quarterly time-updating
+
+  4. Describe two sensitivity analyses specifically addressing the possibility that
+  unmeasured confounding by indication (e.g., undocumented *H. pylori* treatment)
+  could explain any observed PPI–CKD association, including an E-value calculation
+  framework'
+target_skills:
+- pharmacoepidemiology
+domain: pharmacoepidemiology
+difficulty: hard

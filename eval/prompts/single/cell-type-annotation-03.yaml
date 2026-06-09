@@ -1,0 +1,41 @@
+id: cell-type-annotation-03
+prompt: 'You have completed a scRNA-seq experiment on human peripheral blood mononuclear
+  cells (PBMCs) from 8 healthy donors. After preprocessing and clustering with Scanpy,
+  you have an AnnData object (`adata`) containing 45,000 cells organized into 18 Leiden
+  clusters (resolution=0.5). The object has normalized, log-transformed counts stored
+  in `adata.X`, with raw counts in `adata.raw`.
+
+
+  You want to annotate these clusters using **CellTypist** with the pretrained `Immune_All_Low.pkl`
+  model, which provides fine-grained immune cell annotations.
+
+
+  Please provide the following deliverables:
+
+
+  1. **Complete Python code** to run CellTypist annotation on this AnnData object,
+  using majority voting mode (`majority_voting=True`) to assign consensus labels per
+  cluster. Ensure the code handles any necessary preprocessing steps CellTypist requires
+  (e.g., normalization to 10,000 counts per cell).
+
+
+  2. **Code to visualize** the results with two UMAP plots side-by-side: one colored
+  by Leiden cluster number and one colored by the CellTypist majority-vote label.
+
+
+  3. **Code to generate a summary table** showing, for each Leiden cluster: the majority-vote
+  cell type label, the top 3 predicted cell types by proportion, and the number of
+  cells per cluster.
+
+
+  4. A brief explanation (3-5 sentences) of what `majority_voting=True` does differently
+  compared to per-cell probabilistic predictions, and when you might prefer one approach
+  over the other.
+
+
+  Assume standard library imports (`scanpy`, `celltypist`, `pandas`, `matplotlib`)
+  are available and that `adata` is already loaded in memory.'
+target_skills:
+- cell-type-annotation
+domain: single-cell
+difficulty: easy

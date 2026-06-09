@@ -1,0 +1,33 @@
+id: translational-research-06
+prompt: 'Here is test question #6 of 10:
+
+
+  ---
+
+
+  Your team has identified KCNQ3 as a potential target for a rare pediatric epileptic
+  encephalopathy (estimated prevalence: 1 in 85,000). You have the following preclinical
+  evidence: (1) a knockin mouse model (KCNQ3-R230C) shows 40% reduction in M-current
+  amplitude and spontaneous seizures in 80% of animals by postnatal day 21; (2) a
+  potassium channel opener (compound KO-417) reduces seizure frequency by 65% in the
+  mouse model at 10 mg/kg BID with acceptable tolerability; (3) human genetic data
+  shows 12 de novo KCNQ3 variants in a cohort of 340 patients with similar EEG signatures,
+  but only 4 of these are predicted loss-of-function; (4) no validated biomarker exists
+  for KCNQ3 channel dysfunction in CSF or plasma; (5) a first-in-human Phase 1 study
+  in healthy adults showed target engagement via quantitative EEG (reduction in theta
+  power) at 20 mg BID but the allometric scaling from mouse to human required a 2x
+  higher-than-predicted dose.
+
+
+  Given this evidence package, please provide: (1) a structured target validation
+  scorecard assessing strength across genetic, functional, and translational axes;
+  (2) a critical analysis of the three most significant translational risks and how
+  each could cause Phase 2 failure; (3) a proposed biomarker strategy specifying context
+  of use, modality, and qualification timeline for at least two biomarkers; (4) a
+  recommended Phase 2 trial design including population selection criteria, primary
+  and key secondary endpoints, and sample size rationale given the ultra-rare disease
+  context; and (5) a go/no-go decision recommendation with explicit criteria thresholds.'
+target_skills:
+- translational-research
+domain: cross-domain
+difficulty: intermediate

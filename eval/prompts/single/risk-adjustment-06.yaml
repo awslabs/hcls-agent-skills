@@ -1,0 +1,46 @@
+id: risk-adjustment-06
+prompt: 'Here is test question #6 of 10:
+
+
+  ---
+
+
+  You are building a CMS-HCC Version 28 risk adjustment pipeline for a Medicare Advantage
+  plan with 45,000 members. Your claims data warehouse contains an `icd_claims` table
+  with columns `(member_id, dos, icd10_code, provider_npi)` and a `member_demographics`
+  table with columns `(member_id, age, sex, medicaid_dual_status, orig_disabled)`.
+  The plan has identified that several members have **conflicting HCC assignments**
+  due to disease hierarchies — specifically, members who have been coded for both
+  HCC 18 (Diabetes with Chronic Complications) and HCC 19 (Diabetes without Complication),
+  as well as members coded for both HCC 111 (Chronic Obstructive Pulmonary Disease)
+  and HCC 112 (Fibrosis of Lung).
+
+
+  Your deliverables are:
+
+
+  1. **SQL query** that applies the ICD-10-to-HCC crosswalk for V28, flags all members
+  with hierarchy conflicts across at least these two condition pairs, and outputs
+  a deduplicated HCC list per member with the dominant (higher-severity) HCC retained.
+
+
+  2. **Python function** `resolve_hierarchies(member_hcc_dict: dict) -> dict` that
+  accepts a dictionary mapping `member_id` to a list of raw HCCs and returns the hierarchy-resolved
+  HCC set using the CMS V28 hierarchy rules. Include handling for at least 5 distinct
+  hierarchy pairs.
+
+
+  3. **RAF score calculation** in Python that applies the correct V28 coefficients
+  for the `CNA` (Community Non-Dual Aged) model segment, incorporating the interaction
+  terms for `DIABETES_HF` and `CHF_gCopdCF` where applicable.
+
+
+  4. A brief explanation (3–5 sentences) of why hierarchy resolution must occur **before**
+  interaction term evaluation, with a concrete example from this dataset.
+
+
+  ---'
+target_skills:
+- risk-adjustment
+domain: healthcare-ops
+difficulty: intermediate

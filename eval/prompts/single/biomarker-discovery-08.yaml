@@ -1,0 +1,39 @@
+id: biomarker-discovery-08
+prompt: 'A pharmaceutical company has completed a Phase II trial of a targeted therapy
+  (drug X) in 180 patients with metastatic colorectal cancer. They collected baseline
+  tumor RNA-seq data (18,432 genes) and want to develop a predictive biomarker for
+  12-month progression-free survival (binary outcome: 89 progressors, 91 non-progressors).
+  The clinical team proposes using LASSO logistic regression with 10-fold cross-validation,
+  selecting features at lambda.min, then reporting the AUC from that same CV loop
+  as the final performance estimate.
+
+
+  Before proceeding, several complications have emerged: (1) batch effects exist across
+  3 sequencing runs (60 patients each), which are correlated with enrollment site;
+  (2) a bioinformatician pre-filtered genes to the top 2,000 by univariate t-test
+  p-value before the CV loop; (3) the team wants to include 8 clinical covariates
+  (ECOG status, prior lines of therapy, CEA level, etc.) alongside the genomic features;
+  and (4) regulatory submission will require an analytically validated cutpoint.
+
+
+  Please provide:
+
+  1. A precise diagnosis of every methodological flaw in the proposed analysis, explaining
+  why each constitutes data leakage or introduces optimistic bias
+
+  2. A corrected analysis pipeline in pseudocode that properly addresses batch correction,
+  feature selection, model training, and performance estimation
+
+  3. Specific guidance on how to combine the 8 clinical covariates with the genomic
+  features without introducing leakage
+
+  4. A power/sample-size justification for whether 180 patients is adequate given
+  the EPV (events-per-variable) constraints, assuming the final model retains approximately
+  15 genomic features
+
+  5. A validation roadmap specifying what external cohort characteristics and performance
+  thresholds would support regulatory submission of this predictive biomarker'
+target_skills:
+- biomarker-discovery
+domain: single-cell
+difficulty: hard

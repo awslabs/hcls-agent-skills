@@ -1,0 +1,38 @@
+id: ehr-data-parsing-10
+prompt: 'You are processing a high-volume clinical data pipeline that receives HL7v2
+  ORU^R01 messages from three different laboratory vendors (LabCorp, Quest, and an
+  in-house LIMS). Each vendor uses slightly different OBX segment encodings for the
+  same LOINC-coded lab tests. Specifically, for serum creatinine (LOINC 2160-0), LabCorp
+  sends OBX|5 values as plain decimals (e.g., `1.2`), Quest wraps values in curly
+  braces with units embedded (e.g., `{1.2 mg/dL}`), and the in-house LIMS occasionally
+  sends ranges instead of single values (e.g., `0.9-1.1`) when instruments report
+  borderline results.
+
+
+  You have a batch of 500 ORU messages (mixed vendors) that need to be parsed into
+  a pandas DataFrame with columns: `patient_mrn`, `vendor`, `loinc_code`, `test_name`,
+  `numeric_value`, `unit`, `reference_range`, `abnormal_flag`, `observation_datetime`,
+  and `message_uid`.
+
+
+  **Deliverables required:**
+
+
+  1. Write a Python function `parse_orу_batch(messages: list[str]) -> pd.DataFrame`
+  using the `hl7` library that handles all three vendor formats, normalizes the creatinine
+  values to a single float (using midpoint for ranges), and extracts all required
+  columns. Include robust error handling for malformed segments.
+
+
+  2. Implement a `run_quality_checks(df: pd.DataFrame) -> dict` function that detects:
+  (a) duplicate message UIDs, (b) creatinine values outside physiologically plausible
+  range (0.1–15.0 mg/dL), (c) missing abnormal flags where the value exceeds the reference
+  range upper bound, and (d) vendor-specific parsing failure rates.
+
+
+  3. Explain the key design decisions for handling the range-valued OBX fields and
+  any edge cases your implementation must address.'
+target_skills:
+- ehr-data-parsing
+domain: clinical-data
+difficulty: hard

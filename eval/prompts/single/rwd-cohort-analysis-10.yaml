@@ -1,0 +1,36 @@
+id: rwd-cohort-analysis-10
+prompt: 'You are analyzing a Medicare claims database (2018–2022) to compare cardiovascular
+  outcomes between two SGLT2 inhibitor cohorts: empagliflozin (n=14,230) and dapagliflozin
+  (n=11,847). Your primary outcome is 3-point MACE (myocardial infarction, stroke,
+  or cardiovascular death), with secondary outcomes of hospitalization for heart failure
+  and all-cause mortality.
+
+
+  After 1:1 propensity score matching on 47 covariates (demographics, comorbidities,
+  prior medications), you have 9,412 matched pairs. However, your diagnostics reveal
+  several complications: (1) the SMD for "prior insulin use" remains at 0.14 post-matching
+  (above your 0.10 threshold), (2) Schoenfeld residuals show a statistically significant
+  time-varying effect for the empagliflozin coefficient between months 6–18 (p=0.003),
+  violating the proportional hazards assumption, and (3) approximately 18% of patients
+  switch between SGLT2 inhibitors during follow-up (treatment crossover).
+
+
+  Please provide:
+
+  1. A decision framework for whether to re-match, trim, or apply overlap weighting
+  to resolve the residual insulin imbalance, with specific SMD thresholds and sensitivity
+  analyses
+
+  2. Python code implementing a time-stratified Cox model that splits follow-up at
+  months 6 and 18 to handle the non-proportional hazards, including how to construct
+  the counting process format dataset
+
+  3. An intention-to-treat versus per-protocol analysis strategy addressing the 18%
+  crossover, including inverse probability of censoring weighting (IPCW) implementation
+
+  4. A visualization plan for presenting the time-varying hazard ratio across the
+  three intervals with confidence bands and the Schoenfeld residual plot'
+target_skills:
+- rwd-cohort-analysis
+domain: pharmacoepidemiology
+difficulty: hard

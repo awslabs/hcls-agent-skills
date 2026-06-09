@@ -1,0 +1,38 @@
+id: multi-omics-integration-05
+prompt: 'You are conducting a multi-omics study of treatment response in 847 pancreatic
+  ductal adenocarcinoma (PDAC) patients across three clinical sites (Site A: n=312,
+  Site B: n=289, Site C: n=246). You have collected four omics layers, but with incomplete
+  overlap: RNA-seq (all 847 patients), ATAC-seq chromatin accessibility (Sites A and
+  B only, n=601), plasma proteomics via Olink proximity extension assay measuring
+  1,472 proteins (Sites A and C only, n=558), and untargeted serum metabolomics (Site
+  B and C only, n=535). Only 187 patients have all four omics layers simultaneously.
+  The primary endpoint is stratifying patients into treatment-response subgroups (responders
+  vs. non-responders to FOLFIRINOX).
+
+
+  Your goal is to run MOFA+ on this dataset. Please provide:
+
+
+  1. A concrete strategy for handling the partial sample overlap in MOFA+, specifying
+  whether to use the full partially-overlapping dataset or subset to complete cases,
+  and justify your choice with reference to MOFA+''s missing data handling mechanism.
+
+
+  2. A recommended configuration for MOFA+ training: number of factors to initialize
+  (given 4 views and ~800 samples), sparsity priors, convergence criteria (ELBO tolerance
+  and minimum iterations), and whether to use stochastic inference given the sample
+  size.
+
+
+  3. Python code using the `mofapy2` library to set up the model with the four omics
+  views, incorporating appropriate per-view feature selection (top variance-based
+  filtering thresholds for each data type) before model fitting.
+
+
+  4. A post-hoc strategy to identify which MOFA+ factors are significantly associated
+  with FOLFIRINOX response, including correction for site-of-origin batch effects
+  in the factor-phenotype association testing.'
+target_skills:
+- multi-omics-integration
+domain: multi-omics
+difficulty: intermediate

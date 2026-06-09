@@ -1,0 +1,37 @@
+id: molecular-docking-03
+prompt: 'You have prepared a protein receptor (PDB ID: 3KLM, a fictional kinase target)
+  and a small library of 50 drug-like compounds for a structure-based virtual screening
+  campaign using AutoDock Vina. The receptor has been cleaned, hydrogens added, and
+  saved as `receptor_3klm.pdbqt`. Your grid box is centered at coordinates x=14.5,
+  y=22.3, z=8.7 with dimensions 20×20×20 Å (grid spacing 0.375 Å). Each ligand in
+  your library has been converted to PDBQT format and stored in a directory called
+  `ligand_library/`.
+
+
+  You want to automate the entire screening pipeline and then analyze the results
+  to identify your top candidates.
+
+
+  Please provide the following deliverables:
+
+
+  1. **A Python script** that iterates over all 50 PDBQT ligands in `ligand_library/`,
+  runs AutoDock Vina for each using the receptor and grid box parameters above (exhaustiveness=8,
+  num_modes=9), and saves each output log to a `results/` directory with a filename
+  matching the ligand name.
+
+
+  2. **A second Python script** that parses all Vina output logs in `results/`, extracts
+  the best binding affinity (mode 1, kcal/mol) for each ligand, and outputs a ranked
+  CSV file (`ranked_results.csv`) with columns: `ligand_name`, `best_affinity_kcal_mol`,
+  `rank`.
+
+
+  3. **A brief explanation** (3–5 sentences) of what binding affinity threshold (in
+  kcal/mol) you would typically use to classify a hit compound in this context, and
+  what additional validation steps you would recommend for the top 5 ranked compounds
+  before progressing to experimental assays.'
+target_skills:
+- molecular-docking
+domain: protein-structure
+difficulty: easy

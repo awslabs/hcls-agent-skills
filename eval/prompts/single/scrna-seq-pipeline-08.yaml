@@ -1,0 +1,36 @@
+id: scrna-seq-pipeline-08
+prompt: 'You are analyzing a single-cell RNA-seq dataset from a longitudinal study
+  of 8 multiple sclerosis patients (4 treatment-naive, 4 post-interferon-beta treatment)
+  with samples collected at 3 timepoints each (24 total samples, ~180,000 total cells
+  after concatenation). After running standard Scanpy preprocessing, you notice the
+  following concerning patterns:
+
+
+  1. Leiden clustering (resolution=0.5) produces 18 clusters, but UMAP visualization
+  shows 3 clusters that appear to "bridge" between otherwise distinct cell populations,
+  suggesting possible doublets or transitional states
+
+  2. Harmony batch correction was applied using `patient_id` as the batch key, but
+  cells from timepoint 3 of treatment-naive patients still show systematic separation
+  from other timepoints in UMAP space
+
+  3. Differential expression analysis using `sc.tl.rank_genes_groups` with the Wilcoxon
+  method identifies MALAT1, MT-CO1, and MT-ND4 as top markers for two of your clusters
+
+
+  Given these specific issues, provide:
+
+  - A diagnostic workflow to distinguish doublets from true transitional cell states
+  in the bridging clusters, including specific Scanpy/Scrublet code
+
+  - A revised batch correction strategy explaining why Harmony alone is insufficient
+  here and providing scVI implementation code that accounts for both patient identity
+  AND timepoint as covariates
+
+  - An explanation of why the flagged marker genes are problematic and a concrete
+  filtering approach with code to exclude technical artifacts from differential expression
+  results while preserving biologically meaningful variation'
+target_skills:
+- scrna-seq-pipeline
+domain: single-cell
+difficulty: hard

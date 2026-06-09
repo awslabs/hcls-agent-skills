@@ -1,0 +1,51 @@
+id: quality-measures-09
+prompt: 'A regional health plan with 847,000 covered lives needs to calculate the
+  **Controlling High Blood Pressure (CBP)** HEDIS measure for their commercial population.
+  Their data team has identified several edge cases complicating the denominator and
+  numerator logic:
+
+
+  **Population parameters:**
+
+  - Measurement year: 2024 (January 1 – December 31)
+
+  - Members aged 18–85 with hypertension diagnosis
+
+  - Enrollment database shows 12,340 initially eligible members
+
+  - 1,847 members have gaps in enrollment during the year
+
+  - 623 members have conflicting ICD-10 codes (I10 present but also have ESRD codes
+  N18.5/N18.6)
+
+  - 891 members received blood pressure readings only via telehealth visits (CPT 99441–99443)
+
+  - 412 members have readings documented in both claims and a connected EHR feed,
+  with discordant values
+
+
+  **Specific challenges to address:**
+
+
+  1. Write a **SQL query** (PostgreSQL dialect) that correctly builds the CBP denominator,
+  handling the continuous enrollment requirement (11 of 12 months rule with allowable
+  gap logic), and properly excluding ESRD members per NCQA specifications.
+
+
+  2. For the **numerator logic**, write a second SQL query that identifies members
+  with a controlling BP reading (<140/90), resolving the conflict when claims-based
+  and EHR-sourced readings disagree for the same date of service — specify which source
+  takes precedence and why.
+
+
+  3. Provide a **care gap detection query** that flags members who had only telehealth
+  BP readings and explains whether NCQA 2024 specifications allow these to count toward
+  numerator compliance.
+
+
+  4. Calculate the **expected measure rate range** given the data constraints, and
+  identify which exclusion category will have the largest impact on the final denominator.'
+target_skills:
+- quality-measures
+domain: healthcare-ops
+difficulty: hard

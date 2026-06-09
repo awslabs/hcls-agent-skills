@@ -1,0 +1,42 @@
+id: multi-omics-pipeline-01
+prompt: 'Here is test question #1 of 10:
+
+
+  ---
+
+
+  You are analyzing a multi-omics dataset from a colorectal cancer study involving
+  120 patients across three clinical sites (Site A: n=45, Site B: n=38, Site C: n=37).
+  You have RNA-seq raw count data and proteomics TMT intensity data for the same patients.
+  Before integrating these layers, you need to harmonize feature identifiers and apply
+  batch correction.
+
+
+  Your RNA-seq data uses Ensembl gene IDs (e.g., ENSG00000141510 for TP53), while
+  the proteomics data uses UniProt accession numbers (e.g., P04637). You need to map
+  both layers to HGNC gene symbols as a common namespace, retaining only features
+  present in all three identifier systems.
+
+
+  After ID harmonization, apply batch correction to the RNA-seq count data using ComBat-seq
+  (since these are raw counts), treating clinical site as the batch variable and tumor
+  stage (I/II vs III/IV) as a biological covariate to preserve.
+
+
+  Please provide:
+
+  1. Complete R code using `biomaRt` to map Ensembl IDs to HGNC symbols and UniProt
+  IDs to HGNC symbols, then compute the intersecting gene set across both layers
+
+  2. Complete R code applying `ComBat-seq` from the `sva` package to the RNA-seq count
+  matrix, with site as batch and tumor stage as the preserved covariate
+
+  3. A brief explanation (3-5 sentences) of why ComBat-seq is preferred over standard
+  ComBat for raw count data in this scenario
+
+  4. One concrete quality-control check you would run after batch correction to verify
+  the site effect has been removed'
+target_skills:
+- multi-omics-pipeline
+domain: multi-omics
+difficulty: easy

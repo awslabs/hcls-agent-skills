@@ -1,0 +1,51 @@
+id: biomarker-discovery-05
+prompt: 'Here is test question #5 of 10:
+
+
+  ---
+
+
+  You are developing a **predictive biomarker** to identify which early-stage non-small
+  cell lung cancer (NSCLC) patients will respond to adjuvant immunotherapy (pembrolizumab)
+  in a randomized trial dataset. Your discovery cohort contains 312 patients (187
+  treated, 125 control) with whole-exome sequencing, RNA-seq (18,432 genes), and 14
+  clinical variables. The primary endpoint is 3-year disease-free survival (DFS).
+  Events: 94 in treated arm, 61 in control arm.
+
+
+  A colleague has pre-filtered the RNA-seq features to the top 500 genes by univariate
+  log-rank p-value across the **entire dataset** before splitting into train/test
+  folds, arguing this "just removes noise." You have access to an independent validation
+  cohort of 98 patients (same trial protocol, different institution) with identical
+  data types.
+
+
+  **Please provide:**
+
+
+  1. **Identify and explain** the specific data leakage introduced by your colleague''s
+  approach and quantify approximately how this inflates apparent model performance
+  (cite relevant literature concepts, not fabricated citations).
+
+
+  2. **Design a corrected nested cross-validation pipeline** (5-outer, 3-inner folds)
+  specifying exactly where feature selection occurs, which algorithm you would use
+  for the final model (justify LASSO Cox vs. elastic net Cox for this sample size
+  and event count), and how you handle the treatment-interaction term required for
+  a predictive (not prognostic) biomarker.
+
+
+  3. **Write Python pseudocode** (using scikit-survival or lifelines conventions)
+  implementing the corrected pipeline with the treatment-interaction term included.
+
+
+  4. **Specify three evaluation metrics** appropriate for this time-to-event predictive
+  biomarker task, explaining why time-averaged C-index alone is insufficient here.
+
+
+  5. **Outline an external validation plan** for the 98-patient cohort, including
+  what constitutes a clinically meaningful result given the cohort size.'
+target_skills:
+- biomarker-discovery
+domain: single-cell
+difficulty: intermediate

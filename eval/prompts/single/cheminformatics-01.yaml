@@ -1,0 +1,41 @@
+id: cheminformatics-01
+prompt: 'A medicinal chemist has synthesized a focused library of 8 compounds targeting
+  a kinase of interest. The SMILES strings for these compounds are provided below:
+
+
+  1. `CC1=CC=C(C=C1)S(=O)(=O)N2CCN(CC2)C(=O)C3=CC=CO3` (Compound A)
+
+  2. `COC1=CC=C(C=C1)NC(=O)CN2CCN(CC2)S(=O)(=O)C3=CC=CS3` (Compound B)
+
+  3. `CC(C)(C)C1=CC(=CC(=C1)C(F)(F)F)NC(=O)C2CCCN2C(=O)OCC3=CC=CC=C3` (Compound C)
+
+  4. `OC(=O)C1=CC=C(S1)NC(=O)C2=CC3=CC=CC=C3O2` (Compound D)
+
+  5. `CC1=CN=CC=C1NC(=O)C2=CC=C(C=C2)OCC3=CC=CC=C3` (Compound E)
+
+  6. `C1=CC=C2C(=C1)C=CC(=O)O2` (Compound F)
+
+  7. `CC(=O)Nc1ccc(cc1)O` (Compound G, paracetamol)
+
+  8. `C(CC(=O)O)C(=O)O` (Compound H, succinic acid)
+
+
+  Using RDKit, please:
+
+
+  1. Calculate the four Lipinski Rule of Five parameters (MW, LogP, HBD, HBA) for
+  each compound and flag any violations
+
+  2. Apply Veber''s oral bioavailability rules (rotatable bonds ≤ 10, TPSA ≤ 140 Å²)
+  and flag violations
+
+  3. Screen all compounds against the PAINS filter and identify any problematic scaffolds
+
+  4. Provide complete, runnable Python code using RDKit to perform all three analyses
+
+  5. Summarize which compounds are suitable for further optimization as oral drug
+  candidates'
+target_skills:
+- cheminformatics
+domain: drug-discovery
+difficulty: easy

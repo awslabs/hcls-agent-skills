@@ -1,0 +1,41 @@
+id: edc-data-validation-06
+prompt: 'You are working as a clinical data manager on a Phase II oncology trial (STUDY-ONC-2024)
+  with 180 enrolled patients. Your EDC system (Veeva Vault CDMS) exports lab data
+  in a flat CSV format that needs to be transformed and validated before SDTM LB domain
+  submission.
+
+
+  The exported CSV contains these columns: `SUBJID`, `VISIT`, `LBTEST`, `LBRESULT`,
+  `LBUNIT`, `LBDTC`, `LBREFLO`, `LBREFHI`, `FASTING_FLAG`. Key lab tests include ALT,
+  AST, Creatinine, Hemoglobin, and Platelets. You have 12 patients flagged with ALT
+  values between 3-5x ULN (potential Grade 2 hepatotoxicity per CTCAE v5.0) and 3
+  patients with ALT >5x ULN (potential Grade 3).
+
+
+  Your protocol specifies that fasting glucose and lipid panel results are only valid
+  when `FASTING_FLAG = ''Y''`, and that any lab collected more than 3 days outside
+  the scheduled visit window should trigger a protocol deviation flag.
+
+
+  Please provide:
+
+
+  1. **Python code** to validate the Veeva Vault CSV export against SDTM LB domain
+  structure requirements, including proper mapping of `LBORRES`, `LBORRESU`, `LBSTNRLO`,
+  `LBSTNRHI`, and `LBNRIND` fields
+
+  2. **Range check logic** that automatically grades ALT/AST elevations per CTCAE
+  v5.0 criteria and outputs a summary report
+
+  3. **Cross-form validation** code that flags fasting-dependent lab results where
+  `FASTING_FLAG ≠ ''Y''`
+
+  4. **Visit window check** function that compares `LBDTC` against a provided visit
+  schedule dictionary and flags out-of-window collections
+
+  5. A brief explanation of how `LBNRIND` should be derived when sponsor-defined ranges
+  differ from lab-reported reference ranges'
+target_skills:
+- edc-data-validation
+domain: clinical-data-review
+difficulty: intermediate

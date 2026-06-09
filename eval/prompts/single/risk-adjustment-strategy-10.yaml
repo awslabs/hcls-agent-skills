@@ -1,0 +1,40 @@
+id: risk-adjustment-strategy-10
+prompt: 'A Medicare Advantage plan is navigating the 2024-2025 blended transition
+  period between CMS-HCC V24 and V28 models. Their risk adjustment analytics team
+  has pulled the following member cohort data for prospective gap closure prioritization:
+
+
+  - **Member A (67F):** Active ICD-10 codes: E11.65 (T2DM with hyperglycemia), I50.32
+  (chronic diastolic HF, moderate), N18.3 (CKD Stage 3). Last face-to-face encounter:
+  14 months ago.
+
+  - **Member B (72M):** Active ICD-10 codes: F32.1 (major depressive disorder, moderate),
+  G20 (Parkinson''s disease), E11.40 (T2DM with diabetic neuropathy, unspecified).
+  Current year HCCs captured in V24 only.
+
+  - **Member C (81F):** Active ICD-10 codes: I69.351 (hemiplegia following cerebral
+  infarction), E11.3519 (T2DM with proliferative diabetic retinopathy), I48.11 (longstanding
+  persistent AFib). V28 mapping shows one condition dropping from HCC capture entirely.
+
+
+  The plan uses a 50/50 blended RAF calculation for 2024 payment year.
+
+
+  **Provide the following:**
+
+  1. For each member, identify which ICD-10 codes map differently between V24 and
+  V28, specifying HCC assignments, hierarchy suppressions, and any conditions that
+  lose HCC capture in V28.
+
+  2. Calculate the directional RAF impact (increase/decrease) of the V28 transition
+  for each member under the 50/50 blend, explaining disease interaction logic.
+
+  3. Identify which member represents the highest-priority recapture opportunity and
+  why, considering both RAF impact and documentation risk.
+
+  4. Draft audit-defensible documentation language for the highest-risk condition
+  in Member C''s profile, suitable for a physician attestation addendum.'
+target_skills:
+- risk-adjustment-strategy
+domain: healthcare-ops
+difficulty: hard

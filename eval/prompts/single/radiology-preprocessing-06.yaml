@@ -1,0 +1,41 @@
+id: radiology-preprocessing-06
+prompt: 'You are processing a dataset of 847 T1-weighted MRI scans from a multicenter
+  stroke study. The scans were acquired across 4 sites using different scanners (Siemens
+  Prisma 3T, GE Discovery MR750 3T, Philips Achieva 1.5T, and Siemens Skyra 3T), resulting
+  in significant intensity inhomogeneity and inter-site variability. Your preprocessing
+  pipeline must prepare these scans for a deep learning segmentation model that expects
+  images registered to MNI152 1mm isotropic space with intensities normalized to zero
+  mean and unit variance within the brain mask.
+
+
+  Specific constraints and observations:
+
+  - Approximately 12% of scans contain large perilesional edema that causes HD-BET
+  to fail skull stripping (leaving dura and scalp artifacts)
+
+  - The Philips 1.5T scans show particularly severe bias field (estimated B1 inhomogeneity
+  >40% signal variation)
+
+  - Registration must preserve lesion morphology without warping pathological tissue
+
+  - Processing must complete within 4 hours on a 16-core CPU cluster node
+
+
+  Please provide:
+
+  1. A complete ANTs-based preprocessing pipeline in Python (using subprocess calls
+  or antspy) that handles bias correction with N4ITK, skull stripping with a fallback
+  strategy for failed HD-BET cases, and SyN registration to MNI152 space
+
+  2. Specific N4ITK parameter recommendations for the severe Philips bias field cases
+  (convergence thresholds, number of fitting levels, mesh resolution)
+
+  3. A quality control strategy with quantitative metrics to automatically flag failed
+  registrations or skull strips
+
+  4. Recommendations for handling the registration of lesion-containing scans to avoid
+  pathological tissue warping'
+target_skills:
+- radiology-preprocessing
+domain: imaging
+difficulty: intermediate

@@ -1,0 +1,47 @@
+id: pharmacoepidemiology-10
+prompt: 'A health system''s pharmacoepidemiology team is studying whether SGLT2 inhibitors
+  (vs. DPP-4 inhibitors as active comparator) reduce hospitalization for heart failure
+  among type 2 diabetes patients in a claims database (n=847,000 patients, 2015–2022).
+  They plan an active comparator new-user design with IPTW using stabilized weights.
+
+
+  **Complication 1 — Time-varying confounding:** HbA1c values (available quarterly)
+  influence both treatment switching and outcomes. Cardiologists increasingly co-prescribe
+  loop diuretics over follow-up, which is both a confounder and potential mediator.
+
+
+  **Complication 2 — Immortal time:** Some patients had a 30-day "grace period" after
+  index date before dispensing was confirmed, creating potential immortal time in
+  the exposure definition.
+
+
+  **Complication 3 — Unmeasured confounding:** Ejection fraction (EF) is unavailable
+  in claims; patients with reduced EF are more likely to receive SGLT2 inhibitors
+  post-2019 guideline changes.
+
+
+  **Deliverables requested:**
+
+
+  1. Explain precisely how the grace-period definition creates immortal time bias,
+  quantify the likely direction of effect on the hazard ratio, and describe two structural
+  fixes.
+
+
+  2. Specify the complete marginal structural model setup to handle time-varying loop
+  diuretic use as a time-varying confounder that is also a mediator — including what
+  to condition on, what not to condition on, and the weighting structure.
+
+
+  3. Calculate the E-value for an observed HR=0.72 (95% CI lower bound=0.61) and interpret
+  whether unmeasured EF confounding could plausibly explain this away, given that
+  EF-guided prescribing post-2019 likely produces an odds ratio of approximately 2.8
+  between EF and SGLT2 initiation.
+
+
+  4. Propose a negative control outcome analysis using two specific negative controls
+  appropriate for this drug-disease context, explaining the selection rationale.'
+target_skills:
+- pharmacoepidemiology
+domain: pharmacoepidemiology
+difficulty: hard

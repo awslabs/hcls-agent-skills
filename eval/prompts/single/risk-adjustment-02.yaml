@@ -1,0 +1,51 @@
+id: risk-adjustment-02
+prompt: 'Here is test question #2 of 10:
+
+
+  ---
+
+
+  You are building a basic CMS-HCC risk adjustment pipeline for a small Medicare Advantage
+  plan with 500 members. You have a simplified ICD-10 diagnosis table and need to
+  produce member-level RAF scores using the CMS-HCC Model V28 coefficients.
+
+
+  Assume the following setup:
+
+  - Member demographics table: `members` (columns: `member_id`, `age`, `sex`, `medicaid_dual_status`,
+  `new_enrollee_flag`)
+
+  - Diagnosis claims table: `claims` (columns: `member_id`, `icd10_code`, `service_date`)
+
+  - You have a reference table `icd_hcc_crosswalk` (columns: `icd10_code`, `hcc_code`)
+  and a coefficients table `hcc_coefficients` (columns: `hcc_code`, `coefficient`)
+
+  - Demographic base rate coefficients are stored in table `demo_coefficients` (columns:
+  `age_band`, `sex`, `medicaid_dual_status`, `new_enrollee_flag`, `demo_coefficient`)
+
+
+  For simplicity, assume hierarchy resolution is NOT yet required (treat all HCCs
+  as independent).
+
+
+  Please provide the following deliverables:
+
+
+  1. **SQL query** that maps each member''s ICD-10 codes to HCC codes, aggregates
+  unique HCCs per member, joins HCC coefficients, and sums them into a raw HCC score
+  per member.
+
+  2. **SQL query** that looks up each member''s demographic base rate and adds it
+  to their HCC score to produce a final RAF score.
+
+  3. **Python function** `calculate_raf_scores(conn)` that executes both queries using
+  a SQLite connection, merges the results into a pandas DataFrame, and returns it
+  sorted by `raf_score` descending.
+
+  4. A brief explanation (3–5 sentences) of what the RAF score represents and why
+  the demographic base rate component is included even for members with no diagnosed
+  HCCs.'
+target_skills:
+- risk-adjustment
+domain: healthcare-ops
+difficulty: easy

@@ -1,0 +1,36 @@
+id: claims-billing-rules-02
+prompt: 'A small rural clinic has submitted claims data for the month of March, and
+  your compliance team has flagged several patterns for review. The clinic billed
+  847 total E&M visits across 22 business days with a single physician on staff. Of
+  those visits, 612 were billed at CPT code 99215 (Level 5 established patient office
+  visit), 198 were billed at 99214 (Level 4), and only 37 were billed at lower-level
+  codes. The clinic also billed modifier 25 on 589 of the 99215 visits, each paired
+  with a minor procedure performed the same day.
+
+
+  Using your knowledge of CMS billing rules and FWA detection methodology, please
+  provide the following:
+
+
+  1. **Impossible Day Analysis**: Calculate the average daily visit volume for this
+  physician and explain whether this volume is physically plausible given standard
+  CMS expectations for a single provider. Show your arithmetic.
+
+
+  2. **E&M Upcoding Assessment**: Evaluate the distribution of E&M levels billed (99215
+  at 72% of visits) against typical national benchmarks for a primary care setting.
+  What threshold percentage would raise a red flag under standard audit guidelines?
+
+
+  3. **Modifier 25 Misuse Evaluation**: Explain the correct use of modifier 25 under
+  NCCI guidelines and describe how billing modifier 25 on 98% of high-level E&M visits
+  paired with minor procedures may constitute a fraud, waste, or abuse pattern.
+
+
+  4. **Coding Error vs. Fraud Distinction**: Given this data pattern, outline three
+  criteria your investigation team should assess to distinguish between systematic
+  coding errors versus intentional fraudulent billing.'
+target_skills:
+- claims-billing-rules
+domain: healthcare-ops
+difficulty: easy

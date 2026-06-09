@@ -1,0 +1,42 @@
+id: proteomics-analysis-01
+prompt: 'Here is test question #1 of 10:
+
+
+  ---
+
+
+  I have a MaxQuant label-free quantification (LFQ) proteomics experiment comparing
+  tumor versus normal tissue samples from 6 patients (3 tumor, 3 normal). My output
+  file is `proteinGroups.txt` and I need to build a complete analysis pipeline in
+  R.
+
+
+  The dataset contains approximately 4,200 protein groups. I want to filter out contaminants
+  (columns marked with "+"), reverse sequences, and proteins identified only by site.
+  After filtering, I need to extract the LFQ intensity columns (named like `LFQ intensity
+  Tumor_1`, `LFQ intensity Normal_1`, etc.), log2-transform them, and handle missing
+  values using a minimum value imputation approach (drawing from a left-shifted Gaussian
+  with width=0.3 and shift=1.8 in log2 space).
+
+
+  Please provide:
+
+  1. Complete R code to load, filter, and preprocess the `proteinGroups.txt` file
+  using the `DEP` package
+
+  2. Code to perform limma-based differential expression analysis between tumor and
+  normal groups, reporting proteins with adjusted p-value < 0.05 and |log2FC| > 1
+
+  3. A volcano plot using `ggplot2` that highlights significant proteins in red and
+  labels the top 10 most significant hits by gene name
+
+  4. A brief explanation (3-5 sentences) of why minimum value imputation is appropriate
+  for LFQ data and what biological assumption it encodes
+
+
+  Use `Gene names` column from MaxQuant output for protein labels, and set the unique
+  identifier to `Protein IDs`.'
+target_skills:
+- proteomics-analysis
+domain: proteomics
+difficulty: easy

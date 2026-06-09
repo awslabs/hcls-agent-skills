@@ -1,0 +1,44 @@
+id: claims-analytics-04
+prompt: 'You are a data analyst at a regional health plan with a claims database containing
+  2.3 million professional claims from 847 providers over the past 18 months. Your
+  compliance team suspects a subset of primary care physicians may be upcoding Evaluation
+  & Management (E&M) services — specifically billing 99214 and 99215 at unusually
+  high rates compared to specialty peers.
+
+
+  Your claims table schema is:
+
+  - `claims(claim_id, provider_npi, service_date, cpt_code, icd10_primary, billed_amount,
+  allowed_amount, place_of_service, patient_age, claim_status)`
+
+  - `providers(npi, provider_name, specialty_code, specialty_desc, zip_code, tax_id)`
+
+
+  **Deliverables required:**
+
+
+  1. **SQL query** that calculates each primary care provider''s E&M code distribution
+  (99211–99215) as percentage of their total E&M claims, then flags providers whose
+  99214+99215 combined rate exceeds 2 standard deviations above the specialty peer
+  mean.
+
+
+  2. **Python code** using pandas that takes the SQL result and generates a provider-level
+  outlier score (z-score based), then produces a ranked list of the top 15 most anomalous
+  providers with their upcoding risk tier (High/Medium/Low based on z-score thresholds
+  of >3, 2–3, and 1–2 respectively).
+
+
+  3. **Benford''s Law analysis** in Python applied to the `billed_amount` field for
+  the flagged providers only, comparing first-digit distributions against expected
+  Benford proportions using a chi-square test, and printing which providers show statistically
+  significant deviation (p < 0.05).
+
+
+  4. A brief explanation (4–6 sentences) of how you would incorporate NCCI edit validation
+  into this workflow to further prioritize which flagged providers warrant a full
+  audit.'
+target_skills:
+- claims-analytics
+domain: healthcare-ops
+difficulty: intermediate

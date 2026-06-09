@@ -1,0 +1,45 @@
+id: variant-calling-07
+prompt: 'Here is test question #7 of 10:
+
+
+  ---
+
+
+  You are setting up a tumor-normal somatic variant calling pipeline using GATK4 Mutect2
+  for a cohort of 45 matched tumor-normal pairs from a whole exome sequencing (WES)
+  study focused on colorectal cancer. The tumors have estimated purity ranging from
+  0.35 to 0.85 based on pathology reports. Sequencing was performed on Illumina NovaSeq
+  6000 with 150bp paired-end reads, targeting ~150x tumor coverage and ~80x normal
+  coverage using the Twist Bioscience Comprehensive Exome panel (hg38).
+
+
+  Your team has identified three specific challenges:
+
+  1. Several low-purity samples (purity < 0.45, n=8) are producing an unusually high
+  number of false-positive calls in TP53 and APC, two key CRC driver genes.
+
+  2. You need to generate a Panel of Normals (PoN) but only have 18 unmatched normals
+  available from the same sequencing batch.
+
+  3. FilterMutectCalls is flagging ~30% of likely true somatic SNVs as "weak_evidence"
+  in the low-purity samples.
+
+
+  Please provide:
+
+  1. A complete Mutect2 command with appropriate flags to handle low-purity tumors,
+  including `--tumor-lod-to-emit` and `--min-af` parameter recommendations
+
+  2. A step-by-step workflow for building the PoN with the 18 available normals, including
+  the specific GATK commands
+
+  3. Specific FilterMutectCalls parameter adjustments to rescue the "weak_evidence"
+  variants while controlling false discovery rate
+
+  4. A brief explanation of how `--f1r2-tar-gz` output and LearnReadOrientationModel
+  should be incorporated to address oxidative damage artifacts common in FFPE or degraded
+  samples'
+target_skills:
+- variant-calling
+domain: genomics
+difficulty: intermediate

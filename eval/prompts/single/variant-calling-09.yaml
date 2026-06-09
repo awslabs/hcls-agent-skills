@@ -1,0 +1,42 @@
+id: variant-calling-09
+prompt: 'Here is test question #9 of 10:
+
+
+  ---
+
+
+  You are analyzing a cohort of 47 pediatric patients with suspected Li-Fraumeni syndrome
+  undergoing germline variant calling on a custom 850-gene hereditary cancer panel
+  (average target coverage: 320x, target size: 2.1 Mb). Your pipeline uses BWA-MEM2
+  for alignment and GATK4 HaplotypeCaller in GVCF mode with joint genotyping via GenomicsDBImport.
+  During variant filtration, you face a critical decision: your cohort is too small
+  for VQSR (you attempted it and received the warning "ERROR: NaN LOD score found"),
+  yet you need high sensitivity for pathogenic TP53, BRCA1, and BRCA2 variants while
+  controlling false positives in the remaining 847 genes.
+
+
+  Additionally, post-calling QC reveals three problematic samples: one with contamination
+  estimate (VerifyBamID FREEMIX) of 0.042, one with Ti/Tv ratio of 1.31 (expected
+  ~2.0 for WES), and one with a heterozygosity rate 4.2 standard deviations above
+  cohort mean.
+
+
+  Please provide:
+
+  1. A concrete hard-filter strategy with specific JEXL expressions for SNVs and indels,
+  differentiated by gene tier (TP53/BRCA1/BRCA2 vs. remaining genes), justifying each
+  threshold choice
+
+  2. A recommended decision framework for the three flagged samples — whether to exclude,
+  re-process, or include with caveats — with specific thresholds that would change
+  your recommendation
+
+  3. A GATK4 bash script implementing the tiered filtration using VariantFiltration
+  with interval-based logic
+
+  4. An explanation of why VQSR failed and what cohort size or data augmentation strategies
+  (e.g., adding public controls) could rescue it for future runs'
+target_skills:
+- variant-calling
+domain: genomics
+difficulty: hard

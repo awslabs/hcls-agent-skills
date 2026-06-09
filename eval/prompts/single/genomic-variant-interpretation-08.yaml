@@ -1,0 +1,42 @@
+id: genomic-variant-interpretation-08
+prompt: 'A 34-year-old woman with a strong family history of breast and ovarian cancer
+  undergoes germline panel testing. The laboratory reports a variant in **BRCA2**:
+  c.8754+3A>G (NM_000059.4). The following evidence is available:
+
+
+  - **SpliceAI scores**: Donor loss: 0.61, Acceptor gain: 0.04, Donor gain: 0.02,
+  Acceptor loss: 0.01
+
+  - **gnomAD v3.1 (non-cancer)**: 3 heterozygous alleles observed out of 152,310 total
+  alleles (no homozygotes)
+
+  - **ClinVar**: 2 submissions — one "Uncertain Significance" (no evidence provided),
+  one "Likely Pathogenic" (based on segregation in 2 affected relatives)
+
+  - **RNA splicing assay** (performed in-house): shows ~40% reduction in canonical
+  transcript with appearance of a cryptic transcript retaining 14 intronic nucleotides,
+  predicted to cause frameshift (p.Ser2919Ilefs*4)
+
+  - **REVEL score**: N/A (splice variant)
+
+  - **Family history**: proband''s mother and maternal aunt both had ovarian cancer;
+  maternal grandmother had breast cancer at age 42
+
+
+  Your tasks:
+
+  1. Apply the ACMG/AMP 2015 criteria systematically, identifying which specific evidence
+  codes apply (including appropriate strength levels), and explain why PVS1 does or
+  does not apply given the non-canonical splice position (+3).
+
+  2. Resolve the conflicting ClinVar submissions and explain how the RNA functional
+  data changes the classification.
+
+  3. Determine the final variant classification with justification.
+
+  4. Identify one critical caveat about the in-house RNA assay that could affect the
+  validity of this classification.'
+target_skills:
+- genomic-variant-interpretation
+domain: genomics
+difficulty: hard

@@ -1,0 +1,40 @@
+id: digital-pathology-05
+prompt: 'You are building a weakly-supervised multiple instance learning (MIL) pipeline
+  for predicting microsatellite instability (MSI) status from H&E whole-slide images
+  using TIAToolbox and the UNI foundation model. Your dataset consists of 847 colorectal
+  cancer slides (512 MSI-High, 335 MSS) stored as SVS files, and you want to extract
+  256×256 µm patches at 0.5 mpp resolution.
+
+
+  **Deliver the following:**
+
+
+  1. **Tissue masking and patch extraction code** using TIAToolbox''s `WSIReader`
+  and `PatchExtractor` to extract non-overlapping patches from tissue regions only
+  (Otsu-based mask, minimum tissue coverage threshold of 0.8), saving patch coordinates
+  as a CSV per slide.
+
+
+  2. **UNI feature extraction snippet** that loads the UNI ViT-L/16 model from a local
+  checkpoint at `./weights/uni.pth`, processes patches in batches of 32 using mixed-precision
+  inference, and saves per-slide feature matrices as `.npy` files shaped `(N_patches,
+  1024)`.
+
+
+  3. **ABMIL aggregator class** (Attention-Based MIL) in PyTorch with a 2-layer attention
+  network (hidden dim 256, output dim 1), including the `forward()` method that returns
+  both the slide-level prediction and the attention weights for interpretability heatmap
+  generation.
+
+
+  4. **Training loop outline** with AdamW optimizer (lr=1e-4, weight decay=1e-5),
+  binary cross-entropy loss, and 5-fold cross-validation split stratified by MSI label,
+  reporting AUROC per fold.
+
+
+  5. **One concrete recommendation** for handling the class imbalance (512 vs 335)
+  beyond simple oversampling, with a brief justification specific to MIL settings.'
+target_skills:
+- digital-pathology
+domain: imaging
+difficulty: intermediate

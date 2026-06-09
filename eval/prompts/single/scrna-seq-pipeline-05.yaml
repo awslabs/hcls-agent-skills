@@ -1,0 +1,41 @@
+id: scrna-seq-pipeline-05
+prompt: 'You are analyzing a single-cell RNA-seq dataset from a study of 8 pediatric
+  patients with acute lymphoblastic leukemia (ALL), comparing 4 treatment-naive patients
+  versus 4 post-chemotherapy patients. The data has been loaded as an AnnData object
+  (`adata`) with 45,230 cells and 33,694 genes after initial Cell Ranger processing.
+  The raw counts are stored in `adata.X`, and batch information (patient ID) is stored
+  in `adata.obs[''patient_id'']`, with treatment status in `adata.obs[''treatment'']`.
+
+
+  During QC, you notice the following distributions: mitochondrial gene percentage
+  ranges from 0.5% to 35% across cells, with a suspicious bimodal distribution; total
+  UMI counts per cell range from 200 to 85,000; and the number of detected genes ranges
+  from 150 to 7,800. Additionally, three patients show notably higher ambient RNA
+  contamination based on expression of known erythrocyte markers (HBB, HBA1, HBA2).
+
+
+  Please provide the following deliverables:
+
+
+  1. **QC filtering strategy**: Recommend specific threshold parameters for filtering
+  low-quality cells, justifying your choices given the bimodal mitochondrial distribution.
+  Should you use fixed thresholds or MAD-based filtering?
+
+
+  2. **Complete preprocessing code**: Write a full Scanpy pipeline from QC filtering
+  through UMAP visualization, including normalization, HVG selection (targeting ~2,000
+  genes), PCA, and Harmony batch correction across patient IDs.
+
+
+  3. **Clustering approach**: After Harmony correction, perform Leiden clustering
+  and explain how you would select the optimal resolution parameter (test range 0.3–1.5)
+  to distinguish major leukemic versus normal cell populations.
+
+
+  4. **Validation check**: Propose two computational methods to verify that Harmony
+  correction removed patient-level batch effects without over-correcting biologically
+  meaningful treatment differences.'
+target_skills:
+- scrna-seq-pipeline
+domain: single-cell
+difficulty: intermediate

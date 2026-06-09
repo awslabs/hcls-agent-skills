@@ -1,0 +1,42 @@
+id: pharmacoepidemiology-04
+prompt: 'A large integrated health system has linked electronic health records with
+  pharmacy dispensing data to study whether metformin reduces the risk of colorectal
+  cancer compared to sulfonylureas among patients with newly diagnosed type 2 diabetes.
+  The database contains 847,000 patients diagnosed between 2005–2020, with 124,300
+  new users of metformin and 41,700 new users of sulfonylureas identified after applying
+  a 12-month washout period.
+
+
+  The research team is concerned about several methodological issues: (1) some analysts
+  want to use prevalent users to boost sample size, (2) the follow-up for cancer outcomes
+  doesn''t begin until 6 months after drug initiation because of a "latency assumption,"
+  creating potential immortal time, (3) HbA1c, BMI, and diabetes severity change over
+  follow-up and influence both ongoing drug use and cancer risk, and (4) the team
+  wants to quantify residual confounding from unmeasured lifestyle factors like diet
+  and exercise.
+
+
+  Please provide the following:
+
+
+  1. Explain why including prevalent users is problematic here and how a strict new-user
+  design with active comparator (sulfonylureas) addresses confounding by indication
+  and prevalent user bias.
+
+
+  2. Identify the specific immortal time bias mechanism introduced by the 6-month
+  latency rule and propose two analytic solutions with their tradeoffs.
+
+
+  3. Describe how marginal structural models with stabilized inverse probability of
+  treatment weights (IPTW) handle the time-varying confounders (HbA1c, BMI, disease
+  severity), including what variables belong in the numerator versus denominator models.
+
+
+  4. Calculate the E-value for a hypothetical observed hazard ratio of 0.78 (95% CI
+  lower bound 0.71) and interpret what it means for unmeasured confounding from diet/exercise
+  in this specific context.'
+target_skills:
+- pharmacoepidemiology
+domain: pharmacoepidemiology
+difficulty: intermediate

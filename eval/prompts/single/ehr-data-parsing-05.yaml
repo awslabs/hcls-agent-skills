@@ -1,0 +1,46 @@
+id: ehr-data-parsing-05
+prompt: 'You are working with a hospital''s HL7v2 ORU^R01 message feed containing
+  lab results for 3,200 patients. A sample message segment sequence looks like this:
+
+
+  ```
+
+  MSH|^~\&|LAB_SYS|HOSP_A|EHR|HOSP_A|20231115142305||ORU^R01|MSG004521|P|2.5
+
+  PID|1||PT-88921^^^HOSP_A^MR||Fernandez^Maria^L||19780304|F|||123 Elm St^^Chicago^IL^60601
+
+  OBR|1|ORD-5521|LAB-9921|85025^CBC WITH DIFFERENTIAL^CPT|||20231115140000
+
+  OBX|1|NM|6690-2^WBC^LN||7.2|10*3/uL|4.5-11.0|N|||F
+
+  OBX|2|NM|789-8^RBC^LN||3.1|10*6/uL|4.2-5.4|L|||F
+
+  OBX|3|NM|718-7^HGB^LN||9.8|g/dL|12.0-16.0|L|||F
+
+  OBX|4|NM|4544-3^HCT^LN||29.5|%|37.0-47.0|L|||F
+
+  OBX|5|NM|777-3^PLT^LN||142|10*3/uL|150-400|L|||F
+
+  ```
+
+
+  Your task has three parts:
+
+
+  1. Write a Python function `parse_oru_message(hl7_text)` that extracts patient demographics
+  from PID and all OBX lab results into a flat pandas DataFrame. Each row should represent
+  one OBX observation and include: patient_id, patient_name, dob, gender, test_code,
+  test_name, value, units, reference_range, and abnormal_flag.
+
+
+  2. Add a `run_quality_checks(df)` function that flags rows where: the value field
+  is non-numeric, the abnormal_flag is "L" or "H" but the value falls within the reference
+  range, and the test_code is missing or null.
+
+
+  3. Provide a brief explanation (4-6 sentences) of how you would handle batch processing
+  of 3,200 such messages efficiently in Python, including error isolation per message.'
+target_skills:
+- ehr-data-parsing
+domain: clinical-data
+difficulty: intermediate

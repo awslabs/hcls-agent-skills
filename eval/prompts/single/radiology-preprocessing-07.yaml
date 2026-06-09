@@ -1,0 +1,44 @@
+id: radiology-preprocessing-07
+prompt: 'You are processing a dataset of 847 T1-weighted MRI scans from a multi-site
+  neuroimaging study (3 sites: Site A with 312 scans at 1.5T, Site B with 289 scans
+  at 3T, and Site C with 246 scans at 3T). The scans were acquired with varying voxel
+  sizes (1mm isotropic at Sites B and C, 1.2×1.2×1.5mm at Site A) and show moderate
+  B1 field inhomogeneity artifacts, particularly at Site A. Your goal is to build
+  a reproducible preprocessing pipeline that harmonizes all scans for subsequent cortical
+  thickness analysis.
+
+
+  Your pipeline must address the following requirements:
+
+  - Skull stripping must be robust across the varying field strengths and acquisition
+  parameters
+
+  - Bias field correction should be applied at an appropriate stage relative to skull
+  stripping
+
+  - All images must be registered to MNI152 1mm space
+
+  - Site-related intensity differences must be minimized before registration
+
+
+  **Please provide:**
+
+
+  1. A recommended ordering of preprocessing steps (skull stripping, N4 bias correction,
+  registration to MNI, intensity normalization) with justification for why each step
+  precedes or follows the others, specifically addressing the 1.5T vs 3T heterogeneity
+
+
+  2. A complete Python/Bash script using ANTs and FSL tools that implements the full
+  pipeline for a single subject, including N4BiasFieldCorrection with appropriate
+  parameters for the 1.5T data (convergence threshold, shrink factor, B-spline grid
+  resolution), HD-BET for skull stripping, and ANTs SyN registration to MNI152
+
+
+  3. Quality control metrics and thresholds you would use to flag failed preprocessing,
+  including expected Dice overlap ranges for brain masks and registration cost function
+  values'
+target_skills:
+- radiology-preprocessing
+domain: imaging
+difficulty: intermediate

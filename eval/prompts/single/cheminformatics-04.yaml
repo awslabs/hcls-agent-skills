@@ -1,0 +1,43 @@
+id: cheminformatics-04
+prompt: 'You are building a virtual screening pipeline for a set of 5 candidate kinase
+  inhibitors. The SMILES strings for these compounds are:
+
+
+  - **Cpd-A**: `CC1=CC=C(C=C1)S(=O)(=O)NC2=NC=CS2`
+
+  - **Cpd-B**: `COC1=CC2=C(C=C1OC)NC(=O)C2`
+
+  - **Cpd-C**: `O=C(O)c1ccc(S(=O)(=O)Nc2nccs2)cc1` *(a known PAINS scaffold)*
+
+  - **Cpd-D**: `CC(C)(C)OC(=O)N1CCC(CC1)n2cnc3ccccc32`
+
+  - **Cpd-E**: `Oc1ccc(cc1)C(=O)c2ccc(O)cc2`
+
+
+  Your task is to perform a multi-step cheminformatics analysis using RDKit:
+
+
+  1. **Descriptor calculation**: Compute MW, LogP (using Crippen), HBD, HBA, TPSA,
+  and rotatable bond count for all five compounds.
+
+
+  2. **Druglikeness filtering**: Apply both Lipinski''s Rule of Five (with the standard
+  cutoffs) and Veber''s rules (TPSA ≤ 140 Å², rotatable bonds ≤ 10). Report which
+  compounds pass both filter sets.
+
+
+  3. **PAINS detection**: Use RDKit''s FilterCatalog with the PAINS_A, PAINS_B, and
+  PAINS_C catalogs to flag any problematic compounds.
+
+
+  4. **Fingerprint similarity**: Calculate pairwise Tanimoto similarity using Morgan
+  fingerprints (radius=2, 2048 bits) for all compound pairs and identify the most
+  similar pair.
+
+
+  5. **Code**: Provide complete, runnable Python code using RDKit that performs all
+  four analyses above and prints a structured summary table.'
+target_skills:
+- cheminformatics
+domain: drug-discovery
+difficulty: intermediate

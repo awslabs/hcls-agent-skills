@@ -1,0 +1,40 @@
+id: imaging-study-design-06
+prompt: 'You are coordinating a multi-site diffusion MRI study investigating white
+  matter microstructure in 340 patients with early-stage Parkinson''s disease across
+  4 scanning centers (Boston, Chicago, Denver, Seattle). Each site uses a different
+  3T scanner (Siemens Prisma, GE Premier, Philips Ingenia, Siemens Skyra) with locally
+  optimized DTI protocols: b-values range from 1000–1200 s/mm², number of diffusion
+  directions varies from 32–64, and voxel sizes range from 1.8–2.5 mm isotropic. The
+  study''s primary imaging biomarker is fractional anisotropy (FA) in the substantia
+  nigra, with secondary biomarkers including mean diffusivity (MD) and tract-based
+  spatial statistics (TBSS) across the ICBM white matter skeleton.
+
+
+  Your team has collected baseline data and will acquire 18-month follow-up scans.
+  A preliminary QC check reveals that FA values in the corpus callosum differ by up
+  to 0.08 units across sites even after standard eddy current correction and skull
+  stripping.
+
+
+  Please provide:
+
+  1. A concrete scanner harmonization strategy specifying whether to apply ComBat,
+  CovBat, or an alternative, and at which pipeline stage (raw signal, tensor-derived
+  maps, or tract-level statistics), with justification
+
+  2. A recommended registration workflow specifying whether to work in native space
+  or MNI space for the substantia nigra ROI analysis, and why
+
+  3. A preprocessing checklist of at least 6 steps in recommended order for this multi-site
+  DTI dataset
+
+  4. A brief Python pseudocode outline (using neuroCombat or equivalent) demonstrating
+  how you would apply harmonization to the FA maps while preserving the longitudinal
+  signal of interest
+
+  5. Two potential confounds specific to substantia nigra DTI analysis that must be
+  controlled in the statistical model'
+target_skills:
+- imaging-study-design
+domain: imaging
+difficulty: intermediate

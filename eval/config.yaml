@@ -1,0 +1,18 @@
+judge:
+  model: us.anthropic.claude-opus-4-7
+  temperature: 0.0
+  max_tokens: 2048
+  retries: 3
+
+execution:
+  timeout_seconds: 1200
+  parallel: 1
+  kiro_cmd: kiro-cli
+  skills_agent: hcls-eval
+
+paths:
+  prompts: eval/prompts
+  results: eval/results
+  skills: .kiro/skills
+
+conda_env: drift-experiments

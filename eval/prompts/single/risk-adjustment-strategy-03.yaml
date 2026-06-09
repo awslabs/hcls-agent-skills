@@ -1,0 +1,44 @@
+id: risk-adjustment-strategy-03
+prompt: 'A Medicare Advantage plan serving 12,000 members is preparing for the 2024
+  payment year and needs to understand how the CMS blended transition methodology
+  affects their overall risk adjustment strategy. The plan''s actuarial team has calculated
+  the following member-level RAF scores under each model:
+
+
+  - 850 members have higher RAF scores under V24 than V28 (average difference: +0.18)
+
+  - 1,200 members have higher RAF scores under V28 than V24 (average difference: +0.09)
+
+  - 10,000 members have identical or negligible differences (less than 0.01) between
+  models
+
+
+  CMS has specified a 67% V24 / 33% V28 blend for payment year 2024, transitioning
+  to a 33% V24 / 67% V28 blend for payment year 2025.
+
+
+  Please provide the following deliverables:
+
+
+  1. **Blended RAF Calculation**: Explain the blended transition formula and calculate
+  the approximate aggregate blended RAF impact for the 2024 payment year using the
+  member segment data provided above, showing your arithmetic clearly.
+
+
+  2. **Strategic Prioritization**: Based on the blend ratios, identify which member
+  segment (V24-advantaged or V28-advantaged) should receive higher coding and documentation
+  priority for 2024 versus 2025, and explain the reasoning.
+
+
+  3. **Coding Gap Guidance**: Describe two categories of HCC conditions that are commonly
+  mapped differently between V24 and V28, and explain how care gap closure programs
+  should be adjusted to account for the model transition.
+
+
+  4. **Audit-Defensibility Note**: Briefly outline what documentation standards must
+  be maintained to ensure submitted diagnoses remain defensible under either model
+  version during a RADV audit.'
+target_skills:
+- risk-adjustment-strategy
+domain: healthcare-ops
+difficulty: easy

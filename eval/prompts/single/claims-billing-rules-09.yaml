@@ -1,0 +1,37 @@
+id: claims-billing-rules-09
+prompt: 'A rural critical access hospital''s compliance team has flagged an unusual
+  billing pattern from a single orthopedic surgeon (Provider NPI: 9876543210) over
+  a 90-day audit period. The extracted claims data shows the following:
+
+
+  - 47 claims billed with CPT 27447 (total knee arthroplasty) with a 90-day global
+  surgery period
+
+  - Within those global periods, 134 additional E&M visits (99213–99215) were billed
+  without Modifier 24 or 79
+
+  - 23 claims show CPT 20610 (joint aspiration) billed on the same day as 27447, without
+  Modifier 59
+
+  - 12 claims billed CPT 27447 and 27446 (knee arthroplasty, partial) on the same
+  patient on the same date of service
+
+  - 8 claims show CPT 99215 billed with Modifier 25 alongside 27447 on the day of
+  surgery, but documentation only contains a pre-operative H&P with no separately
+  identifiable medical decision-making
+
+  - Place of Service is coded as 11 (office) for all surgical claims, though the hospital''s
+  OR facility claims are billing the same cases under POS 21
+
+
+  Provide: (1) an NCCI edit analysis identifying which specific code pairs trigger
+  column 1/column 2 edits or mutually exclusive edits and whether any modifiers can
+  bypass them; (2) a classification of each billing pattern as likely coding error,
+  systemic abuse, or potential fraud with supporting rationale; (3) recommended corrective
+  actions and repayment methodology for the global period violations; and (4) a risk-scoring
+  rubric (scale 1–10) that a compliance auditor could apply to flag similar providers
+  in future quarterly reviews.'
+target_skills:
+- claims-billing-rules
+domain: healthcare-ops
+difficulty: hard

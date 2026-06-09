@@ -1,0 +1,39 @@
+id: biomarker-discovery-03
+prompt: 'A clinical research team has collected baseline blood samples from 180 patients
+  enrolled in a Phase II trial for a novel immunotherapy agent targeting advanced
+  non-small cell lung cancer. The team has measured expression levels of 847 genes
+  using a NanoString panel, along with 12 standard clinical variables (age, ECOG performance
+  status, prior lines of therapy, tumor mutational burden, PD-L1 TPS score, etc.).
+  The primary endpoint is objective response rate (binary: responder vs. non-responder),
+  with 52 responders and 128 non-responders in the dataset.
+
+
+  The team wants to build a predictive biomarker signature to identify patients most
+  likely to respond to this immunotherapy. They plan to use LASSO logistic regression
+  for feature selection and 5-fold cross-validation to estimate model performance,
+  reporting the final AUC as their validation metric.
+
+
+  However, a statistician on the team has raised concerns about the proposed analysis
+  plan. Please provide:
+
+
+  1. A clear explanation of why the proposed approach (LASSO + simple 5-fold CV with
+  AUC reported directly) is methodologically flawed for this use case, identifying
+  at least two specific problems
+
+  2. A corrected analysis pipeline that addresses these flaws, including the appropriate
+  cross-validation strategy and how feature selection should be integrated
+
+  3. A brief calculation or rule-of-thumb assessment of whether the sample size is
+  adequate for the number of candidate features being considered
+
+  4. Recommendations for at least two additional evaluation metrics beyond AUC that
+  would be clinically meaningful for this binary response prediction task
+
+  5. A description of what an appropriate external validation step would look like
+  for this biomarker before it could be considered clinically actionable'
+target_skills:
+- biomarker-discovery
+domain: single-cell
+difficulty: easy

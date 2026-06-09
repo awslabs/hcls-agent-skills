@@ -1,0 +1,37 @@
+id: pa-clinical-policy-05
+prompt: 'A 58-year-old patient with relapsing-remitting multiple sclerosis (RRMS)
+  has been prescribed natalizumab (Tysabri) 300mg IV every 4 weeks by their neurologist.
+  The patient''s commercial insurer (BlueShield Meridian PPO) has issued a prior authorization
+  denial citing "step therapy requirements not met." The patient''s treatment history
+  includes: 12 months of interferon beta-1a (Avonex) discontinued due to neutralizing
+  antibodies confirmed by lab testing, and 6 months of glatiramer acetate (Copaxone)
+  discontinued after two confirmed relapses with new T2 lesions on MRI. The patient''s
+  JC virus antibody index is 0.45, and their EDSS score is 4.5.
+
+
+  The insurer''s step therapy policy requires trial of "at least two platform therapies
+  OR one high-efficacy agent" before approving natalizumab, but defines high-efficacy
+  agents as only ocrelizumab or alemtuzumab in their formulary criteria document.
+
+
+  Please provide:
+
+  1. A clinical policy analysis of whether this patient meets step therapy requirements
+  based on the documented treatment history, citing relevant medical necessity standards
+
+  2. An appeal letter framework addressing the specific denial rationale, including
+  the neutralizing antibody failure as a clinical exception argument
+
+  3. Documentation checklist of supporting clinical evidence needed to strengthen
+  the appeal
+
+  4. An assessment of whether the insurer''s restrictive definition of "high-efficacy
+  agents" (excluding natalizumab) creates a potential coverage parity or medical necessity
+  challenge
+
+  5. A FHIR Da Vinci PAS-compliant prior authorization request structure (as a JSON
+  snippet) capturing the key clinical criteria elements for this case'
+target_skills:
+- pa-clinical-policy
+domain: healthcare-ops
+difficulty: intermediate

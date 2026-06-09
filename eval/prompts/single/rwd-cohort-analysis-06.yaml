@@ -1,0 +1,38 @@
+id: rwd-cohort-analysis-06
+prompt: 'You are analyzing a real-world claims dataset of 28,400 patients with Type
+  2 diabetes newly initiating either SGLT2 inhibitors (n=14,200) or DPP-4 inhibitors
+  (n=14,200) between January 2019 and December 2021. The primary outcome is first
+  hospitalization for heart failure (HHF), identified via ICD-10 code I50.x as a primary
+  diagnosis on inpatient claims. Patients must have 12 months of continuous enrollment
+  prior to index date (washout period) and at least 6 months of follow-up. Approximately
+  3,100 patients in the SGLT2 arm and 2,800 in the DPP-4 arm were censored before
+  6 months due to insurance disenrollment.
+
+
+  Your task involves the following deliverables:
+
+
+  1. **Cohort validation**: Write Python code using pandas to flag and exclude patients
+  with HHF (I50.x) during the 12-month washout period, and separately identify patients
+  with prior heart failure using I50.x in any position during washout.
+
+
+  2. **Adherence calculation**: Calculate 12-month PDC for each patient using fill
+  dates and days-supply fields. Define adherence as PDC ≥ 0.80 and show the distribution
+  by treatment arm.
+
+
+  3. **Propensity score model**: Specify which covariates to include (demographics,
+  comorbidities via ICD-10, baseline medications via NDC) and write logistic regression
+  code to estimate PS, then assess balance using standardized mean differences (SMD),
+  flagging any covariate with SMD > 0.10 post-weighting.
+
+
+  4. **Survival analysis**: Implement an IPTW-weighted Kaplan-Meier curve and Cox
+  proportional hazards model for HHF. Test the proportional hazards assumption using
+  Schoenfeld residuals and describe how to handle a violation if the global p-value
+  < 0.05.'
+target_skills:
+- rwd-cohort-analysis
+domain: pharmacoepidemiology
+difficulty: intermediate

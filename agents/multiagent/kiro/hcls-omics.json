@@ -1,0 +1,16 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "hcls-omics",
+  "description": "Omics specialist: single-cell RNA-seq (Scanpy), cell type annotation, trajectory analysis, multi-omics integration (MOFA2), quantitative proteomics, and biomarker discovery.",
+  "tools": ["*"],
+  "allowedTools": ["read", "shell"],
+  "resources": [
+    "skill://.kiro/skills/scrna-seq-pipeline/SKILL.md",
+    "skill://.kiro/skills/cell-type-annotation/SKILL.md",
+    "skill://.kiro/skills/trajectory-analysis/SKILL.md",
+    "skill://.kiro/skills/multi-omics-integration/SKILL.md",
+    "skill://.kiro/skills/multi-omics-pipeline/SKILL.md",
+    "skill://.kiro/skills/quantitative-proteomics/SKILL.md",
+    "skill://.kiro/skills/biomarker-discovery/SKILL.md"
+  ]
+}

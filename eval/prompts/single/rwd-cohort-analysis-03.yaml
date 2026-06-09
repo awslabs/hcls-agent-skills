@@ -1,0 +1,41 @@
+id: rwd-cohort-analysis-03
+prompt: 'Here is test question #3 of 10:
+
+
+  ---
+
+
+  You are analyzing a claims database of 45,000 patients with Type 2 diabetes who
+  initiated either metformin (index cohort, n=28,000) or a sulfonylurea (comparator
+  cohort, n=17,000) between January 2018 and December 2020. The index date is the
+  first pharmacy fill date. Patients must have 12 months of continuous enrollment
+  prior to index (baseline period) and at least 6 months of follow-up. Relevant codes
+  include NDC codes for metformin (NDC prefix 57237-0004) and glipizide (NDC prefix
+  00049-3960), and ICD-10 code E11.x for Type 2 diabetes confirmation.
+
+
+  Your task is to:
+
+
+  1. **Define the cohort inclusion/exclusion criteria** in plain language and as a
+  SQL-style pseudocode query that filters the claims table (columns: patient_id, fill_date,
+  ndc_code, icd10_code, enrollment_start, enrollment_end).
+
+
+  2. **Calculate the Proportion of Days Covered (PDC)** over a 12-month follow-up
+  window for each patient. Provide the formula and Python code using a sample pandas
+  DataFrame with columns: patient_id, fill_date, days_supply, index_date.
+
+
+  3. **Estimate propensity scores** using logistic regression on five baseline covariates:
+  age, Charlson Comorbidity Index, prior insulin use (binary), number of prior HbA1c
+  tests, and baseline BMI. Show Python code using sklearn and report which standardized
+  mean difference (SMD) threshold indicates adequate balance.
+
+
+  4. **Interpret a scenario** where after propensity score matching, age achieves
+  SMD=0.04 but prior insulin use has SMD=0.18. What action should be taken and why?'
+target_skills:
+- rwd-cohort-analysis
+domain: pharmacoepidemiology
+difficulty: easy

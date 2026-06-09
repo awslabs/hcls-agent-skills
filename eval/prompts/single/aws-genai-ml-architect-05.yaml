@@ -1,0 +1,45 @@
+id: aws-genai-ml-architect-05
+prompt: 'A regional health system (MedBridge Health) operates 12 hospitals and needs
+  to build a **clinical decision support chatbot** that allows physicians to query
+  a corpus of 2.3 million de-identified patient encounter notes, 450,000 radiology
+  reports, and 180,000 pathology reports stored in Amazon S3. The system must support
+  natural language queries like "Show me similar cases to this presentation of atypical
+  chest pain in diabetic patients over 65" and return relevant document excerpts with
+  source citations.
+
+
+  **Constraints and requirements:**
+
+  - All documents contain residual PHI risk and must be treated as PHI under HIPAA
+
+  - Query latency must be under 4 seconds for 95th percentile
+
+  - System must support 200 concurrent physician users during peak hours (7–9 AM)
+
+  - Audit logs of every query and retrieved document must be retained for 6 years
+
+  - The compliance team prohibits sending PHI to any third-party model API endpoint
+
+  - Budget ceiling: $45,000/month for the entire RAG infrastructure
+
+  - Must integrate with existing Epic EHR via SMART on FHIR
+
+
+  **Please provide:**
+
+  1. A recommended AWS architecture diagram description (components and data flow)
+  that satisfies the PHI restriction — specifically addressing whether to use Bedrock
+  or SageMaker for embeddings and inference, and why
+
+  2. The vector database selection (OpenSearch Serverless vs. Kendra vs. Pinecone
+  on AWS) with justification
+
+  3. A chunking and embedding strategy for the mixed document types
+
+  4. A cost breakdown estimating monthly spend across major components
+
+  5. The IAM and VPC design patterns needed for HIPAA compliance'
+target_skills:
+- aws-genai-ml-architect
+domain: cross-domain
+difficulty: intermediate

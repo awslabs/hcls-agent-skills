@@ -1,0 +1,46 @@
+id: cell-type-annotation-07
+prompt: 'You have processed a single-cell RNA-seq dataset from 8 pediatric ALL (acute
+  lymphoblastic leukemia) patients containing 42,000 cells clustered into 22 Leiden
+  clusters (resolution=0.8). Initial UMAP visualization shows clear separation between
+  immune and non-immune populations. You want to annotate these clusters using a two-step
+  approach: first run CellTypist with the `Immune_All_Low.pkl` model for broad immune
+  classification, then refine ambiguous clusters using a curated marker gene panel.
+
+
+  Your marker gene panel includes:
+
+  - B cell precursors: CD19, MME (CD10), VPREB1, IGLL1
+
+  - T cells: CD3D, CD3E, CD8A, CD4
+
+  - NK cells: NCAM1, GNLY, NKG7
+
+  - Myeloid: LYZ, CST3, CD68
+
+  - Leukemic blasts: MME, CD34, DNTT, CD38 (high), CD19 (low-moderate)
+
+
+  A key challenge: leukemic B-cell precursors share markers with normal B-cell precursors
+  (both express CD19, MME, VPREB1), making automated annotation unreliable for these
+  populations.
+
+
+  Please provide:
+
+  1. Complete Python code implementing the CellTypist annotation pipeline with `majority_voting=True`
+  and minimum cluster size of 10 cells
+
+  2. Code to generate a dotplot showing scaled mean expression and percent expressed
+  for all marker genes across the 22 clusters
+
+  3. A decision logic function that takes CellTypist labels + marker expression values
+  as input and flags clusters as "leukemic_blast_candidate", "normal_B_precursor",
+  or "requires_manual_review" based on CD34 expression >0.5, DNTT >0.3, and CD38/CD19
+  ratio thresholds
+
+  4. Recommended visualization to present annotation confidence scores alongside UMAP
+  embeddings'
+target_skills:
+- cell-type-annotation
+domain: single-cell
+difficulty: intermediate

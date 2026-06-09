@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "hcls-rwe",
+  "description": "Real-world evidence specialist: pharmacoepidemiology (target trial emulation, propensity scores), RWD cohort analysis (claims, EHR), risk stratification indices (LACE, Charlson), biomarker validation in cohorts, and translational RWD studies.",
+  "tools": ["*"],
+  "allowedTools": ["read", "shell"],
+  "resources": [
+    "skill://.kiro/skills/pharmacoepidemiology/SKILL.md",
+    "skill://.kiro/skills/rwd-cohort-analysis/SKILL.md",
+    "skill://.kiro/skills/risk-stratification-indices/SKILL.md",
+    "skill://.kiro/skills/biomarker-discovery/SKILL.md",
+    "skill://.kiro/skills/translational-research/SKILL.md"
+  ]
+}

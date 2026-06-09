@@ -1,0 +1,47 @@
+id: cheminformatics-05
+prompt: 'You are conducting a lead optimization campaign for a series of kinase inhibitors.
+  Your medicinal chemistry team has synthesized 8 compounds and measured their cellular
+  IC50 values against DYRK1A. The SMILES and activity data are as follows:
+
+
+  | ID | SMILES | IC50 (nM) |
+
+  |----|--------|-----------|
+
+  | C01 | CC1=CC2=C(NC3=NC=CC=C3)N=CN=C2C=C1 | 45 |
+
+  | C02 | CC1=CC2=C(NC3=NC=CC=C3)N=CN=C2C=C1F | 12 |
+
+  | C03 | COC1=CC2=C(NC3=NCCCC3)N=CN=C2C=C1 | 380 |
+
+  | C04 | CC1=CC2=C(NC3=NC=CC=C3Cl)N=CN=C2C=C1 | 8 |
+
+  | C05 | O=C(O)CC1=CC2=C(NC3=NC=CC=C3)N=CN=C2C=C1 | 890 |
+
+  | C06 | CC1=CC2=C(NC3=NC=CC=C3)N=CN=C2C=C1OC | 67 |
+
+  | C07 | CN(C)CC1=CC2=C(NC3=NC=CC=C3)N=CN=C2C=C1 | 23 |
+
+  | C08 | CC1=CC2=C(NC3=NC=CC=C3F)N=CN=C2C=C1 | 19 |
+
+
+  Using RDKit, please:
+
+  1. Calculate key molecular descriptors (MW, LogP, HBD, HBA, TPSA, RotBonds) for
+  all 8 compounds and flag any that violate Lipinski''s Rule of Five or Veber''s rules
+  (TPSA ≤ 140 Å², RotBonds ≤ 10)
+
+  2. Generate Morgan fingerprints (radius=2, nBits=2048) and compute a full pairwise
+  Tanimoto similarity matrix, identifying which compound pair is most structurally
+  similar and which is most dissimilar
+
+  3. Perform a matched molecular pair analysis comparing C01 (parent) against C02,
+  C04, C06, C07, and C08 to identify which single-atom or single-substituent transformation
+  most improves DYRK1A potency
+
+  4. Provide complete Python code for all analyses and a prioritization recommendation
+  for the next synthesis round based on the MMP trends'
+target_skills:
+- cheminformatics
+domain: drug-discovery
+difficulty: intermediate

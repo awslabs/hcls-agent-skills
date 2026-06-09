@@ -1,0 +1,41 @@
+id: variant-calling-06
+prompt: 'Here is test question #6 of 10:
+
+
+  ---
+
+
+  You are setting up a tumor-only somatic variant calling pipeline using GATK4 Mutect2
+  for a cohort of 45 formalin-fixed paraffin-embedded (FFPE) tumor samples from a
+  lung adenocarcinoma study. The samples were sequenced on an Illumina NovaSeq 6000
+  with 150bp paired-end reads targeting a 523-gene cancer panel (~2.5 Mb capture space)
+  to an average depth of 800x. You do not have matched normal tissue for any patient,
+  but you have access to a panel of normals (PoN) built from 42 blood samples from
+  an unrelated healthy cohort sequenced on the same platform and panel.
+
+
+  Your bioinformatics team is concerned about three specific issues: (1) elevated
+  FFPE-induced C>T artifacts at low allele frequencies, (2) germline variant contamination
+  since there are no matched normals, and (3) distinguishing true low-VAF somatic
+  mutations (≥2% VAF) from sequencing noise at high depth.
+
+
+  Please provide:
+
+
+  1. A complete GATK4 Mutect2 command for a single sample that incorporates appropriate
+  flags for FFPE artifact handling, PoN usage, and a gnomAD germline resource (assume
+  the resource VCF is at `/ref/gnomad.exomes.r2.1.1.vcf.gz`).
+
+  2. The recommended FilterMutectCalls command with flags specifically tuned for FFPE
+  data and high-depth targeted panels.
+
+  3. An explanation of which GATK4 filtering steps address each of the three concerns
+  above, and what their limitations are in a tumor-only context.
+
+  4. A brief recommendation on whether to run `LearnReadOrientationModel` and how
+  to interpret its output in this FFPE context.'
+target_skills:
+- variant-calling
+domain: genomics
+difficulty: intermediate

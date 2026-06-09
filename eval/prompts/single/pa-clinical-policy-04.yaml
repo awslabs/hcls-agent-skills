@@ -1,0 +1,37 @@
+id: pa-clinical-policy-04
+prompt: 'A 58-year-old patient with moderate-to-severe plaque psoriasis (BSA 22%,
+  PASI score 18.4) has been prescribed secukinumab (Cosentyx) 300mg by their dermatologist.
+  The commercial payer (BlueCrest Health Plan) has issued a PA denial citing failure
+  to meet step therapy requirements. The denial letter references their clinical policy
+  CP-DERM-047, which requires: (1) documented failure of two conventional systemics
+  (methotrexate OR cyclosporine AND acitretin), and (2) failure of one formulary-preferred
+  biologic (adalimumab or etanercept) before approving a Tier 3 IL-17 inhibitor.
+
+
+  The patient''s chart documents: 12 weeks of methotrexate (15mg/week) discontinued
+  due to hepatotoxicity (ALT 3x ULN), and 8 weeks of adalimumab with inadequate response
+  (PASI improvement only 28% vs. required 50% threshold). The patient also has a documented
+  history of recurrent Candida infections (3 episodes in 18 months) and active IBD
+  diagnosis (Crohn''s disease, mild).
+
+
+  Please provide:
+
+  1. A clinical policy gap analysis identifying which step therapy requirements have
+  been met versus unmet according to CP-DERM-047, citing specific contraindication
+  and medical exception criteria that may apply
+
+  2. A recommended appeal strategy with the specific clinical arguments, supporting
+  literature citations framework, and documentation checklist needed for a Level 1
+  administrative appeal
+
+  3. A clinical exception rationale explaining why the Crohn''s disease comorbidity
+  and Candida history create contraindication flags relevant to IL-17 inhibitor class
+  selection
+
+  4. A structured peer-to-peer review talking points outline the prescribing dermatologist
+  could use when speaking with the payer''s medical director'
+target_skills:
+- pa-clinical-policy
+domain: healthcare-ops
+difficulty: intermediate

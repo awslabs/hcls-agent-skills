@@ -1,0 +1,47 @@
+id: cdisc-compliance-03
+prompt: 'A clinical trial dataset for a Phase III oncology study (STUDY-ONC-2847)
+  contains adverse event data collected in the EDC system. The study has 342 patients
+  across 3 treatment arms. The data team has extracted the following raw AE variables
+  that need to be mapped to the SDTM AE domain:
+
+
+  - AEPT (verbatim adverse event term)
+
+  - AESOC (system organ class from MedDRA 26.0)
+
+  - AESTDT (AE start date, stored as DD-MON-YYYY)
+
+  - AEENDT (AE end date, stored as DD-MON-YYYY)
+
+  - AESER (seriousness flag: "Y", "N", or blank)
+
+  - AECAUS (investigator-assessed causality: "RELATED", "NOT RELATED", "POSSIBLY RELATED")
+
+  - AEACN (action taken with study drug: free-text field with values like "dose reduced",
+  "drug stopped", "none")
+
+  - AETOXGR (NCI CTCAE v5.0 toxicity grade: 1–5)
+
+
+  The team is unsure about several mapping decisions:
+
+
+  1. How AECAUS should be split across SDTM AE variables
+
+  2. Whether AEACN free-text values need controlled terminology applied
+
+  3. How to handle blank AESER values
+
+  4. What the correct SDTM variable name and format should be for the MedDRA-coded
+  SOC
+
+
+  Please provide: (a) a complete variable-by-variable SDTM AE domain mapping table
+  showing source variable, target SDTM variable name, any required controlled terminology,
+  and transformation notes; (b) specific guidance on resolving each of the 4 flagged
+  issues; and (c) two example rows of correctly formatted SDTM AE records in a tabular
+  layout using realistic fictional patient data.'
+target_skills:
+- cdisc-compliance
+domain: clinical-data-review
+difficulty: easy

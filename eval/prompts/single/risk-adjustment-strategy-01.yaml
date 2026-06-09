@@ -1,0 +1,43 @@
+id: risk-adjustment-strategy-01
+prompt: 'A Medicare Advantage plan serving 12,000 members is preparing for the 2024
+  payment year and needs to understand the blended transition methodology between
+  CMS-HCC Model V24 and V28. The plan''s analytics team has identified the following
+  member cohort snapshot:
+
+
+  - 4,200 members have HCC 18 (Diabetes with Chronic Complications) mapped under V24
+
+  - 3,100 members have HCC 19 (Diabetes without Complication) mapped under V24
+
+  - Under V28, the diabetes hierarchy has been restructured, splitting into new HCC
+  categories with different coefficient weights
+
+
+  The plan''s Chief Medical Officer wants a clear briefing before the next coding
+  strategy meeting. Please provide the following deliverables:
+
+
+  1. **Blended Weight Explanation**: Describe how CMS applies the 2024 blended transition
+  ratio (V24/V28 weighting) to calculate final RAF scores during the transition period,
+  including the specific percentage weights used for payment year 2024.
+
+
+  2. **Impact Analysis**: Explain how the V28 restructuring of diabetes HCC categories
+  generally affects RAF score calculations compared to V24, and identify whether this
+  restructuring typically results in higher or lower risk scores for the member cohorts
+  described above.
+
+
+  3. **Coding Strategy Recommendations**: Provide three concrete, audit-defensible
+  documentation recommendations that coding and clinical teams should follow to ensure
+  diabetes-related HCCs are accurately captured under both model versions during the
+  transition period.
+
+
+  4. **Priority Ranking**: Given the two member cohorts (HCC 18 vs. HCC 19 under V24),
+  which group should the plan prioritize for prospective chart review in 2024, and
+  why?'
+target_skills:
+- risk-adjustment-strategy
+domain: healthcare-ops
+difficulty: easy

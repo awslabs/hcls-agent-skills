@@ -1,0 +1,37 @@
+id: claims-billing-rules-08
+prompt: 'A regional Medicare Advantage plan is conducting a targeted audit after their
+  analytics team flagged a high-volume orthopedic group practice. The practice billed
+  847 claims over 6 months with the following pattern: CPT 27447 (total knee arthroplasty)
+  consistently billed alongside CPT 99213-25 on the same date of service, and CPT
+  27447 is repeatedly appearing with CPT 27310 (arthrotomy for infection) within 90-day
+  global periods for 23 different patients. Additionally, the practice billed CPT
+  20610 (arthrocentesis) with modifier 59 appended on post-operative days 14, 21,
+  and 45 for 67 patients who had undergone 27447.
+
+
+  The audit team has conflicting interpretations: one reviewer believes the modifier
+  25 usage on E&M visits is legitimate pre-operative decision-making, while another
+  flags it as systematic upcoding. The modifier 59 on arthrocentesis claims is similarly
+  disputed — some may represent genuine separate encounters while others appear templated.
+
+
+  Please provide:
+
+  1. A detailed NCCI edit analysis for each code pair described, including whether
+  modifier indicators would allow override and under what clinical circumstances
+
+  2. A framework for distinguishing legitimate modifier 25 and modifier 59 usage from
+  fraudulent patterns in this specific orthopedic context
+
+  3. Specific documentation elements the audit team should request to validate or
+  refute each claim pattern
+
+  4. A risk-scoring rubric (with weighted criteria) that categorizes each claim pattern
+  as "likely coding error," "possible FWA," or "probable fraud"
+
+  5. Recommendations for whether this case warrants a self-disclosure protocol under
+  the OIG guidelines versus internal corrective action only'
+target_skills:
+- claims-billing-rules
+domain: healthcare-ops
+difficulty: hard

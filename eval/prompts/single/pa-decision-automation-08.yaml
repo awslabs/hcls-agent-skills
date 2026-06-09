@@ -1,0 +1,41 @@
+id: pa-decision-automation-08
+prompt: 'Here is test question #8 of 10:
+
+
+  ---
+
+
+  Your team has trained a gradient-boosted PA classifier on 18 months of historical
+  decisions (142,000 approved, 31,500 denied) for musculoskeletal prior authorizations.
+  During post-deployment monitoring, you discover a concerning pattern: the model
+  approves 94% of requests from large health systems (>500 beds) but only 67% of identical
+  clinical profiles submitted by independent physician offices. SHAP analysis suggests
+  the top features driving denials for independent practices are: `submitter_org_type`
+  (SHAP value: +0.41 toward denial), `days_to_submission` (SHAP value: +0.28), and
+  `icd10_specificity_score` (SHAP value: +0.19), while clinical necessity features
+  like `prior_conservative_treatment_weeks` and `imaging_findings_severity` rank 6th
+  and 8th respectively.
+
+
+  The model was trained on data where large health systems had dedicated PA staff
+  producing higher-quality submissions, creating a systematic confound between submission
+  quality proxies and actual clinical necessity.
+
+
+  Please provide: (1) A technical diagnosis of what type of bias this represents and
+  why it violates CMS non-discrimination requirements under 42 CFR §438.3; (2) Python
+  code to implement a fairness-aware retraining pipeline using adversarial debiasing
+  or reweighting, treating `submitter_org_type` as a protected attribute while preserving
+  clinical predictive validity; (3) A redesigned feature importance framework that
+  enforces clinical features must collectively contribute ≥60% of total SHAP magnitude
+  for any decision; (4) Specific FHIR PAS bundle validation rules that could normalize
+  submission quality upstream before model inference, reducing the proxy correlation;
+  and (5) A monitoring dashboard specification with statistical tests to detect disparate
+  impact regression in production.
+
+
+  ---'
+target_skills:
+- pa-decision-automation
+domain: healthcare-ops
+difficulty: hard

@@ -1,0 +1,55 @@
+id: ehr-data-parsing-03
+prompt: 'Here is test question #3 of 10:
+
+
+  ---
+
+
+  You have received a batch of HL7v2 ORU^R01 messages from a hospital lab system containing
+  blood panel results for 50 patients. Each message follows standard HL7v2.5 formatting.
+  Below is a representative single message from the batch:
+
+
+  ```
+
+  MSH|^~\&|LAB|HOSPITAL|EHR|MAIN|20240315142233||ORU^R01|MSG00042|P|2.5
+
+  PID|1||PT-10047^^^MRN||Nguyen^Linh^T||19881204|F|||123 Maple St^^Boston^MA^02101
+
+  OBR|1||ORD-9921|85025^CBC WITH DIFFERENTIAL^CPT|||20240315140000
+
+  OBX|1|NM|718-7^Hemoglobin^LN||11.2|g/dL|12.0-16.0|L|||F
+
+  OBX|2|NM|4544-3^Hematocrit^LN||34.1|%|36.0-46.0|L|||F
+
+  OBX|3|NM|6690-2^WBC^LN||9.8|10*3/uL|4.5-11.0|N|||F
+
+  OBX|4|NM|777-3^Platelets^LN||142|10*3/uL|150-400|L|||F
+
+  ```
+
+
+  Please provide the following:
+
+
+  1. A Python function `parse_oru_message(hl7_text)` using the `hl7` library (or manual
+  string parsing) that extracts: patient MRN, full name, date of birth, sex, and all
+  OBX observations (LOINC code, test name, value, units, reference range, and abnormal
+  flag).
+
+
+  2. A second function `batch_to_dataframe(messages: list[str])` that processes a
+  list of such HL7 strings and returns a flat pandas DataFrame with one row per OBX
+  observation, including all patient demographic fields repeated per row.
+
+
+  3. A data quality check function `flag_quality_issues(df)` that identifies and labels
+  rows where the abnormal flag is `L` or `H`, the numeric value falls outside the
+  reference range, or the LOINC code is missing.
+
+
+  ---'
+target_skills:
+- ehr-data-parsing
+domain: clinical-data
+difficulty: easy

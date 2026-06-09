@@ -1,0 +1,10 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "hcls",
+  "description": "Healthcare and life sciences agent with 38 domain skills covering genomics, single-cell analysis, medical imaging, protein structure, pharmacoepidemiology, clinical data, drug discovery, proteomics, clinical data review, multi-omics integration, healthcare operations, translational research, ML, and AWS architecture",
+  "tools": ["*"],
+  "allowedTools": ["fs_read", "execute_bash"],
+  "resources": [
+    "skill://.kiro/skills/*/SKILL.md"
+  ]
+}

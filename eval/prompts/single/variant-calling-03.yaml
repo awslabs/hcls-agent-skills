@@ -1,0 +1,45 @@
+id: variant-calling-03
+prompt: 'Here is test question #3 of 10:
+
+
+  ---
+
+
+  You are setting up a germline variant calling pipeline for a cohort of 45 healthy
+  volunteers as part of a pharmacogenomics study. Sequencing was performed on an Illumina
+  NovaSeq 6000 with 150 bp paired-end reads at approximately 30x coverage on whole
+  genome (WGS). Raw FASTQ files have already been trimmed and you have received aligned
+  BAM files mapped with BWA-MEM2 to GRCh38. The study specifically focuses on variants
+  in pharmacogenes including CYP2D6, CYP2C19, SLCO1B1, and DPYD.
+
+
+  Your task is to implement a GATK4 HaplotypeCaller-based pipeline following GATK
+  best practices. Please provide:
+
+
+  1. A complete bash script that runs HaplotypeCaller in GVCF mode on a single sample,
+  followed by joint genotyping with GenomicsDBImport and GenotypeGVCFs across all
+  45 samples. Include appropriate WGS-specific parameters (e.g., `-L` intervals, `--sample-ploidy`,
+  Java heap settings).
+
+
+  2. A recommendation on whether to use VQSR or hard filters for variant refinement
+  for this cohort size, with specific filter thresholds you would apply for SNVs and
+  indels if hard filtering is chosen.
+
+
+  3. A brief explanation of why running HaplotypeCaller in GVCF mode followed by joint
+  genotyping is preferred over running it directly in genotyping mode for each sample
+  independently, particularly for a cohort of this size.
+
+
+  Assume GATK 4.4.0 is installed, reference genome and known variant resources (dbSNP
+  138, Mills indels, 1000G) are available at `/ref/`, and input BAMs are located at
+  `/data/bams/`.
+
+
+  ---'
+target_skills:
+- variant-calling
+domain: genomics
+difficulty: easy

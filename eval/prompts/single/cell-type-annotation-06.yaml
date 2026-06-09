@@ -1,0 +1,42 @@
+id: cell-type-annotation-06
+prompt: 'You have processed a 10x Genomics scRNA-seq dataset from 6 pediatric ALL
+  (acute lymphoblastic leukemia) bone marrow samples (3 diagnosis, 3 relapse) containing
+  28,000 cells clustered into 22 Leiden clusters (resolution 0.8). You need to annotate
+  these clusters using a multi-method approach to ensure robust labeling.
+
+
+  **Your dataset specifics:**
+
+  - Pre-computed UMAP and PCA embeddings are stored in `adata.obsm`
+
+  - Raw counts normalized to 10,000 and log1p transformed
+
+  - Known marker genes of interest: CD19, CD22, PAX5 (B-cell precursors), MPO, ELANE
+  (myeloid), CD3D, CD3E (T-cells), GYPA, HBB (erythroid), CD34, HOXA9 (HSC/progenitors),
+  MKI67, TOP2A (cycling)
+
+
+  **Deliverables required:**
+
+
+  1. Write Python code using **CellTypist** with the `Immune_All_Low.pkl` model to
+  generate initial annotations, using `majority_voting=True` at the cluster level
+
+
+  2. Write a **marker gene dotplot** using Scanpy (`sc.pl.dotplot`) displaying the
+  12 marker genes above across all 22 clusters, with `standard_scale=''var''` and
+  grouped by preliminary CellTypist labels
+
+
+  3. Write a **conflict resolution function** that takes both CellTypist predictions
+  and manual marker inspection scores (provided as a dictionary mapping cluster IDs
+  to marker-based labels) and returns a final consensus annotation, flagging any cluster
+  where the two methods disagree with confidence < 0.7
+
+
+  4. Recommend which 3 clusters should be prioritized for manual review based on typical
+  ALL biology, explaining your reasoning'
+target_skills:
+- cell-type-annotation
+domain: single-cell
+difficulty: intermediate

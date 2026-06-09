@@ -1,0 +1,40 @@
+id: radiology-preprocessing-05
+prompt: 'You are processing a dataset of 847 T1-weighted MRI scans from a multi-site
+  neuroimaging study (3 sites: Site A with 312 scans at 1.5T, Site B with 289 scans
+  at 3T, Site C with 246 scans at 3T). Your preprocessing pipeline must prepare these
+  scans for voxel-based morphometry (VBM) analysis comparing cortical thickness between
+  healthy controls (n=423) and patients with mild cognitive impairment (n=424).
+
+
+  During quality control, you discover the following issues:
+
+  - Site A scans show significant B1 field inhomogeneity artifacts with intensity
+  variation up to 35% across the FOV
+
+  - 67 scans across all sites failed HD-BET skull stripping (leaving dura/meninges
+  tissue or over-stripping temporal poles)
+
+  - Registration to MNI152 1mm space using ANTs SyN is producing mean displacement
+  errors >2.5mm in 43 scans, concentrated in subjects with significant cortical atrophy
+
+
+  Your task is to:
+
+  1. Design a corrected preprocessing workflow addressing all three issues, specifying
+  the exact tool versions, parameters, and order of operations (particularly the sequencing
+  of N4BiasFieldCorrection relative to skull stripping)
+
+  2. Provide the ANTs N4BiasFieldCorrection command with appropriate parameters for
+  the severe inhomogeneity at Site A, including the `--bspline-fitting` and `--convergence`
+  flags
+
+  3. Write a Python/bash script that identifies and reprocesses the failed HD-BET
+  cases using a fallback strategy combining FSL BET with manually tuned fractional
+  intensity thresholds
+
+  4. Explain how to handle the registration failures in atrophied brains, including
+  modifications to the ANTs SyN cost function or initialization strategy'
+target_skills:
+- radiology-preprocessing
+domain: imaging
+difficulty: intermediate

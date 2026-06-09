@@ -1,0 +1,23 @@
+id: molecular-docking-06
+prompt: "You are preparing a structure-based virtual screen of 2,500 drug-like compounds\
+  \ against the kinase domain of a fictional protein **TRK7** (PDB ID: 7XKM, resolution\
+  \ 1.9 Å). The crystal structure contains a co-crystallized inhibitor **TRK7-IN1**\
+  \ in the ATP-binding pocket. Your grid box should center on the co-crystallized\
+  \ ligand's centroid, which you have calculated to be at coordinates **(x=14.3, y=−22.7,\
+  \ z=8.1)** in the PDB frame. The ligand library has already been filtered to Lipinski-compliant\
+  \ molecules and converted to 3D conformers in SDF format.\n\n**Your tasks:**\n\n\
+  1. Write a complete Python script using **RDKit and subprocess** that:\n   - Converts\
+  \ each SDF ligand to PDBQT format using **OpenBabel** (via subprocess)\n   - Prepares\
+  \ the receptor PDBQT from a cleaned PDB file using **AutoDockTools' prepare_receptor4.py**\
+  \ (via subprocess)\n   - Runs **AutoDock Vina** for each ligand with exhaustiveness=12,\
+  \ energy_range=4, num_modes=9, and a 22×22×22 Å grid box\n   - Parses the Vina output\
+  \ log to extract the **best binding affinity (kcal/mol)** for each ligand\n   -\
+  \ Outputs a ranked CSV with columns: `ligand_id`, `binding_affinity_kcal_mol`, `pdbqt_path`\n\
+  \n2. Explain how you would **validate** the docking protocol using TRK7-IN1 redocking,\
+  \ specifying an acceptable RMSD threshold and how to compute it using RDKit or a\
+  \ command-line tool.\n\n3. Identify **two common failure modes** in high-throughput\
+  \ PDBQT conversion pipelines and describe how your script handles or avoids them."
+target_skills:
+- molecular-docking
+domain: protein-structure
+difficulty: intermediate

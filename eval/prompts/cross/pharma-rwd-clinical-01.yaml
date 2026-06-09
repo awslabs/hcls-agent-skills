@@ -1,0 +1,55 @@
+id: pharma-rwd-clinical-01
+prompt: 'Here is the research question:
+
+
+  ---
+
+
+  You are designing a real-world evidence study using a large US commercial claims
+  database (Optum Clinformatics, 2016–2023, approximately 18 million continuously
+  enrolled members) to evaluate whether initiating empagliflozin versus sitagliptin
+  is associated with incident heart failure hospitalization among adults with type
+  2 diabetes and no prior heart failure diagnosis.
+
+
+  **Please provide all of the following deliverables:**
+
+
+  **1. Study Design Specification (Pharmacoepidemiology)**
+
+  Describe a new-user active comparator design that emulates a target trial for this
+  comparison. Specify: (a) how to define the index date and a 180-day washout period
+  to exclude prevalent users, (b) how to handle time-varying confounding by HbA1c
+  trajectory using marginal structural models with stabilized IPTW weights, (c) how
+  to avoid immortal time bias when patients switch medications within 90 days of initiation,
+  and (d) how to calculate an E-value for the primary hazard ratio estimate of 0.74
+  (95% CI: 0.61–0.89) to assess robustness to unmeasured confounding.
+
+
+  **2. Cohort Identification and Analysis Pipeline (RWD Cohort Analysis)**
+
+  Provide the specific ICD-10-CM code groups (including relevant T2D diagnosis codes,
+  heart failure outcome codes, and exclusion criteria codes), NDC-based drug identification
+  logic for empagliflozin and sitagliptin, and CPT codes for relevant procedures.
+  Then describe: (a) how to calculate 12-month PDC for each drug to define an "adherent"
+  subgroup (PDC ≥ 0.80), (b) propensity score estimation approach with at least 8
+  covariates, (c) SMD thresholds for acceptable balance, and (d) a Cox proportional
+  hazards model specification including how to test the proportional hazards assumption
+  using Schoenfeld residuals.
+
+
+  **3. Outcome and Covariate Coding (Clinical Data Standards)**
+
+  Map the primary outcome — heart failure hospitalization — using both ICD-10-CM codes
+  (specify at least 4 relevant codes with their hierarchy) and MedDRA terminology
+  (identify the appropriate SOC, HLGT, HLT, and PT for "congestive cardiac failure").
+  Explain whether to use the PT or HLT level for the primary endpoint definition and
+  justify the choice. Additionally, identify the appropriate LOINC codes for HbA1c
+  measurement used as a time-varying covariate in the MSM, and explain any SNOMED
+  CT concepts relevant to mapping baseline comorbidities from EHR-linked records.'
+target_skills:
+- pharmacoepidemiology
+- rwd-cohort-analysis
+- clinical-data-standards
+domain: pharmacoepidemiology
+difficulty: easy

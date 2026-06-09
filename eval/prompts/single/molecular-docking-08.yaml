@@ -1,0 +1,41 @@
+id: molecular-docking-08
+prompt: 'You are conducting structure-based virtual screening against the allosteric
+  site of mutant KRAS G12C using AutoDock Vina. Your prepared receptor file (`KRAS_G12C_allosteric.pdbqt`)
+  has already had waters removed and Gasteiger charges assigned. You have a library
+  of 50,000 compounds in PDBQT format, but preliminary docking of 500 test compounds
+  revealed a suspicious pattern: 847 docking runs (out of 2,500 total modes across
+  all compounds) returned identical binding affinity scores of exactly -6.3 kcal/mol,
+  and 23 compounds produced poses entirely outside the defined grid box (center_x=1.87,
+  center_y=3.24, center_z=-1.05; size_x=20, size_y=20, size_z=20 Å).
+
+
+  Your Vina configuration uses exhaustiveness=16, num_modes=9, energy_range=3. The
+  grid box was defined based on the Switch II pocket (S-IIP) coordinates from PDB
+  structure 6OIM.
+
+
+  **Deliverables required:**
+
+
+  1. Diagnose the two failure modes (identical scores and out-of-box poses) — explain
+  the most likely technical causes for each.
+
+
+  2. Write a Python script that parses a directory of Vina output `.pdbqt` files,
+  flags compounds with scores exactly equal to a threshold value (±0.05 kcal/mol tolerance),
+  and separately flags poses where any atom coordinate falls outside the grid box
+  boundaries.
+
+
+  3. Recommend specific parameter adjustments to the Vina configuration and receptor/ligand
+  preparation pipeline to mitigate both failure modes before scaling to the full 50,000-compound
+  screen.
+
+
+  4. Explain why exhaustiveness=16 may be insufficient for an allosteric pocket with
+  known induced-fit flexibility, and suggest a computational strategy to balance thoroughness
+  with runtime constraints across 50,000 compounds.'
+target_skills:
+- molecular-docking
+domain: protein-structure
+difficulty: hard

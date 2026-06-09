@@ -1,0 +1,58 @@
+id: clinical-data-standards-01
+prompt: 'A clinical trial safety team is preparing an adverse event frequency table
+  for a regulatory submission. They have collected the following raw AE terms reported
+  by investigators across 847 patients:
+
+
+  - "stomach ache" (n=23)
+
+  - "abdominal pain upper" (n=41)
+
+  - "epigastric discomfort" (n=17)
+
+  - "nausea" (n=89)
+
+  - "feeling sick" (n=34)
+
+  - "vomiting" (n=56)
+
+  - "emesis" (n=12)
+
+  - "headache" (n=103)
+
+  - "migraine" (n=28)
+
+  - "head pain" (n=15)
+
+
+  The team needs to code these terms using MedDRA version 26.0 and produce a standard
+  SOC-level summary table.
+
+
+  Please provide the following:
+
+
+  1. Map each investigator-reported term to its most appropriate MedDRA Lowest Level
+  Term (LLT) and identify the corresponding Preferred Term (PT) for each.
+
+
+  2. For each PT, identify the High Level Term (HLT), High Level Group Term (HLGT),
+  and System Organ Class (SOC) it belongs to.
+
+
+  3. Explain which PTs would be grouped together under the same HLT, and what the
+  combined patient counts would be at the HLT level (assume each patient reported
+  only one term).
+
+
+  4. Identify any terms where a single LLT maps to a PT in a different SOC than might
+  be intuitively expected, and explain why this matters for regulatory reporting.
+
+
+  5. Recommend whether the submission table should display results at the PT level
+  or HLT level for these specific AEs, providing a brief rationale based on standard
+  regulatory guidance principles.'
+target_skills:
+- clinical-data-standards
+domain: clinical-data
+difficulty: easy

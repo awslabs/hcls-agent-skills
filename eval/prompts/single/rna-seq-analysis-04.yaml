@@ -1,0 +1,53 @@
+id: rna-seq-analysis-04
+prompt: 'You are analyzing bulk RNA-seq data from a mouse neurodegeneration study
+  comparing wild-type (n=6) and Atxn2-knockout (n=6) cerebellar tissue samples. Raw
+  FASTQ files have already passed QC. Your task is to build a complete two-pass STAR
+  alignment pipeline followed by gene-level quantification using featureCounts.
+
+
+  **Experimental details:**
+
+  - Mouse genome assembly: GRCm39
+
+  - Read type: paired-end, 150bp reads
+
+  - Average library size: ~45 million read pairs per sample
+
+  - GTF annotation: Ensembl release 109
+
+  - Available compute: 32 CPU cores, 128GB RAM
+
+  - STAR version: 2.7.10b
+
+  - featureCounts (Subread) version: 2.0.3
+
+
+  **Deliverables requested:**
+
+
+  1. Provide the exact STAR command to generate the genome index for GRCm39, including
+  the appropriate `--genomeSAindexNbases` parameter justification for this genome
+  size.
+
+
+  2. Write the first-pass STAR alignment command for a single sample (`WT_1_R1.fastq.gz`
+  / `WT_1_R2.fastq.gz`), enabling splice junction discovery with settings optimized
+  for 150bp reads.
+
+
+  3. Explain the second-pass strategy: how to collect junctions from all 12 samples
+  and incorporate them into a single second-pass alignment. Provide the modified alignment
+  command.
+
+
+  4. Write the featureCounts command to generate a count matrix from all 12 BAM files,
+  using parameters appropriate for paired-end stranded libraries (assume reverse-stranded,
+  as confirmed by RSeQC). Include flags to handle multi-mapping reads conservatively.
+
+
+  5. Briefly describe two potential issues specific to cerebellar tissue RNA-seq that
+  could inflate or deflate gene counts, and how your pipeline parameters address them.'
+target_skills:
+- rna-seq-analysis
+domain: genomics
+difficulty: intermediate

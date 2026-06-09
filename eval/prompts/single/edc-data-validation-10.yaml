@@ -1,0 +1,34 @@
+id: edc-data-validation-10
+prompt: 'You are building an automated SDTM validation pipeline for a Phase III oncology
+  trial (Study ONC-2847) with 412 enrolled subjects across 18 sites. The trial uses
+  Medidata Rave as the EDC, and you''ve received a bulk export containing the following
+  domains: DM, AE, CM, LB, VS, TU (Tumor), and RS (Response). Several critical validation
+  issues have been flagged during a recent FDA pre-submission meeting, specifically
+  around:
+
+
+  1. **Tumor response assessment timing**: RS domain entries must occur within ±7
+  days of scheduled assessment visits defined in SE domain, but some sites appear
+  to be recording responses outside this window without protocol deviation flags.
+
+
+  2. **Controlled terminology drift**: The RSTESTCD variable contains a mix of "OVRLRESP",
+  "BSTOVRESP", and non-standard values like "BEST_RESP" and "Overall Response" that
+  were introduced when three sites migrated from an older EDC version mid-trial.
+
+
+  3. **Cross-domain AE-CM linkage**: Adverse events coded as requiring concomitant
+  medication (AECONTRT = "Y") must have a corresponding CM record where CMSTDTC falls
+  within the AE start date (AESTDTC) plus 3 days, but this linkage is currently unverified.
+
+
+  Using Python with pandas, please provide: (a) a complete validation function for
+  the RS timing check against SE domain with configurable day tolerance and a detailed
+  discrepancy report, (b) a controlled terminology normalization and flagging module
+  for RSTESTCD using the CDISC SDTM CT 2024-03-29 release values, and (c) a cross-domain
+  AE-CM consistency checker that handles partial dates (e.g., "2023-05", "2023") gracefully
+  and outputs query-ready discrepancy records with SUBJID, site, and domain context.'
+target_skills:
+- edc-data-validation
+domain: clinical-data-review
+difficulty: hard

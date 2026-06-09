@@ -1,0 +1,44 @@
+id: quality-measures-01
+prompt: 'You are managing a Medicaid managed care population of 45,000 members and
+  need to calculate the **Breast Cancer Screening (BCS) HEDIS measure** for the current
+  measurement year (2024).
+
+
+  Your data environment includes:
+
+  - A `members` table with columns: `member_id`, `date_of_birth`, `gender`, `enrollment_start_date`,
+  `enrollment_end_date`, `plan_id`
+
+  - A `claims` table with columns: `claim_id`, `member_id`, `service_date`, `procedure_code`,
+  `diagnosis_code`, `claim_type`, `provider_npi`
+
+  - Current membership snapshot shows 12,340 female members aged 52–74 as of December
+  31, 2024
+
+  - Mammography CPT codes to consider: 77067, 77066, 77065, G0202
+
+
+  The BCS measure requires a mammogram in the **last 27 months** (October 1, 2022
+  – December 31, 2024) for women aged 52–74 who meet continuous enrollment criteria
+  (enrolled for the full measurement year with no more than one gap of up to 45 days).
+
+
+  Please provide the following deliverables:
+
+
+  1. **SQL query** to identify the eligible denominator population meeting continuous
+  enrollment requirements
+
+  2. **SQL query** to identify numerator-compliant members who received a qualifying
+  mammogram within the 27-month lookback window
+
+  3. **Measure rate calculation** showing how to combine denominator and numerator
+  into a final BCS rate, including a sample output format
+
+  4. **Brief explanation** (3–5 sentences) of why the 27-month lookback window is
+  used instead of a single calendar year, and what care gap detection logic you would
+  add to flag members due for outreach'
+target_skills:
+- quality-measures
+domain: healthcare-ops
+difficulty: easy

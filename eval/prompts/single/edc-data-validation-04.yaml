@@ -1,0 +1,38 @@
+id: edc-data-validation-04
+prompt: 'You are working as a clinical data manager on a Phase II oncology trial (Study
+  ONC-2024-047) with 180 enrolled patients. Your EDC system is Veeva Vault CDMS, and
+  you''ve exported the following SDTM domains: VS (vital signs), LB (laboratory),
+  AE (adverse events), and CM (concomitant medications). The study protocol defines
+  specific lab reference ranges for key safety parameters: ALT ≤ 2.5× ULN (Grade 1),
+  AST ≤ 2.5× ULN (Grade 1), creatinine ≤ 1.5× ULN (Grade 1), and hemoglobin ≥ 8.0
+  g/dL.
+
+
+  You''ve identified potential data quality issues: (1) some AE start dates appear
+  to precede the patient''s first study drug dose date (stored in EX domain), (2)
+  lab values are missing LBNRIND (normal range indicator) for approximately 23% of
+  records, (3) concomitant medications flagged as prohibited per protocol (methotrexate,
+  cyclosporine, tacrolimus) may have overlapping administration periods with study
+  drug.
+
+
+  Please provide:
+
+  1. A Python script that performs cross-form consistency checks between AE and EX
+  domains to flag AEs where AESTDTC precedes the first EXSTDTC per subject, outputting
+  a discrepancy report with USUBJID, AEDECOD, AESTDTC, and first dose date
+
+  2. A function to derive and impute missing LBNRIND values using LBORNRLO and LBORNRHI
+  reference range columns, applying CTCAE Grade 1-4 severity mapping for the four
+  specified lab parameters
+
+  3. A pandas-based overlap detection algorithm for prohibited concomitant medications,
+  checking if any CMSTDTC to CMENDTC interval overlaps with EXSTDTC to EXENDTC per
+  subject
+
+  4. A summary of Pinnacle 21 validation rules (rule IDs) that would flag these three
+  issue types'
+target_skills:
+- edc-data-validation
+domain: clinical-data-review
+difficulty: intermediate

@@ -1,0 +1,59 @@
+id: quality-measure-specification-04
+prompt: 'A regional health plan with 85,000 covered lives is preparing for NCQA HEDIS
+  2024 hybrid measure submission for Breast Cancer Screening (BCS) and Controlling
+  High Blood Pressure (CBP). Their data team has pulled the following preliminary
+  figures:
+
+
+  **BCS Measure:**
+
+  - Measurement year: 2023
+
+  - Eligible population (women 52–74): 12,400 members
+
+  - Continuous enrollment applied (11 of 12 months): 11,850 remaining
+
+  - Members with mammogram claim found: 3,200
+
+  - Members excluded due to bilateral mastectomy: 340
+
+  - Members with hospice enrollment: 95
+
+
+  **CBP Measure:**
+
+  - Eligible population (members 18–85 with hypertension): 18,600 members
+
+  - Continuous enrollment applied: 17,920 remaining
+
+  - Members with controlled BP (<140/90) documented: 8,100
+
+  - Members excluded due to ESRD: 420
+
+  - Members excluded due to pregnancy: 55
+
+  - Members in hospice: 130
+
+
+  The team is uncertain whether members with **both** ESRD and pregnancy exclusions
+  should be counted once or separately in the CBP denominator exclusion logic. Additionally,
+  they want to understand how NCQA''s **hybrid methodology** affects their numerator
+  identification differently than administrative-only methodology.
+
+
+  Please provide:
+
+  1. Correct denominator, numerator, and final rate calculations for both BCS and
+  CBP measures using the data above
+
+  2. A clear explanation of how to handle overlapping exclusions in CBP
+
+  3. A comparison of hybrid vs. administrative-only methodology for numerator identification
+  in these two measures
+
+  4. Two specific care gap prioritization recommendations based on the calculated
+  rates, referencing national HEDIS benchmarks (75th percentile: BCS ~76%, CBP ~68%)'
+target_skills:
+- quality-measure-specification
+domain: healthcare-ops
+difficulty: intermediate

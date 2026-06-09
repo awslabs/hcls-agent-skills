@@ -1,0 +1,53 @@
+id: clinical-data-standards-02
+prompt: 'A clinical trial safety team is preparing an adverse event frequency table
+  for a regulatory submission. They have collected the following raw adverse event
+  terms reported by investigators across 847 patients:
+
+
+  - "stomach ache" (n=23)
+
+  - "abdominal pain upper" (n=31)
+
+  - "epigastric discomfort" (n=18)
+
+  - "nausea" (n=67)
+
+  - "feeling sick" (n=12)
+
+  - "vomiting" (n=44)
+
+  - "loose stools" (n=29)
+
+  - "diarrhea" (n=38)
+
+
+  The team needs to prepare this data for a standard MedDRA-coded safety table at
+  version 26.0.
+
+
+  Please provide the following:
+
+
+  1. **LLT-to-PT mapping**: For each investigator term listed above, identify the
+  most appropriate MedDRA Lowest Level Term (LLT) and its corresponding Preferred
+  Term (PT). Where a term maps directly as a PT, note that as well.
+
+
+  2. **HLT and HLGT groupings**: Group all eight PTs under their correct High Level
+  Terms (HLT) and High Level Group Terms (HLGT) within the Gastrointestinal disorders
+  System Organ Class (SOC).
+
+
+  3. **Aggregation recommendation**: The medical monitor wants to know whether to
+  present the AE frequency table at the PT level or aggregate to the HLT level for
+  this submission. Provide a recommendation with reasoning based on standard regulatory
+  guidance and the patient counts given.
+
+
+  4. **Combined frequency note**: Calculate the combined patient count for all terms
+  that roll up under the "Gastrointestinal signs and symptoms NEC" HLT, assuming no
+  patient reported more than one term in that group.'
+target_skills:
+- clinical-data-standards
+domain: clinical-data
+difficulty: easy

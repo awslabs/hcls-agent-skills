@@ -1,0 +1,47 @@
+id: risk-adjustment-08
+prompt: 'Here is test question #8 of 10:
+
+
+  ---
+
+
+  You are building a CMS-HCC Model V28 risk adjustment pipeline for a Medicare Advantage
+  plan with 42,000 members. During validation, you discover three edge cases that
+  require careful handling:
+
+
+  1. **Dual HCC assignment conflict**: Member ID M-7741 has ICD-10 codes E11.65 (Type
+  2 diabetes with hyperglycemia) and E11.40 (Type 2 diabetes with diabetic neuropathy,
+  unspecified), which map to HCC37 and HCC206 respectively. Under V28 hierarchy rules,
+  HCC206 supersedes HCC37, but your pipeline is incorrectly retaining both.
+
+
+  2. **Rx proxy gap**: Member ID M-2293 has pharmacy claims for insulin glargine (NDC
+  00088250205) but zero diabetes-related ICD-10 codes in the measurement year, suggesting
+  a coding gap.
+
+
+  3. **Partial-year enrollment**: Member ID M-5518 was enrolled for only 7 months
+  (April–October). Your RAF calculation must apply the correct enrollment fraction
+  and demographic coefficients for a 71-year-old female, originally disabled, dual-eligible
+  (FBDE) beneficiary.
+
+
+  **Deliverables required:**
+
+
+  - Python code implementing hierarchy resolution logic for the V28 HCC hierarchy
+  table, correctly handling the E11.65/E11.40 conflict for M-7741
+
+  - SQL query to identify all members with Rx proxy signals for diabetes (insulin
+  NDC prefixes) but no corresponding HCC37/HCC206 codes in the current year
+
+  - Python function that calculates the partial-year RAF score for M-5518 using the
+  correct demographic segment coefficients (provide assumed coefficient values inline)
+
+  - A brief explanation (3–5 sentences) of why retaining both HCC37 and HCC206 simultaneously
+  would cause RAF score inflation and how CMS auditors would flag this during RADV'
+target_skills:
+- risk-adjustment
+domain: healthcare-ops
+difficulty: hard

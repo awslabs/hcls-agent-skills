@@ -1,0 +1,43 @@
+id: digital-pathology-06
+prompt: 'You are building a multiple-instance learning (MIL) pipeline for predicting
+  microsatellite instability (MSI) status from H&E-stained colorectal cancer whole-slide
+  images. Your dataset consists of 847 TCGA-COAD slides in SVS format, with known
+  MSI-H/MSS labels (203 MSI-H, 644 MSS). You plan to use the UNI foundation model
+  to extract patch-level embeddings, followed by an ABMIL (Attention-Based MIL) aggregator
+  for slide-level classification.
+
+
+  Your specific requirements are:
+
+  - Extract 256×256 patches at 0.5 mpp from tissue regions only (minimum tissue area
+  threshold: 75%)
+
+  - Use TIAToolbox''s `WSIReader` and `TissueMasker` for preprocessing
+
+  - Batch-process all slides, saving embeddings as `.pt` files keyed by slide ID
+
+  - Handle slides where tissue masking fails gracefully (log and skip)
+
+  - The ABMIL aggregator should use 2-layer attention with hidden dimension 256 and
+  gated attention mechanism
+
+  - Address the class imbalance (approximately 3:1 MSS:MSI-H ratio) using weighted
+  sampling during training
+
+
+  Please provide:
+
+  1. A complete Python script for patch extraction and UNI embedding generation across
+  all 847 slides, including error handling
+
+  2. The ABMIL model class definition in PyTorch with gated attention
+
+  3. A training loop snippet that implements weighted random sampling to handle class
+  imbalance
+
+  4. A brief explanation of why gated attention is preferred over standard attention
+  for this task'
+target_skills:
+- digital-pathology
+domain: imaging
+difficulty: intermediate

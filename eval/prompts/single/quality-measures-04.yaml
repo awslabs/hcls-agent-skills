@@ -1,0 +1,37 @@
+id: quality-measures-04
+prompt: 'You are building a HEDIS Controlling High Blood Pressure (CBP) measure for
+  a commercial health plan with 85,000 covered lives for measurement year 2023. Your
+  claims data includes the following tables: `members` (member_id, dob, gender, enrollment_start,
+  enrollment_end), `medical_claims` (claim_id, member_id, service_date, diagnosis_codes
+  ARRAY, procedure_codes ARRAY, place_of_service), and `pharmacy_claims` (claim_id,
+  member_id, fill_date, ndc_code, days_supply).
+
+
+  Your preliminary analysis shows 12,400 members aged 18–85 with at least one hypertension
+  diagnosis (ICD-10: I10) during the measurement year. However, your care team suspects
+  the denominator is inflated because continuous enrollment validation has not been
+  applied, and the numerator logic may be incorrectly counting blood pressure readings
+  from telehealth visits (POS code 02) which some analysts believe should be excluded.
+
+
+  Given these constraints, please provide:
+
+
+  1. **SQL query** implementing the full CBP denominator logic including continuous
+  enrollment validation (allowable gap ≤ 45 days), age stratification (18–59 and 60–85
+  cohorts), and exclusion of members with ESRD or pregnancy diagnoses
+
+  2. **Numerator SQL** that correctly identifies members with controlled blood pressure
+  (<140/90) using structured CPT/LOINC codes, with explicit handling of telehealth
+  visits per current HEDIS 2023 technical specifications
+
+  3. **Care gap detection query** that flags members in the denominator but not numerator,
+  prioritized by number of recent antihypertensive pharmacy fills (as a proxy for
+  medication adherence)
+
+  4. A brief explanation (3–5 sentences) of how telehealth visits should actually
+  be treated in CBP numerator logic under HEDIS 2023 rules'
+target_skills:
+- quality-measures
+domain: healthcare-ops
+difficulty: intermediate

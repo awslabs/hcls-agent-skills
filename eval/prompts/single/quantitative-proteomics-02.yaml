@@ -1,0 +1,37 @@
+id: quantitative-proteomics-02
+prompt: 'A researcher is conducting a label-free quantification (LFQ) proteomics study
+  comparing plasma samples from 12 healthy controls versus 12 patients with early-stage
+  pancreatic cancer. After processing raw data through MaxQuant, the resulting protein
+  intensity matrix contains 1,847 proteins across 24 samples. Upon inspection, approximately
+  35% of values are missing across the dataset, and the researcher suspects that many
+  of these missing values are not random — proteins like CA19-9, TIMP1, and REG1A
+  appear to be consistently absent only in the healthy control group, suggesting they
+  may be below the detection limit in non-disease samples.
+
+
+  The researcher needs guidance on the following:
+
+
+  1. **Missing value classification**: Explain the difference between MNAR (Missing
+  Not At Random) and MCAR (Missing Completely At Random) in the context of this dataset,
+  and describe how you would determine which type dominates.
+
+
+  2. **Imputation strategy**: Recommend a specific imputation method appropriate for
+  the suspected MNAR pattern (e.g., MinProb or QRILC), and briefly explain why this
+  is preferable to kNN imputation in this scenario.
+
+
+  3. **Normalization**: After imputation, which normalization method (median centering,
+  quantile normalization, or VSN) would you recommend for plasma proteomics data,
+  and why?
+
+
+  4. **Differential expression analysis**: Provide a short R code snippet using the
+  `limma` package to set up a two-group comparison (cancer vs. control) on the log2-transformed,
+  normalized intensity matrix, including the model matrix, `lmFit`, `eBayes`, and
+  `topTable` calls with an FDR threshold of 0.05.'
+target_skills:
+- quantitative-proteomics
+domain: proteomics
+difficulty: easy

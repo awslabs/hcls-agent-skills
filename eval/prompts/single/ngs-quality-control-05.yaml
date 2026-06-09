@@ -1,0 +1,37 @@
+id: ngs-quality-control-05
+prompt: 'You have completed initial sequencing of a whole-exome sequencing (WES) cohort
+  and need to perform comprehensive QC before variant calling. The sequencing run
+  produced paired-end 150bp reads for a single sample (`sample_R1.fastq.gz`, `sample_R2.fastq.gz`),
+  which has been aligned to `ref.fasta` and coordinate-sorted into `sample.bam`. Your
+  target capture kit BED file is `targets.bed`, and you suspect there may be adapter
+  contamination and uneven coverage across the exome based on a preliminary visual
+  inspection of a few regions.
+
+
+  Your QC pipeline must address the following concerns:
+
+  1. **Pre-alignment QC**: Run `fastp` with appropriate parameters for paired-end
+  data, enabling adapter auto-detection, per-base quality filtering (Q20 threshold),
+  and minimum read length of 50bp. Output cleaned FASTQs to `OUT/` and generate an
+  HTML report.
+
+  2. **Post-alignment coverage QC**: Use `mosdepth` with the target BED file to compute
+  per-target coverage, generating a summary that flags any targets with mean coverage
+  below 20×. Use `THREADS=8`.
+
+  3. **Picard WES metrics**: Run `CollectHsMetrics` using `sample.bam`, `ref.fasta`,
+  and `targets.bed` (used for both BAIT and TARGET intervals). Identify which output
+  metric columns are most critical for assessing capture efficiency.
+
+  4. **Aggregation**: Combine all QC outputs using `MultiQC` into a single report
+  in `OUT/multiqc/`.
+
+
+  Provide the exact shell commands for each step, explain what each key parameter
+  does, and describe how you would interpret a scenario where `PCT_TARGET_BASES_20X`
+  is 72% and median insert size is 145bp — is this acceptable for a clinical WES pipeline,
+  and what follow-up actions would you recommend?'
+target_skills:
+- ngs-quality-control
+domain: genomics
+difficulty: intermediate

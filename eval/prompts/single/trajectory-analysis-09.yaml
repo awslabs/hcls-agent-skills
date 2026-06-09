@@ -1,0 +1,35 @@
+id: trajectory-analysis-09
+prompt: 'Here is test question #9 of 10:
+
+
+  ---
+
+
+  You are analyzing a 14,000-cell scRNA-seq dataset from human fetal liver hematopoiesis,
+  capturing the transition from multipotent progenitors (MPPs) through erythroid-myeloid
+  bifurcation. After running velocyto on your BAM files, you notice a troubling pattern:
+  roughly 30% of cells (predominantly in the monocyte cluster) show negative spliced/unspliced
+  ratios for key transcription factors *SPI1* (PU.1) and *CEBPA*, while your scVelo
+  dynamic model reports extremely low likelihood scores (< 0.1) for these same genes.
+  Meanwhile, PAGA connectivity between the GMP cluster and monocyte cluster shows
+  a strong edge (0.73), but CellRank''s Generalized Perron Cluster Cluster Analysis
+  (GPCCA) assigns only 12% terminal state probability to monocytes, with the remaining
+  fate probability incorrectly collapsing into the erythroid lineage.
+
+
+  Diagnose the likely technical and biological causes of this conflicting evidence.
+  Specifically: (1) Provide a step-by-step debugging workflow with scVelo and CellRank
+  code to identify whether the velocity estimation failure stems from ambient RNA
+  contamination, cell cycle confounding, or gene-specific kinetic regime violations;
+  (2) Recommend and implement an alternative velocity kernel or pseudotime metric
+  that would be more robust in this scenario; (3) Explain how to reconcile the discrepancy
+  between PAGA structural connectivity and CellRank fate probabilities; and (4) Describe
+  what downstream fate mapping validation using *in silico* perturbation of *SPI1*
+  expression would look like in CellRank 2, including the expected output metrics.
+
+
+  ---'
+target_skills:
+- trajectory-analysis
+domain: single-cell
+difficulty: hard

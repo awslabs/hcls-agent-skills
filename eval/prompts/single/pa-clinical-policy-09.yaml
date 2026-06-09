@@ -1,0 +1,39 @@
+id: pa-clinical-policy-09
+prompt: 'A 58-year-old patient with treatment-resistant major depressive disorder
+  (TRD) has failed adequate trials of sertraline (200mg/day × 8 weeks), escitalopram
+  (20mg/day × 10 weeks), and venlafaxine XR (225mg/day × 12 weeks), all documented
+  with PHQ-9 scores showing <25% improvement. The treating psychiatrist is requesting
+  prior authorization for esketamine (Spravato) intranasal 56mg twice weekly for the
+  first month. The patient''s commercial payer (BlueCrest Health Plan) follows a proprietary
+  TRD clinical policy requiring: (1) ≥2 failed antidepressant trials of adequate dose/duration
+  from different pharmacological classes, (2) documented PHQ-9 ≥15 at baseline, (3)
+  concurrent oral antidepressant use during esketamine therapy, and (4) administration
+  only in certified healthcare settings. The patient''s baseline PHQ-9 is 18, but
+  the prescribing psychiatrist''s office is not yet REMS-certified for Spravato administration.
+
+
+  The PA request was denied citing "incomplete clinical criteria" without specifying
+  which criteria failed.
+
+
+  Please provide:
+
+  1. A systematic analysis of which BlueCrest criteria are met versus potentially
+  deficient, citing the specific documentation gaps
+
+  2. An appeal letter framework addressing the REMS certification gap and any other
+  identified deficiencies, including supporting clinical literature references
+
+  3. A peer-to-peer review talking points document the psychiatrist should use when
+  contacting the medical director
+
+  4. Recommendations for whether to pursue concurrent expedited appeal or standard
+  appeal given the clinical urgency, with specific timelines under ERISA and state
+  external review regulations
+
+  5. A FHIR Da Vinci PAS-compliant prior authorization request structure (in JSON)
+  capturing the key clinical data elements for resubmission'
+target_skills:
+- pa-clinical-policy
+domain: healthcare-ops
+difficulty: hard

@@ -1,0 +1,42 @@
+id: protein-structure-analysis-03
+prompt: 'You have downloaded the crystal structure of a fictional enzyme **ThermoLipase-B**
+  (saved as `thermo_lipase.pdb`), which contains a single chain (Chain A) with 320
+  residues. You want to assess the overall structural quality and flexibility of this
+  enzyme before proceeding with docking studies.
+
+
+  **Your tasks are:**
+
+
+  1. **Secondary Structure Assignment**: Using Biopython''s DSSP wrapper, write a
+  Python script that parses `thermo_lipase.pdb`, runs DSSP, and prints a summary table
+  showing the count and percentage of residues in each secondary structure category
+  (helix, beta-strand, loop/coil).
+
+
+  2. **B-factor Analysis**: Extend the script to extract the B-factor (temperature
+  factor) for every Cα atom in Chain A. Calculate the mean and standard deviation
+  of B-factors across all residues, then identify and print any residues whose B-factor
+  exceeds **mean + 2×SD** (flagging them as highly flexible regions).
+
+
+  3. **Visualization Recommendation**: Based on typical B-factor thresholds (e.g.,
+  B > 60 Å² suggesting disorder), briefly explain what high B-factor regions imply
+  for docking reliability and recommend one practical step to handle flexible loops
+  when preparing the structure for AutoDock Vina (e.g., using PDBQT format).
+
+
+  **Constraints:**
+
+  - Use Biopython (`Bio.PDB`) for all parsing steps
+
+  - DSSP must be called via `Bio.PDB.DSSP`
+
+  - Output the B-factor flagged residues as a list of tuples: `(residue_number, residue_name,
+  b_factor)`
+
+  - Assume DSSP is installed and accessible at `/usr/bin/dssp`'
+target_skills:
+- protein-structure-analysis
+domain: protein-structure
+difficulty: easy

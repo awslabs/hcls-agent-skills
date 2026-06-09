@@ -1,0 +1,44 @@
+id: clinical-data-standards-08
+prompt: 'A pharmaceutical company is conducting a Phase III oncology trial and has
+  collected adverse events that require MedDRA coding for a regulatory submission.
+  The safety team is debating how to handle the following five AEs in their frequency
+  tables, given that the trial involves a novel immunotherapy agent known to cause
+  overlapping inflammatory reactions:
+
+
+  1. "Immune-mediated hepatitis" (n=23) — currently coded to LLT "Autoimmune hepatitis"
+  under PT "Autoimmune hepatitis" in SOC Hepatobiliary
+
+  2. "Cytokine release syndrome grade 2" (n=41) — coded to PT "Cytokine release syndrome"
+  under SOC Immune system disorders
+
+  3. "Transaminase elevation with immune etiology" (n=18) — coded to PT "Alanine aminotransferase
+  increased" under SOC Investigations
+
+  4. "Pneumonitis, immune-related" (n=15) — coded to PT "Pneumonitis" under SOC Respiratory
+
+  5. "Infusion-related reaction with fever and hypotension" (n=29) — coded to PT "Infusion
+  related reaction" under SOC Immune system disorders
+
+
+  The regulatory team suspects events #1 and #3 may represent the same underlying
+  phenomenon and questions whether #2 and #5 are being double-counted in some patients.
+
+
+  Deliverables required:
+
+  - Evaluate whether the current MedDRA coding choices are appropriate or if reclassification
+  is warranted, citing specific MedDRA hierarchy considerations
+
+  - Recommend whether to present the hepatitis-related events (#1 and #3) aggregated
+  at HLT level or separately at PT level, with justification
+
+  - Identify which SOC-level groupings could mask safety signals and propose a cross-SOC
+  analysis strategy
+
+  - Describe how you would use a MedDRA SMQ (Standardised MedDRA Query) approach to
+  address the overlapping inflammatory events, naming the relevant SMQs'
+target_skills:
+- clinical-data-standards
+domain: clinical-data
+difficulty: hard

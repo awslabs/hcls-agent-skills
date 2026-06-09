@@ -1,0 +1,38 @@
+id: genomic-variant-interpretation-03
+prompt: 'A 34-year-old woman with a strong family history of breast and ovarian cancer
+  undergoes germline genetic testing. The laboratory reports a variant in BRCA2: c.5946delT
+  (p.Ser1982ArgfsTer22). The following data are available:
+
+
+  - **gnomAD v3.1 allele frequency**: 0.000008 (2 heterozygous alleles out of 251,448
+  total alleles; no homozygotes observed)
+
+  - **ClinVar submissions**: 47 submissions — 45 classified as Pathogenic, 2 as Uncertain
+  Significance (both from small laboratories with no functional data provided)
+
+  - **In silico (functional impact)**: Frameshift causing premature stop codon at
+  position 22 downstream; predicted to undergo nonsense-mediated decay (NMD)
+
+  - **Segregation data**: Variant co-segregates with disease in 4 affected relatives
+  across two generations
+
+  - **Functional studies**: One published study demonstrates loss of homologous recombination
+  activity in cell lines carrying this variant
+
+
+  Please provide the following:
+
+
+  1. Apply the relevant ACMG/AMP 2015 criteria codes (e.g., PVS1, PS1–PS4, PM1–PM6,
+  PP1–PP5, BA1, BS1–BS4, BP1–BP7) that are applicable to this variant, briefly justifying
+  each code you invoke or explicitly exclude.
+
+  2. Combine the criteria to arrive at a final classification (Pathogenic, Likely
+  Pathogenic, VUS, Likely Benign, or Benign) with a one-sentence rationale.
+
+  3. Explain why the two Uncertain Significance submissions in ClinVar should or should
+  not cause you to downgrade your classification.'
+target_skills:
+- genomic-variant-interpretation
+domain: genomics
+difficulty: easy

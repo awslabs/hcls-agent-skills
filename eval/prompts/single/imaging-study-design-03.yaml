@@ -1,0 +1,35 @@
+id: imaging-study-design-03
+prompt: 'A multicenter neuroimaging consortium is planning a cross-sectional study
+  examining cortical thickness differences between 85 healthy controls and 92 patients
+  with early-stage Parkinson''s disease across three sites: Mayo Clinic (Siemens Prisma
+  3T), Johns Hopkins (GE Discovery MR750 3T), and UCSF (Philips Ingenia 3T). All participants
+  will receive a T1-weighted MPRAGE sequence, but due to vendor differences, the TI
+  values are 900ms, 450ms, and 1100ms respectively, and voxel sizes range from 1.0×1.0×1.0mm
+  to 1.2×1.0×1.0mm isotropic.
+
+
+  The study team wants to use cortical thickness as the primary volumetric biomarker
+  extracted via FreeSurfer 7.3, with analysis performed in MNI152 standard space.
+  They plan to pool all images directly and run a single GLM without any harmonization
+  step.
+
+
+  Please provide:
+
+  1. A critique of the proposed pipeline, specifically identifying at least three
+  methodological flaws related to scanner harmonization and space selection for this
+  analysis
+
+  2. A recommended preprocessing and harmonization strategy, including whether ComBat
+  or an alternative should be applied and at what stage (before or after feature extraction)
+
+  3. A brief explanation of why native space vs. MNI space matters for cortical thickness
+  analysis specifically
+
+  4. A short Python pseudocode snippet (10-15 lines) demonstrating how you would apply
+  neuroCombat to a feature matrix after FreeSurfer extraction, including the appropriate
+  covariates to preserve'
+target_skills:
+- imaging-study-design
+domain: imaging
+difficulty: easy

@@ -1,0 +1,47 @@
+id: claims-analytics-10
+prompt: 'Here is test question #10:
+
+
+  ---
+
+
+  A regional Medicare Advantage plan has flagged a concerning pattern in their 2023
+  claims data: a cohort of 47 pain management specialists appears to be systematically
+  unbundling nerve block procedures. Specifically, these providers are billing CPT
+  64415 (brachial plexus nerve block) alongside CPT 64416 (continuous brachial plexus
+  nerve block) on the same date of service for the same patient — a known NCCI bundling
+  conflict — while simultaneously showing E&M code distributions heavily skewed toward
+  99215 (92% of all office visits versus a specialty peer benchmark of 34%).
+
+
+  Your task involves four concrete deliverables:
+
+
+  1. **Python code** that parses a flat X12 837P transaction file to extract claim
+  lines for these two CPT pairs, identifies same-day same-patient occurrences, and
+  flags NCCI edit violations using a bundled column lookup table (assume a CSV with
+  columns: `column1_code`, `column2_code`, `modifier_indicator`).
+
+
+  2. **SQL query** against a normalized claims schema (`claims`, `claim_lines`, `providers`,
+  `patients` tables) that calculates each provider''s 99215 utilization rate, compares
+  it to specialty peer averages, and returns a z-score outlier ranking for the 47-provider
+  cohort.
+
+
+  3. **Benford''s Law analysis** in Python applied to the submitted charge amounts
+  for CPT 64415 across these providers, including a chi-square goodness-of-fit test
+  against expected Benford distributions, with interpretation thresholds for fraud
+  referral (p < 0.05).
+
+
+  4. A structured **fraud referral scoring rubric** (0–100 scale) that weights NCCI
+  violations (40%), E&M skew z-score (35%), and Benford deviation (25%), with Python
+  code to compute composite scores per provider.
+
+
+  ---'
+target_skills:
+- claims-analytics
+domain: healthcare-ops
+difficulty: hard

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "hcls-genomics",
+  "description": "Genomics specialist: variant classification (ACMG/AMP), NGS pipelines (GATK4, BWA-MEM2), RNA-seq differential expression (DESeq2), and WGS+RNA-seq integration.",
+  "tools": ["*"],
+  "allowedTools": ["read", "shell"],
+  "resources": [
+    "skill://.kiro/skills/genomic-variant-interpretation/SKILL.md",
+    "skill://.kiro/skills/variant-calling/SKILL.md",
+    "skill://.kiro/skills/rna-seq-analysis/SKILL.md",
+    "skill://.kiro/skills/ngs-quality-control/SKILL.md",
+    "skill://.kiro/skills/multi-omics-integration/SKILL.md"
+  ]
+}

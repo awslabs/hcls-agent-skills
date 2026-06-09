@@ -1,0 +1,46 @@
+id: ngs-quality-control-06
+prompt: 'You have completed initial sequencing of a whole-exome sequencing (WES) cohort
+  of 45 pediatric leukemia patients. After running FastQC on the raw FASTQs, you observe
+  the following patterns across multiple samples:
+
+
+  - Per-base sequence quality drops below Q20 after position 130 on R2 reads (150bp
+  paired-end)
+
+  - Adapter content flags are triggered in ~30% of samples starting around position
+  140
+
+  - A subset of 8 samples shows "Sequence Duplication Levels" marked as FAIL with
+  estimated duplication rates between 45–62%
+
+  - Mean insert size reported by FastQC kmer analysis appears bimodal in 12 samples
+
+
+  Your pipeline uses the standard setup: `THREADS=8`, `OUT=qc_out`, paired FASTQs
+  `sample_R1.fastq.gz` / `sample_R2.fastq.gz`, a coordinate-sorted `sample.bam`, and
+  target intervals file `exome_targets.bed`.
+
+
+  Please provide the following:
+
+
+  1. A `fastp` command that addresses the quality tail drop and adapter contamination
+  issues, with explicit justification for each parameter chosen (particularly `--cut_tail`,
+  `--qualified_quality_phred`, and `--length_required`).
+
+
+  2. A `mosdepth` command to compute per-target coverage using the exome intervals,
+  followed by a shell one-liner to identify any targets with mean coverage below 20×.
+
+
+  3. A Picard `CollectInsertSizeMetrics` command and an explanation of what the bimodal
+  insert size distribution likely indicates biologically or technically, and what
+  downstream QC flag you would apply to those 12 samples.
+
+
+  4. A `MultiQC` command that aggregates FastQC, fastp, mosdepth, and Picard outputs
+  from the `qc_out` directory into a single report with a custom title "Pediatric_Leukemia_WES_QC".'
+target_skills:
+- ngs-quality-control
+domain: genomics
+difficulty: intermediate

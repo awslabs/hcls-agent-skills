@@ -1,0 +1,44 @@
+id: cdisc-compliance-02
+prompt: 'A clinical trial sponsor is preparing SDTM datasets for an FDA submission
+  of a Phase III oncology study (N=342 patients). The laboratory domain (LB) has been
+  mapped, but the data management team is unsure how to handle several non-standard
+  variables collected during the trial.
+
+
+  Specifically, the study collected the following additional lab-related information
+  not covered by standard LB domain variables:
+
+  - A sponsor-defined toxicity grade (LBTOXGR) assigned to each lab result based on
+  CTCAE v5.0 criteria
+
+  - A fasting status indicator (LBFAST) — note: this IS a standard variable in LB
+
+  - A delta flag (LBDELTFL) indicating whether a result changed by >20% from the previous
+  visit
+
+  - A specimen collection method (LBCOLMTH) describing whether blood was drawn via
+  venipuncture or central line
+
+
+  The team has populated all four variables directly in the LB dataset as additional
+  columns.
+
+
+  Please provide:
+
+  1. An assessment of which variables are correctly placed in LB versus which should
+  be moved to SUPPLB, with justification referencing SDTM Implementation Guide rules
+
+  2. The correct SUPPQUAL structure (NAME, LABEL, QVAL, IDVAR, IDVARVAL columns) for
+  any variables that must be relocated, using three example rows of realistic fictional
+  data
+
+  3. A brief explanation of why placing non-standard variables directly in parent
+  domains (rather than SUPPQUAL) is flagged as a compliance issue in FDA submissions
+
+  4. One recommendation for how the define.xml should document the SUPPQUAL relationship
+  to the parent LB domain'
+target_skills:
+- cdisc-compliance
+domain: clinical-data-review
+difficulty: easy

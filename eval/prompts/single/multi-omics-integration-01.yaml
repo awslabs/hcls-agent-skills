@@ -1,0 +1,40 @@
+id: multi-omics-integration-01
+prompt: 'You are analyzing a cohort of 120 treatment-naive colorectal cancer patients
+  with matched RNA-seq transcriptomics and LC-MS/MS proteomics data collected at the
+  same timepoint. The transcriptomics dataset contains expression values for 18,000
+  genes across all 120 samples, while the proteomics dataset covers 4,500 proteins
+  but only has quantification for 95 of the 120 patients due to sample degradation
+  issues. Both datasets were processed in two separate batches (Batch A: 60 samples,
+  Batch B: 60 samples for transcriptomics; Batch A: 50 samples, Batch B: 45 samples
+  for proteomics).
+
+
+  Your goal is to integrate these two omics layers to identify patient subgroups with
+  distinct molecular profiles that may predict response to FOLFOX chemotherapy.
+
+
+  Please provide the following:
+
+
+  1. **Integration strategy recommendation**: Should you use early (concatenation),
+  intermediate (e.g., MOFA+), or late integration for this scenario? Justify your
+  choice given the partial sample overlap and batch structure.
+
+
+  2. **Batch correction approach**: Describe the specific steps to handle batch effects
+  across both omics layers before integration, including which tools to use (e.g.,
+  ComBat, limma removeBatchEffect) and the order of operations.
+
+
+  3. **Handling partial overlap**: Explain concretely how to handle the 25 samples
+  missing proteomics data — should they be excluded, imputed, or handled by the integration
+  method itself?
+
+
+  4. **Brief R code snippet**: Provide example code using the MOFA2 R package to set
+  up the multi-omics object with these two views, specifying how to encode the missing
+  samples as NA values in the proteomics matrix.'
+target_skills:
+- multi-omics-integration
+domain: multi-omics
+difficulty: easy

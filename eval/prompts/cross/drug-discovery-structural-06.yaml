@@ -1,0 +1,45 @@
+id: drug-discovery-structural-06
+prompt: 'A medicinal chemist at a rare disease biotech is investigating **TRPM7 kinase**
+  as a therapeutic target for a fibrotic condition affecting approximately 12,000
+  patients annually. The team has identified that **nintedanib** (an approved anti-fibrotic
+  tyrosine kinase inhibitor) and **crizotinib** (an approved ALK/MET inhibitor) both
+  show off-target activity against TRPM7 in published kinome profiling data, with
+  reported Kd values of 340 nM and 890 nM respectively against TRPM7.
+
+
+  The TRPM7 kinase domain crystal structure is available (PDB: 5ZX5), revealing a
+  well-defined ATP-binding pocket with a unique Gly-rich loop conformation and an
+  accessible allosteric site adjacent to the activation loop. The team wants to evaluate
+  both compounds as repurposing candidates and use structural insights to guide further
+  optimization.
+
+
+  **Please provide the following deliverables:**
+
+
+  1. **Repurposing candidate ranking**: Using the repurposing evidence hierarchy,
+  compare nintedanib and crizotinib as TRPM7 repurposing candidates. Evaluate mechanism-of-action
+  overlap with TRPM7 biology, existing safety data relevance, and clinical translatability
+  for a fibrotic indication. Recommend which compound represents the stronger starting
+  point and justify using at least three evidence dimensions.
+
+
+  2. **Cheminformatics profile**: The SMILES for nintedanib is `O=C(Nc1ccc(N2CCN(C)CC2)cc1)c1cc2c(nc1)n(C)c1ccccc1-2`
+  and for crizotinib is `Clc1cn(C2CCNCC2)nc1-c1cc(F)ccc1NC(=O)c1ccc(Cl)cc1`. Using
+  RDKit-based analysis, compute MW, cLogP, HBD, HBA, TPSA, and rotatable bonds for
+  both compounds. Apply Lipinski Ro5 and Veber rules, flag any PAINS alerts, and calculate
+  Morgan fingerprint Tanimoto similarity (radius=2, nBits=2048) between the two compounds.
+
+
+  3. **Structure-based optimization strategy**: Using PDB 5ZX5 as the reference structure,
+  design a virtual screening and lead optimization cascade for the stronger repurposing
+  candidate. Specify whether to prioritize the ATP-binding site or allosteric site,
+  recommend a docking protocol (rigid vs. induced-fit), identify two key pharmacophoric
+  features to retain during optimization, and propose one MM-GBSA rescoring criterion
+  to triage top-ranked poses.'
+target_skills:
+- drug-repurposing
+- cheminformatics
+- structure-based-drug-design
+domain: drug-discovery
+difficulty: intermediate

@@ -1,0 +1,48 @@
+id: ehr-data-parsing-02
+prompt: 'Here is test question #2 of 10:
+
+
+  ---
+
+
+  You have received a batch of HL7v2 ORU^R01 messages from a laboratory information
+  system containing CBC (Complete Blood Count) results for patients. Below is a representative
+  sample message:
+
+
+  ```
+
+  MSH|^~\&|LAB_SYS|CITY_HOSP|EHR|MAIN|20240315143022||ORU^R01|MSG00042|P|2.5
+
+  PID|1||PT-88421^^^CITY_HOSP^MR||Johnson^Robert^Allen||19780923|M|||456 Maple Ave^^Springfield^IL^62701||555-234-9876
+
+  OBR|1|ORD-5521|LAB-9921|58410-2^CBC panel^LN|||20240315140000
+
+  OBX|1|NM|718-7^Hemoglobin^LN||13.2|g/dL|13.5-17.5|L|||F
+
+  OBX|2|NM|789-8^Erythrocytes^LN||4.21|10*6/uL|4.5-5.9|L|||F
+
+  OBX|3|NM|6690-2^Leukocytes^LN||11.8|10*3/uL|4.5-11.0|H|||F
+
+  OBX|4|NM|777-3^Platelets^LN||198|10*3/uL|150-400|N|||F
+
+  ```
+
+
+  Using Python, please provide:
+
+
+  1. A parsing function using the `hl7` library (or manual string parsing) that extracts
+  from each message: patient MRN, full name, date of birth, sex, the test name, numeric
+  result value, units, reference range, and abnormal flag for each OBX segment.
+
+  2. Code to load multiple such messages from a plain text file (one message per line,
+  segments separated by `\r`) and convert all extracted records into a pandas DataFrame.
+
+  3. A data quality check function that flags records where the abnormal flag field
+  (OBX-8) is populated but the result value falls within the stated reference range,
+  or where the reference range is missing entirely.'
+target_skills:
+- ehr-data-parsing
+domain: clinical-data
+difficulty: easy

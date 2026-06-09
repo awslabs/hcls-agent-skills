@@ -1,0 +1,40 @@
+id: scrna-seq-pipeline-10
+prompt: 'You are analyzing a dataset of 45,000 peripheral blood mononuclear cells
+  (PBMCs) from 12 lupus patients (6 active disease, 6 remission) processed across
+  3 sequencing batches. After initial QC filtering (min_genes=200, max_genes=5000,
+  mt_threshold=20%), you have an AnnData object with significant batch effects confirmed
+  by high ASW batch score (0.68) and poor bio-conservation (cLISI=0.31) after standard
+  Harmony correction using `harmony_integrate(adata, ''batch'')`.
+
+
+  Suspecting the poor integration stems from confounded batch-biological variation
+  (batches correlate partially with disease status: batch 1 = 4 active, batch 2 =
+  4 remission, batch 3 = 2 active + 2 remission), you need to explore alternative
+  strategies.
+
+
+  **Deliverables required:**
+
+
+  1. **Diagnose** why Harmony failed here and what specific parameter adjustments
+  (e.g., `theta`, `sigma`, `nclust`) might improve results — provide the exact Scanpy/harmonypy
+  code with your recommended parameters and justification.
+
+
+  2. **Implement** an scVI model as an alternative, specifying the exact model architecture
+  choices (n_layers, n_latent, dispersion parameter) appropriate for this confounded
+  design, including how to encode both `batch` and `disease_status` as categorical
+  covariates correctly in the model setup.
+
+
+  3. **Design** a quantitative evaluation framework using scib metrics to compare
+  Harmony (original + tuned) vs. scVI integration, providing code that computes at
+  least 4 metrics and outputs a ranked comparison table.
+
+
+  4. **Explain** one scenario where neither method would be appropriate for this dataset
+  and what preprocessing intervention (before integration) could rescue the analysis.'
+target_skills:
+- scrna-seq-pipeline
+domain: single-cell
+difficulty: hard

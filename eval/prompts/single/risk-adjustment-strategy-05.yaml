@@ -1,0 +1,44 @@
+id: risk-adjustment-strategy-05
+prompt: 'A Medicare Advantage plan in the Southeast region is preparing for its 2025
+  payment year risk adjustment data submission. The plan has 42,000 members being
+  transitioned from the V24 model to the blended V24/V28 methodology (currently at
+  a 67% V28 / 33% V24 blend for PY2025). Their analytics team has identified the following
+  member cohort with potential coding gaps from the 2024 data collection year:
+
+
+  - 3,200 members with documented Type 2 diabetes in claims but no specificity coding
+  (currently mapped to HCC 19 under V24)
+
+  - 1,850 members with CKD Stage 3 diagnoses that may qualify for higher-specificity
+  staging under V28''s revised kidney disease hierarchy
+
+  - 780 members with documented Major Depressive Disorder where the V28 model introduced
+  new interaction coefficients with anxiety disorders
+
+
+  Given this scenario, provide the following deliverables:
+
+
+  1. **RAF Impact Analysis**: Calculate the directional RAF score impact of the V24-to-V28
+  transition for each of the three cohorts, explaining which HCC mappings change between
+  model versions and why the blended methodology affects the net RAF calculation differently
+  than a full V28 transition would.
+
+
+  2. **Prioritization Framework**: Rank these three cohorts by prospective recapture
+  ROI, accounting for the blended model weights, member volume, and likely coding
+  specificity uplift available.
+
+
+  3. **Audit-Defensible Documentation Requirements**: For the diabetes cohort specifically,
+  outline what clinical documentation elements must be present in the medical record
+  to support more specific ICD-10 coding that would survive a RADV audit.
+
+
+  4. **Coding Gap Outreach Strategy**: Recommend a provider engagement approach for
+  closing these gaps prospectively in the 2025 data collection year, including timing
+  considerations relative to the submission deadline.'
+target_skills:
+- risk-adjustment-strategy
+domain: healthcare-ops
+difficulty: intermediate

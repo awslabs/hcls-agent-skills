@@ -1,0 +1,36 @@
+id: edc-data-validation-02
+prompt: 'You are working as a clinical data manager on a Phase II oncology trial with
+  85 enrolled patients. Your EDC system (Medidata Rave) has exported lab data to a
+  CSV file containing the following columns: `USUBJID`, `LBTEST`, `LBORRESU`, `LBORRES`,
+  `LBDTC`, `VISITNUM`, and `LBNRIND`. The lab panel includes CBC components: Hemoglobin
+  (normal range: 12.0–17.5 g/dL), WBC (normal range: 3.5–10.5 × 10³/µL), and Platelets
+  (normal range: 150–400 × 10³/µL), as well as liver function tests: ALT (normal range:
+  7–56 U/L) and AST (normal range: 10–40 U/L).
+
+
+  You need to build a Python-based validation script to clean and validate this export
+  before SDTM mapping. Please provide:
+
+
+  1. **Python code** that loads the CSV, performs numeric range checks for all five
+  lab tests listed above, and flags any out-of-range values with a severity classification
+  (CRITICAL if >3× upper limit of normal, WARNING if between 1× and 3× ULN, NORMAL
+  otherwise).
+
+
+  2. **Cross-form consistency check** code that verifies `LBNRIND` values already
+  present in the export match your calculated range classification (flag discrepancies
+  where `LBNRIND` says "NORMAL" but your calculation disagrees).
+
+
+  3. **A summary report function** that outputs, per lab test: total records, count
+  of CRITICAL flags, count of WARNING flags, count of discrepancies with `LBNRIND`,
+  and list of affected `USUBJID` values.
+
+
+  Assume the CSV may contain missing values and non-numeric entries in `LBORRES` that
+  must be handled gracefully.'
+target_skills:
+- edc-data-validation
+domain: clinical-data-review
+difficulty: easy

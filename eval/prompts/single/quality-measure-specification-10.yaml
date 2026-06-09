@@ -1,0 +1,44 @@
+id: quality-measure-specification-10
+prompt: 'A regional health plan is conducting its annual HEDIS Controlling High Blood
+  Pressure (CBP) measure audit for measurement year 2024. Their data analyst has identified
+  a problematic patient cohort that is causing disagreement between the plan''s internal
+  rate and the NCQA-contracted auditor''s rate.
+
+
+  **Cohort Details:**
+
+  - 847 members initially flagged as denominator-eligible (ages 18-85, hypertension
+  diagnosis)
+
+  - 112 members were excluded by the plan for "pregnancy during the measurement year"
+
+  - 34 members were excluded for ESRD using only pharmacy claims (no facility codes)
+
+  - 67 members have blood pressure readings documented solely in telehealth visit
+  notes (CPT 99441-99443) with no structured EHG/EMR discrete field entry
+
+  - 28 members have their most recent BP reading of 130/85 mmHg documented on December
+  28, 2024
+
+  - 19 members received antihypertensive medication changes on November 15, 2024,
+  with a follow-up BP of 128/82 mmHg on January 10, 2025 (outside measurement year)
+
+
+  **Deliverables requested:**
+
+  1. Identify which exclusion groups are likely being applied incorrectly per current
+  HEDIS CBP specifications and explain the correct logic
+
+  2. Determine numerator compliance status for each of the three BP documentation
+  scenarios (telehealth-only, 130/85 reading, and post-measurement-year follow-up)
+
+  3. Write a SQL pseudocode query to correctly identify valid numerator hits from
+  a claims/encounters table, incorporating the BP threshold logic (less than 140/90)
+  and measurement year date constraints
+
+  4. Recommend a pre-submission audit checklist (minimum 6 items) specifically addressing
+  these edge cases to prevent future rate discrepancies'
+target_skills:
+- quality-measure-specification
+domain: healthcare-ops
+difficulty: hard

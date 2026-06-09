@@ -1,0 +1,46 @@
+id: pharmacoepidemiology-07
+prompt: 'You are conducting a pharmacoepidemiologic study using a large US commercial
+  claims database (2.8 million patients, 2015–2022) to evaluate whether GLP-1 receptor
+  agonists (GLP-1 RAs) reduce the risk of major adverse cardiovascular events (MACE)
+  compared to DPP-4 inhibitors in patients with type 2 diabetes. You have already
+  constructed a new-user active comparator cohort (n = 84,000 GLP-1 RA initiators;
+  n = 91,000 DPP-4 inhibitor initiators) with a 180-day washout period.
+
+
+  Your clinical team raises three concerns: (1) some patients switch between drug
+  classes or add second agents during follow-up, creating time-varying treatment and
+  confounding; (2) the index date definition may have inadvertently introduced immortal
+  time bias for a subgroup who required prior authorization approval averaging 47
+  days; (3) unmeasured confounding by obesity severity (BMI not captured in claims)
+  may be substantial.
+
+
+  **Please provide:**
+
+
+  1. A detailed explanation of why standard Cox regression with baseline propensity
+  score adjustment is insufficient here, specifically addressing time-varying confounding
+  and treatment switching
+
+
+  2. A step-by-step protocol for implementing inverse probability of treatment weighting
+  with a marginal structural model (MSM) to handle the time-varying confounding, including
+  how to specify the time-varying treatment and covariate models
+
+
+  3. Pseudo-code (in R using the `ipw` or `WeightIt` packages) for estimating stabilized
+  time-varying weights and fitting the weighted pooled logistic regression as an MSM
+  approximation
+
+
+  4. A strategy to diagnose and correct the immortal time bias introduced by the prior
+  authorization delay
+
+
+  5. Quantitative bias analysis using E-values to assess the robustness of your findings
+  to unmeasured confounding by obesity severity, assuming your observed hazard ratio
+  is 0.78 (95% CI: 0.71–0.86)'
+target_skills:
+- pharmacoepidemiology
+domain: pharmacoepidemiology
+difficulty: intermediate

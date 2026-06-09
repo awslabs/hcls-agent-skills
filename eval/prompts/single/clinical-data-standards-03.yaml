@@ -1,0 +1,53 @@
+id: clinical-data-standards-03
+prompt: 'A clinical trial safety team is preparing an adverse event frequency table
+  for a regulatory submission. They have collected the following raw adverse event
+  terms reported by investigators across 847 patients:
+
+
+  - "stomach ache" (n=23)
+
+  - "abdominal pain upper" (n=31)
+
+  - "epigastric discomfort" (n=18)
+
+  - "nausea" (n=67)
+
+  - "feeling sick" (n=12)
+
+  - "vomiting" (n=44)
+
+  - "headache" (n=89)
+
+  - "migraine" (n=15)
+
+  - "head pain" (n=7)
+
+
+  The team needs to code these terms using MedDRA version 26.0 and produce a summary
+  table at the Preferred Term (PT) level, grouped by System Organ Class (SOC).
+
+
+  Please provide the following:
+
+
+  1. **MedDRA coding**: Map each investigator-reported term to its most appropriate
+  Lowest Level Term (LLT) and corresponding Preferred Term (PT). Identify which terms
+  are already PTs versus LLTs that roll up to a different PT.
+
+
+  2. **SOC assignment**: Assign each PT to its primary SOC, and explain why "nausea"
+  and "vomiting" share the same SOC as abdominal pain terms.
+
+
+  3. **Aggregated frequency table**: Produce a properly formatted PT-level summary
+  table grouped by SOC, with combined patient counts where multiple LLTs map to the
+  same PT. Assume no patient reported more than one term that maps to the same PT.
+
+
+  4. **HLT consideration**: Explain whether the regulatory submission should also
+  include an HLT-level summary, and under what circumstances HLT grouping adds value
+  over PT-level reporting alone.'
+target_skills:
+- clinical-data-standards
+domain: clinical-data
+difficulty: easy

@@ -1,0 +1,46 @@
+id: rwd-cohort-analysis-08
+prompt: 'You are analyzing a real-world evidence study comparing two GLP-1 receptor
+  agonists — semaglutide (NDC prefix: 00169) and dulaglutide (NDC prefix: 00002) —
+  for cardiovascular outcomes in a Type 2 diabetes cohort extracted from a large commercial
+  claims database (n = 847,293 members, 2018–2023).
+
+
+  After cohort identification using ICD-10 codes E11.x (Type 2 diabetes) and requiring
+  ≥2 diagnoses 30+ days apart, you have 12,847 semaglutide initiators and 9,203 dulaglutide
+  initiators. Your primary outcome is MACE (composite of MI: I21.x, stroke: I63.x,
+  or CV death) with a median follow-up of 28 months.
+
+
+  **Critical complications have emerged:**
+
+
+  1. Propensity score matching (1:1 nearest-neighbor, caliper=0.02) achieved balance
+  on most covariates, but HbA1c proxy variables (insulin use, endocrinology visits)
+  show persistent SMD = 0.18 after matching, exceeding the 0.10 threshold.
+
+
+  2. Schoenfeld residuals test for the treatment variable yields p = 0.003, suggesting
+  violation of the proportional hazards assumption. Inspection of log-log survival
+  plots shows the curves crossing at approximately month 14.
+
+
+  3. Medication adherence (PDC) distributions differ substantially: semaglutide PDC
+  mean = 0.71 (SD=0.19), dulaglutide PDC mean = 0.58 (SD=0.23), which may confound
+  the treatment effect estimate.
+
+
+  **Deliverables required:**
+
+  - Python code implementing a time-varying Cox model to address the PH violation,
+  splitting follow-up at month 14
+
+  - A strategy to handle the residual confounding from HbA1c proxies (with code for
+  overlap weighting as an alternative to matching)
+
+  - An approach to incorporate PDC as a time-varying covariate or mediator, with justification
+
+  - Interpretation guidance for the resulting hazard ratios in each time segment'
+target_skills:
+- rwd-cohort-analysis
+domain: pharmacoepidemiology
+difficulty: hard

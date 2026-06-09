@@ -1,0 +1,37 @@
+id: multi-omics-pipeline-04
+prompt: 'You are analyzing a multi-omics dataset from a colorectal cancer cohort (n=187
+  tumor samples) with three data layers: RNA-seq counts (18,432 genes), reverse-phase
+  protein array (RPPA, 217 proteins), and DNA methylation beta values (450K array,
+  485,512 CpG sites). Samples were processed across three sequencing batches (Batch
+  A: n=63, Batch B: n=71, Batch C: n=53), and preliminary PCA shows strong batch clustering
+  in all three omics layers.
+
+
+  Your goal is to integrate these layers using MOFA2 in R to identify latent factors
+  driving biological variation, but first you need to address several preprocessing
+  challenges:
+
+
+  1. **Batch correction**: Write R code to apply `ComBat-seq` to the raw RNA-seq counts
+  and standard `ComBat` to the RPPA and methylation data. Include model matrix specification
+  that preserves a binary `tumor_stage` covariate (early=0, late=1) during correction.
+
+
+  2. **Feature harmonization**: The RPPA protein symbols (e.g., "EGFR", "AKT1_pS473",
+  "mTOR") need to be mapped to their corresponding Ensembl gene IDs using `biomaRt`.
+  Write code that handles phosphoprotein suffixes (strip `_pS473`-style annotations
+  before querying) and flags any proteins with no Ensembl match.
+
+
+  3. **MOFA2 setup**: Provide complete R code to create a MOFA2 object from all three
+  batch-corrected layers, set training options for 15 factors with ARD prior, and
+  extract the top 10 gene weights from Factor 1 and Factor 2.
+
+
+  4. **Downstream enrichment**: Using the top 50 positive-weight genes from Factor
+  1 (RNA-seq layer), run `clusterProfiler` GO over-representation analysis (Biological
+  Process ontology) and display results filtered to adjusted p-value < 0.05.'
+target_skills:
+- multi-omics-pipeline
+domain: multi-omics
+difficulty: intermediate

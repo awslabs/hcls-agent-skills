@@ -1,0 +1,38 @@
+id: radiology-preprocessing-04
+prompt: 'You are processing a dataset of 847 T1-weighted MRI scans from a multi-site
+  clinical trial (3 sites: Boston General, Seattle Medical Center, and Chicago University
+  Hospital) using scanners from two different vendors (Siemens Prisma 3T and GE Discovery
+  MR750 3T). Initial quality checks reveal significant intensity inhomogeneity artifacts,
+  particularly in scans from the GE scanners, and approximately 12% of scans show
+  failed skull stripping when using the default FSL BET with fractional intensity
+  threshold f=0.5.
+
+
+  Your preprocessing pipeline must produce skull-stripped, bias-corrected, and MNI152-registered
+  outputs suitable for downstream VBM analysis. You have access to FSL (including
+  BET, FLIRT, FNIRT), ANTs (including N4BiasFieldCorrection and antsRegistrationSyN),
+  and HD-BET.
+
+
+  **Please provide:**
+
+
+  1. A recommended step-by-step preprocessing order (with justification for the ordering,
+  particularly whether bias correction should precede or follow skull stripping)
+
+
+  2. A Python/bash script implementing the complete pipeline using ANTs N4 for bias
+  correction and HD-BET for skull stripping, followed by a two-stage linear (FLIRT)
+  then nonlinear (FNIRT) registration to MNI152 1mm space
+
+
+  3. Specific parameter recommendations to address the 12% BET failure rate, including
+  at least two alternative approaches for difficult cases
+
+
+  4. A quality control strategy that flags registration failures using a quantitative
+  metric, with a threshold value and the specific FSL or ANTs command to compute it'
+target_skills:
+- radiology-preprocessing
+domain: imaging
+difficulty: intermediate

@@ -1,0 +1,45 @@
+id: protein-structure-analysis-09
+prompt: 'You are analyzing a homodimeric enzyme **TyrK2** (fictional), and you have
+  two crystal structures: **tyrk2_apo.pdb** (chain A and chain B, resolution 1.8 Å)
+  and **tyrk2_holo.pdb** (chain A bound to inhibitor LX-447, chain B unbound, resolution
+  2.1 Å). Your goal is to characterize conformational changes upon inhibitor binding.
+
+
+  **Specific findings so far:**
+
+  - Preliminary RMSD of all Cα atoms between apo chain A and holo chain A gives 3.7
+  Å, suggesting large-scale movement
+
+  - Residues 145–162 form a flexible "gating loop" suspected to reorder upon binding
+
+  - B-factors in tyrk2_apo.pdb for the gating loop average 68 Ų vs. 22 Ų for the rest
+  of the structure
+
+  - Several residues in the gating loop (Asp148, Gly152, Pro157) show unusual backbone
+  geometry in preliminary Ramachandran analysis
+
+
+  **Deliverables requested:**
+
+
+  1. Write a complete Python script using Biopython that: (a) performs per-residue
+  Cα RMSD between apo chain A and holo chain A after global superposition, (b) plots
+  residue-wise RMSD highlighting the gating loop region (145–162), and (c) flags residues
+  exceeding a 2.0 Å local RMSD threshold.
+
+
+  2. Explain how to interpret the B-factor discrepancy and whether it complicates
+  RMSD interpretation for the gating loop specifically.
+
+
+  3. Provide DSSP-based secondary structure assignment code for both structures and
+  describe what secondary structure transitions you would expect in the gating loop
+  given the data.
+
+
+  4. Given that Pro157 appears in a Ramachandran outlier region, explain the structural
+  implications and whether this is likely an artifact or biologically meaningful.'
+target_skills:
+- protein-structure-analysis
+domain: protein-structure
+difficulty: hard

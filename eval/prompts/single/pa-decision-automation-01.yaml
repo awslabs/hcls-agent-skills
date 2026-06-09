@@ -1,0 +1,41 @@
+id: pa-decision-automation-01
+prompt: 'A regional health plan processes approximately 4,200 prior authorization
+  requests per month across musculoskeletal, oncology, and behavioral health service
+  lines. Your team has received a batch of 50 X12 278 Request transactions and needs
+  to build a foundational parsing pipeline before moving toward automated adjudication.
+
+
+  Each 278 transaction contains standard loop structures including the 2000A (Utilization
+  Management Organization), 2000B (Requester), 2000C (Subscriber), 2000D (Dependent),
+  and 2010 name/address loops, along with UM01–UM11 segment data capturing service
+  type codes, certification types, and level of service indicators.
+
+
+  Please provide the following concrete deliverables:
+
+
+  1. **Python parsing function**: Write a Python function using the `pyx12` library
+  (or a manual segment-splitting approach if preferred) that ingests a raw 278 X12
+  string and extracts the following fields into a structured dictionary: subscriber
+  member ID (NM109 in loop 2000C), service type code (UM02), requested procedure code
+  (HI segment, BEQ qualifier), requesting provider NPI (NM109 in loop 2010), and certification
+  type code (UM01).
+
+
+  2. **Data validation rules**: Define at least four validation checks that should
+  be applied to the extracted fields (e.g., NPI format, valid service type code enumeration,
+  required field presence) and implement them as a Python validation function returning
+  a list of error messages.
+
+
+  3. **Output schema**: Provide a sample JSON output schema showing how one successfully
+  parsed and validated 278 transaction should be structured for downstream ML feature
+  extraction.
+
+
+  Assume the X12 delimiter characters are standard (`~` segment, `*` element, `:`
+  sub-element) and include inline comments explaining key parsing decisions.'
+target_skills:
+- pa-decision-automation
+domain: healthcare-ops
+difficulty: easy

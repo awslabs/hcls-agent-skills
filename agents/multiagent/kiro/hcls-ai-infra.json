@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "hcls-ai-infra",
+  "description": "AI infrastructure specialist: ML experiment design (evaluation strategy, reporting standards, fairness), and AWS GenAI/ML architecture (SageMaker, Bedrock, HIPAA compliance, MLOps).",
+  "tools": ["*"],
+  "allowedTools": ["read", "shell"],
+  "resources": [
+    "skill://.kiro/skills/ml-researcher/SKILL.md",
+    "skill://.kiro/skills/aws-genai-ml-architect/SKILL.md"
+  ]
+}

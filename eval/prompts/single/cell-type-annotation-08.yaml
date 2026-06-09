@@ -1,0 +1,38 @@
+id: cell-type-annotation-08
+prompt: 'You are analyzing a single-cell RNA-seq dataset from a human pancreatic tumor
+  microenvironment study (n=12 patients, ~85,000 cells after QC). After Leiden clustering
+  at resolution 1.2, you have 34 clusters. You''ve run CellTypist using the "Immune_All_High.pkl"
+  model, but several clusters show conflicting annotations: clusters 7, 15, and 22
+  receive "T cells CD8+" as the majority label but with low confidence scores (0.42,
+  0.38, 0.51 respectively), while simultaneously expressing high levels of FOXP3,
+  IL2RA, and CTLA4 — canonical Treg markers. Cluster 19 is labeled "Macrophages" but
+  shows co-expression of EPCAM and KRT19, suggesting possible doublets or a rare hybrid
+  population.
+
+
+  Please provide:
+
+
+  1. **Diagnostic code** using Scanpy and CellTypist to extract per-cell probability
+  scores for the top 3 predicted labels for clusters 7, 15, 22, and 19, and visualize
+  these as violin plots split by cluster.
+
+
+  2. **Resolution strategy** for the conflicting CD8+/Treg annotation — including
+  code to run a sub-clustering analysis on these three clusters combined, apply a
+  custom marker-based scoring approach using `sc.tl.score_genes()` with appropriate
+  gene sets for CD8+ T cells ([CD8A, CD8B, GZMB, PRF1]) and Tregs ([FOXP3, IL2RA,
+  CTLA4, IKZF2]), and produce a dotplot showing both scores alongside raw marker expression.
+
+
+  3. **Doublet assessment** for cluster 19 using co-expression thresholding logic
+  in Python to flag cells exceeding the 75th percentile for both macrophage markers
+  (CD68, MRC1, CSF1R) and epithelial markers (EPCAM, KRT19, CDH1) simultaneously.
+
+
+  4. A brief **decision framework** (as code comments) for when to trust CellTypist
+  labels versus override with manual annotation in tumor microenvironment contexts.'
+target_skills:
+- cell-type-annotation
+domain: single-cell
+difficulty: hard

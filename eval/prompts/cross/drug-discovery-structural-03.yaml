@@ -1,0 +1,49 @@
+id: drug-discovery-structural-03
+prompt: 'A rare pediatric glioma cohort study (n=847 patients) has identified recurrent
+  overexpression of DYRK1B kinase as a key oncogenic driver, with 73% of tumors showing
+  >4-fold upregulation versus normal tissue. Your team wants to rapidly identify repurposable
+  approved drugs targeting DYRK1B or its immediate pathway neighbors before investing
+  in de novo synthesis.
+
+
+  A preliminary OpenTargets query returned three candidates with documented DYRK1B
+  interaction evidence: **harmine** (a β-carboline alkaloid, SMILES: `C1=CC2=C(C=CN=C2N)C=C1`
+  — note this is approximate), **INDY** (a small-molecule DYRK inhibitor, SMILES:
+  `CC1=CC(=O)N(C(=O)N1)C2=CC=C(C=C2)Cl`), and **leucettine L41** (SMILES: `C1=CN=C(N1)NC2=NC(=O)N(C2=O)CC3=CC=CC=C3`).
+  INDY and leucettine L41 are investigational; harmine has existing human safety data
+  from ethnobotanical use and CNS studies.
+
+
+  Given a CNS indication, the blood-brain barrier penetration is a critical constraint.
+  Assume standard CNS drug criteria require: MW ≤ 450 Da, logP between 1–4, HBD ≤
+  3, HBA ≤ 7, TPSA ≤ 90 Ų, and rotatable bonds ≤ 8.
+
+
+  Please provide the following deliverables:
+
+
+  1. **Repurposing evidence ranking**: Using a structured evidence hierarchy (genetic
+  association, pathway proximity, in vitro/in vivo data, clinical data), rank all
+  three candidates for DYRK1B-targeted glioma repurposing, explicitly weighing harmine''s
+  existing safety profile against the mechanistic specificity of INDY and leucettine
+  L41.
+
+
+  2. **Cheminformatics CNS filter**: For each candidate, compute (or estimate from
+  SMILES) MW, logP, HBD, HBA, TPSA, and rotatable bonds. Identify which compounds
+  pass the CNS criteria above, flag any PAINS substructures present, and calculate
+  pairwise Tanimoto similarity using Morgan fingerprints (radius=2) to assess scaffold
+  diversity.
+
+
+  3. **Structure-based design strategy**: For the highest-ranked repurposing candidate
+  that passes CNS filtering, propose a concrete virtual screening and lead optimization
+  workflow — including binding site definition on DYRK1B (referencing the ATP-binding
+  pocket vs. potential allosteric sites), recommended docking protocol, and one specific
+  MM-GBSA or FEP refinement step — to support IND-enabling studies within 18 months.'
+target_skills:
+- drug-repurposing
+- cheminformatics
+- structure-based-drug-design
+domain: drug-discovery
+difficulty: easy

@@ -1,0 +1,40 @@
+id: proteomics-analysis-06
+prompt: 'You have completed a TMT-16plex phosphoproteomics experiment comparing drug-treated
+  (n=4 biological replicates) versus vehicle-treated (n=4 biological replicates) HeLa
+  cells. MSFragger processed your raw files and produced a `combined_protein.tsv`
+  file containing TMT reporter ion intensities. After phosphopeptide enrichment, you
+  have approximately 8,500 phosphosite-level quantifications, but roughly 22% of values
+  are missing (a mix of MCAR and MNAR patterns based on visual inspection of the missingness
+  distribution).
+
+
+  Your analysis requirements are as follows:
+
+
+  1. **TMT normalization**: Write R code to load the `combined_protein.tsv`, extract
+  TMT channels (named `126C`, `127N`, `127C`, `128N`, `128C`, `129N`, `129C`, `130N`
+  for 8 samples), apply sample-loading normalization followed by internal reference
+  scaling (IRS) normalization using the average of all samples as a pseudo-reference.
+
+
+  2. **Hybrid imputation**: Implement a strategy that applies MinProb imputation (from
+  the `DEP` package) for MNAR entries (defined as proteins missing in ≥75% of one
+  condition) and kNN imputation for MCAR entries, then combine results into a single
+  matrix.
+
+
+  3. **Differential expression**: Run `limma` with a design matrix contrasting drug
+  vs. vehicle, apply `eBayes` with `robust=TRUE`, and extract hits at FDR < 0.05 and
+  |log2FC| > 0.5.
+
+
+  4. **Visualization**: Generate a volcano plot using `ggplot2` that highlights the
+  top 15 hits by significance, color-codes by regulation direction, and annotates
+  points with gene names using `ggrepel`.
+
+
+  Provide complete, runnable R code with comments explaining each step.'
+target_skills:
+- proteomics-analysis
+domain: proteomics
+difficulty: intermediate

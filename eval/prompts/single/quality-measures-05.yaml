@@ -1,0 +1,38 @@
+id: quality-measures-05
+prompt: 'You are building a HEDIS Controlling High Blood Pressure (CBP) measure pipeline
+  for a commercial health plan covering 85,000 members. The measurement year is 2023,
+  with a look-back period from January 1, 2022 through December 31, 2023.
+
+
+  Your claims database contains the following tables: `members` (member_id, dob, gender,
+  plan_start_date, plan_end_date, zip_code), `medical_claims` (claim_id, member_id,
+  service_date, diagnosis_codes ARRAY, procedure_codes ARRAY, pos_code, provider_npi),
+  and `pharmacy_claims` (rx_id, member_id, fill_date, ndc_code, days_supply, quantity).
+
+
+  The CBP denominator requires members aged 18–85 with an essential hypertension diagnosis
+  (ICD-10: I10) and continuous enrollment for the measurement year with no more than
+  one 45-day gap. The numerator requires a blood pressure reading with systolic <140
+  mmHg AND diastolic <90 mmHg, captured via specific CPT codes (99213, 99214, 99215,
+  99395, 99396) or LOINC-mapped lab results stored in a separate `clinical_obs` table
+  (obs_id, member_id, obs_date, loinc_code, value_numeric, units).
+
+
+  Please provide:
+
+  1. A SQL query that builds the CBP denominator, enforcing the continuous enrollment
+  logic with the 45-day gap rule across plan segments
+
+  2. A SQL query that identifies numerator-eligible members using both claims-based
+  CPT encounters and the `clinical_obs` table (LOINC codes 8480-6 for systolic, 8462-4
+  for diastolic)
+
+  3. The final measure rate calculation query joining denominator and numerator, stratified
+  by age band (18–44, 45–64, 65–85) and gender
+
+  4. A brief explanation of how to handle members with multiple BP readings in the
+  measurement year (best reading vs. most recent reading per HEDIS specifications)'
+target_skills:
+- quality-measures
+domain: healthcare-ops
+difficulty: intermediate

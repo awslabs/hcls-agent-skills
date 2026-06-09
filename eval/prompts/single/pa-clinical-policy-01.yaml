@@ -1,0 +1,44 @@
+id: pa-clinical-policy-01
+prompt: 'A 58-year-old patient with moderate-to-severe rheumatoid arthritis (RA) has
+  been prescribed Abatacept (Orencia) 125mg subcutaneous weekly by their rheumatologist.
+  The patient''s insurer, BlueCrest Health Plan, has issued a prior authorization
+  denial citing "failure to meet step therapy requirements." According to BlueCrest''s
+  RA clinical policy (version 2024.3), biologic DMARDs require documented inadequate
+  response or intolerance to at least two conventional synthetic DMARDs (csDMARDs),
+  specifically methotrexate and one additional agent (leflunomide, sulfasalazine,
+  or hydroxychloroquine), each trialed for a minimum of 90 days.
+
+
+  The patient''s chart documents:
+
+  - Methotrexate 20mg weekly × 4 months: discontinued due to hepatotoxicity (ALT elevated
+  3× ULN)
+
+  - Hydroxychloroquine 400mg daily × 6 weeks: discontinued due to inadequate response
+  and patient-reported visual disturbances
+
+  - Current DAS28-CRP score: 5.8 (high disease activity)
+
+  - No prior biologic exposure
+
+
+  The treating physician wants to appeal the denial and request a peer-to-peer review.
+
+
+  Please provide:
+
+  1. An analysis of whether the clinical documentation satisfies BlueCrest''s step
+  therapy criteria, identifying any gaps or ambiguities
+
+  2. A structured appeal letter framework citing the specific documentation strengths
+  and weaknesses
+
+  3. Recommended additional clinical evidence or documentation the physician should
+  gather before the peer-to-peer review
+
+  4. An explanation of how "intolerance" versus "inadequate response" distinctions
+  might affect the appeal strategy for each prior csDMARD trial'
+target_skills:
+- pa-clinical-policy
+domain: healthcare-ops
+difficulty: easy

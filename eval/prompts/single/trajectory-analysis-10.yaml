@@ -1,0 +1,35 @@
+id: trajectory-analysis-10
+prompt: 'You are analyzing a single-cell RNA-seq dataset of 14,200 hematopoietic stem
+  and progenitor cells (HSPCs) from 6 healthy donors, profiled with 10x Chromium.
+  After Leiden clustering, you identified 11 clusters representing HSCs, MPPs, CMPs,
+  GMPs, MEPs, monocytes, granulocytes, erythroid progenitors, megakaryocytes, lymphoid
+  progenitors, and dendritic cell precursors. You ran scVelo in dynamical mode and
+  obtained RNA velocity vectors, but you''re observing a contradictory situation:
+  PAGA graph connectivity strongly supports a bifurcation from MEPs into both erythroid
+  and megakaryocyte lineages, but the scVelo velocity arrows in UMAP space show megakaryocytes
+  projecting *back toward* HSCs rather than emerging from MEPs. CellRank terminal
+  state detection identified 4 terminal states (monocytes, granulocytes, erythroid,
+  megakaryocytes), but fate probability assignments for the megakaryocyte terminal
+  state show high probabilities even in the HSC cluster, bypassing MEPs entirely.
+
+
+  This conflict may reflect the known "megakaryocyte bypass" hypothesis (direct HSC→Mk
+  differentiation). Given this scenario:
+
+
+  1. Describe the biological and technical reasons why scVelo dynamical model and
+  PAGA might give conflicting signals in this specific context
+
+  2. Provide a diagnostic workflow (with Python code using scVelo, CellRank, and scanpy)
+  to distinguish true biological bypass from technical artifacts, including at least
+  3 specific QC metrics to evaluate
+
+  3. Recommend how to adjust CellRank''s transition matrix computation to better capture
+  both the canonical MEP route and potential bypass route simultaneously
+
+  4. Propose a gene set (minimum 8 genes with biological justification) to validate
+  the bypass trajectory using RNA velocity stream plots'
+target_skills:
+- trajectory-analysis
+domain: single-cell
+difficulty: hard

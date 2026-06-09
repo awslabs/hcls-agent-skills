@@ -1,0 +1,41 @@
+id: trajectory-analysis-03
+prompt: 'Here is test question #3 of 10:
+
+
+  ---
+
+
+  You have performed scRNA-seq on 4,800 hematopoietic stem and progenitor cells (HSPCs)
+  from human bone marrow, capturing cells across the myeloid differentiation axis.
+  After preprocessing and clustering in Scanpy, you have identified 7 distinct clusters:
+  HSC, CMP, GMP, MEP, Monocyte_precursor, Granulocyte_precursor, and Erythroid_precursor.
+  You want to reconstruct the differentiation trajectory using diffusion pseudotime
+  (DPT) and validate it with PAGA connectivity analysis.
+
+
+  Your AnnData object (`adata`) already has PCA and neighbors computed (n_neighbors=15,
+  n_pcs=30). The HSC cluster has been confirmed as the root population.
+
+
+  Please provide:
+
+
+  1. **Step-by-step Python code** using Scanpy to (a) compute the diffusion map, (b)
+  set the root cell as the cell with highest GATA2 expression within the HSC cluster,
+  (c) run DPT, and (d) run PAGA with the cluster annotation stored in `adata.obs[''cell_type'']`.
+
+
+  2. **Visualization code** to produce a UMAP plot colored by pseudotime and a PAGA
+  graph with edge weights thresholded at 0.15.
+
+
+  3. **Brief explanation** (3-5 sentences) of what diffusion pseudotime captures biologically
+  and how PAGA connectivity scores should be interpreted in the context of validating
+  branching differentiation paths from HSCs toward myeloid versus erythroid lineages.
+
+
+  ---'
+target_skills:
+- trajectory-analysis
+domain: single-cell
+difficulty: easy

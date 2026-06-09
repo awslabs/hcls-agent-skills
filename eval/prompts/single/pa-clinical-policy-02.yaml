@@ -1,0 +1,53 @@
+id: pa-clinical-policy-02
+prompt: 'A 58-year-old patient with moderate-to-severe rheumatoid arthritis (RA) has
+  been prescribed Abatacept (Orencia) 125mg subcutaneous weekly by their rheumatologist.
+  The patient''s commercial insurer (BlueCrest Health Plan) has issued a prior authorization
+  denial citing failure to meet step therapy requirements. The denial letter states
+  the patient must first try and fail two conventional DMARDs (methotrexate and one
+  additional cSDMARD) before a biologic will be authorized.
+
+
+  The patient''s medical record shows:
+
+  - 12-week trial of methotrexate 20mg/week — discontinued due to hepatotoxicity (ALT
+  elevated 4x upper limit of normal)
+
+  - 8-week trial of hydroxychloroquine 400mg/day — discontinued due to inadequate
+  response (DAS28 score remained at 5.8)
+
+  - Current DAS28 score: 6.1 (high disease activity)
+
+  - Negative hepatitis B and C serology
+
+  - No prior biologic exposure
+
+
+  The rheumatologist believes the step therapy requirements have been met but needs
+  help building a formal appeal.
+
+
+  **Please provide the following:**
+
+
+  1. **Clinical criteria analysis**: Evaluate whether this patient''s documented treatment
+  history satisfies typical commercial payer step therapy requirements for biologic
+  DMARDs in RA, citing relevant medical necessity standards.
+
+
+  2. **Appeal letter outline**: Draft a structured outline for a Level 1 administrative
+  appeal, including the key clinical arguments, supporting documentation checklist,
+  and regulatory hooks (e.g., state step therapy override laws or ACA provisions)
+  that strengthen the case.
+
+
+  3. **Peer-to-peer talking points**: List 5 specific clinical talking points the
+  rheumatologist should raise during a peer-to-peer review call with the medical director.
+
+
+  4. **Escalation pathway**: If the Level 1 appeal is denied, describe the recommended
+  escalation steps including external independent review and any CMS-relevant considerations
+  if the patient transitions to Medicare.'
+target_skills:
+- pa-clinical-policy
+domain: healthcare-ops
+difficulty: easy

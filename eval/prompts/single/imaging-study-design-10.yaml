@@ -1,0 +1,42 @@
+id: imaging-study-design-10
+prompt: 'Here is test question #10 of 10:
+
+
+  ---
+
+
+  You are designing a multi-site longitudinal diffusion MRI study to track white matter
+  microstructural changes in 180 patients with early-stage amyotrophic lateral sclerosis
+  (ALS) across three timepoints (baseline, 6 months, 12 months). Patients are scanned
+  at four sites using different scanner vendors: two Siemens Prisma 3T scanners (sites
+  A and B), one GE Discovery MR750 3T (site C), and one Philips Ingenia 3T (site D).
+  The acquisition protocol was harmonized prospectively using a 64-direction DTI scheme
+  at b=1000 s/mm², 2mm isotropic resolution, and matched TE/TR where possible, but
+  site C has a slightly different TE (89ms vs 85ms at other sites) and site D acquired
+  an additional b=2000 shell for NODDI modeling.
+
+
+  Your primary imaging biomarker is fractional anisotropy (FA) in the corticospinal
+  tract (CST), with secondary biomarkers including mean diffusivity (MD), NODDI neurite
+  density index (NDI) at site D only, and a tract-based spatial statistics (TBSS)
+  whole-brain analysis.
+
+
+  Specific deliverables required:
+
+  1. Identify the three most critical methodological risks in this design and propose
+  concrete mitigations for each.
+
+  2. Recommend a scanner harmonization strategy (e.g., ComBat variants, traveling
+  phantom, reference site normalization) and justify your choice given the longitudinal
+  design and missing NODDI data at three sites.
+
+  3. Provide a pseudocode pipeline (15–25 lines) for the TBSS analysis that accounts
+  for multi-site data and longitudinal within-subject measurements.
+
+  4. Specify which registration space (MNI vs. native) you would use for the CST FA
+  biomarker extraction and why, given the ALS-related atrophy expected over 12 months.'
+target_skills:
+- imaging-study-design
+domain: imaging
+difficulty: hard

@@ -1,0 +1,43 @@
+id: pa-decision-automation-02
+prompt: 'Here is test question #2 of 10:
+
+
+  ---
+
+
+  Your team has received a batch of 500 X12 278 prior authorization request transactions
+  from a regional health plan and needs to build a basic parsing and feature extraction
+  pipeline. The batch contains requests across three service types: outpatient physical
+  therapy (CPT codes 97110, 97530), MRI imaging (CPT codes 70553, 72148), and specialty
+  medications (NDC codes for adalimumab and etanercept). Each 278 transaction includes
+  standard loop segments: 2000A (Utilization Management Organization), 2000B (Requester),
+  2000C (Subscriber), 2010CA (Patient Name), 2000E (Service Provider), and 2000F (Event/Service).
+
+
+  Please provide the following concrete deliverables:
+
+
+  1. **Python parsing code** using the `pyx12` library (or a raw segment parser if
+  preferred) that reads a raw X12 278 string, extracts the following fields: subscriber
+  ID (NM109 in loop 2010BA), patient date of birth (DMG03 in loop 2010CA), requested
+  CPT or NDC code (SV1 or SV2 in loop 2000F), and service start date (DTP03 with qualifier
+  472).
+
+
+  2. **A feature extraction function** that takes the parsed output dictionary and
+  returns a flat feature vector suitable for downstream ML classification, including
+  derived fields such as patient age (calculated from DOB) and a binary flag indicating
+  whether the requested service is a specialty medication.
+
+
+  3. **A brief explanation** (3–5 sentences) of why normalizing service type into
+  a categorical feature rather than passing raw CPT/NDC codes directly improves classifier
+  performance for PA decision automation.
+
+
+  Assume Python 3.10, pandas 2.0, and that the raw 278 data uses `~` as the segment
+  terminator and `*` as the element separator.'
+target_skills:
+- pa-decision-automation
+domain: healthcare-ops
+difficulty: easy

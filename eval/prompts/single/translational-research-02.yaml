@@ -1,0 +1,41 @@
+id: translational-research-02
+prompt: 'A preclinical team has identified **KARN2** (a fictional kinase) as a potential
+  therapeutic target in Parkinson''s disease. They have the following data package:
+
+
+  - KARN2 knockout mice show 40% reduction in α-synuclein aggregation in substantia
+  nigra (n=12 per group, p=0.03)
+
+  - A selective KARN2 inhibitor (KI-447) reduces dopaminergic neuron loss by 35% in
+  the MPTP mouse model (n=10 per group, p=0.04)
+
+  - GWAS data shows a SNP (rs7741203) near the KARN2 locus with OR=1.18 (p=4×10⁻⁶)
+  for PD risk — just below genome-wide significance threshold
+
+  - Human post-mortem brain RNA-seq shows KARN2 is upregulated 1.8-fold in PD substantia
+  nigra vs. controls (n=20 per group, FDR=0.08)
+
+  - No existing human CSF or plasma biomarker for KARN2 activity has been validated
+
+
+  The team is asking whether KARN2 is ready to advance toward IND-enabling studies
+  and first-in-human trials.
+
+
+  **Please provide:**
+
+  1. A structured target validation scorecard assessing the strength of evidence across
+  genetic, functional, and expression dimensions
+
+  2. An identification of the two most critical evidence gaps that must be addressed
+  before IND-enabling studies begin
+
+  3. A recommended 18-month preclinical plan (with specific experiments) to close
+  those gaps
+
+  4. A brief rationale for what a target engagement biomarker strategy might look
+  like for a Phase 1 trial'
+target_skills:
+- translational-research
+domain: cross-domain
+difficulty: easy

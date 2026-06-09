@@ -1,0 +1,45 @@
+id: pharmacoepidemiology-06
+prompt: 'You are conducting a pharmacoepidemiologic study using a large US commercial
+  claims database (2.8 million patients, 2015–2022) to evaluate whether GLP-1 receptor
+  agonists (GLP-1 RAs) reduce the risk of major adverse cardiovascular events (MACE)
+  compared to DPP-4 inhibitors in patients with type 2 diabetes. You plan to use a
+  new-user active comparator design.
+
+
+  **Specific context:**
+
+  - Index date = first prescription fill for either drug class
+
+  - Required 12-month baseline covariate assessment period
+
+  - GLP-1 RA initiators: n = 84,200; DPP-4 inhibitor initiators: n = 112,400
+
+  - Outcome: 3-point MACE (MI, stroke, CV death) over up to 3 years of follow-up
+
+  - Key concern: patients switch between drug classes and add other antidiabetic agents
+  over follow-up, creating time-varying confounding by HbA1c trajectory and disease
+  severity
+
+  - Secondary concern: some analysts previously defined cohort entry based on "ever
+  use" rather than first use, and measured follow-up from 6 months after first prescription
+
+
+  **Deliverables requested:**
+
+  1. Identify and explain the specific bias introduced by the "ever use + 6-month
+  lag" cohort definition, and describe how the new-user design corrects it
+
+  2. Explain why standard Cox regression with baseline propensity score adjustment
+  is insufficient given the time-varying confounding, and specify which analytic method
+  should be used instead
+
+  3. Outline the steps to implement stabilized inverse probability of treatment weights
+  (IPTW) for this time-varying setting, including how to handle censoring weights
+
+  4. Describe two falsification strategies (one negative control outcome, one positive
+  control) appropriate for validating your causal estimate in this cardiovascular
+  context'
+target_skills:
+- pharmacoepidemiology
+domain: pharmacoepidemiology
+difficulty: intermediate

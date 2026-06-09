@@ -1,0 +1,34 @@
+id: variant-calling-01
+prompt: 'You are a bioinformatics researcher working with whole-exome sequencing (WES)
+  data from 45 germline samples (human, hg38 reference) that have already been aligned
+  with BWA-MEM2 and processed through GATK4 base quality score recalibration (BQSR).
+  The BAM files are ready for variant calling. Your compute environment has 32 CPU
+  cores and 128 GB RAM available.
+
+
+  Your goal is to call germline SNVs and indels across all 45 samples using GATK4
+  HaplotypeCaller in GVCF mode followed by joint genotyping with GenomicsDBImport
+  and GenotypeGVCFs.
+
+
+  Please provide the following:
+
+
+  1. A complete bash script that runs HaplotypeCaller in GVCF mode for a single sample
+  (use placeholder `${SAMPLE}`, `${BAM}`, `${REF}`, `${DBSNP}` variables), including
+  appropriate WES-specific flags such as interval padding and the `-L` intervals option
+  pointing to a BED file variable `${INTERVALS}`.
+
+
+  2. A second bash script that consolidates all 45 GVCFs using GenomicsDBImport (assume
+  a sample map file `samples.map` exists) and then runs GenotypeGVCFs to produce a
+  raw multi-sample VCF.
+
+
+  3. A brief explanation (3–5 sentences) of why joint genotyping across all 45 samples
+  is preferred over calling each sample independently and merging the resulting VCFs,
+  specifically addressing the N+1 problem and statistical power for rare variant detection.'
+target_skills:
+- variant-calling
+domain: genomics
+difficulty: easy

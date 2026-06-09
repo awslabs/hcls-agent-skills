@@ -1,0 +1,40 @@
+id: claims-analytics-05
+prompt: 'You are a data engineer at a regional health plan with a claims warehouse
+  containing 18 months of professional claims data (approximately 4.2 million X12
+  837P transactions). Your fraud investigation team has flagged a concerning pattern:
+  several providers appear to be systematically upcoding Evaluation & Management (E&M)
+  services. Specifically, you need to analyze the distribution of office visit CPT
+  codes (99211–99215) across all providers billing under specialty taxonomy code 207Q00000X
+  (Family Medicine).
+
+
+  Your claims table schema is as follows:
+
+  - `claims` (claim_id, provider_npi, service_date, cpt_code, billed_amount, allowed_amount,
+  place_of_service, patient_id, diagnosis_code_primary)
+
+  - `providers` (npi, provider_name, taxonomy_code, zip_code, group_npi)
+
+
+  **Deliverables required:**
+
+
+  1. **SQL query** that calculates, for each family medicine provider, the percentage
+  distribution across CPT codes 99211–99215 and flags any provider where 99214 + 99215
+  combined exceed 65% of their total E&M volume (minimum 50 claims threshold).
+
+
+  2. **Python code** using pandas that applies a chi-square goodness-of-fit test comparing
+  each flagged provider''s E&M distribution against the specialty peer benchmark distribution
+  (assume benchmark proportions: 99211=5%, 99212=18%, 99213=35%, 99214=32%, 99215=10%),
+  outputting a ranked DataFrame of providers sorted by p-value ascending.
+
+
+  3. **Brief interpretation guidance** explaining what p-value threshold to use given
+  the multiple comparisons problem when testing 340 providers simultaneously, and
+  which additional claim-level features you would engineer to strengthen the upcoding
+  suspicion score beyond E&M distribution alone.'
+target_skills:
+- claims-analytics
+domain: healthcare-ops
+difficulty: intermediate

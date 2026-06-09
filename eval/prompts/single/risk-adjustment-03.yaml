@@ -1,0 +1,62 @@
+id: risk-adjustment-03
+prompt: 'Here is test question #3 of 10:
+
+
+  ---
+
+
+  You are building a basic CMS-HCC risk adjustment pipeline for a small Medicare Advantage
+  plan with 500 members. You have a simplified ICD-10-to-HCC crosswalk table and need
+  to calculate RAF scores using the CMS-HCC Model V28 community non-dual aged coefficients.
+  Below is a sample of member data:
+
+
+  | MemberID | Age | Sex | ICD10_Codes |
+
+  |----------|-----|-----|-------------|
+
+  | M001 | 72 | F | E11.65, I50.9, N18.3 |
+
+  | M002 | 68 | M | E11.9, I10 |
+
+  | M003 | 81 | F | I50.32, I50.9, E11.65 |
+
+  | M004 | 75 | M | N18.4, N18.3, E11.22 |
+
+
+  Use the following simplified HCC mappings and coefficients:
+
+  - E11.65 → HCC37 (coefficient: 0.302)
+
+  - E11.9 → HCC37 (coefficient: 0.302)
+
+  - E11.22 → HCC18 (coefficient: 0.318)
+
+  - I50.9 → HCC85 (coefficient: 0.331)
+
+  - I50.32 → HCC85 (coefficient: 0.331)
+
+  - N18.3 → HCC137 (coefficient: 0.289)
+
+  - N18.4 → HCC136 (coefficient: 0.411)
+
+  - I10 → no HCC mapping
+
+
+  Assume a base demographic coefficient of 0.150 for all members and that HCC136 has
+  hierarchy precedence over HCC137 (if both present, drop HCC137).
+
+
+  Please provide:
+
+  1. A Python function that maps ICD-10 codes to HCCs, applies hierarchy resolution,
+  and calculates each member''s total RAF score (demographic + condition coefficients)
+
+  2. A results table showing each member''s mapped HCCs (post-hierarchy), and final
+  RAF score
+
+  3. A brief explanation of which member has the highest risk score and why'
+target_skills:
+- risk-adjustment
+domain: healthcare-ops
+difficulty: easy

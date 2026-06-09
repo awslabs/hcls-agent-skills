@@ -1,0 +1,41 @@
+id: risk-adjustment-strategy-02
+prompt: 'A Medicare Advantage plan in Texas has 12,000 members being risk-adjusted
+  under the current CMS-HCC blended transition methodology (60% V28 / 40% V24 for
+  payment year 2025). Your analytics team has pulled the following summary data for
+  a cohort of 850 members flagged as having potential coding gaps:
+
+
+  - 320 members have a documented history of Type 2 diabetes with chronic kidney disease
+  (CKD) Stage 3, but claims only show the diabetes HCC without the CKD HCC captured
+
+  - 215 members have COPD documented in physician notes from the prior year but no
+  qualifying ICD-10 code submitted in the current measurement year
+
+  - 315 members have a BMI ≥ 40 recorded in the EHR but no morbid obesity HCC coded
+
+
+  Using this scenario, please provide:
+
+
+  1. **HCC Mapping Analysis**: For each of the three cohorts, identify the relevant
+  HCC categories under both V24 and V28 models and explain any differences in how
+  these conditions are mapped or weighted between the two model versions.
+
+
+  2. **RAF Score Impact Estimate**: Estimate the approximate RAF score uplift per
+  member for each cohort under the blended 60/40 methodology, assuming average model
+  coefficients.
+
+
+  3. **Prioritization Recommendation**: Rank the three cohorts by recapture priority,
+  explaining your reasoning based on RAF impact, clinical documentation feasibility,
+  and audit defensibility.
+
+
+  4. **Documentation Requirements**: For each cohort, describe the minimum audit-defensible
+  documentation a provider must include in the medical record to support HCC submission
+  under CMS guidelines.'
+target_skills:
+- risk-adjustment-strategy
+domain: healthcare-ops
+difficulty: easy

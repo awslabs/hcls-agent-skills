@@ -1,0 +1,37 @@
+id: cell-type-annotation-10
+prompt: 'You are analyzing a human peripheral blood mononuclear cell (PBMC) dataset
+  from 12 lupus patients and 10 healthy controls (22,847 cells total) that has been
+  processed through Seurat and exported as an AnnData object (`lupus_pbmc.h5ad`).
+  Initial Leiden clustering at resolution 0.6 produced 18 clusters, but you suspect
+  over-clustering in the T cell compartment and under-clustering in the monocyte compartment
+  based on UMAP visualization.
+
+
+  You attempt CellTypist annotation using the `Immune_All_High.pkl` model, but several
+  clusters receive conflicting majority votes — specifically, clusters 3, 7, and 11
+  show mixed predictions between "CD8+ T cells" and "NK cells", while cluster 14 receives
+  "Plasmacytoid dendritic cells" with only 38% confidence. Additionally, SingleR using
+  the Monaco immune reference assigns cluster 9 as "Intermediate monocytes" but your
+  marker gene analysis shows high expression of FCGR3A, CD14, and low HLA-DR, suggesting
+  classical monocytes instead.
+
+
+  Provide the following deliverables:
+
+  1. Python code to run CellTypist with `over_clustering` mode enabled, then reconcile
+  conflicting predictions using a confidence threshold approach with a fallback to
+  marker-based scoring for ambiguous clusters
+
+  2. A strategy to resolve the NK vs CD8+ T cell ambiguity using a panel of discriminating
+  markers (NKG7, GNLY, CD3E, CD8A, KLRD1, NCAM1) with a dot plot visualization
+
+  3. Code to implement a weighted ensemble annotation combining CellTypist probability
+  scores and SingleR scores, with explicit handling of the cluster 9 discordance using
+  FCGR3A/CD14/HLA-DR expression thresholds
+
+  4. Recommendations for re-clustering parameters specifically for the monocyte subset
+  to resolve the suspected under-clustering issue'
+target_skills:
+- cell-type-annotation
+domain: single-cell
+difficulty: hard

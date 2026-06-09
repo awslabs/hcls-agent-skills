@@ -1,0 +1,32 @@
+id: ngs-quality-control-09
+prompt: 'You are running a WES pipeline on 48 tumor-normal pairs from a colorectal
+  cancer cohort. After running fastp and aligning to hg38, you generate MultiQC reports
+  and notice the following anomalies in a subset of 6 samples:
+
+
+  - **Samples T021, T034**: Insert size distribution (Picard CollectInsertSizeMetrics)
+  shows a bimodal peak at ~150 bp and ~320 bp
+
+  - **Samples T019, T022**: mosdepth reports median target coverage of 87× but the
+  1st percentile coverage is 0× for ~12% of targets; the off-target fraction is 34%
+  (vs. cohort median of 18%)
+
+  - **Sample T041**: fastp reports 31% duplication rate with a Q30 rate of 94%, but
+  Picard MarkDuplicates reports only 8% optical duplicates; the library was prepared
+  with PCR-free protocol
+
+  - **Sample N038** (matched normal): FastQC flags "Per base sequence content" failure
+  for the first 9 bases of R1 only, and adapter content is clean
+
+
+  For each anomaly, provide: (1) the most likely technical explanation, (2) which
+  QC metric or visualization you would examine next to confirm your hypothesis, and
+  (3) a concrete remediation strategy—either a command-line fix using the tools in
+  the standard pipeline (fastp, mosdepth, Picard, samtools) or a recommendation to
+  re-process/exclude. Include any relevant command-line snippets with the assumed
+  environment variables (`THREADS=8`, `OUT=qc_out`, BAM/FASTQ naming conventions from
+  context).'
+target_skills:
+- ngs-quality-control
+domain: genomics
+difficulty: hard

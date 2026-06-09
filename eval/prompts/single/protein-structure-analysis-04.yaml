@@ -1,0 +1,37 @@
+id: protein-structure-analysis-04
+prompt: 'You have obtained two crystal structures of the kinase domain of a fictional
+  protein **DYRK7**: an apo form (`DYRK7_apo.pdb`, chain A, resolution 1.9 Å) and
+  a ligand-bound form (`DYRK7_holo.pdb`, chain A, resolution 2.1 Å, ligand residue
+  name `LG9` in chain A). Both structures contain residues 42–387. You suspect the
+  ligand induces a conformational change in the activation loop (residues 241–268)
+  and want to quantify this.
+
+
+  **Deliverables required:**
+
+
+  1. **Structural superposition**: Write a Python script using Biopython''s `Superimposer`
+  to align the two structures on their Cα atoms (excluding the activation loop residues
+  241–268), compute the global Cα RMSD, and then compute a *local* Cα RMSD restricted
+  to only the activation loop residues 241–268 — without re-superimposing.
+
+
+  2. **B-factor comparison**: Extract per-residue average B-factors for both structures
+  across the full chain and identify which 5 residues show the largest *increase*
+  in B-factor upon ligand binding (holo minus apo). Provide the code and explain what
+  elevated B-factors in the holo form might indicate biologically.
+
+
+  3. **Secondary structure change**: Using DSSP via Biopython, determine whether any
+  residue in the activation loop (241–268) changes its secondary structure assignment
+  between apo and holo forms. Report the expected output format and write the parsing
+  code.
+
+
+  4. **Interpretation**: Given a global RMSD of ~0.4 Å and an activation loop RMSD
+  of ~2.8 Å, interpret what this pattern suggests about the mechanism of ligand-induced
+  conformational change in DYRK7.'
+target_skills:
+- protein-structure-analysis
+domain: protein-structure
+difficulty: intermediate

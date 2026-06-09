@@ -1,0 +1,34 @@
+id: cell-type-annotation-05
+prompt: 'You have processed a 10X Genomics scRNA-seq dataset from 6 pediatric asthma
+  patients and 4 healthy controls, containing approximately 45,000 cells after QC.
+  Leiden clustering at resolution 0.5 produced 18 clusters. You want to annotate these
+  clusters using a combination of approaches to increase confidence.
+
+
+  Your dataset (stored as `adata`) has already been preprocessed (normalized, log-transformed,
+  HVGs selected, PCA computed, neighbors graph built, UMAP embedded). The following
+  marker genes are known for your target cell types: T cells (CD3D, CD3E, CD247),
+  B cells (CD19, MS4A1, CD79A), NK cells (GNLY, NKG7, KLRD1), Monocytes (CD14, LYZ,
+  S100A8), Dendritic cells (FCER1A, CST3, CLEC10A), and Epithelial cells (EPCAM, KRT18,
+  KRT8).
+
+
+  Please provide:
+
+  1. Python code to run CellTypist using the `Immune_All_Low.pkl` model with `majority_voting=True`
+  and transfer the predicted labels back to `adata.obs`
+
+  2. Code to generate a marker gene dotplot using Scanpy that displays the 6 marker
+  genes per cell type listed above, grouped by Leiden cluster
+
+  3. Code to create a summary DataFrame that cross-tabulates CellTypist predictions
+  against Leiden cluster assignments, then identifies clusters where CellTypist confidence
+  (use `conf_score`) falls below 0.6 for more than 30% of cells — these should be
+  flagged for manual review
+
+  4. A brief strategy (3-4 sentences) for resolving annotation conflicts when CellTypist
+  and marker gene evidence disagree'
+target_skills:
+- cell-type-annotation
+domain: single-cell
+difficulty: intermediate

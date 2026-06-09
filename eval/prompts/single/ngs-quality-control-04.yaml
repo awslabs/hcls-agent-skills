@@ -1,0 +1,36 @@
+id: ngs-quality-control-04
+prompt: 'You have completed initial sequencing of a whole-exome sequencing (WES) cohort
+  of 48 tumor-normal pairs. A subset of samples is showing inconsistent variant calling
+  results, and you suspect QC failures upstream. Your pipeline uses the standard file
+  conventions described in the usage context, and you have a BED file `exome_targets.bed`
+  (containing ~220,000 intervals covering ~60 Mb) for the capture kit.
+
+
+  **Your tasks:**
+
+
+  1. Write a `mosdepth` command to compute per-base and quantized coverage over the
+  target regions for `sample.bam`, using 8 threads, with a minimum mapping quality
+  of 20, and producing quantized output at thresholds 0×, 10×, 20×, 100× (useful for
+  classifying coverage tiers in exome data).
+
+
+  2. Write a `Picard CollectHsMetrics` command using `ref.fasta` as the reference,
+  `exome_targets.bed` as both the bait and target intervals (first converting the
+  BED to Picard interval list format), and directing output to `OUT/sample_hs_metrics.txt`.
+  Include the BED-to-interval-list conversion step.
+
+
+  3. Given that `CollectHsMetrics` reports `MEAN_TARGET_COVERAGE = 47.3×`, `PCT_TARGET_BASES_20X
+  = 0.71`, `FOLD_ENRICHMENT = 38.2`, and `PCT_OFF_BAIT = 0.34` for one flagged sample,
+  interpret whether these metrics indicate a QC pass or fail for a standard clinical
+  WES pipeline (typical thresholds: ≥100× mean, ≥80% at 20×, enrichment ≥50×), and
+  identify the two most likely technical causes for this pattern.
+
+
+  4. Propose a single `MultiQC` command that aggregates FastQC, fastp, mosdepth, and
+  Picard HsMetrics results from the `OUT/` directory into one report.'
+target_skills:
+- ngs-quality-control
+domain: genomics
+difficulty: intermediate

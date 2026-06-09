@@ -1,0 +1,37 @@
+id: cell-type-annotation-02
+prompt: 'You have completed a single-cell RNA-seq experiment on human peripheral blood
+  mononuclear cells (PBMCs) from 8 healthy donors. After preprocessing and clustering
+  with Scanpy, you have an AnnData object (`adata`) containing 45,000 cells organized
+  into 18 Leiden clusters (resolution=0.5). The object has normalized, log-transformed
+  counts in `adata.X` and UMAP coordinates stored in `adata.obsm[''X_umap'']`.
+
+
+  You want to annotate cell types using **CellTypist** with the `Immune_All_Low.pkl`
+  pretrained model. Your collaborator mentioned that some clusters may contain rare
+  cell types, so you want to enable the "best match" majority voting approach across
+  clusters.
+
+
+  Please provide:
+
+
+  1. **Complete Python code** to run CellTypist annotation on this AnnData object,
+  including any required preprocessing steps CellTypist expects (e.g., normalization
+  to 10,000 counts per cell), running the model with majority voting enabled over
+  the Leiden clusters, and storing predicted labels back into `adata.obs`.
+
+
+  2. **Code to generate two visualizations**: (a) a UMAP colored by the CellTypist
+  predicted labels, and (b) a dotplot showing the top 3 marker genes for at least
+  5 expected PBMC cell types (CD4+ T cells, CD8+ T cells, B cells, NK cells, and Monocytes)
+  using genes such as *CD3D*, *CD4*, *CD8A*, *CD19*, *MS4A1*, *NCAM1*, *CD14*, *FCGR3A*,
+  *NKG7*, and *GNLY*.
+
+
+  3. **A brief explanation** (3-5 sentences) of why CellTypist requires a specific
+  normalization before prediction and what the majority voting parameter `over_clustering`
+  does in this context.'
+target_skills:
+- cell-type-annotation
+domain: single-cell
+difficulty: easy

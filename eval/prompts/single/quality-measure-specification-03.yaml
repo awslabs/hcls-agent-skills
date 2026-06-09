@@ -1,0 +1,49 @@
+id: quality-measure-specification-03
+prompt: 'A regional health plan is preparing for NCQA HEDIS audits and needs help
+  understanding the Controlling High Blood Pressure (CBP) measure specification for
+  their 2024 measurement year.
+
+
+  Their member data shows the following population:
+
+  - 12,450 members aged 18–85 with a diagnosis of hypertension
+
+  - Measurement year: January 1, 2024 – December 31, 2024
+
+  - 1,890 members had a blood pressure reading of <140/90 mmHg documented during the
+  year
+
+  - 340 members were diagnosed with ESRD during the measurement year
+
+  - 215 members had a diagnosis of pregnancy during the measurement year
+
+  - 180 members were enrolled for only 7 months during the measurement year
+
+  - 95 members had advanced illness (dementia + functional status decline)
+
+
+  The plan''s quality team is unsure which members should be included in the denominator,
+  which should be excluded, and how to calculate the final CBP rate.
+
+
+  Please provide:
+
+  1. A clear explanation of the CBP measure''s denominator criteria, including the
+  continuous enrollment requirement (specify the exact enrollment window and allowable
+  gap)
+
+  2. A step-by-step breakdown of which member groups above qualify for exclusion and
+  the specific clinical rationale for each exclusion
+
+  3. A calculated final denominator count and numerator count based on the data provided,
+  showing your arithmetic
+
+  4. A brief explanation of what "numerator compliance" means for CBP and what blood
+  pressure threshold must be met
+
+  5. One practical recommendation for how the plan can improve their CBP rate before
+  the measurement year closes'
+target_skills:
+- quality-measure-specification
+domain: healthcare-ops
+difficulty: easy

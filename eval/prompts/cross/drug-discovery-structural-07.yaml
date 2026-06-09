@@ -1,0 +1,35 @@
+id: drug-discovery-structural-07
+prompt: "Here is the research question:\n\n---\n\nYou are a computational drug discovery\
+  \ scientist working on a rare pediatric neuroblastoma subtype driven by aberrant\
+  \ **ALK F1174L** gain-of-function mutation, affecting approximately 340 pediatric\
+  \ patients annually in the US. Despite the known oncogenic driver, first-generation\
+  \ ALK inhibitors (crizotinib) show poor efficacy in this mutation context due to\
+  \ steric clash at the gatekeeper residue. Your team has retrieved the crystal structure\
+  \ of ALK F1174L (PDB: 4FNX) and wants to pursue a combined repurposing and structure-based\
+  \ design strategy.\n\n**Your tasks are:**\n\n1. **Repurposing analysis:** Using\
+  \ OpenTargets and DGIdb as conceptual frameworks, identify and rank at least three\
+  \ FDA-approved kinase inhibitors (outside the ALK inhibitor class) that could be\
+  \ repurposed for ALK F1174L based on mechanism-of-action overlap, shared downstream\
+  \ pathway nodes (RAS/MAPK and PI3K/AKT), and existing pediatric safety data. Justify\
+  \ your evidence hierarchy ranking using a target-based repurposing framework, and\
+  \ flag any candidates with pediatric-specific toxicity concerns.\n\n2. **Cheminformatics\
+  \ filtering:** For the following three SMILES strings representing your top repurposing\
+  \ candidates, compute Lipinski Rule of Five parameters (MW, LogP, HBD, HBA), Veber\
+  \ rule compliance (rotatable bonds ≤ 10, TPSA ≤ 140 Å²), and flag any PAINS substructures.\
+  \ Then calculate pairwise Tanimoto similarity using Morgan fingerprints (radius=2,\
+  \ 2048 bits) to assess scaffold diversity among candidates:\n   - Compound A: `CC1=C(C=C(C=C1)NC2=NC=CC(=N2)N3CCN(CC3)C4=CC=CC=C4F)NC(=O)C5=CC=CC=N5`\n\
+  \   - Compound B: `CN1CCN(CC1)C2=CC3=NC(=NC3=C2)NC4=CC=C(C=C4)OC5CCOC5`\n   - Compound\
+  \ C: `C1CN(CCN1)C2=NC3=CC=CC=C3N2`\n\n3. **Structure-based assessment:** Using the\
+  \ ALK F1174L binding pocket (define the active site residues: Leu1174, Met1199,\
+  \ Gly1202, Arg1253), evaluate the druggability of an allosteric site adjacent to\
+  \ the αC-helix versus the ATP-competitive site. Recommend a docking strategy (rigid\
+  \ vs. induced-fit), justify your choice of scoring function for a covalent vs. non-covalent\
+  \ approach, and outline a 3-stage virtual screening cascade with approximate library\
+  \ sizes at each stage to identify novel scaffolds complementary to your repurposed\
+  \ candidates."
+target_skills:
+- drug-repurposing
+- cheminformatics
+- structure-based-drug-design
+domain: drug-discovery
+difficulty: intermediate

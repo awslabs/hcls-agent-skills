@@ -1,0 +1,39 @@
+id: clinical-data-standards-10
+prompt: 'A pharmaceutical sponsor is preparing an integrated summary of safety (ISS)
+  for a novel JAK inhibitor combining data from three Phase III trials (JAKSTOP-1,
+  JAKSTOP-2, JAKSTOP-3). The MedDRA coding dictionary version differs across trials:
+  JAKSTOP-1 used MedDRA v24.0, JAKSTOP-2 used v24.1, and JAKSTOP-3 used v25.0. A critical
+  problem has emerged: the PT "Hepatic enzyme increased" was retired in MedDRA v24.1
+  and split into more granular terms, while "Cytokine release syndrome" was promoted
+  from LLT to PT status in v25.0.
+
+
+  The pooled dataset shows the following AE counts before reconciliation:
+
+  - JAKSTOP-1: Hepatic enzyme increased (PT, n=47), Cytokine release syndrome (LLT,
+  n=12)
+
+  - JAKSTOP-2: ALT increased (PT, n=31), AST increased (PT, n=28), Cytokine release
+  syndrome (LLT, n=9)
+
+  - JAKSTOP-3: ALT increased (PT, n=29), AST increased (PT, n=22), Cytokine release
+  syndrome (PT, n=18)
+
+
+  Additionally, the regulatory reviewer requests that hepatic findings be presented
+  at both PT and HLGT levels, and that a sensitivity analysis be performed using HLT
+  grouping.
+
+
+  Please provide: (1) a reconciliation strategy for harmonizing the retired "Hepatic
+  enzyme increased" PT across dictionary versions, specifying which current v25.0
+  PTs should receive the JAKSTOP-1 cases and the methodological justification; (2)
+  the correct MedDRA hierarchy path for "Cytokine release syndrome" in v25.0 through
+  all levels to SOC; (3) a frequency table structure showing hepatic AEs at PT, HLT,
+  and HLGT levels with the reconciled counts; and (4) an explanation of why presenting
+  duplicate counting at HLT/HLGT levels is expected and how to communicate this transparently
+  in the ISS.'
+target_skills:
+- clinical-data-standards
+domain: clinical-data
+difficulty: hard

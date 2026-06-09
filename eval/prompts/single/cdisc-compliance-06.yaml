@@ -1,0 +1,36 @@
+id: cdisc-compliance-06
+prompt: 'A Phase III oncology trial (STUDY-ONK-2847) has collected laboratory data
+  for 342 patients across 18 sites. The lab dataset contains results for both standard
+  chemistry panels and pharmacokinetic (PK) biomarkers. During SDTM mapping review,
+  the following issues have been identified:
+
+
+  1. Fifteen lab tests use sponsor-defined test codes (e.g., "PROT_KIN_A", "PROT_KIN_B")
+  that have no direct match in CDISC CT for LBTESTCD (LB domain Test Code controlled
+  terminology), yet these biomarkers are clinically critical for the primary endpoint
+  analysis.
+
+
+  2. The LB domain currently contains 47 records where LBORRESU (original unit) differs
+  from LBSTRESU (standardized unit) but no LBSTRESN conversion has been applied —
+  raw text values remain in LBSTRESC with LBSTRESN left null.
+
+
+  3. Three analytes have results reported as ">" or "<" threshold values (e.g., ">10000
+  U/L"), currently stored verbatim in LBSTRESC.
+
+
+  4. The downstream ADaM dataset ADLB must support both a shift table analysis (using
+  CTCAE grading) and a continuous endpoint mixed-model repeated measures (MMRM) analysis.
+
+
+  Please provide: (a) a compliant SDTM LB mapping strategy for the non-standard biomarker
+  test codes, including whether SUPPQUAL is appropriate here; (b) specific remediation
+  steps for the null LBSTRESN records with unit conversion issues; (c) recommended
+  handling of the censored threshold values in both SDTM and ADaM layers; and (d)
+  the key ADLB variables and derivation logic needed to simultaneously support CTCAE
+  shift table and MMRM analyses, including any necessary baseline flagging variables.'
+target_skills:
+- cdisc-compliance
+domain: clinical-data-review
+difficulty: intermediate

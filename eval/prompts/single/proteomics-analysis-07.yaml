@@ -1,0 +1,42 @@
+id: proteomics-analysis-07
+prompt: 'You have completed a TMT-16plex phosphoproteomics experiment comparing three
+  conditions: vehicle control (n=5 patients), low-dose drug treatment (n=5 patients),
+  and high-dose drug treatment (n=5 patients), with one TMT channel used as a pooled
+  reference. Your MSFragger/Philosopher pipeline produced a `combined_protein.tsv`
+  file with TMT reporter ion intensities. Before differential analysis, you need to
+  handle the fact that phosphopeptide data has substantially more missing values than
+  standard proteomics (~40% missingness across the dataset).
+
+
+  Please provide a complete R analysis pipeline that accomplishes the following:
+
+
+  1. **Data loading and filtering**: Read `combined_protein.tsv`, extract TMT reporter
+  ion columns (126–131N channels), remove contaminants and decoys (flagged with `##`
+  prefix), and retain only proteins quantified in at least 3 out of 5 samples within
+  at least one condition.
+
+
+  2. **Normalization**: Apply median centering followed by variance stabilization
+  normalization (VSN) using the `MSnbase` package, and generate a boxplot and density
+  plot before/after normalization to assess quality.
+
+
+  3. **Missing value imputation**: Implement a hybrid imputation strategy — use k-nearest
+  neighbors (KNN) imputation for proteins missing at random (missingness < 20% per
+  condition) and MinProb imputation for proteins missing not at random (missingness
+  ≥ 20% in a condition), using the `DEP` package.
+
+
+  4. **Differential expression**: Run `limma` with a design matrix encoding the three
+  conditions, apply empirical Bayes moderation, and extract results for both high-dose
+  vs. vehicle and low-dose vs. vehicle contrasts (FDR < 0.05, |log2FC| > 0.5).
+
+
+  5. **Visualization**: Create a volcano plot for each contrast using `ggplot2`, highlighting
+  the top 10 significant proteins by label, with customized color scheme (blue for
+  downregulated, red for upregulated, gray for non-significant).'
+target_skills:
+- proteomics-analysis
+domain: proteomics
+difficulty: intermediate

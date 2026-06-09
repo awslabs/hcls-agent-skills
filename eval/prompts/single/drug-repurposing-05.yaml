@@ -1,0 +1,47 @@
+id: drug-repurposing-05
+prompt: 'Here is test question #5 of 10:
+
+
+  ---
+
+
+  You are evaluating **imatinib** (a BCR-ABL/PDGFR/KIT tyrosine kinase inhibitor)
+  as a repurposing candidate for **idiopathic pulmonary fibrosis (IPF)**, following
+  an internal dataset showing that 34 of 89 IPF patient biopsies have elevated PDGFR-β
+  expression (IHC score ≥2+) compared to 4 of 40 healthy controls.
+
+
+  **Your tasks:**
+
+
+  1. **Mechanism-of-action overlap analysis**: Explain which of imatinib''s known
+  targets are mechanistically relevant to IPF pathogenesis, citing specific fibrotic
+  signaling pathways (e.g., TGF-β crosstalk, myofibroblast activation). Identify any
+  target gaps that might limit efficacy.
+
+
+  2. **Evidence hierarchy ranking**: Using a 5-tier repurposing evidence framework
+  (preclinical in vitro → in vivo → retrospective clinical → prospective clinical
+  → RCT), summarize the existing evidence for imatinib in IPF and assign an overall
+  evidence tier.
+
+
+  3. **DGIdb/OpenTargets query strategy**: Write a structured query plan (pseudocode
+  or step-by-step) to retrieve drug-gene interaction data for imatinib and cross-reference
+  with IPF-associated genes from OpenTargets, including filters for interaction type
+  (inhibitor), minimum association score (≥0.4), and data source priority.
+
+
+  4. **Translatability assessment**: Given that the PDGFR-β–positive subgroup represents
+  ~38% of the biopsy cohort, propose a biomarker-stratified Phase II trial design
+  (including estimated enrollment of 120 patients, 1:1 randomization, primary endpoint,
+  and key inclusion/exclusion criteria) that maximizes translational signal.
+
+
+  5. **Competing candidates**: Name two alternative approved drugs with overlapping
+  mechanisms and briefly justify why imatinib should or should not be prioritized
+  over them for this indication.'
+target_skills:
+- drug-repurposing
+domain: drug-discovery
+difficulty: intermediate

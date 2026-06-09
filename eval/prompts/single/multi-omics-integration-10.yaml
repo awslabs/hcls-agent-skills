@@ -1,0 +1,41 @@
+id: multi-omics-integration-10
+prompt: 'You are conducting a multi-omics study on 847 treatment-naive colorectal
+  cancer patients where you have collected four data layers: whole-genome methylation
+  arrays (850K Illumina EPIC), RNA-seq (STAR-aligned, ~22,000 genes), reverse-phase
+  protein arrays (RPPA, 258 antibodies), and targeted metabolomics (310 metabolites
+  via LC-MS/MS). However, your sample overlap is severely imbalanced: all 847 patients
+  have methylation and RNA-seq, only 412 have RPPA, and only 189 have metabolomics
+  — and the metabolomics subset was processed in three separate batches across two
+  different laboratories.
+
+
+  You want to identify multi-omic subtypes with potential clinical relevance, but
+  you face three compounding challenges: (1) the massive dimensionality difference
+  between methylation (850K features) versus metabolomics (310 features), (2) non-random
+  missingness in RPPA and metabolomics that correlates with tumor stage (Stage III/IV
+  patients are over-represented in the metabolomics subset), (3) batch effects in
+  metabolomics that confound biological signal, with batch explaining ~34% of variance
+  in a preliminary PCA.
+
+
+  Please provide:
+
+  1. A detailed pre-processing and batch correction strategy specifically for the
+  metabolomics layer, including which algorithm to use and why, given the stage-confounded
+  batch structure
+
+  2. A recommended integration architecture (e.g., MOFA+, SNF, iCluster+, or other)
+  that explicitly handles partial sample overlap and dimensionality imbalance, with
+  justification
+
+  3. A feature pre-selection strategy per omics layer before integration, specifying
+  methods and approximate target feature counts
+
+  4. Pseudocode or R/Python code skeleton for the recommended integration pipeline
+
+  5. An explanation of how to interpret the resulting factors/clusters to avoid confusing
+  batch artifacts with true biological subtypes'
+target_skills:
+- multi-omics-integration
+domain: multi-omics
+difficulty: hard

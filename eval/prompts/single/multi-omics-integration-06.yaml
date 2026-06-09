@@ -1,0 +1,39 @@
+id: multi-omics-integration-06
+prompt: 'You are conducting a multi-omics study on 847 treatment-naive colorectal
+  cancer patients from three clinical sites (Site A: n=312, Site B: n=289, Site C:
+  n=246). You have collected four omics layers, but with partial sample overlap: RNA-seq
+  (all 847 patients), DNA methylation 850K arrays (631 patients), reverse-phase protein
+  arrays measuring 258 proteins (524 patients), and untargeted serum metabolomics
+  via LC-MS (398 patients). Only 287 patients have complete data across all four layers.
+
+
+  You want to identify robust multi-omic subtypes and discover cross-layer biological
+  signatures associated with response to FOLFOX chemotherapy (binary outcome: responders
+  n=401, non-responders n=446). Batch effects are a known concern because site correlates
+  with both omics platform batches and patient demographics (age, MSI status).
+
+
+  Please provide the following:
+
+
+  1. A recommended integration strategy (early, intermediate, or late fusion, or a
+  hybrid) with explicit justification given the partial overlap and batch structure.
+
+  2. A concrete batch correction pipeline specifying which method to apply to each
+  omics layer (e.g., ComBat, ComBat-seq, limma removeBatchEffect, or others), including
+  the order of operations and how to handle the site-demographic confounding without
+  removing biological signal.
+
+  3. A MOFA+ analysis design including how to handle missing samples across views,
+  recommended number of factors (starting range), and which variance threshold to
+  use for feature pre-filtering per layer.
+
+  4. R or Python pseudocode (approximately 20-30 lines) implementing the MOFA+ setup
+  with the four omics views and missing value configuration.
+
+  5. A downstream enrichment strategy for the top MOFA+ factors associated with FOLFOX
+  response, specifying which databases and statistical thresholds to use.'
+target_skills:
+- multi-omics-integration
+domain: multi-omics
+difficulty: intermediate

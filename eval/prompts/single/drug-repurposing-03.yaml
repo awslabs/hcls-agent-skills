@@ -1,0 +1,42 @@
+id: drug-repurposing-03
+prompt: 'A small biotech company is evaluating **metformin** (a well-characterized
+  Type 2 diabetes drug) as a potential repurposing candidate for **pancreatic ductal
+  adenocarcinoma (PDAC)**. Their research team has preliminary in vitro data showing
+  that metformin inhibits mTORC1 signaling in PANC-1 cells at 5mM concentration, reducing
+  proliferation by 42% compared to controls (p=0.003, n=6).
+
+
+  The team wants to systematically evaluate this repurposing opportunity before committing
+  to animal studies. They have access to DGIdb, OpenTargets, and DrugBank.
+
+
+  Please provide the following deliverables:
+
+
+  1. **Evidence Assessment**: Classify whether this repurposing effort is target-based
+  or phenotype-based, and explain the distinction in this specific context.
+
+
+  2. **Database Query Strategy**: Write a concrete step-by-step approach to query
+  DGIdb for metformin''s known gene interactions, specifying which interaction types
+  and evidence sources to prioritize (e.g., inhibitory, activating interactions; clinical
+  vs. preclinical sources).
+
+
+  3. **Mechanism-of-Action Overlap Analysis**: Identify at least 3 molecular targets
+  or pathways through which metformin could plausibly affect PDAC biology, referencing
+  known MoA elements (AMPK activation, Complex I inhibition, etc.).
+
+
+  4. **Translatability Concerns**: List 3 specific red flags or translational barriers
+  that the team should address before proceeding, considering the 5mM in vitro concentration
+  relative to typical human plasma levels (~20–40 µM at therapeutic doses).
+
+
+  5. **Evidence Ranking**: On a simple 3-tier scale (Strong/Moderate/Weak), rate the
+  overall repurposing evidence strength for metformin in PDAC and justify your rating
+  in 2-3 sentences.'
+target_skills:
+- drug-repurposing
+domain: drug-discovery
+difficulty: easy

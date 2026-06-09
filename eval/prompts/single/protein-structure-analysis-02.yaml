@@ -1,0 +1,35 @@
+id: protein-structure-analysis-02
+prompt: 'You have downloaded the crystal structure of a fictional kinase protein **KIN3B**
+  from the PDB (accession: **3KB9**) and saved it locally as `3kb9.pdb`. The structure
+  contains two chains (A and B), each with 287 residues, resolved at 2.1 Å resolution.
+  You want to assess the overall structural quality and flexibility of chain A before
+  proceeding with docking studies.
+
+
+  **Please provide the following:**
+
+
+  1. **Python code using Biopython** to parse `3kb9.pdb`, extract only chain A, and
+  calculate the average B-factor for each residue. Identify and print the top 5 most
+  flexible residues (highest average B-factor) along with their residue names and
+  sequence positions.
+
+
+  2. **Python code** to run DSSP on chain A of the structure and produce a summary
+  table showing the count of residues assigned to each secondary structure category
+  (helix, strand, loop/coil). Assume DSSP is installed and accessible at `/usr/bin/dssp`.
+
+
+  3. **A brief interpretation** (3–5 sentences) of what high B-factors in a kinase
+  activation loop (roughly residues 150–175 in this fictional structure) would mean
+  for downstream docking studies, and whether you would recommend including or excluding
+  those residues from a rigid docking grid definition.
+
+
+  4. **One concrete recommendation** for how to handle disordered high-B-factor regions
+  when preparing the structure for AutoDock Vina, including any file format considerations
+  for the final PDBQT output.'
+target_skills:
+- protein-structure-analysis
+domain: protein-structure
+difficulty: easy

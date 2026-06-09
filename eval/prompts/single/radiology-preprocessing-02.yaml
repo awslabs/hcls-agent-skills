@@ -1,0 +1,42 @@
+id: radiology-preprocessing-02
+prompt: 'You are setting up a standard T1-weighted MRI preprocessing pipeline for
+  a neuroimaging study involving 85 healthy adult participants (ages 25-45). All scans
+  were acquired on a 3T Siemens Prisma scanner with the following parameters: TR=2300ms,
+  TE=2.98ms, TI=900ms, flip angle=9°, voxel size=1mm isotropic, matrix=256×256×176.
+
+
+  Your preprocessing workflow needs to accomplish the following steps in order: (1)
+  reorientation to standard space, (2) bias field correction, (3) skull stripping,
+  and (4) linear registration to MNI152 1mm template.
+
+
+  Please provide:
+
+
+  1. **A complete bash script** implementing this pipeline using FSL tools (fslreorient2std,
+  FSL''s FAST for bias correction, BET for skull stripping, and FLIRT for MNI registration),
+  with appropriate parameters for each step. Use BET with a fractional intensity threshold
+  of 0.4 and robust brain center estimation enabled.
+
+
+  2. **Parameter justification** explaining why a fractional intensity threshold of
+  0.4 is appropriate for this population and acquisition protocol compared to the
+  default value of 0.5.
+
+
+  3. **Quality control recommendations**: List three specific QC checks you would
+  perform after skull stripping to verify BET performed correctly, including what
+  visual or quantitative indicators would flag a failed extraction.
+
+
+  4. **FLIRT registration parameters**: Specify the appropriate cost function, degrees
+  of freedom, and interpolation method for registering a T1w brain to MNI152, with
+  brief justification for each choice.
+
+
+  Assume FSL 6.0.5 is installed, the MNI152 template is located at `$FSLDIR/data/standard/MNI152_T1_1mm_brain.nii.gz`,
+  and input files follow the naming convention `sub-{ID}_T1w.nii.gz`.'
+target_skills:
+- radiology-preprocessing
+domain: imaging
+difficulty: easy

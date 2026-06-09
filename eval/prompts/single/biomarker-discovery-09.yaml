@@ -1,0 +1,44 @@
+id: biomarker-discovery-09
+prompt: 'A biomarker discovery team has profiled 847 early-stage non-small cell lung
+  cancer patients (412 events within 5 years) using a 1,200-gene NanoString panel.
+  They split the data 70/30 into training (593 patients, 289 events) and holdout (254
+  patients, 123 events) sets before any analysis. Within the training set, they ran
+  univariate Cox regression on all 1,200 genes, selected the top 50 genes (p < 0.01),
+  then applied LASSO Cox regression only to those 50 genes using 10-fold cross-validation
+  to select a final 12-gene signature. They report a training C-index of 0.81 and
+  holdout C-index of 0.79, concluding the model generalizes well.
+
+
+  A reviewer raises concerns about the analytical pipeline and asks you to evaluate
+  it rigorously. Please provide:
+
+
+  1. **Leakage audit**: Identify every source of information leakage or methodological
+  bias in the pipeline, explaining the mechanism by which each inflates performance
+  estimates.
+
+
+  2. **Corrected pipeline design**: Propose a fully corrected analysis pipeline using
+  nested cross-validation that eliminates all identified leakage sources, specifying
+  the inner/outer loop structure, what operations belong inside each loop, and how
+  to handle the NanoString normalization step.
+
+
+  3. **Sample size adequacy**: Using the events-per-variable (EPV) framework and any
+  relevant extensions for penalized regression, assess whether this dataset is adequately
+  powered for a 12-variable final model and a 1,200-variable selection step.
+
+
+  4. **Validation roadmap**: Design an external validation study, specifying minimum
+  cohort size (show calculation), required patient characteristics for generalizability,
+  and which performance metrics (including calibration and clinical utility measures)
+  should be co-primary endpoints.
+
+
+  5. **Python code**: Implement the corrected nested CV pipeline using `lifelines`
+  and `scikit-survival`, including the univariate pre-filtering step inside the inner
+  loop.'
+target_skills:
+- biomarker-discovery
+domain: single-cell
+difficulty: hard

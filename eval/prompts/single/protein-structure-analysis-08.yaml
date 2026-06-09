@@ -1,0 +1,38 @@
+id: protein-structure-analysis-08
+prompt: 'You are analyzing a homodimeric kinase structure (PDB ID: 3KXR_model.pdb)
+  that has been solved at 2.8 Å resolution. The structure contains two chains (A and
+  B), each with 312 residues, but the crystallographer suspects the two chains may
+  not be truly symmetric due to crystal packing artifacts. Additionally, residues
+  145-158 in chain B show unusually high B-factors (average 78 Å²) compared to the
+  same loop in chain A (average 23 Å²), and this region overlaps with the putative
+  ATP-binding site.
+
+
+  Your tasks are:
+
+
+  1. **Structural Superposition**: Write Python code using Biopython to superpose
+  chain B onto chain A using only the backbone atoms (N, Cα, C, O) of the structured
+  core (residues 10-144 and 159-305, excluding the flexible loop and terminal regions).
+  Report the RMSD and identify residues with per-residue Cα RMSD > 2.0 Å.
+
+
+  2. **Ramachandran Analysis**: Generate a Ramachandran plot for both chains separately,
+  and flag any non-glycine, non-proline residues falling in disallowed regions. The
+  loop region (145-158) in chain B is suspected to have strained geometry — write
+  code to extract and tabulate the φ/ψ angles for this specific segment in both chains.
+
+
+  3. **Binding Pocket Comparison**: Using fpocket or a geometric cavity detection
+  approach, detect and compare binding pockets between the two chains. Given the B-factor
+  discrepancy, explain how conformational flexibility might affect druggability scores
+  and pocket volume estimates.
+
+
+  4. **Recommendations**: Based on your analysis, recommend whether chain A or chain
+  B should be used as the reference structure for downstream docking studies, providing
+  specific structural criteria to justify your choice.'
+target_skills:
+- protein-structure-analysis
+domain: protein-structure
+difficulty: hard

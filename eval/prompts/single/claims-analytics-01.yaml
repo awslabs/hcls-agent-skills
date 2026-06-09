@@ -1,0 +1,44 @@
+id: claims-analytics-01
+prompt: 'Here is test question #1 of 10:
+
+
+  ---
+
+
+  You are a healthcare data engineer at a mid-sized insurance payer processing claims
+  for approximately 85,000 members. Your team has received a batch of X12 837P (professional)
+  claim files from three provider groups and needs to build a parsing pipeline to
+  extract key fields for downstream analytics.
+
+
+  The raw 837P files follow the standard ISA/GS/ST loop structure. You need to extract
+  the following fields per claim line: Claim ID (CLM01), rendering provider NPI (NM109
+  in loop 2310B), service date (DTP03 in loop 2400), procedure code (SV101), diagnosis
+  codes (HI segment, HI01-1 through HI04-1), and billed charge amount (SV102).
+
+
+  **Deliverables requested:**
+
+
+  1. **Python parsing code** using only the standard library (no external X12 libraries)
+  that reads a sample 837P file, splits on the `~` segment terminator and `*` element
+  delimiter, and extracts the six fields above into a list of dictionaries — one dictionary
+  per service line.
+
+
+  2. **A sample 837P text snippet** (fictional but structurally valid) containing
+  at least two claim loops with two service lines each, including realistic but fictional
+  NPI numbers (10 digits), CPT codes (e.g., 99213, 93000), and ICD-10 codes (e.g.,
+  Z00.00, I10).
+
+
+  3. **A pandas DataFrame transformation** that takes the parsed list of dictionaries
+  and produces a clean DataFrame with appropriate column names and data types, converting
+  billed charges to `float` and service dates from CCYYMMDD format to `datetime`.
+
+
+  Keep code well-commented and production-ready.'
+target_skills:
+- claims-analytics
+domain: healthcare-ops
+difficulty: easy

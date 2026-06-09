@@ -1,0 +1,39 @@
+id: radiology-preprocessing-03
+prompt: 'You are setting up a standard T1-weighted MRI preprocessing pipeline for
+  a neuroimaging study involving 45 healthy adult participants (ages 25-60, mean age
+  38.2 years). All scans were acquired on a 3T Siemens Prisma scanner with 1mm isotropic
+  resolution, TR=2300ms, TE=2.98ms, and saved in NIfTI format. Before running group-level
+  analyses, you need to preprocess each T1w image through a sequence of standard steps.
+
+
+  Your task is to build a complete preprocessing pipeline addressing the following:
+
+
+  1. **Reorientation**: Explain why `fslreorient2std` should be run first and what
+  problems it prevents downstream.
+
+
+  2. **Bias Field Correction**: Provide an ANTs N4BiasFieldCorrection command with
+  appropriate parameters (shrink factor, convergence, B-spline fitting distance) suitable
+  for 3T T1w data.
+
+
+  3. **Skull Stripping**: Write an HD-BET command for brain extraction, and explain
+  when you might prefer FSL BET instead.
+
+
+  4. **MNI Registration**: Provide an ANTs antsRegistrationSyN.sh command to register
+  the skull-stripped T1w image to the MNI152 1mm template, specifying the appropriate
+  transform type for intrasubject-to-standard registration.
+
+
+  5. **Quality Control**: List three specific QC checks you would perform after registration
+  to verify pipeline success, including one quantitative metric.
+
+
+  Format your response with clear section headers and include all command-line syntax
+  with realistic parameter values.'
+target_skills:
+- radiology-preprocessing
+domain: imaging
+difficulty: easy

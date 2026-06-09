@@ -1,0 +1,37 @@
+id: variant-calling-05
+prompt: 'You are setting up a GATK4 germline variant calling pipeline for a whole-exome
+  sequencing (WES) study involving 45 pediatric patients with suspected rare monogenic
+  disorders. Your sequencing data was generated on an Illumina NovaSeq 6000 (2×150
+  bp paired-end reads), achieving a mean target coverage of 85×. You have aligned
+  FASTQ files using BWA-MEM2 against GRCh38, and base quality score recalibration
+  (BQSR) has already been completed.
+
+
+  Your team is debating whether to use VQSR or hard filters for variant refinement,
+  given the relatively small cohort size. Additionally, you need to decide between
+  single-sample calling followed by joint genotyping via GenomicsDBImport versus a
+  direct multi-sample approach.
+
+
+  Please provide the following:
+
+
+  1. **A recommendation** on whether to use VQSR or hard filters for this cohort size
+  and data type (WES, n=45), with specific justification referencing GATK best practices
+  and the minimum sample thresholds typically required for VQSR to be reliable.
+
+
+  2. **A complete Bash script** implementing the recommended pipeline: HaplotypeCaller
+  in GVCF mode per sample, GenomicsDBImport consolidation across all 45 samples for
+  chromosomes 1–22 and X, GenotypeGVCFs joint calling, and your recommended filtering
+  approach. Include realistic GATK parameters appropriate for WES data (e.g., `-L`
+  interval list, `--dbsnp`, `--emit-ref-confidence GVCF`).
+
+
+  3. **A brief explanation** of two WES-specific parameters you would adjust compared
+  to a WGS run, and why those adjustments improve variant calling accuracy in exome
+  data.'
+target_skills:
+- variant-calling
+domain: genomics
+difficulty: intermediate

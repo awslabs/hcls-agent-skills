@@ -1,0 +1,46 @@
+id: pa-decision-automation-10
+prompt: 'Here is test question #10:
+
+
+  ---
+
+
+  Your team has deployed a gradient-boosted PA classifier (XGBoost, trained on 48,000
+  historical decisions) for musculoskeletal prior authorizations, achieving 87% overall
+  accuracy. However, post-deployment monitoring reveals a troubling pattern: the model
+  approves only 61% of requests for patients with ICD-10 code M54.51 (vertebrogenic
+  low back pain) compared to an 84% approval rate for M54.50 (unspecified low back
+  pain), despite your clinical reviewers manually overriding the model''s denials
+  in 73% of M54.51 cases. Your SHAP analysis shows the top denial-driving features
+  are: `dx_code_specificity_score` (0.34), `prior_conservative_tx_weeks` (0.28), and
+  `imaging_type_mri_lumbar` (0.19).
+
+
+  Investigate this apparent model bias and provide the following deliverables:
+
+
+  1. **Root cause analysis**: Explain why the model likely learned to penalize M54.51
+  specificity, referencing potential training data artifacts, coding pattern shifts
+  (ICD-10 CM 2021 introduced M54.51 as a new code), and feature engineering flaws
+  in `dx_code_specificity_score`.
+
+
+  2. **Bias quantification**: Write Python code using `pandas` and `shap` to compute
+  disparate impact ratio and equalized odds difference between M54.50 and M54.51 cohorts
+  across a provided DataFrame schema: `[claim_id, dx_primary, approval_label, predicted_proba,
+  conservative_tx_weeks, imaging_type]`.
+
+
+  3. **Rules engine patch**: Design a temporary rules-based override layer (pseudocode
+  or Python) that intercepts model scores for M54.51 claims and applies evidence-based
+  adjudication criteria from CMS LCD L38294 (lumbar spinal stenosis/low back pain)
+  while the model is retrained.
+
+
+  4. **Retraining strategy**: Recommend specific feature engineering corrections and
+  training data adjustments to eliminate the coding-era confound before the next model
+  version.'
+target_skills:
+- pa-decision-automation
+domain: healthcare-ops
+difficulty: hard

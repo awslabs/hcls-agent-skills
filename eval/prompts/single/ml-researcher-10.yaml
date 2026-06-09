@@ -1,0 +1,33 @@
+id: ml-researcher-10
+prompt: 'Here is test question #10 of 10:
+
+
+  ---
+
+
+  You are designing an ML pipeline to predict 90-day hospital readmission in a multicenter
+  EHR dataset spanning 4 health systems (Sites A–D), with 180,000 total encounters
+  (Site A: 95,000; Site B: 42,000; Site C: 28,000; Site D: 15,000), collected between
+  2015–2023. The outcome prevalence is 11.3% overall but varies by site (Site A: 9.8%,
+  Site B: 12.1%, Site C: 14.7%, Site D: 18.2%). Features include 847 ICD-10 codes,
+  312 lab values, 94 medication classes, and 3 structured social determinants of health
+  (SDOH) variables (insurance type, zip-code ADI, self-reported race/ethnicity). A
+  gradient boosting model trained on Sites A+B achieves AUROC 0.81 on a held-out test
+  set from those same sites, but drops to AUROC 0.69 when evaluated prospectively
+  at Site C and 0.64 at Site D.
+
+
+  Given this site generalization failure, provide: (1) a diagnostic framework identifying
+  the three most likely technical causes of the performance drop, with specific statistical
+  tests you would run to confirm each; (2) a revised data-splitting and training strategy
+  that explicitly addresses site heterogeneity, including pseudocode for a site-stratified
+  nested cross-validation scheme with an outer leave-one-site-out loop; (3) recommendations
+  for whether and how to include the SDOH variables given fairness concerns across
+  race/ethnicity subgroups, citing a specific fairness metric and threshold you would
+  require before deployment; and (4) a calibration audit plan for the prospective
+  deployment setting, specifying which calibration metrics to report and how to handle
+  the outcome prevalence shift between training and deployment sites.'
+target_skills:
+- ml-researcher
+domain: cross-domain
+difficulty: hard

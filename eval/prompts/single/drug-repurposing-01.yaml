@@ -1,0 +1,24 @@
+id: drug-repurposing-01
+prompt: "A small biotech company is investigating drug repurposing opportunities for\
+  \ **idiopathic pulmonary fibrosis (IPF)**, a rare fibrotic lung disease with limited\
+  \ treatment options. Their target of interest is **TGF-β1 signaling**, specifically\
+  \ the receptor kinase **TGFBR1 (ALK5)**.\n\nUsing publicly available databases,\
+  \ they want to identify approved drugs that already modulate this pathway and could\
+  \ be repurposed for IPF.\n\n**Your tasks:**\n\n1. **Query DGIdb conceptually**:\
+  \ Describe the step-by-step process to query DGIdb for drugs that interact with\
+  \ *TGFBR1*. What interaction types and source databases would you prioritize, and\
+  \ why?\n\n2. **Candidate evaluation**: From the following fictional shortlist of\
+  \ approved drugs, rank them by repurposing evidence strength for IPF, explaining\
+  \ your reasoning for each:\n   - **Galunisertib** (TGFBR1 inhibitor, oncology indication)\n\
+  \   - **Pirfenidone** (anti-fibrotic, IPF-approved — included as a control)\n  \
+  \ - **Vatalanib** (VEGFR2/PDGFR inhibitor, oncology)\n   - **Losartan** (AT1R blocker,\
+  \ hypertension)\n\n3. **Mechanism-of-action overlap**: For the top-ranked candidate\
+  \ (excluding pirfenidone), explain how its mechanism of action overlaps with IPF\
+  \ pathophysiology.\n\n4. **Translatability assessment**: List three key factors\
+  \ that would determine whether the top candidate can be clinically translated to\
+  \ IPF, given existing safety data from its original indication.\n\nKeep your response\
+  \ structured and concise."
+target_skills:
+- drug-repurposing
+domain: drug-discovery
+difficulty: easy

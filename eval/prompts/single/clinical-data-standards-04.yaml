@@ -1,0 +1,23 @@
+id: clinical-data-standards-04
+prompt: "A pharmaceutical company is preparing an integrated summary of safety (ISS)\
+  \ for a new cardiovascular drug across three Phase III trials (CARDIO-01, CARDIO-02,\
+  \ CARDIO-03) with a combined safety population of 4,847 patients. The clinical coding\
+  \ team has identified the following MedDRA-coded adverse events that need to be\
+  \ reviewed for a cardiac SOC frequency table:\n\n- \"Cardiac arrest\" (PT: 10007515)\
+  \ — 23 cases\n- \"Cardiopulmonary arrest\" (PT: 10007617) — 8 cases  \n- \"Sudden\
+  \ cardiac death\" (PT: 10042660) — 11 cases\n- \"Ventricular fibrillation\" (PT:\
+  \ 10047302) — 19 cases\n- \"Ventricular flutter\" (PT: 10047295) — 4 cases\n- \"\
+  Ventricular tachycardia\" (PT: 10047281) — 31 cases\n\nThe regulatory team is debating\
+  \ whether to present the frequency table at the PT level, HLT level, or both, given\
+  \ that several of these PTs roll up to the same HLT (\"Cardiac arrest and death\"\
+  \ and \"Ventricular arrhythmias NEC\").\n\nPlease provide: (1) the correct MedDRA\
+  \ HLT assignments for each PT listed, verifying which PTs share an HLT; (2) a recommendation\
+  \ on whether to present data at PT, HLT, or both levels for this ISS, with regulatory\
+  \ justification citing ICH E3 or FDA guidance considerations; (3) a mock frequency\
+  \ table showing both PT-level and HLT-level counts with percentages (n=4,847); and\
+  \ (4) an explanation of when HLT-level aggregation might obscure versus clarify\
+  \ safety signals in this specific cardiac context."
+target_skills:
+- clinical-data-standards
+domain: clinical-data
+difficulty: intermediate

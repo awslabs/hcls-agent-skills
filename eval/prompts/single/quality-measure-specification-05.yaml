@@ -1,0 +1,50 @@
+id: quality-measure-specification-05
+prompt: 'A regional health plan with 85,000 covered lives is preparing for NCQA HEDIS
+  MY2024 hybrid measure submission for Breast Cancer Screening (BCS). Their data analytics
+  team has identified the following situation:
+
+
+  - Total female members aged 52–74: 12,400
+
+  - Members with evidence of bilateral mastectomy (CPT 19303 bilateral or two separate
+  unilateral codes): 847
+
+  - Members with hospice enrollment during the measurement year: 213
+
+  - Members with a mammogram on file (administrative data): 6,891
+
+  - Members selected for hybrid medical record review: 1,200 (random sample)
+
+  - Of the hybrid sample, 340 have supplemental mammogram documentation not captured
+  in claims
+
+
+  The team is uncertain about three specific issues:
+
+  1. Whether members who had a unilateral mastectomy (only one breast removed) should
+  be excluded from the BCS denominator
+
+  2. How to correctly calculate the final hybrid rate when combining administrative
+  and supplemental data
+
+  3. Whether a screening mammogram performed on December 28 of the year prior to the
+  measurement year (27 months before the end of the measurement year) qualifies as
+  numerator-compliant
+
+
+  Please provide:
+
+  (A) A clear denominator construction walkthrough showing eligible member counts
+  after each exclusion step
+
+  (B) A resolution to each of the three clinical/technical uncertainties with citations
+  to HEDIS measure logic
+
+  (C) A step-by-step hybrid rate calculation using the numbers above
+
+  (D) A Python function that accepts raw member-level flags and returns the final
+  hybrid BCS rate'
+target_skills:
+- quality-measure-specification
+domain: healthcare-ops
+difficulty: intermediate

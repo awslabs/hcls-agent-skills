@@ -1,0 +1,39 @@
+id: translational-research-05
+prompt: 'A biotech company has completed a 24-month natural history study in 312 patients
+  with LRRK2-G2019S Parkinson''s disease and 289 idiopathic PD controls. They have
+  collected: CSF LRRK2 kinase activity (pRab10 levels), DaTscan striatal binding ratios,
+  MoCA scores, and plasma NfL at 6-month intervals. Their lead compound, RK-7741,
+  is a selective LRRK2 kinase inhibitor showing 78% target engagement in cynomolgus
+  monkey CSF at 100mg BID and a favorable safety profile through 13-week tox studies.
+
+
+  The team wants to advance into a Phase 2 proof-of-concept trial in LRRK2-G2019S
+  PD patients (estimated enrollment pool: ~800 patients across 40 sites globally).
+  They are debating between a 12-month vs. 18-month trial duration, and whether CSF
+  pRab10 reduction should serve as a primary endpoint (proof-of-mechanism) or whether
+  DaTscan or MoCA should anchor the primary endpoint.
+
+
+  Natural history data shows: CSF pRab10 declines 8% annually in untreated LRRK2-G2019S
+  patients (SD=22%), DaTscan striatal binding declines 6.2% annually (SD=18%), and
+  MoCA declines 1.1 points/year (SD=3.4 points). Dropout rate historically is 14%
+  per year in this population.
+
+
+  Please provide:
+
+  1. A structured endpoint selection rationale using biomarker context-of-use (COU)
+  framework, specifying which endpoint should be primary vs. secondary and why
+
+  2. A sample size calculation for both 12-month and 18-month scenarios assuming 40%
+  reduction in the primary endpoint rate with RK-7741 (α=0.05, 80% power)
+
+  3. A go/no-go decision framework with specific quantitative thresholds for interim
+  analysis at 6 months
+
+  4. An assessment of whether this program is ready to advance to Phase 2 based on
+  the translational package provided'
+target_skills:
+- translational-research
+domain: cross-domain
+difficulty: intermediate

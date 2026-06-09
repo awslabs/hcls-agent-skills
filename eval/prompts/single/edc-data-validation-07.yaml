@@ -1,0 +1,38 @@
+id: edc-data-validation-07
+prompt: 'You are working as a clinical data manager on a Phase II oncology trial (Study
+  ONC-2024-047) using Medidata Rave as your EDC system. After exporting data for 187
+  enrolled patients, you need to validate cross-form consistency between the Adverse
+  Events (AE) module and the Concomitant Medications (CM) module, as well as verify
+  controlled terminology compliance before SDTM submission.
+
+
+  Specific validation requirements:
+
+  - Every AE record with AEACN = "DOSE REDUCED" or "DRUG WITHDRAWN" must have a corresponding
+  CM record where CMSTDTC falls within ±7 days of AESTDTC for the study drug (CMTRT
+  = "PEMBROLIZUMAB 200MG")
+
+  - AE severity grades (AETOXGR) must contain only CTCAE v5.0 valid values: "1", "2",
+  "3", "4", "5"
+
+  - AE outcome field (AEOUT) must map strictly to CDISC controlled terminology (e.g.,
+  "RECOVERED/RESOLVED", "FATAL", "NOT RECOVERED/NOT RESOLVED", "RECOVERING/RESOLVING",
+  "RECOVERED/RESOLVED WITH SEQUELAE", "UNKNOWN")
+
+  - Any AE with AETOXGR = "4" or "5" must have AESER = "Y"
+
+
+  Your exported datasets are two pandas DataFrames: `ae_df` (columns: USUBJID, AESTDTC,
+  AETERM, AETOXGR, AEOUT, AEACN, AESER) and `cm_df` (columns: USUBJID, CMTRT, CMSTDTC,
+  CMDOSE).
+
+
+  Please provide: (1) a complete Python validation function that checks all four rules
+  above and returns a structured discrepancy report as a DataFrame with columns USUBJID,
+  RULE_ID, FIELD, INVALID_VALUE, and DESCRIPTION; (2) a brief explanation of how you
+  handled date parsing edge cases for ISO 8601 partial dates; (3) recommended query
+  text for each rule violation suitable for sending back to site data entry staff.'
+target_skills:
+- edc-data-validation
+domain: clinical-data-review
+difficulty: intermediate

@@ -1,0 +1,57 @@
+id: quality-measure-specification-07
+prompt: 'A regional health plan is preparing for NCQA HEDIS hybrid methodology audit
+  for the Controlling High Blood Pressure (CBP) measure. Their data analyst has pulled
+  the following preliminary figures for measurement year 2023:
+
+
+  - Total attributed members aged 18–85: 48,200
+
+  - Members with hypertension diagnosis (ICD-10 I10): 12,450
+
+  - Members meeting continuous enrollment (11 of 12 months): 10,890
+
+  - Members with allowable gaps >1 month: 1,560
+
+  - Members with ESRD diagnosis: 340
+
+  - Members with pregnancy during measurement year: 215
+
+  - Members with adequate blood pressure reading in administrative data: 4,200
+
+  - Members requiring medical record review: 2,100
+
+  - Members with BP <140/90 confirmed via medical record: 1,680
+
+
+  The plan uses a hybrid methodology with a sample size of 411 members and wants to
+  incorporate SDOH Z-codes (Z55–Z65) to understand disparities in BP control rates
+  across social risk strata.
+
+
+  Please provide the following deliverables:
+
+
+  1. **Denominator calculation**: Walk through the step-by-step denominator logic,
+  applying continuous enrollment rules and all valid exclusions per HEDIS CBP specifications.
+
+
+  2. **Numerator rate estimate**: Calculate the preliminary numerator compliance rate
+  using both administrative and hybrid (medical record) data components.
+
+
+  3. **Exclusion audit checklist**: List the specific documentation requirements NCQA
+  auditors will verify for each exclusion category applied.
+
+
+  4. **SDOH stratification design**: Propose a Z-code–based risk stratification schema
+  that segments the denominator population into at least three social risk tiers,
+  with recommended care gap intervention priorities for each tier.
+
+
+  5. **SQL pseudocode**: Write pseudocode for a query that identifies members who
+  fall out of the numerator but could be recaptured through outreach, stratified by
+  SDOH risk tier.'
+target_skills:
+- quality-measure-specification
+domain: healthcare-ops
+difficulty: intermediate

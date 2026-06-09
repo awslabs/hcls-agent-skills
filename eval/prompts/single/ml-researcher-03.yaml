@@ -1,0 +1,41 @@
+id: ml-researcher-03
+prompt: 'A hospital system has collected a retrospective EHR dataset of 8,200 adult
+  patients admitted for community-acquired pneumonia between 2018 and 2023. The goal
+  is to build a 30-day readmission prediction model to be deployed as a clinical decision
+  support tool. The dataset includes 47 structured features (vitals, labs, comorbidities,
+  medications) and free-text discharge summaries. Approximately 12% of patients experienced
+  readmission (positive class).
+
+
+  The data science team is debating between three approaches: (1) a logistic regression
+  baseline with LASSO regularization, (2) a gradient boosting model (XGBoost), and
+  (3) a fine-tuned clinical BERT model on the discharge notes only. They plan to use
+  a random 80/20 train-test split and report AUROC as the sole evaluation metric.
+
+
+  Please provide:
+
+
+  1. **Critique** the proposed evaluation setup, specifically identifying at least
+  three methodological problems with the splitting strategy and metric choice given
+  the class imbalance and clinical context.
+
+
+  2. **Recommend** a revised experimental design including an appropriate data splitting
+  strategy that accounts for the temporal nature of the data, and justify your choice
+  of at least two evaluation metrics beyond AUROC that are more appropriate for this
+  clinical task.
+
+
+  3. **Calibration plan**: Describe how you would assess and improve model calibration,
+  including which calibration plot or statistic to use and why calibration matters
+  more than discrimination for this specific deployment scenario.
+
+
+  4. **Subgroup fairness check**: The patient population is 34% Hispanic, 28% Black,
+  22% White, and 16% other. Outline a concrete fairness audit plan specifying which
+  metrics to compute and what thresholds you would flag as problematic.'
+target_skills:
+- ml-researcher
+domain: cross-domain
+difficulty: easy

@@ -1,0 +1,50 @@
+id: pa-decision-automation-06
+prompt: 'Here is test question #6 of 10:
+
+
+  ---
+
+
+  Your health plan processes approximately 4,200 prior authorization requests per
+  month for specialty medications. You''ve built an initial XGBoost PA classifier
+  trained on 18 months of historical decisions (82,000 records), achieving 87% overall
+  accuracy. However, your compliance team has flagged that the model shows a 23% approval
+  rate disparity between patients in rural ZIP codes (n=6,400 records) versus urban
+  ZIP codes (n=75,600 records), even after controlling for clinical diagnosis codes.
+
+
+  The model uses 47 features including: ICD-10 diagnosis codes, NDC drug codes, prescriber
+  NPI specialty, days supply, quantity requested, patient age/gender, prior auth history
+  (approval count, denial count, appeal count), formulary tier, and ZIP-code-derived
+  socioeconomic index (SEI score).
+
+
+  Please provide the following deliverables:
+
+
+  1. **Bias root-cause analysis**: Identify which feature(s) are most likely driving
+  the geographic disparity and explain the mechanism (provide Python code using SHAP
+  to decompose feature contributions by ZIP category).
+
+
+  2. **Feature remediation strategy**: Recommend specific feature engineering changes
+  or removal decisions to reduce the disparity while preserving model performance,
+  with justification for each change.
+
+
+  3. **Fairness-constrained retraining**: Provide scikit-learn compatible Python code
+  implementing a fairness constraint (equalized odds or demographic parity — choose
+  and justify which) during model retraining, using the `fairlearn` library.
+
+
+  4. **Monitoring dashboard specification**: Design a JSON schema for a real-time
+  fairness monitoring payload that tracks approval rate disparities across geographic
+  cohorts, to be emitted after each batch adjudication run.
+
+
+  Assume the SEI score is derived from Census tract data and correlates 0.71 with
+  rural/urban classification.'
+target_skills:
+- pa-decision-automation
+domain: healthcare-ops
+difficulty: intermediate

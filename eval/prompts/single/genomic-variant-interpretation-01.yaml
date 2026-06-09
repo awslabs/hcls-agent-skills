@@ -1,0 +1,43 @@
+id: genomic-variant-interpretation-01
+prompt: 'A 34-year-old woman with a strong family history of breast and ovarian cancer
+  undergoes germline genetic testing. The laboratory reports a variant in **BRCA2**:
+  c.7976G>A (p.Arg2659Gln).
+
+
+  The following evidence is available:
+
+  - **gnomAD v3.1 allele frequency**: 0.00018 (18 heterozygous individuals, no homozygotes)
+
+  - **REVEL score**: 0.62
+
+  - **ClinVar submissions**: 3 submissions — 2 classified as VUS, 1 classified as
+  Likely Pathogenic (single submitter, no assertion criteria provided)
+
+  - **Functional data**: No published functional studies available
+
+  - **Segregation data**: Variant co-segregates with disease in 2 affected relatives
+  (proband''s mother and maternal aunt, both with breast cancer)
+
+  - **In silico tools**: SIFT = "Deleterious", PolyPhen-2 = "Probably Damaging", Align-GVGD
+  = Class C35
+
+  - **Gene-disease validity**: BRCA2 is a well-established high-penetrance breast/ovarian
+  cancer gene
+
+
+  Please provide the following:
+
+  1. Apply the ACMG/AMP 2015 criteria systematically, identifying which specific evidence
+  codes apply (e.g., PS3, PM2, PP3, etc.) and their strength levels for this variant
+
+  2. Determine the final variant classification based on the combined criteria
+
+  3. Explain why the single "Likely Pathogenic" ClinVar submission should or should
+  not influence your classification
+
+  4. State the filtering allele frequency threshold you would use for BRCA2 and whether
+  PM2 applies here'
+target_skills:
+- genomic-variant-interpretation
+domain: genomics
+difficulty: easy

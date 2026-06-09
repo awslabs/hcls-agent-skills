@@ -1,0 +1,44 @@
+id: dicom-processing-01
+prompt: 'Here is the test question:
+
+
+  ---
+
+
+  You are working in a neuroimaging research lab and have received a folder of raw
+  DICOM files from a 3T MRI scanner for a single subject. The folder is named `sub-001_T1w_DICOMs/`
+  and contains 176 `.dcm` files representing a T1-weighted MPRAGE sequence (TR=2300ms,
+  TE=2.98ms, TI=900ms, flip angle=9°). You need to convert this DICOM series to NIfTI
+  format using `dcm2niix` for downstream preprocessing in FSL.
+
+
+  Please provide the following:
+
+
+  1. **The exact command-line call** to run `dcm2niix` on this folder, outputting
+  files to a directory called `nifti_output/`, with the output filename set to `sub-001_T1w`,
+  compression enabled (gzip), and verbose output turned on.
+
+
+  2. **A brief explanation** of what output files you would expect `dcm2niix` to generate
+  (list the specific file extensions and their purpose).
+
+
+  3. **A short Python snippet** using the `subprocess` module to programmatically
+  invoke the same `dcm2niix` command, capturing both stdout and stderr for logging
+  purposes.
+
+
+  4. **One common pitfall** when converting multi-echo or multi-series DICOM folders
+  with `dcm2niix`, and how the `-d` (search depth) flag can help address it.
+
+
+  Assume `dcm2niix` version 1.0.20220720 is installed and available on the system
+  PATH. Keep code examples concise but functional.
+
+
+  ---'
+target_skills:
+- dicom-processing
+domain: imaging
+difficulty: easy

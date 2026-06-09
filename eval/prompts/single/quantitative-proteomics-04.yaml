@@ -1,0 +1,40 @@
+id: quantitative-proteomics-04
+prompt: 'You are running a biomarker discovery study comparing plasma proteomes from
+  24 treatment-naive early-stage pancreatic ductal adenocarcinoma (PDAC) patients
+  versus 24 age- and sex-matched healthy controls. Samples were processed using a
+  TMT-16plex experiment across two batches (Batch A: 12 PDAC + 12 control; Batch B:
+  12 PDAC + 12 control), with a pooled reference channel included in each batch for
+  bridge normalization. Data were acquired on an Orbitrap Exploris 480 and searched
+  with Proteome Discoverer. After filtering, you have 4,847 proteins quantified, but
+  31% of values are missing across the dataset.
+
+
+  Initial QC plots reveal: (1) systematic ~1.8-fold ratio compression in TMT channels
+  compared to a spike-in standard curve, (2) a clear batch effect visible in PCA (PC2
+  explains 22% of variance and separates batches), and (3) missing values are non-randomly
+  distributed — proteins with lower abundance have significantly higher missingness
+  rates (verified by a t-test on mean intensity vs. missingness, p < 0.001).
+
+
+  Please provide:
+
+  1. A prioritized strategy for correcting the ratio compression artifact, explaining
+  the biological consequences if left uncorrected for biomarker candidates like CA19-9,
+  TIMP1, and LAMC2
+
+  2. A recommended normalization pipeline (with ordering of steps) that addresses
+  both the batch effect and within-batch technical variation
+
+  3. An imputation approach appropriate for the missing data mechanism observed, with
+  justification for why kNN would be inappropriate here
+
+  4. R code implementing a limma-based differential expression analysis incorporating
+  batch as a covariate, with volcano plot visualization highlighting proteins with
+  |log2FC| > 1 and adjusted p-value < 0.05
+
+  5. One specific experimental design modification for a follow-up validation cohort
+  of 80 samples'
+target_skills:
+- quantitative-proteomics
+domain: proteomics
+difficulty: intermediate

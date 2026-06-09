@@ -1,0 +1,24 @@
+.DS_Store
+*.pyc
+__pycache__/
+.vscode/
+*.swp
+*.swo
+*~
+.agents/scratchpad/
+.agents/skills/
+arxiv-downloads/
+eval/results/
+# Local-only docs
+INSPIRATION.md
+IMPLEMENTATION-GAPS.md
+COMPARISON-REPORT.md
+
+# Generated kiro files
+.kiro/skills/
+.kiro/settings/
+skills-lock.json
+
+# Demo
+demo/node_modules/
+demo/dist/

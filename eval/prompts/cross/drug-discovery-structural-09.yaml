@@ -1,0 +1,54 @@
+id: drug-discovery-structural-09
+prompt: 'Here is the research question:
+
+
+  ---
+
+
+  You are a computational drug discovery scientist tasked with identifying repurposable
+  candidates for **KPNB7** (a fictional nuclear transport receptor overexpressed in
+  treatment-resistant glioblastoma, UniProt ID: KP7B_HUMAN), which has a well-resolved
+  crystal structure (PDB: 7XQR, resolution 1.9 Å) revealing a deep hydrophobic binding
+  groove (volume ~820 ų, druggability score 0.84 by FTMap). A phenotypic screen in
+  847 GBM patient-derived cells identified **ivermectin**, **itraconazole**, and **selinexor**
+  as hits reducing viability by >60% at 5 µM. A transcriptomic connectivity map (CMap/L1000)
+  query returned these same three compounds with connectivity scores of −0.91, −0.87,
+  and −0.95 respectively against a KPNB7-knockdown signature.
+
+
+  **Deliverable 1 — Repurposing Evidence Ranking:** Using the repurposing evidence
+  hierarchy, rank all three candidates by overall translatability for GBM, incorporating
+  their known mechanisms of action, existing clinical safety profiles, and CNS penetration
+  data. Justify why selinexor''s existing XPO1-inhibition MOA either supports or complicates
+  its repurposing for KPNB7.
+
+
+  **Deliverable 2 — Cheminformatics Triage:** Given the SMILES strings below, compute
+  Lipinski Ro5 parameters (MW, HBD, HBA, cLogP), Veber rule compliance (rotatable
+  bonds ≤10, TPSA ≤140 Ų), and flag any PAINS substructures using RDKit. Then calculate
+  pairwise Tanimoto similarity using Morgan fingerprints (radius=2, 2048 bits) among
+  all three compounds. Identify which candidate is least druglike and should be deprioritized.
+
+  - Ivermectin: `C[C@@H]1CC[C@H]2C[C@@H](/C(=C/[C@@H]3CC(=O)O3)...` *(use canonical
+  SMILES)*
+
+  - Itraconazole: `CCC(CN1CCN(CC1)c2ccc(cc2)N3C(=O)N(...)` *(use canonical SMILES)*
+
+  - Selinexor: `O=C(/C=C/CNc1cccc(n1)C(F)(F)F)NNC(=O)c1cncc(c1)...` *(use canonical
+  SMILES)*
+
+
+  **Deliverable 3 — Structure-Based Validation Strategy:** Design a virtual screening
+  cascade using PDB: 7XQR to validate whether the top-ranked repurposing candidate
+  from Deliverable 1 can physically engage the KPNB7 binding groove. Specify: (a)
+  site preparation and protonation protocol, (b) docking strategy (rigid vs. induced-fit)
+  with scoring function justification, (c) MM-GBSA rescoring parameters, and (d) one
+  MD simulation experiment (system setup, force field, simulation length) to confirm
+  binding stability. Explicitly address how the 820 ų pocket volume influences your
+  choice between rigid docking and induced-fit docking.'
+target_skills:
+- drug-repurposing
+- cheminformatics
+- structure-based-drug-design
+domain: drug-discovery
+difficulty: hard

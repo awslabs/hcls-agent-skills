@@ -1,0 +1,39 @@
+id: cheminformatics-07
+prompt: 'You are building a virtual screening pipeline for a kinase inhibitor program.
+  Your compound library contains the following 6 SMILES strings representing candidate
+  molecules:
+
+
+  - **Cpd-A**: `CC1=CC=C(C=C1)S(=O)(=O)N2CCN(CC2)C(=O)C3=CC=CO3`
+
+  - **Cpd-B**: `O=C(O)c1ccc(NC(=O)c2ccc(Cl)cc2)cc1` (a known PAINS scaffold)
+
+  - **Cpd-C**: `COc1ccc2c(c1)nc(N)c(C#N)c2C(=O)Nc1ccc(F)cc1`
+
+  - **Cpd-D**: `O=C(NCCN1CCOCC1)c1cccc2ccccc12` (MW > 500 suspected)
+
+  - **Cpd-E**: `Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1C`
+
+  - **Cpd-F**: `O=C(O)CC(O)(CC(=O)O)C(=O)O` (citric acid — expected to fail multiple
+  filters)
+
+
+  Your task is to:
+
+
+  1. Write a complete RDKit Python script that computes the four Lipinski Ro5 descriptors
+  (MW, LogP, HBD, HBA) and two Veber parameters (TPSA, rotatable bonds) for all six
+  compounds, then flags each compound as **pass/fail** against both rule sets.
+
+  2. Implement a PAINS filter using RDKit''s `FilterCatalog` with the `PAINS_A` catalog
+  and report which compounds are flagged.
+
+  3. Compute pairwise Tanimoto similarity using Morgan fingerprints (radius=2, 2048
+  bits) and identify the most similar pair.
+
+  4. Based on the combined results, recommend which compounds should advance to the
+  next stage and justify your reasoning using the computed data.'
+target_skills:
+- cheminformatics
+domain: drug-discovery
+difficulty: intermediate

@@ -1,0 +1,39 @@
+id: aws-genai-ml-architect-03
+prompt: 'A regional hospital network with 12 facilities needs to deploy a medical
+  imaging inference system on AWS to analyze chest X-rays for pneumonia detection.
+  The system must process approximately 800 X-ray images per day across all facilities,
+  with radiologists requiring results within 2 minutes of image submission. The hospital
+  currently stores DICOM images in an on-premises PACS system and plans to integrate
+  AWS into their existing workflow.
+
+
+  The ML team has already trained a PyTorch-based convolutional neural network (ResNet-50
+  fine-tuned on 45,000 labeled chest X-rays) that achieves 94% sensitivity and 91%
+  specificity. The model artifact is approximately 200MB. Patient data is considered
+  PHI and the system must maintain HIPAA compliance throughout.
+
+
+  Please provide:
+
+
+  1. **Architecture diagram description** — outline the end-to-end AWS architecture
+  from DICOM image ingestion to returning inference results to the radiologist''s
+  workstation, naming specific AWS services at each step
+
+
+  2. **SageMaker deployment recommendation** — specify whether to use real-time endpoints,
+  serverless inference, or asynchronous inference for this use case, with justification
+  based on the volume and latency requirements
+
+
+  3. **HIPAA compliance checklist** — identify at least 5 specific AWS configurations
+  or service features that must be enabled to protect PHI in this pipeline
+
+
+  4. **Rough monthly cost estimate** — given 800 images/day and a ml.g4dn.xlarge instance
+  type, provide a ballpark cost breakdown for the inference endpoint and supporting
+  services'
+target_skills:
+- aws-genai-ml-architect
+domain: cross-domain
+difficulty: easy

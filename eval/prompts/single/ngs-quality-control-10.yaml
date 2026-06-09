@@ -1,0 +1,39 @@
+id: ngs-quality-control-10
+prompt: 'You are running a WES pipeline on 48 tumor-normal pairs from a colorectal
+  cancer cohort. After generating BAMs, you run mosdepth with `--by capture_targets.bed`
+  and observe the following anomalies in three samples:
+
+
+  - **Sample CRC_041T**: Mean target coverage = 187×, but `mosdepth`''s `quantized`
+  output shows 23% of target bases fall in the 0–5× bin despite high mean coverage
+
+  - **Sample CRC_019N**: Mean target coverage = 94×, Picard `CollectHsMetrics` reports
+  `PCT_TARGET_BASES_20X = 0.61` but `FOLD_ENRICHMENT = 312` (unusually high)
+
+  - **Sample CRC_033T**: fastp reports 94% Q30 rate and low adapter contamination,
+  yet MultiQC flags extreme GC bias (bimodal GC distribution peaking at 28% and 67%)
+
+
+  You suspect these are not random failures but indicate specific, distinct technical
+  artifacts or sample issues.
+
+
+  **Deliverables:**
+
+
+  1. For each sample, diagnose the most likely root cause of the anomaly (provide
+  at least two differential diagnoses per sample with reasoning).
+
+  2. Write shell commands using mosdepth, samtools, and Picard to generate the specific
+  supplementary metrics needed to confirm your top diagnosis for each sample.
+
+  3. Explain what `FOLD_ENRICHMENT` actually measures in Picard HsMetrics and why
+  a very high value combined with low `PCT_TARGET_BASES_20X` is paradoxically possible.
+
+  4. For CRC_033T''s bimodal GC distribution, describe what downstream variant calling
+  consequences this artifact would cause if left uncorrected, and provide a fastp
+  or bbduk command to mitigate it.'
+target_skills:
+- ngs-quality-control
+domain: genomics
+difficulty: hard

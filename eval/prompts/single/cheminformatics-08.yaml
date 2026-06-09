@@ -1,0 +1,47 @@
+id: cheminformatics-08
+prompt: 'Here is test question #8 of 10:
+
+
+  ---
+
+
+  You are analyzing a set of five compounds from an internal fragment-growing campaign
+  targeting a serine protease. The SMILES strings are:
+
+
+  - **Cpd-A**: `c1ccc(NC(=O)c2ccco2)cc1`
+
+  - **Cpd-B**: `c1ccc(NC(=O)c2ccc(O)cc2)cc1`
+
+  - **Cpd-C**: `O=C(Nc1ccccc1)c1ccc(S(=O)(=O)N2CCCC2)cc1`
+
+  - **Cpd-D**: `O=C(Nc1ccc(F)cc1)c1ccc(S(=O)(=O)N2CCCC2)cc1`
+
+  - **Cpd-E**: `c1ccc2c(c1)cc1ccc3cccc4ccc2c1c34`
+
+
+  Your team suspects Cpd-E may be a PAINS hit, and wants to confirm this while also
+  evaluating all five compounds for Lipinski Ro5 and Veber rule compliance. Additionally,
+  the medicinal chemist wants to understand the structural transformation between
+  Cpd-C and Cpd-D as a matched molecular pair (MMP).
+
+
+  Please provide:
+
+  1. **RDKit Python code** that screens all five compounds against the PAINS filter
+  (using `FilterCatalog` with `PAINS_A`, `PAINS_B`, and `PAINS_C`), reports which
+  substructure alert triggered for any flagged compound, and outputs Lipinski + Veber
+  descriptors (MW, logP, HBD, HBA, TPSA, rotatable bonds) in a formatted table.
+
+  2. **MMP analysis**: Using RDKit''s fragmentation approach (RECAP or manual core/substituent
+  splitting), identify the exact structural transformation between Cpd-C and Cpd-D
+  and calculate the Morgan fingerprint Tanimoto similarity (radius=2, 2048 bits) between
+  them.
+
+  3. A brief **medicinal chemistry interpretation** of whether Cpd-D represents an
+  improvement over Cpd-C based purely on computed properties, and whether Cpd-E should
+  be deprioritized solely on PAINS grounds.'
+target_skills:
+- cheminformatics
+domain: drug-discovery
+difficulty: hard

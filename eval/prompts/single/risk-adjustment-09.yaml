@@ -1,0 +1,47 @@
+id: risk-adjustment-09
+prompt: 'Here is test question #9 of 10:
+
+
+  ---
+
+
+  You are building a CMS-HCC Model V28 risk adjustment pipeline for a Medicare Advantage
+  plan with 45,000 members. During validation, your data team has flagged three problematic
+  edge cases that need programmatic resolution:
+
+
+  **Edge Case 1 – Duplicate HCC Conflict:** Member ID M-10042 has ICD-10 codes E11.65
+  (Type 2 diabetes with hyperglycemia) and E11.641 (Type 2 diabetes with hypoglycemia
+  with coma), which map to HCC37 and HCC36 respectively under V28. Both were submitted
+  in the same payment year. The hierarchy rules state HCC36 supersedes HCC37, but
+  your pipeline is currently scoring both.
+
+
+  **Edge Case 2 – Interaction Coefficient Eligibility:** Member ID M-20187 has confirmed
+  HCC85 (Congestive Heart Failure) and HCC85_gDiabetes interaction flag. However,
+  the member''s diabetes codes were only present on Part B claims, not Part A. Determine
+  whether the interaction term should be applied.
+
+
+  **Edge Case 3 – Rx Proxy Gap Detection:** Member ID M-33901 has no ICD-10 code for
+  Major Depression but has 3 fills of sertraline (NDC 00093-7519-06) in the past 12
+  months with no corresponding HCC76 diagnosis code submitted.
+
+
+  **Deliverables required:**
+
+  1. Python code implementing hierarchy resolution logic for V28 that correctly handles
+  Edge Case 1, using a configurable HCC hierarchy dictionary
+
+  2. SQL query that identifies all members with potential Rx proxy coding gaps using
+  a pharmacy claims table (`rx_claims`) and a diagnosis table (`dx_claims`)
+
+  3. A written analysis (150–200 words) explaining the correct handling of the interaction
+  coefficient in Edge Case 2 under CMS guidelines
+
+  4. A risk score recalculation function in Python that accepts a member''s HCC list
+  and demographic segment and returns the corrected RAF score'
+target_skills:
+- risk-adjustment
+domain: healthcare-ops
+difficulty: hard

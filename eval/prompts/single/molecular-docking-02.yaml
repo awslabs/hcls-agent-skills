@@ -1,0 +1,35 @@
+id: molecular-docking-02
+prompt: 'You have prepared a protein receptor (PDB ID: 3KLM, a fictional kinase target)
+  for docking by removing water molecules, adding polar hydrogens, and assigning Gasteiger
+  charges using AutoDock Tools. The active site is centered at coordinates x=14.5,
+  y=−8.2, z=22.7 with a grid box of 20×20×20 Å (spacing = 1.0 Å). You have a small
+  library of 5 candidate ligands (named LIG001–LIG005) already converted to PDBQT
+  format. You plan to run AutoDock Vina with exhaustiveness=8 and num_modes=9.
+
+
+  Please provide the following deliverables:
+
+
+  1. **A complete Vina configuration file** (`config.txt`) incorporating all the parameters
+  described above, including the receptor path (`receptor.pdbqt`), output directory,
+  and energy range of 3 kcal/mol.
+
+
+  2. **A Bash script** that loops over all five ligand PDBQT files (LIG001.pdbqt through
+  LIG005.pdbqt), runs Vina for each using the config file, and saves each output pose
+  file as `LIG00X_out.pdbqt`.
+
+
+  3. **A Python script** that parses each Vina output log (assume logs are named `LIG001_log.txt`
+  through `LIG005_log.txt`), extracts the best binding affinity (kcal/mol) for each
+  ligand, and prints a ranked summary table showing ligand name and top affinity score,
+  sorted from most to least favorable.
+
+
+  4. **A brief explanation** (3–5 sentences) of what the exhaustiveness parameter
+  controls and how increasing it from 8 to 32 would affect result quality and computational
+  time.'
+target_skills:
+- molecular-docking
+domain: protein-structure
+difficulty: easy

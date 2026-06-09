@@ -1,0 +1,31 @@
+id: dicom-processing-09
+prompt: 'You are managing a large-scale neuroimaging study with 847 participants where
+  your DICOM acquisition pipeline produced inconsistent series descriptions across
+  three different scanner sites (Siemens Prisma at Site A, GE Discovery MR750 at Site
+  B, and Philips Ingenia at Site C). When running dcm2niix v1.0.20220720 with default
+  settings, you discover the following problems:
+
+
+  1. Site B produces split 4D fMRI volumes where dcm2niix creates multiple 3D NIfTI
+  files instead of a single 4D file, likely due to inconsistent `ImageOrientationPatient`
+  (0020,0037) tags varying by ±0.001 degrees across slices
+
+  2. Site C''s DWI acquisitions have the `Private_2001_1003` Philips tag encoding
+  b-values instead of the standard `DiffusionBValue` (0018,9087) tag, causing dcm2niix
+  to output incorrect bval files
+
+  3. Site A''s T1w scans contain burned-in PHI in the `ImageComments` (0020,4000)
+  tag and pixel data overlay that must be removed before BIDS conversion
+
+
+  Provide: (a) a Python script using pydicom that preprocesses the DICOM headers before
+  dcm2niix conversion to fix the ImageOrientationPatient tolerance issue and remap
+  the Philips private b-value tags to standard tags, (b) the specific dcm2niix command-line
+  flags that best handle multi-site acquisitions for BIDS output, (c) a de-identification
+  routine that scrubs the ImageComments tag and detects/removes pixel overlay data
+  using pydicom''s overlay handling, and (d) a validation strategy to confirm all
+  847 participants have complete and correctly structured BIDS datasets post-conversion.'
+target_skills:
+- dicom-processing
+domain: imaging
+difficulty: hard

@@ -1,0 +1,42 @@
+id: proteomics-analysis-09
+prompt: 'You are analyzing a TMT-16plex proteomics experiment comparing treatment
+  response in 48 pancreatic cancer patient tumor biopsies (24 responders vs. 24 non-responders
+  across 3 TMT batches). The MaxQuant `proteinGroups.txt` output contains 6,847 protein
+  groups with TMT reporter ion intensities (columns: `Reporter intensity corrected
+  0-15` for each channel). Batch assignment is: channels 0-15 in batch 1, channels
+  0-15 in batch 2, channels 0-15 in batch 3, with one channel per batch reserved as
+  a pooled reference (channel 15). You have 30% missing values overall, with missingness
+  concentrated in non-responders.
+
+
+  **Deliverables required:**
+
+
+  1. Write R code to load and preprocess the data: filter contaminants/reverse hits,
+  extract TMT intensities, log2-transform, and perform reference-channel normalization
+  within each batch followed by ComBat batch correction using the `sva` package.
+
+
+  2. Implement a missing value imputation strategy that accounts for the non-random
+  (MNAR) missingness pattern — use a hybrid approach combining MinProb imputation
+  for MNAR proteins and kNN for MAR proteins, with a decision threshold based on missingness
+  rate per condition (>70% missing in one group = MNAR).
+
+
+  3. Run `limma` differential expression with appropriate precision weights (`voom`-style
+  or `limma::lmFit` with quality weights), including batch as a covariate, and apply
+  Benjamini-Hochberg correction. Report proteins with |log2FC| > 1 and adjusted p-value
+  < 0.05.
+
+
+  4. Generate a publication-quality volcano plot using `ggplot2` that highlights the
+  top 15 significant proteins by name, uses a custom color scheme, and includes marginal
+  density plots.
+
+
+  5. Perform KEGG pathway enrichment using `clusterProfiler` on the DE protein list
+  and explain how to handle the background protein set correctly for TMT experiments.'
+target_skills:
+- proteomics-analysis
+domain: proteomics
+difficulty: hard

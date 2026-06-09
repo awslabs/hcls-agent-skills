@@ -1,0 +1,51 @@
+id: quality-measure-specification-09
+prompt: 'A regional health plan is preparing for NCQA HEDIS hybrid methodology audit
+  for the Colorectal Cancer Screening (COL-E) measure. Their data team has identified
+  the following population snapshot for the measurement year (January 1 – December
+  31, 2024):
+
+
+  - Total attributed members aged 45–75: 12,847
+
+  - Members with continuous enrollment gaps >1 day during measurement year: 1,203
+
+  - Members with colorectal cancer diagnosis (ICD-10: C18.x–C20): 89
+
+  - Members with total colectomy (CPT 44150, 44151, 44155): 34
+
+  - Members with a qualifying FIT test result in medical record (hybrid): 2,341
+
+  - Members with colonoscopy claim in past 10 years: 3,892
+
+  - Members with Cologuard (stool DNA) test in past 3 years: 445
+
+  - Members with flexible sigmoidoscopy in past 5 years: 178
+
+  - Members with CT colonography in past 5 years: 203
+
+  - Members with no evidence of screening: 4,462
+
+
+  The plan uses a 12-month continuous enrollment requirement with one allowable gap
+  of ≤45 days.
+
+
+  Please provide:
+
+  1. A step-by-step denominator construction showing which populations are excluded
+  and the final eligible denominator count
+
+  2. A numerator calculation with percentage breakdown by screening modality
+
+  3. An identification of any edge cases or specification conflicts (e.g., members
+  with both a gap >1 day but ≤45 days, dual exclusion criteria)
+
+  4. A Python code snippet that implements the denominator/numerator logic using a
+  pandas DataFrame schema reflecting the above fields
+
+  5. Recommendations for improving the plan''s hybrid record chase strategy to maximize
+  numerator capture before the NCQA deadline'
+target_skills:
+- quality-measure-specification
+domain: healthcare-ops
+difficulty: hard

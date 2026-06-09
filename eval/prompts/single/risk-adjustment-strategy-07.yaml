@@ -1,0 +1,26 @@
+id: risk-adjustment-strategy-07
+prompt: "A Medicare Advantage plan with 42,000 members is navigating the CMS-HCC model\
+  \ transition year for 2024, where CMS applies a blended payment methodology using\
+  \ 33% V28 and 67% V24 weights. Your analytics team has pulled a sample cohort of\
+  \ 500 members who have at least one HCC under V24 that does not map to an equivalent\
+  \ HCC under V28, creating potential RAF score erosion.\n\nSpecifically, you've identified\
+  \ three high-volume mapping discrepancies in this cohort:\n- **Diabetes with Chronic\
+  \ Complications (HCC 18 in V24)** — 187 members, average RAF contribution of 0.368\
+  \ per member\n- **Vascular Disease (HCC 108 in V24)** — 143 members, average RAF\
+  \ contribution of 0.299 per member  \n- **Major Depression, Moderate/Severe (HCC\
+  \ 58 in V24)** — 170 members, average RAF contribution of 0.310 per member\n\nPlease\
+  \ provide the following deliverables:\n\n1. **Blended RAF Impact Analysis**: Calculate\
+  \ the estimated aggregate RAF score erosion for this 500-member cohort under the\
+  \ 2024 blended model versus a pure V24 baseline, assuming complete mapping loss\
+  \ for the identified HCCs.\n\n2. **V28 Recapture Strategy**: For each of the three\
+  \ HCC categories, identify which V28 HCC codes (if any) could capture equivalent\
+  \ or compensating clinical specificity, and what ICD-10 documentation elements are\
+  \ required to support those mappings.\n\n3. **Prioritization Framework**: Recommend\
+  \ a risk-stratified chart review prioritization approach for this cohort, ranking\
+  \ members by recapture opportunity and audit defensibility risk.\n\n4. **Documentation\
+  \ Guidance**: Outline the audit-defensible clinical documentation standards a provider\
+  \ must meet to support V28 coding for these three conditions, referencing CMS guidelines."
+target_skills:
+- risk-adjustment-strategy
+domain: healthcare-ops
+difficulty: intermediate

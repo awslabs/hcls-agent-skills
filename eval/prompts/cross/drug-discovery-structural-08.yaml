@@ -1,0 +1,47 @@
+id: drug-discovery-structural-08
+prompt: 'A rare pediatric glioma cohort study (n=847 patients) has identified recurrent
+  overexpression of DYRK1B kinase alongside loss-of-function mutations in CDKN2A,
+  with RNA-seq data suggesting DYRK1B drives quiescence-to-proliferation cycling in
+  tumor stem cells. You are tasked with identifying and evaluating approved drugs
+  for repurposing against this target using an integrated computational pipeline.
+
+
+  **Your deliverables are:**
+
+
+  **1. Repurposing Candidate Identification:** Query the conceptual landscape of DGIdb
+  and OpenTargets to identify the top three approved small-molecule drugs with documented
+  DYRK1B inhibitory activity or strong mechanism-of-action overlap (e.g., CDK/DYRK
+  dual inhibitors). Rank these candidates using a repurposing evidence hierarchy,
+  explicitly weighing clinical safety data, existing pediatric pharmacokinetic profiles,
+  and target engagement evidence. Justify whether a target-based or phenotype-based
+  repurposing strategy is more appropriate given the CDKN2A co-mutation context.
+
+
+  **2. Cheminformatics Filtering:** For the following three SMILES strings representing
+  your top candidates, compute key molecular descriptors (MW, LogP, HBD, HBA, TPSA,
+  rotatable bonds), apply Lipinski Rule of Five and Veber filters, flag any PAINS
+  substructures, and calculate pairwise Tanimoto similarity using Morgan fingerprints
+  (radius=2, 2048 bits). Report which candidates pass all filters and whether chemical
+  similarity suggests redundancy in the repurposing panel.
+
+  - Compound A: `CC1=NC(=CC(=O)N1)C2=CC=CC=C2F`
+
+  - Compound B: `O=C1NC(=O)C2=CC=CC=C12`
+
+  - Compound C: `CN1CCN(CC1)C2=NC3=CC=CC=C3N2`
+
+
+  **3. Structure-Based Prioritization:** Given that a 2.1 Å crystal structure of DYRK1B
+  (PDB: fictional 7XKB) reveals a DFG-in conformation with a narrow hydrophobic back-pocket
+  adjacent to the hinge region, recommend a docking strategy (rigid vs. induced-fit),
+  justify your choice of scoring function for pediatric CNS penetration prioritization,
+  identify whether an allosteric site adjacent to the activation loop warrants fragment-based
+  follow-up, and outline a three-stage virtual screening cascade integrating pharmacophore
+  pre-filtering, docking, and MM-GBSA rescoring with specific cutoff parameters.'
+target_skills:
+- drug-repurposing
+- cheminformatics
+- structure-based-drug-design
+domain: drug-discovery
+difficulty: hard

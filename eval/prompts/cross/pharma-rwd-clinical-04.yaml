@@ -1,0 +1,48 @@
+id: pharma-rwd-clinical-04
+prompt: 'You are a pharmacoepidemiologist at a large health system with access to
+  a commercial claims database containing 4.2 million continuously enrolled adult
+  members from January 2018 through December 2023. Your team is designing a real-world
+  evidence study to evaluate whether empagliflozin (an SGLT2 inhibitor) reduces the
+  risk of acute kidney injury (AKI) compared to sitagliptin (a DPP-4 inhibitor) among
+  patients with type 2 diabetes and established cardiovascular disease.
+
+
+  Please provide the following concrete deliverables:
+
+
+  **1. Study Design Specification**
+
+  Design a target trial emulation using an active comparator new-user design. Define
+  the index date, washout period (justify its length), eligibility criteria using
+  specific ICD-10 code sets (include at least 6 relevant ICD-10 codes for type 2 diabetes,
+  CVD, and AKI), and explain how you would avoid immortal time bias in the exposure
+  definition. Identify at least two potential sources of time-varying confounding
+  and specify whether a marginal structural model with stabilized IPTW weights or
+  a conventional Cox model would be more appropriate, with justification.
+
+
+  **2. Cohort Identification and Adherence Pipeline**
+
+  Describe the NDC code strategy for identifying new users of empagliflozin versus
+  sitagliptin, including how you would define "new use" in claims data. Calculate
+  the proportion of days covered (PDC) threshold you would apply (justify the cutoff),
+  and explain how you would handle gaps in pharmacy dispensing records. Specify the
+  SMD threshold for acceptable covariate balance after propensity score weighting
+  and list eight covariates you would include in the propensity score model.
+
+
+  **3. Outcome Coding and Terminology Mapping**
+
+  The primary outcome is AKI. Provide the complete MedDRA hierarchy for AKI from LLT
+  through SOC, identify the corresponding ICD-10-CM codes (distinguishing unspecified
+  AKI from AKI with tubular necrosis), and map the AKI outcome to its SNOMED CT concept
+  ID. Explain whether you would define AKI at the MedDRA Preferred Term or HLT level
+  for your primary analysis and justify this decision in the context of outcome misclassification
+  sensitivity analyses. Additionally, identify one negative control outcome (with
+  its ICD-10 code) appropriate for detecting unmeasured confounding in this study.'
+target_skills:
+- pharmacoepidemiology
+- rwd-cohort-analysis
+- clinical-data-standards
+domain: pharmacoepidemiology
+difficulty: intermediate

@@ -1,0 +1,39 @@
+id: scrna-seq-pipeline-04
+prompt: 'You are analyzing a single-cell RNA-seq dataset from a study of 8 Crohn''s
+  disease patients and 6 healthy controls, totaling ~45,000 cells after initial loading
+  from 10X Genomics output. After running standard QC, you filtered cells to keep
+  those with 200–4,000 genes detected, mitochondrial gene percentage below 20%, and
+  minimum 500 UMI counts. You then normalized to 10,000 counts per cell, log1p transformed,
+  and selected the top 3,000 highly variable genes using `flavor=''seurat_v3''`.
+
+
+  Upon running PCA (50 components) followed by UMAP and Leiden clustering at resolution
+  0.5, you notice that cells cluster strongly by patient ID rather than by cell type
+  — a classic batch effect. You have two batch correction strategies available: Harmony
+  (fast, operates on PCA embeddings) and scVI (deep learning-based, operates on raw
+  counts).
+
+
+  Please provide:
+
+
+  1. **Code** implementing both Harmony and scVI batch correction using Scanpy/harmonypy
+  and scvi-tools respectively, starting from the AnnData object after HVG selection.
+  For scVI, use 2 hidden layers, 128 hidden units, and 10 latent dimensions.
+
+
+  2. **A UMAP visualization strategy** — specifically, what `use_rep` parameter to
+  pass to `sc.pp.neighbors()` for each method, and why they differ.
+
+
+  3. **Differential expression analysis** using `sc.tl.rank_genes_groups()` with the
+  Wilcoxon method to identify marker genes for each Leiden cluster after batch correction,
+  filtering results to genes with adjusted p-value < 0.05 and log2 fold change > 1.5.
+
+
+  4. **Recommendations** on when to prefer Harmony vs. scVI given dataset size, computational
+  resources, and downstream analysis goals.'
+target_skills:
+- scrna-seq-pipeline
+domain: single-cell
+difficulty: intermediate

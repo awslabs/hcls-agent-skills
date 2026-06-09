@@ -1,0 +1,39 @@
+id: claims-billing-rules-07
+prompt: 'A regional health plan is conducting a quarterly claims audit and has flagged
+  a high-volume orthopedic surgery group for potential unbundling and modifier misuse.
+  The group performed 847 knee arthroscopy procedures (CPT 29881) over 90 days, with
+  the following patterns identified:
+
+
+  - 623 claims (73.6%) billed CPT 29881 with CPT 29876 on the same date of service
+  for the same knee
+
+  - 412 of those same claims also include modifier 59 appended to CPT 29876
+
+  - 198 claims show CPT 99213 billed same-day with modifier 25 on CPT 99213, alongside
+  the surgical procedure
+
+  - 31 claims bill CPT 29881 bilaterally (both knees) with modifier 50, but operative
+  notes reference only one knee in 14 of those cases
+
+  - The group''s modifier 59 usage rate is 4.2x the regional benchmark for similar
+  orthopedic practices
+
+
+  Using NCCI edit logic and CMS billing guidelines, please provide:
+
+  1. An analysis of whether CPT 29876 is a Column 1/Column 2 edit pair with CPT 29881,
+  and whether modifier 59 can appropriately bypass this edit
+
+  2. An evaluation of the modifier 25 usage pattern for the same-day E&M visits, including
+  what documentation would be required to support medical necessity
+
+  3. A fraud risk scoring rationale for this provider, distinguishing between likely
+  coding errors versus potential intentional fraud indicators
+
+  4. Three specific audit recommendations the health plan should implement, including
+  a documentation review checklist for the surgical claims'
+target_skills:
+- claims-billing-rules
+domain: healthcare-ops
+difficulty: intermediate

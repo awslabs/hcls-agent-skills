@@ -1,0 +1,38 @@
+id: pa-clinical-policy-06
+prompt: 'A 58-year-old patient with moderate-to-severe plaque psoriasis (BSA 22%,
+  PASI score 18.4) has been prescribed secukinumab (Cosentyx) 300mg by their dermatologist.
+  The commercial payer (fictional: BlueStar Health Plan) has a step therapy policy
+  requiring documented failure of two conventional systemics (methotrexate AND cyclosporine)
+  before approving any IL-17 inhibitor. The patient''s chart shows 6 months of methotrexate
+  at 15mg/week with documented hepatotoxicity leading to discontinuation, but no trial
+  of cyclosporine. The dermatologist argues cyclosporine is contraindicated due to
+  the patient''s Stage 2 hypertension (BP averaging 158/94) and CKD Stage 2 (eGFR
+  68 mL/min/1.73m²).
+
+
+  Please provide:
+
+
+  1. **Clinical policy analysis**: Evaluate whether the documented comorbidities (hypertension
+  + CKD Stage 2) constitute a valid step therapy exception under typical commercial
+  payer criteria, citing standard contraindication thresholds for cyclosporine
+
+
+  2. **Appeals letter framework**: Draft a structured peer-to-peer review talking
+  points document the dermatologist could use, incorporating the specific lab values
+  and clinical rationale
+
+
+  3. **FHIR Da Vinci PAS mapping**: Identify which FHIR resource elements (Claim,
+  ClaimResponse, or prior authorization request bundle) should capture the step therapy
+  exception evidence, and provide a partial JSON snippet showing how to encode the
+  contraindication as a SupportingInfo component
+
+
+  4. **Escalation strategy**: If the initial appeal is denied, outline the next steps
+  including external independent review organization (IRO) criteria and relevant CMS/state
+  mandate considerations that might apply'
+target_skills:
+- pa-clinical-policy
+domain: healthcare-ops
+difficulty: intermediate

@@ -1,0 +1,39 @@
+id: drug-repurposing-09
+prompt: 'You are leading a drug repurposing program for **idiopathic pulmonary fibrosis
+  (IPF)** and have identified **bardoxolone methyl** (an Nrf2 activator originally
+  developed for CKD) as a candidate. However, you face conflicting evidence: (1) Nrf2
+  activation reduces oxidative stress and TGF-β1 signaling in murine bleomycin models
+  (p<0.01, n=24 mice), but (2) a 2021 transcriptomic analysis of IPF patient lung
+  tissue (GSE47460, n=128 IPF vs. 91 controls) shows **NRF2 target genes are already
+  paradoxically upregulated** in fibrotic regions, suggesting compensatory or maladaptive
+  activation. Additionally, bardoxolone methyl carries a black-box warning for heart
+  failure from the BEACON trial in CKD patients.
+
+
+  Your task:
+
+
+  1. **Mechanistic reconciliation**: Explain how Nrf2 pathway upregulation in IPF
+  tissue could be either a failed compensatory response or an active driver of fibrosis,
+  and what additional molecular evidence (specific gene signatures, pathway crosstalk
+  with NF-κB or KEAP1 mutations) would disambiguate these hypotheses.
+
+
+  2. **Evidence hierarchy assessment**: Using a structured repurposing evidence framework
+  (e.g., target validity, mechanistic plausibility, translational gap, safety liability),
+  score bardoxolone methyl for IPF repurposing on each dimension (1–5 scale) and provide
+  a composite recommendation.
+
+
+  3. **DGIdb/OpenTargets query design**: Write a concrete Python pseudocode workflow
+  (using OpenTargets GraphQL API) to retrieve all approved drugs targeting NRF2, KEAP1,
+  and SQSTM1 (p62) with their interaction scores and clinical phases, filtering for
+  compounds with interaction_score > 0.7.
+
+
+  4. **Alternative candidate identification**: Based on the mechanistic uncertainty,
+  propose two mechanistically distinct fallback repurposing candidates with rationale.'
+target_skills:
+- drug-repurposing
+domain: drug-discovery
+difficulty: hard

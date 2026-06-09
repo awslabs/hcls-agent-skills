@@ -1,0 +1,41 @@
+id: imaging-study-design-04
+prompt: 'You are coordinating a multi-site diffusion MRI study examining white matter
+  microstructure in 340 patients with early-stage Parkinson''s disease across 6 imaging
+  centers (3 Siemens Prisma 3T, 2 GE Discovery MR750 3T, 1 Philips Ingenia 3T). All
+  sites collected DTI with b=1000 s/mm² using 64 directions, but voxel sizes vary
+  (1.8mm isotropic at Siemens sites, 2.0mm at GE, 2.2mm at Philips), and TR/TE differ
+  slightly across vendors. Your primary biomarker of interest is fractional anisotropy
+  (FA) in the substantia nigra pars reticulata and the nigrostriatal tract, segmented
+  using a study-specific template registered to MNI space.
+
+
+  You have already computed per-subject FA maps in native space and have site labels,
+  age, sex, disease duration, and UPDRS-III scores as covariates.
+
+
+  Please provide:
+
+
+  1. A recommended preprocessing harmonization strategy that addresses both acquisition
+  parameter differences and scanner vendor effects, specifying whether to apply ComBat
+  before or after tract-based spatial statistics (TBSS) and justifying the choice.
+
+
+  2. A concrete decision framework for choosing between native-space and MNI-space
+  analysis for the nigrostriatal tract biomarker, given the small structure size and
+  cross-site variability.
+
+
+  3. A Python code snippet using the neuroCombat library that applies ComBat harmonization
+  to a (subjects × features) FA matrix stored as a pandas DataFrame called `fa_df`,
+  with site as the batch variable and age, sex, and UPDRS-III as biological covariates
+  of interest to preserve.
+
+
+  4. Two potential sources of spurious harmonization that ComBat might introduce in
+  this specific context, and how you would detect them using test-retest or phantom
+  data.'
+target_skills:
+- imaging-study-design
+domain: imaging
+difficulty: intermediate

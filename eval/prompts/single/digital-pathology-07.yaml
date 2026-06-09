@@ -1,0 +1,36 @@
+id: digital-pathology-07
+prompt: 'You are building a weakly-supervised multiple instance learning (MIL) pipeline
+  for predicting microsatellite instability (MSI) status from H&E-stained whole-slide
+  images using TIAToolbox and the UNI foundation model. Your dataset consists of 312
+  colorectal cancer slides (187 MSS, 125 MSI-H) in SVS format stored in `/data/tcga_crc/slides/`.
+  Each slide was scanned at 40× (0.25 mpp). You want to extract non-overlapping 256×256
+  patches at 20× effective resolution (0.5 mpp), but only from tissue regions (excluding
+  background, pen marks, and fatty tissue).
+
+
+  Your pipeline must:
+
+  1. Generate tissue masks using TIAToolbox''s tissue masking with morphological post-processing
+  (minimum tissue area 5000 µm²)
+
+  2. Extract patch coordinates and save them as a `.db` file per slide
+
+  3. Load UNI from HuggingFace (`MahmoodLab/UNI`), extract 1024-dim embeddings for
+  each patch with batch size 64, and store embeddings as HDF5 files keyed by slide
+  ID
+
+  4. Implement an ABMIL (Attention-Based MIL) aggregator in PyTorch with a two-layer
+  attention network (hidden dim 256, output dim 128) that produces slide-level predictions
+
+  5. Handle class imbalance using weighted random sampling during training
+
+
+  Provide: (a) complete Python code for the full pipeline from tissue masking through
+  feature extraction, (b) the ABMIL model class definition with forward pass returning
+  both logits and attention weights, (c) the weighted sampler setup for the imbalanced
+  dataset, and (d) one concrete recommendation for preventing data leakage given that
+  some patients have multiple slides.'
+target_skills:
+- digital-pathology
+domain: imaging
+difficulty: intermediate

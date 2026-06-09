@@ -1,0 +1,41 @@
+id: rna-seq-analysis-07
+prompt: 'Here is test question #7 of 10:
+
+
+  ---
+
+
+  You are analyzing bulk RNA-seq data from a mouse neurodegeneration study comparing
+  6 wild-type (WT) versus 6 APP/PS1 transgenic mice (Alzheimer''s model). You performed
+  two-pass STAR alignment against GRCm39 with the following parameters: `--outSAMtype
+  BAM SortedByCoordinate --outFilterMultimapNmax 10 --alignSJoverhangMin 8`. After
+  alignment, you ran Salmon in alignment-based mode and imported counts using tximport
+  with `type="salmon"` and `countsFromAbundance="lengthScaledTPM"`. Your DESeq2 analysis
+  identified 847 differentially expressed genes (padj < 0.05, |log2FC| > 1), but you
+  notice something suspicious: the MA plot shows a strong asymmetry with far more
+  upregulated genes (612 up vs. 235 down), and several well-known housekeeping genes
+  (Actb, Gapdh, Rpl13a) appear in your DE gene list with log2FC values around 1.8–2.1.
+
+
+  Given this scenario, please provide:
+
+
+  1. A diagnosis of what likely went wrong during normalization or experimental processing,
+  listing at least three plausible technical causes ranked by likelihood
+
+  2. Corrective R code using DESeq2 to implement proper normalization controls, including
+  how to use `estimateSizeFactors()` with a custom set of negative control genes (assume
+  you have a vector `stable_genes` of 200 empirically stable genes)
+
+  3. Recommendations for whether to use RUVSeq or surrogate variable analysis (SVA)
+  given this dataset size and the observed asymmetry pattern
+
+  4. A brief QC checklist (5–7 items) you would run before re-submitting the corrected
+  DE analysis
+
+
+  ---'
+target_skills:
+- rna-seq-analysis
+domain: genomics
+difficulty: intermediate

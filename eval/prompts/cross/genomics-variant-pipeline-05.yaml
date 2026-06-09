@@ -1,0 +1,44 @@
+id: genomics-variant-pipeline-05
+prompt: 'A clinical genomics laboratory is processing a cohort of 47 germline WES
+  samples from patients with suspected hereditary colorectal cancer syndrome. The
+  sequencing was performed on an Illumina NovaSeq 6000 (2×150 bp), and raw data are
+  available as paired FASTQs (`sample_R1.fastq.gz` / `sample_R2.fastq.gz`) per sample,
+  along with a coordinate-sorted BAM (`sample.bam`) and a SureSelect Human All Exon
+  v7 target BED file. The reference genome is GRCh38 (`ref.fasta`).
+
+
+  During analysis, a recurrent heterozygous variant was identified in **MLH1**: `chr3:37,067,251
+  C>T` (NM_000249.4: c.1852C>T, p.Arg618Trp). This variant has the following annotations:
+  gnomAD v3.1.2 allele frequency = 0.000031 (7 alleles / 226,000), REVEL score = 0.74,
+  CADD Phred = 24.1, SpliceAI delta score (DS_AG) = 0.03, and ClinVar shows two submissions
+  — one "Uncertain Significance" (2019, no functional data) and one "Likely Pathogenic"
+  (2022, functional assay showing 40% reduction in mismatch repair activity). The
+  variant was called in 9 of the 47 patients.
+
+
+  Please provide the following concrete deliverables:
+
+
+  1. **QC pipeline**: A complete shell script using `fastp`, `mosdepth`, and `MultiQC`
+  (THREADS=8, OUT=qc_out) that assesses adapter contamination, per-sample mean coverage,
+  uniformity (fraction of target bases ≥20×), and produces a consolidated report.
+  Include a coverage threshold check that flags samples below 80× mean target coverage.
+
+
+  2. **Variant calling pipeline**: A GATK4 HaplotypeCaller GVCF-mode shell script
+  for all 47 samples followed by joint genotyping with GenomicsDBImport and GenotypeGVCFs,
+  then apply VQSR for SNVs (specify which annotations to use) and hard filters for
+  indels. Include the exact GATK commands with appropriate WES-specific parameters.
+
+
+  3. **Variant classification**: Apply the ACMG/AMP 2015 five-tier classification
+  framework to `MLH1 c.1852C>T p.Arg618Trp`. Explicitly evaluate and assign each applicable
+  evidence criterion (PS3, PM2, PP3, BP4, BP7, etc.), justify your final classification,
+  and state whether this variant should be reported in a clinical context given the
+  conflicting ClinVar submissions.'
+target_skills:
+- genomic-variant-interpretation
+- variant-calling
+- ngs-quality-control
+domain: genomics
+difficulty: intermediate

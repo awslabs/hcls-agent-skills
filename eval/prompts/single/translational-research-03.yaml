@@ -1,0 +1,34 @@
+id: translational-research-03
+prompt: 'A preclinical team at a mid-size biotech has been studying KARN2, a novel
+  kinase expressed predominantly in cortical interneurons, as a therapeutic target
+  for treatment-resistant focal epilepsy. Their mouse data shows that selective KARN2
+  inhibition reduces spontaneous recurrent seizures by 60% in the kainic acid model
+  (n=24 mice) and by 45% in the pilocarpine model (n=18 mice). KARN2 protein expression
+  is elevated 3.2-fold in resected hippocampal tissue from human TLE patients (n=12)
+  versus post-mortem controls (n=10).
+
+
+  The team wants to know whether this target is ready to advance toward a first-in-human
+  IND. They have a selective small-molecule inhibitor (KARNi-7) with good CNS penetration
+  (Kp,uu = 0.6) and an IC50 of 85 nM against KARN2.
+
+
+  Please provide the following:
+
+
+  1. A structured target validation scorecard evaluating KARN2 across the key evidence
+  pillars (genetic, functional, disease relevance, safety/selectivity) with explicit
+  gaps identified
+
+  2. An assessment of whether the preclinical package is sufficient to support IND
+  filing, with the 3 most critical missing experiments
+
+  3. A proposed proof-of-mechanism biomarker strategy for the Phase 1 trial, specifying
+  the biomarker type, matrix, timing of collection, and context of use
+
+  4. A brief "fail fast" decision framework — define 2 go/no-go criteria that should
+  be evaluated at the end of Phase 1 before committing to Phase 2 investment'
+target_skills:
+- translational-research
+domain: cross-domain
+difficulty: easy

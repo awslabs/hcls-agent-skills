@@ -1,0 +1,36 @@
+id: structure-based-drug-design-09
+prompt: 'You are optimizing a series of macrocyclic inhibitors targeting the PPI (protein-protein
+  interaction) interface between transcription factors MYC-MAX. Crystallography has
+  resolved the ternary complex at 2.1 Å (PDB: fictional code 7XMC), revealing a shallow,
+  elongated binding groove (~850 Ų BSA) with three sub-pockets: a deep hydrophobic
+  anchor (HB-1), a charged patch with Arg367/Glu374 (CP-2), and a solvent-exposed
+  flexible loop region (FL-3). Your lead compound **MCY-047** shows IC₅₀ = 340 nM
+  in TR-FRET but only 12% cellular target engagement at 10 µM (NanoBRET assay, n=48
+  patient-derived cells). MM-GBSA rescoring gives ΔG_bind = −42.3 kcal/mol, yet the
+  measured Kd by ITC = 890 nM — a suspicious discrepancy.
+
+
+  Your macrocycle library (47 compounds) has LogP range 3.8–6.2, MW 680–920 Da, and
+  rotatable bonds 4–11 (post-cyclization). FEP+ calculations were attempted but failed
+  to converge for 8 compounds containing a sulfonamide-to-urea scaffold switch.
+
+
+  Provide the following:
+
+  1. Diagnose the likely cause(s) of the MM-GBSA vs. ITC discrepancy and propose two
+  methodological corrections
+
+  2. Explain why the FEP+ calculations may fail to converge for the sulfonamide-to-urea
+  perturbation and suggest a remediation strategy including an appropriate λ-window
+  schedule
+
+  3. Design a 3-stage virtual screening cascade to prioritize the 47 compounds for
+  cellular permeability, incorporating the physicochemical constraints and the three
+  sub-pocket features
+
+  4. Recommend whether induced-fit docking or ensemble docking better suits the FL-3
+  flexible loop, justifying with specific criteria relevant to macrocycle binding'
+target_skills:
+- structure-based-drug-design
+domain: protein-structure
+difficulty: hard

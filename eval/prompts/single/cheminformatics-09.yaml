@@ -1,0 +1,49 @@
+id: cheminformatics-09
+prompt: 'Here is test question #9 of 10:
+
+
+  ---
+
+
+  You are analyzing a set of 6 compounds from a fragment-based drug discovery campaign
+  targeting a kinase. The SMILES strings are:
+
+
+  1. **Cpd-A**: `c1ccc(NC(=O)c2ccncc2)cc1F` (MW=216, cLogP=2.1)
+
+  2. **Cpd-B**: `O=C(Nc1ccc(S(=O)(=O)N2CCCC2)cc1)c1ccncc1` (MW=345, cLogP=1.8)
+
+  3. **Cpd-C**: `c1cnc(NC2CC2)nc1-c1ccc(Cl)cc1` (MW=259, cLogP=3.4)
+
+  4. **Cpd-D**: `O=c1[nH]c2ccccc2n1CC(=O)Nc1ccc([N+](=O)[O-])cc1` (MW=338, cLogP=2.9)
+
+  5. **Cpd-E**: `Oc1ccc(C=Cc2ccc(O)cc2)cc1` (MW=212, cLogP=3.2)
+
+  6. **Cpd-F**: `c1ccc(-c2nnc(SCC(=O)Nc3ccccc3)o2)cc1` (MW=311, cLogP=3.7)
+
+
+  **Tasks:**
+
+
+  1. Write RDKit Python code to compute Morgan fingerprints (radius=2, nBits=2048)
+  for all 6 compounds and generate a pairwise Tanimoto similarity matrix. Identify
+  the most and least similar pair.
+
+
+  2. Apply **fragment-based Ro3 (Rule of Three)** filtering (MW ≤ 300, cLogP ≤ 3,
+  HBD ≤ 3, HBA ≤ 3, rotatable bonds ≤ 3) using RDKit descriptors — do not rely on
+  the provided values. Report which compounds pass.
+
+
+  3. Screen all compounds for **PAINS alerts** using RDKit''s FilterCatalog with the
+  PAINS_A, PAINS_B, and PAINS_C filter sets. Report which compounds trigger alerts
+  and name the specific substructure pattern responsible.
+
+
+  4. For any compound failing PAINS, propose a specific structural modification (with
+  modified SMILES) that eliminates the alert while maintaining the core pharmacophore,
+  and explain your reasoning.'
+target_skills:
+- cheminformatics
+domain: drug-discovery
+difficulty: hard

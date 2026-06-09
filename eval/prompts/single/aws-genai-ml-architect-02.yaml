@@ -1,0 +1,40 @@
+id: aws-genai-ml-architect-02
+prompt: 'A regional hospital network with 12 facilities wants to deploy a clinical
+  document summarization system that processes discharge summaries containing PHI.
+  Their data science team has built a prototype using Amazon Bedrock''s Claude model
+  via direct API calls, but the compliance team has flagged concerns about PHI leaving
+  their controlled environment.
+
+
+  The system needs to handle approximately 800 discharge summaries per day (average
+  2,500 words each), with a requirement that summarized output be available within
+  4 hours of document creation. The hospital uses AWS GovCloud (US) and has an existing
+  VPC with private subnets. Their budget ceiling is $8,000/month for this workload.
+
+
+  Please provide the following:
+
+
+  1. **Architecture recommendation**: Should they continue with Amazon Bedrock, switch
+  to a self-hosted model on SageMaker, or use a hybrid approach? Justify your choice
+  based on their PHI compliance requirements and GovCloud constraints.
+
+
+  2. **HIPAA compliance controls**: List the specific AWS services and configuration
+  settings (e.g., VPC endpoints, encryption keys, logging) needed to make either Bedrock
+  or SageMaker compliant for PHI processing in this scenario.
+
+
+  3. **Cost estimate**: Provide a rough monthly cost breakdown for your recommended
+  architecture, validating whether it fits within the $8,000/month budget. Assume
+  Claude 3 Sonnet pricing if using Bedrock, or a ml.g5.2xlarge instance if using SageMaker.
+
+
+  4. **One concrete configuration snippet**: Provide either a Bedrock `InvokeModel`
+  API call with the appropriate guardrails configuration, or a SageMaker endpoint
+  deployment snippet in Python/Boto3 that demonstrates a key compliance or architectural
+  feature of your recommendation.'
+target_skills:
+- aws-genai-ml-architect
+domain: cross-domain
+difficulty: easy

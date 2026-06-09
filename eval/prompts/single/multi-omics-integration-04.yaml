@@ -1,0 +1,36 @@
+id: multi-omics-integration-04
+prompt: 'You are conducting a multi-omics study of treatment-resistant depression
+  (TRD) involving 847 patients across three clinical sites (Boston n=312, Chicago
+  n=287, London n=248). Each site profiled the same patients using RNA-seq (bulk tissue
+  from DLPFC), ATAC-seq (chromatin accessibility), and plasma proteomics (SomaScan
+  7k panel). However, due to site-specific dropout, only 634 patients have all three
+  omics layers complete; 142 have RNA-seq + ATAC-seq only; 71 have RNA-seq + proteomics
+  only. The RNA-seq data shows a strong site batch effect confirmed by PCA (PC1 explains
+  38% variance and separates sites perfectly). The proteomics data shows a plate effect
+  within the Chicago cohort (plates P1–P4, ~70 samples each). You want to identify
+  multi-omic patient subtypes linked to treatment response (binary: responder/non-responder,
+  423/424 split) and discover regulatory programs connecting chromatin accessibility
+  to gene expression to protein abundance.
+
+
+  Please provide:
+
+  1. A recommended integration strategy (early, intermediate, or late fusion) with
+  justification given the partial sample overlap and batch effects
+
+  2. A step-by-step batch correction pipeline specifying which tools to use for each
+  omics layer and in what order, addressing both the site effect and Chicago plate
+  effect
+
+  3. A MOFA+ analysis design including how to handle missing samples, recommended
+  number of factors, and variance threshold settings
+
+  4. Python or R code implementing the MOFA+ model setup with the partial overlap
+  data structure
+
+  5. A downstream strategy for linking MOFA+ factors to treatment response and identifying
+  the top regulatory TF-protein pairs driving subtype differences'
+target_skills:
+- multi-omics-integration
+domain: multi-omics
+difficulty: intermediate

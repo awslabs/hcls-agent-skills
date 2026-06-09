@@ -1,0 +1,41 @@
+id: variant-calling-10
+prompt: 'Here is test question #10:
+
+
+  ---
+
+
+  You are analyzing a tumor-only somatic variant calling dataset from 45 formalin-fixed
+  paraffin-embedded (FFPE) tumor samples using GATK4 Mutect2. You lack matched normal
+  tissue for these patients. Your sequencing was performed on a 523-gene cancer panel
+  (average coverage: 850x) using Illumina NovaSeq 6000. You are observing an unusually
+  high false-positive rate — approximately 40% of called variants appear to be FFPE-induced
+  C>T artifacts (predominantly at GpCpX trinucleotide contexts) that are slipping
+  through FilterMutectCalls.
+
+
+  Your current Mutect2 command uses `--af-of-alleles-not-in-resource 0.0000025` with
+  gnomAD as the germline resource, and FilterMutectCalls is run with default parameters.
+  You have a panel of normals (PoN) built from 18 unmatched healthy FFPE samples sequenced
+  on the same panel.
+
+
+  Please provide:
+
+  1. A detailed explanation of why FFPE artifacts are evading your current filters
+  and which specific Mutect2/FilterMutectCalls parameters are most relevant to address
+  this
+
+  2. A revised GATK4 Mutect2 + FilterMutectCalls bash command incorporating FFPE-specific
+  artifact mitigation, including orientation bias filtering via `LearnReadOrientationModel`
+
+  3. Recommendations for PoN construction best practices given your 18-sample PoN
+  — specifically whether this size is adequate and how panel-captured regions affect
+  PoN behavior
+
+  4. A brief strategy for post-filtering validation, naming at least two orthogonal
+  computational approaches to estimate your true positive rate without matched normals'
+target_skills:
+- variant-calling
+domain: genomics
+difficulty: hard

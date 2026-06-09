@@ -1,0 +1,36 @@
+id: cell-type-annotation-09
+prompt: 'You are analyzing a human peripheral blood mononuclear cell (PBMC) dataset
+  from 12 lupus patients and 10 healthy controls (22,847 cells total) that has been
+  preprocessed and clustered into 18 Leiden clusters. Initial CellTypist annotation
+  using the "Immune_All_High.pkl" model produced confident labels for most clusters,
+  but three clusters (clusters 4, 11, and 15) show ambiguous or conflicting results:
+  cluster 4 is labeled "Intermediate monocytes" with probability 0.52, cluster 11
+  shows a tie between "Plasmablasts" and "Age-associated B cells" (probabilities 0.48
+  vs 0.44), and cluster 15 is labeled "NK cells" with probability 0.61 but co-expresses
+  both NCAM1 and CD3E at high levels.
+
+
+  Please provide:
+
+
+  1. **Python code** to re-run CellTypist on these three ambiguous clusters using
+  the `majority_voting=True` parameter with a custom subcluster resolution of 0.3,
+  then cross-validate results using SingleR with the `HumanPrimaryCellAtlasData` reference
+  via the `celldex` package in a subprocess R call invoked from Python.
+
+
+  2. **A marker gene dotplot** (using scanpy''s `pl.dotplot`) for the top 5 canonical
+  markers distinguishing the competing cell types for each ambiguous cluster: monocyte
+  subsets (CD14, FCGR3A, CD16, S100A8, CX3CR1), B cell subsets (CD27, CD38, IGHD,
+  IGHG1, ZEB2), and NK/T ambiguous (CD3E, CD3D, NCAM1, KLRB1, NKG7).
+
+
+  3. **A decision logic function** `resolve_annotation(cluster_id, celltypist_prob,
+  singler_label, marker_expr_dict)` that returns a final label and confidence tier
+  ("high", "medium", "low") based on concordance rules you define, handling the specific
+  edge case where NK/T doublet contamination should trigger a QC flag rather than
+  a cell type assignment.'
+target_skills:
+- cell-type-annotation
+domain: single-cell
+difficulty: hard

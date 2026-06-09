@@ -1,0 +1,43 @@
+id: genomics-variant-pipeline-10
+prompt: 'A clinical genomics laboratory is processing a 45-year-old male patient (sample
+  ID: PT-2847) with a family history of hereditary breast and ovarian cancer syndrome.
+  Whole-exome sequencing was performed on an Illumina NovaSeq 6000 (150bp paired-end,
+  ~120x mean coverage). The raw data consists of paired FASTQs (`PT2847_R1.fastq.gz`
+  / `PT2847_R2.fastq.gz`), and a coordinate-sorted BAM (`PT2847.bam`) has already
+  been generated using BWA-MEM2 against GRCh38.
+
+
+  During preliminary analysis, the pipeline flagged several quality concerns and an
+  interesting variant. Your task is to deliver the following:
+
+
+  **1. QC Assessment (ngs-quality-control):** Write a complete shell pipeline using
+  `fastp`, `mosdepth`, and `Picard CollectHsMetrics` to assess adapter contamination,
+  per-base quality, on-target coverage, and duplicate rates. Assume `THREADS=8`, `OUT=qc_out`,
+  target intervals file `brca_panel.bed`, and reference `hg38.fasta`. Flag any metric
+  thresholds that would cause you to fail this sample before proceeding to variant
+  calling.
+
+
+  **2. Variant Calling (variant-calling):** Using GATK4 HaplotypeCaller in GVCF mode
+  followed by GenotypeGVCFs, provide the exact commands to call germline variants
+  in the `BRCA1` and `BRCA2` regions (coordinates: chr17:43044295-43125483 and chr13:32315474-32400266).
+  Apply VQSR for SNVs using a training resource set including HapMap 3.3, 1000G omni,
+  and dbSNP 138. Justify whether hard filters are preferable here given the single-sample
+  context.
+
+
+  **3. Variant Interpretation (genomic-variant-interpretation):** After calling, the
+  pipeline identifies the following variant in BRCA2: `chr13:32340300 C>T`, predicted
+  to create a stop codon at p.Arg2336Ter (NM_000059.4). gnomAD v3.1 shows an allele
+  frequency of 0.000004 (2 heterozygotes in 251,000 alleles), ClinVar has two conflicting
+  submissions (one LP, one VUS from 2019), REVEL score = 0.91, and SpliceAI delta
+  score = 0.03. Apply ACMG/AMP 2015 criteria systematically, explicitly evaluating
+  PVS1, PM2, PP3, BP4, and any applicable PS/BS criteria, and provide a final classification
+  with confidence rationale.'
+target_skills:
+- genomic-variant-interpretation
+- variant-calling
+- ngs-quality-control
+domain: genomics
+difficulty: hard

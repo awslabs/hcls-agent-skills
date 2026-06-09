@@ -1,0 +1,34 @@
+id: pharmacoepidemiology-05
+prompt: 'You are conducting a pharmacoepidemiologic study using a large claims database
+  (n = 485,000 commercially insured adults) to evaluate whether GLP-1 receptor agonists
+  (GLP-1 RAs) reduce the risk of major adverse cardiovascular events (MACE) compared
+  to DPP-4 inhibitors among patients with type 2 diabetes. You implement a new-user
+  active comparator design with a 180-day washout period and index date defined as
+  first prescription fill.
+
+
+  However, your clinical advisor raises concerns: (1) many patients switch from GLP-1
+  RAs to DPP-4 inhibitors (or vice versa) during follow-up, creating time-varying
+  treatment and confounding; (2) baseline HbA1c and BMI are strong confounders but
+  are only captured sporadically in claims; (3) you suspect immortal time bias may
+  have been introduced because your initial analysis required patients to have ≥90
+  days of follow-up before entering the cohort.
+
+
+  Your study population shows: GLP-1 RA initiators n = 42,300; DPP-4 inhibitor initiators
+  n = 61,700; median follow-up 18 months; 3-year MACE incidence 8.2% vs 11.4% respectively;
+  crude HR = 0.71 (95% CI: 0.65–0.78).
+
+
+  Please provide: (1) a detailed explanation of how the ≥90-day follow-up requirement
+  introduces immortal time bias and how to correct it; (2) a marginal structural model
+  strategy using stabilized IPTW to handle time-varying treatment switching and confounding,
+  including how to construct and truncate weights; (3) R pseudocode implementing the
+  MSM with stabilized weights using the `ipw` and `survival` packages; (4) an E-value
+  calculation for the crude HR to assess robustness to unmeasured confounding; and
+  (5) guidance on whether the sporadic HbA1c/BMI capture in claims meaningfully threatens
+  validity and what proxies or sensitivity analyses could address this.'
+target_skills:
+- pharmacoepidemiology
+domain: pharmacoepidemiology
+difficulty: intermediate
