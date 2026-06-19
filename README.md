@@ -6,6 +6,25 @@ A curated collection of agent skills for healthcare and life sciences (HCLS) wor
 
 Skills fall into two categories: **reasoning skills** encode methodology, decision frameworks, and domain expertise to guide the agent's thinking (e.g., ACMG variant classification, target trial emulation, HEDIS measure specification); **pipeline skills** encode tool-specific commands, code patterns, and parameter tables that produce runnable artifacts (e.g., GATK4 variant calling, RDKit cheminformatics, HL7v2 parsing). Together they make any AI agent a competent collaborator across [genomics](#genomics), [single-cell analysis](#single-cell-analysis), [medical imaging](#medical-imaging), [protein structure](#protein-structure), [translational research](#cross-domain), [pharmacoepidemiology](#pharmacoepidemiology--real-world-data), [clinical data](#clinical-data), [drug discovery](#drug-discovery), [proteomics](#proteomics), [clinical data review](#clinical-data-review), [multi-omics integration](#multi-omics-integration), [healthcare operations](#healthcare-operations), [machine learning](#cross-domain), and [AWS architecture](#cross-domain).
 
+## Why Agent Skills for Healthcare & Life Sciences? 
+
+The line between scientist and builder is fading. Molecular biologists want to classify variants from sequencing data, run single-cell analysis pipelines, and design validation studies all without waiting for IT to scope a project. AI agents like Amazon Quick and Kiro make this possible: universal tools that let a researcher go from question to working system in minutes.
+
+Capability is no longer the bottleneck; methodology is. Every generation of LLMs grows more powerful and knowledgeable. They know facts but not *procedures*; the multi-step decision chains that domain experts internalize over years. They have "read every textbook" but never worked through the nuance of biology or patient care. When an epidemiologist asks an AI agent to emulate a target trial from claims data, adjust for time-varying confounding, or validate a risk stratification model, reproducible output must be both methodologically and scientifically sound and not just plausible. In regulated domains like healthcare and life sciences, the gap between plausible and correct has patient safety and compliance consequences.
+
+Agent skills close this gap. A skill encodes the structured reasoning that experts follow, such as exact criteria, specific thresholds, failure modes that only experience teaches. Think of it as the computational equivalent of a lab protocol: instead of sitting in a binder, it actively guides the agent in real time. Three properties make this better than the alternatives:
+
+1. **Better than long prompts.** Real research tasks require multi-step reasoning. Benchmarks like [LifeSciBench](https://openai.com/index/introducing-life-sci-bench/) show 79% of realistic life science tasks involve multiple decision steps. A monolithic system prompt is brittle, unversioned, and impossible to share across a team. A skill gives the agent a structured starting point: pre-encoded decision logic that's reproducible across users, sessions, and platforms.
+
+2. **Portable and updateable.** These skills follow the open [Agent Skills standard](https://agentskills.io) and work across 20+ platforms (Kiro, Quick, Strands Agent SDK, AgentCore, Claude Code, Codex). When Center of Medicare and Medicaid Services publishes new HCC coefficients or ACMG updates classification criteria, you edit the skill to reflect that knowledge for all future work.
+
+3. **Encodes what textbooks don't.** Skills capture tacit and institutional knowledge: which bioinformatics parameters work for your sequencer, which reagent vendor to trust, which clinical codes your payer actually accepts. The kind of judgment that lives in a senior scientist's head and takes years to transfer.
+
+Our evaluation across 38 skills and 11 HCLS domains shows that skilled agents win 69.5% of head-to-head comparisons with critical thinking (the ability to apply the right framework, challenge assumptions, and flag limitations) improving most results (78% win rate, Cohen's d = 0.65). Response variance drops by up to 51%. Outputs become reproducible, not just occasionally correct. And the biggest gains appear exactly where unguided agents fail most: on the hard, multi-step regulatory and methodological questions where getting it wrong has consequences.
+
+This is what raises the floor for every scientist without lowering the ceiling. Skills don't skip the learning; they provide scaffolding so a new postdoc's analysis meets the same methodological standard as the PI's while they build understanding of *why* each step matters. The work shifts from instructing the agent ("here's how to avoid immortal time bias") to exercising judgment at a higher level ("is a new-user active-comparator design even the right approach?").
+
+
 ## Skill Catalog
 
 <details>
