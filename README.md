@@ -210,33 +210,6 @@ Or request a pipeline skill explicitly:
 > Use the digital-pathology skill to tile this SVS file at 20x with 512px tiles.
 ```
 
-## Chatbot Demo
-
-A browser-based frontend that connects to `kiro-cli acp` mode, showcasing skills with real-time streaming, subagent visualization, and tool call tracking.
-
-```bash
-cd demo
-npm install
-
-# Terminal 1 — frontend
-npm run dev
-
-# Terminal 2 — backend (point at any repo with skills installed)
-DEMO_CWD=/path/to/your/project npm run server
-```
-
-Open http://localhost:5173. Features:
-
-- **Agent selector** — switch between `hcls` (single agent) and `hcls-multiagent` (coordinator + specialists)
-- **Streaming markdown** — tables, code blocks, headers render in real-time
-- **Skill badges** — "★ Reading skill: risk-adjustment" appears inline when skills activate
-- **Subagent cards** — tabbed view per specialist with independent streaming content
-- **Inline tool chips** — compact file reads, searches, and commands as wrapping badges
-- **Sticky task list** — tracks agent progress at the top while scrolling
-- **Cancel button** — stops displaying output mid-stream
-
-See [`examples/healthcare-ops-chatbot-demo.md`](./examples/healthcare-ops-chatbot-demo.md) and [`examples/drug-discovery-chatbot-demo.md`](./examples/drug-discovery-chatbot-demo.md) for guided walkthroughs with sample prompts.
-
 ## Evaluation
 
 An automated evaluation suite measures whether skills improve agent responses. See [`eval/README.md`](./eval/README.md) for full documentation.
