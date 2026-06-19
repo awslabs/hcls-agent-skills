@@ -212,7 +212,7 @@ Amazon Quick loads skills via GUI upload of individual `SKILL.md` files:
 ./install.sh --target quick-desktop
 ```
 
-Upload path: **Settings → Capabilities → Skills → Upload** → select a `SKILL.md` file. Start with one domain and add more as needed.
+Upload path: **Settings → Capabilities → Skills → Upload** → select a `SKILL.md` file. Start with one domain and add more as needed. Follow the instructions in [Skills and agents](https://docs.aws.amazon.com/quick/latest/userguide/skills-and-agents-desktop.html) in the Amazon Quick documentation.
 
 ### Claude Code
 
@@ -251,7 +251,7 @@ python eval/build_review.py
 open eval/results/review.html
 ```
 
-**Latest results (v3 pairwise, 410 prompts — 38 skills + 3 cross-skill categories):** Overall delta **+1.5**, skills win rate **69.5%**, critical thinking **+3.4**. Eval reports show 41 entries: 38 standalone skills plus 3 cross-skill prompt categories that test multi-skill activation. See [`eval/TECHNICAL_REPORT.md`](./eval/TECHNICAL_REPORT.md) for the full analysis.
+**Latest results (pairwise, 410 prompts — 38 skills + 3 cross-skill categories):** Overall delta **+1.5**, skills win rate **69.5%**, critical thinking **+3.4**. Eval reports show 41 entries: 38 standalone skills plus 3 cross-skill prompt categories that test multi-skill activation. See [`eval/TECHNICAL_REPORT.md`](./eval/TECHNICAL_REPORT.md) for the full analysis.
 
 ## Customization
 
