@@ -1,7 +1,7 @@
 # Agent Skills for Healthcare & Life Sciences
 
 [![License: MIT-0](https://img.shields.io/badge/License-MIT--0-yellow.svg)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-40-brightgreen.svg)](./skills/)
+[![Skills](https://img.shields.io/badge/Skills-41-brightgreen.svg)](./skills/)
 [![Domains](https://img.shields.io/badge/Domains-13-blue.svg)](./skills/)
 [![Works with](https://img.shields.io/badge/Works_with-Amazon_Quick_|_Kiro_|_Claude_Code_|_Codex-purple.svg)](#platform-compatibility)
 
@@ -28,7 +28,7 @@ The biggest gains appear exactly where unguided agents fail most: on the hard, m
 This is what raises the floor for every scientist without lowering the ceiling. Skills don't skip the learning; they provide scaffolding so a new postdoc's analysis meets the same methodological standard as the PI's while they build understanding of *why* each step matters. The work shifts from instructing the agent ("here's how to avoid immortal time bias") to exercising judgment at a higher level ("is a new-user active-comparator design even the right approach?").
 ## Skill Catalog
 
-40 skills across 13 domains.
+41 skills across 13 domains.
 
 ### Genomics
 
@@ -128,6 +128,7 @@ This is what raises the floor for every scientist without lowering the ceiling. 
 | [risk-stratification-indices](./skills/risk-stratification-indices/) | reasoning | LACE, Charlson, Elixhauser indices, SDOH Z-codes, ADI scoring |
 | [quality-measures](./skills/quality-measures/) | pipeline | HEDIS calculation, enrollment checks, care gap detection, utilization rates |
 | [provider-denial-workup](./skills/provider-denial-workup/) | reasoning | CARC/RARC denial classification, appeal posture determination, appeal letter drafting |
+| [coordination-of-benefits](./skills/coordination-of-benefits/) | reasoning | Medicare Secondary Payer (MSP) rules, NAIC birthday rule, primary/secondary determination, COB denial resolution |
 
 ### Regulatory
 

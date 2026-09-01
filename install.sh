@@ -109,7 +109,7 @@ install_quick_desktop() {
   print_domain "Multi-Omics Integration" multi-omics-integration multi-omics-pipeline
   print_domain "Healthcare Operations" claims-billing-rules claims-analytics risk-adjustment-strategy \
     risk-adjustment pa-clinical-policy pa-decision-automation hedis-measure-specification \
-    risk-stratification-indices quality-measures
+    risk-stratification-indices quality-measures coordination-of-benefits
   echo ""
   info "To upload: Settings → Capabilities → Skills → Upload → select a SKILL.md file"
   info "Tip: Start with one domain (e.g., genomics) and add more as needed."
