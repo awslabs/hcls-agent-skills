@@ -1,0 +1,12 @@
+id: coordination-of-benefits-12
+prompt: >
+  A 40-year-old patient is covered as an employee on Plan A (her own employer) and as a
+  dependent on Plan B (her spouse's employer). Her birthday is June 14 and her spouse's
+  birthday is September 3. Both plans follow the NAIC birthday rule. She needs a knee
+  arthroscopy billed at $5,200. Which plan is primary, and what is the birthday rule
+  used to determine primary coverage for a person with dual coverage as employee and
+  dependent?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: easy

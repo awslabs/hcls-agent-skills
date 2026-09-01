@@ -1,0 +1,12 @@
+id: coordination-of-benefits-26
+prompt: >
+  A 63-year-old patient with ESRD began dialysis on June 1, 2022. She was covered by
+  her employer's GHP (employer has 180 employees) and Medicare (ESRD basis). In
+  November 2024 — 29 months after dialysis started — she also turns 65 and becomes
+  eligible for Medicare based on age. Her employer plan is still active. Which Medicare
+  entitlement basis governs COB at month 29, and does turning 65 during the ESRD
+  coordination period change which payer is primary?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: hard

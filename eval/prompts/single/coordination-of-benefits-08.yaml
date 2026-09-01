@@ -1,0 +1,11 @@
+id: coordination-of-benefits-08
+prompt: >
+  A 61-year-old patient with ESRD started dialysis on January 5, 2022. He has
+  Medicare (ESRD basis) and coverage through his spouse's employer GHP (employer has
+  500 employees). As of March 2025 — 38 months after dialysis initiation — a claim for
+  outpatient hemodialysis is submitted totaling $4,800. Has the 30-month ESRD
+  coordination period expired, and which payer is now primary?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

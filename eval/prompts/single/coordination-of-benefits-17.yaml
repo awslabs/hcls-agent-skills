@@ -1,0 +1,12 @@
+id: coordination-of-benefits-17
+prompt: >
+  A 62-year-old patient retired last year and is covered by a retiree health plan from
+  her former employer. She has not yet enrolled in Medicare (she is not yet 65 and has
+  no disability). She also has COBRA coverage from a spouse's employer plan. She
+  undergoes cardiac catheterization billed at $31,000. Under NAIC COB rules, how do
+  retiree plans and COBRA plans rank against each other in the order of benefits, and
+  which plan should be billed first?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

@@ -1,0 +1,10 @@
+id: coordination-of-benefits-03
+prompt: >
+  A billing team submitted a workers' compensation claim to Medicare because the WC
+  carrier disputed the injury as work-related and hasn't paid after 90 days. Medicare
+  paid $1,800 as a conditional payment. The WC carrier just settled for $2,500. What
+  should the billing team do now?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

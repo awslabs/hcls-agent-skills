@@ -1,0 +1,15 @@
+id: cob-denial-workup-02
+prompt: >
+  A 67-year-old active employee has Medicare (age) and an employer group health plan.
+  The employer has 35 employees. A $15,000 outpatient surgery claim was billed to
+  Medicare as primary. Medicare denied with CO-22, asserting the employer GHP should
+  pay first.
+
+  Is Medicare's CO-22 correct? Should the billing team appeal or reroute? If they
+  should appeal, provide the appeal letter and documentation checklist. If they should
+  reroute, describe the corrective billing steps.
+target_skills:
+  - coordination-of-benefits
+  - provider-denial-workup
+domain: healthcare-ops
+difficulty: medium

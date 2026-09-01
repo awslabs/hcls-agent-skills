@@ -1,0 +1,12 @@
+id: coordination-of-benefits-23
+prompt: >
+  A claim was denied by the secondary insurer with CARC CO-22 ("This care may be
+  covered by another payer per coordination of benefits"). The patient has Plan A
+  (primary, UnitedHealthcare) and Plan B (secondary, Aetna). The provider submitted
+  the claim to Aetna without first billing UnitedHealthcare. What steps should the
+  billing team take to resolve the CO-22 denial, what documentation must be submitted
+  to Aetna, and within what timeframe should the corrected claim be resubmitted?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: easy

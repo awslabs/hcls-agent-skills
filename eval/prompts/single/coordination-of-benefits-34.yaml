@@ -1,0 +1,13 @@
+id: coordination-of-benefits-34
+prompt: >
+  A patient is 58 years old and on Medicare due to disability. She is actively
+  employed and covered under her employer's group health plan. The employer has
+  80 employees. The claim was denied by Medicare with CO-22, indicating another
+  payer may be primary.
+
+  Is Medicare's CO-22 denial correct? Which payer is actually primary, and what
+  steps should the billing team take to resolve this?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: hard

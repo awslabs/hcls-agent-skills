@@ -1,0 +1,10 @@
+id: coordination-of-benefits-02
+prompt: >
+  A 70-year-old retired patient has Medicare and a retiree health plan from his former
+  employer. He also recently enrolled in his spouse's active employer GHP (spouse works
+  at a company with 200 employees). For a routine colonoscopy billed at $2,200, what is
+  the correct order of benefits and why?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

@@ -1,0 +1,13 @@
+id: coordination-of-benefits-15
+prompt: >
+  A 10-year-old child has divorced parents with no court-ordered coverage requirement.
+  The custodial parent (mother, birthday November 5) has Plan A. The non-custodial
+  parent (father, birthday March 18) has Plan B. Both plans follow the NAIC COB
+  birthday rule. An urgent care visit is billed at $380. Describe the NAIC sequencing
+  for dependent children of divorced parents when there is no court order: which plan
+  is primary, secondary, and tertiary if the custodial parent has remarried and the
+  stepparent has Plan C?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

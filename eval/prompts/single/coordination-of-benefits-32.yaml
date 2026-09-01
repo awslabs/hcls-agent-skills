@@ -1,0 +1,13 @@
+id: coordination-of-benefits-32
+prompt: >
+  A patient is the subscriber on his own employer plan (Plan A). He is also covered as
+  a dependent on his spouse's employer plan (Plan B). Both plans have COB provisions.
+  The billing team assumed Plan A is primary because he is the subscriber. The claim was
+  denied by Plan A with CO-22, suggesting another plan may be primary.
+
+  Is the billing team's assumption correct? Which plan is actually primary under NAIC
+  COB rules, and why?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: easy

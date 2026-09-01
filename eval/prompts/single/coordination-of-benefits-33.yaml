@@ -1,0 +1,15 @@
+id: coordination-of-benefits-33
+prompt: >
+  A patient was covered under Plan A (employer) through June 30 and enrolled in Plan B
+  (new employer) effective June 1, creating a 30-day overlap. During the overlap period
+  (June 1–30) he had three physical therapy visits. Both plans are active for those dates.
+
+  Plan A is billed and pays. Plan B denies all three claims with CO-22, stating Plan A
+  should be primary. The billing team argues Plan B should be primary because the patient
+  was actively employed at the new job.
+
+  Who is correct, and what is the right COB order for the overlap period?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: hard

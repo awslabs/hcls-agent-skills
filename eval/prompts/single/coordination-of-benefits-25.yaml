@@ -1,0 +1,13 @@
+id: coordination-of-benefits-25
+prompt: >
+  A 67-year-old patient elected COBRA continuation coverage after retiring early in
+  January 2024. In April 2024 he turned 65 and became eligible for Medicare Part A
+  and B but did not enroll, thinking COBRA was sufficient. In October 2024 he is
+  hospitalized for a STEMI with a $95,000 claim. The COBRA plan now denies the claim
+  arguing Medicare should be primary. Is COBRA the plan required to pay first when a
+  COBRA-covered individual is also Medicare-eligible, and what are the MSP implications
+  for this patient's failure to enroll in Medicare?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: hard

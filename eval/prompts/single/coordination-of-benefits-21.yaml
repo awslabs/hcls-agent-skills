@@ -1,0 +1,12 @@
+id: coordination-of-benefits-21
+prompt: >
+  A 72-year-old patient is enrolled in both Medicare Part A/B and full Medicaid
+  (QMB — Qualified Medicare Beneficiary). He is admitted for a hip replacement with a
+  total Medicare-allowed amount of $18,400. Medicare pays its portion ($14,720 after
+  the Part A deductible is applied). The hospital billed the patient for the remaining
+  $3,680. Can the hospital bill the QMB patient for Medicare cost-sharing, and what
+  is Medicaid's role as the payer of last resort in this crossover claim?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: easy

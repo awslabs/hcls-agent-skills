@@ -1,0 +1,11 @@
+id: coordination-of-benefits-20
+prompt: >
+  A 35-year-old patient with dual coverage had Plan A (primary, coordination method)
+  pay $700 on a $1,000 allowed claim after applying a $300 deductible. Plan B
+  (secondary, coordination method) has a $1,050 allowed amount and a $200 deductible
+  already satisfied. What is the maximum Plan B can pay as secondary using the
+  standard coordination method, and what is the patient's final out-of-pocket?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

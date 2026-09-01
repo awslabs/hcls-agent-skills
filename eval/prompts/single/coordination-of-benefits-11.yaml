@@ -1,0 +1,13 @@
+id: coordination-of-benefits-11
+prompt: >
+  A 52-year-old patient suffered a slip-and-fall at a grocery store and filed a
+  liability claim. She has a commercial health plan that paid $9,400 for emergency
+  surgery and follow-up care before the liability settlement was reached. The grocery
+  store's liability insurer settled for $75,000. The health plan asserted a lien for
+  its $9,400 conditional payment. Explain the health plan's right of recovery in a
+  liability settlement and whether it can recover the full $9,400 from the settlement
+  proceeds.
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

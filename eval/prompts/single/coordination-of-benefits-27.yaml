@@ -1,0 +1,12 @@
+id: coordination-of-benefits-27
+prompt: >
+  A 70-year-old Medicare beneficiary works full time at a company with 18 employees
+  and has the employer's GHP. His employer is not subject to MSP working-aged rules
+  because the company has fewer than 20 employees. Medicare paid $5,600 on a cataract
+  surgery claim. The small-employer GHP then paid an additional $400. Was Medicare
+  correct to pay primary here, and what are the obligations of the small employer GHP
+  when Medicare is primary for a working-aged employee?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: easy

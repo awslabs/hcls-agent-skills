@@ -1,0 +1,13 @@
+id: coordination-of-benefits-09
+prompt: >
+  A 55-year-old construction worker was injured on the job and received workers'
+  compensation coverage. He also has commercial group health insurance through his
+  union. He underwent rotator cuff repair surgery billed at $18,500. His WC carrier
+  accepted the claim. The group health plan received the claim first and paid $12,000
+  before the WC acceptance was known. What are the COB rules governing workers'
+  compensation as primary payer, and what should the group health plan do regarding its
+  conditional payment?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

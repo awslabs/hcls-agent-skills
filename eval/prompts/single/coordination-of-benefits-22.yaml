@@ -1,0 +1,12 @@
+id: coordination-of-benefits-22
+prompt: >
+  A 69-year-old patient has Medicare Part B and full Medicaid (non-QMB, categorically
+  needy). His physician bills $320 for an office visit. Medicare's allowed amount is
+  $185; Medicare pays $148 (80%). The physician is a Medicare/Medicaid dual-enrolled
+  provider. Medicaid's fee schedule for the same service is $90. How much can Medicaid
+  pay as secondary on this crossover claim, and can the provider balance-bill the
+  patient for the difference between Medicare's allowed and Medicaid's fee schedule?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

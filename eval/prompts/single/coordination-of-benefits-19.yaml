@@ -1,0 +1,11 @@
+id: coordination-of-benefits-19
+prompt: >
+  A 45-year-old patient has Plan A (primary) and Plan B (secondary, non-duplication
+  method). For a physical therapy visit, Plan A allowed $150 and paid $120 (after a
+  $30 copay). Plan B's allowed amount for the same service is $110. Using the
+  non-duplication method, how much does Plan B owe as secondary, and why might Plan B
+  pay $0 in this scenario? Show the math.
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: hard

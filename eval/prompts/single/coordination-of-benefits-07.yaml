@@ -1,0 +1,11 @@
+id: coordination-of-benefits-07
+prompt: >
+  A 58-year-old patient with end-stage renal disease (ESRD) began dialysis on
+  March 1, 2024. She has Medicare based on ESRD and is covered by her employer's GHP
+  (employer has 210 employees). It is now October 15, 2024 — 7.5 months into dialysis.
+  A nephrology office visit is billed at $275. Which payer is primary during this period,
+  and how long does the ESRD coordination period last?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: easy

@@ -1,0 +1,12 @@
+id: coordination-of-benefits-13
+prompt: >
+  A 12-year-old child is covered as a dependent on both parents' employer health plans.
+  The father's birthday is April 22 and the mother's birthday is April 22 (same month
+  and day, different years — father born 1981, mother born 1983). Both plans follow the
+  NAIC birthday rule. A claim for pediatric asthma hospitalization is billed at $14,700.
+  Which plan is primary when both parents share the same birthday under the NAIC
+  birthday rule tiebreaker?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: hard

@@ -1,0 +1,13 @@
+id: coordination-of-benefits-18
+prompt: >
+  A 38-year-old patient is covered as an active employee on Plan A (her own job, full
+  time) and as a dependent on Plan B (her husband's employer). Plan A uses the
+  coordination of benefits method (pay up to its allowed amount minus what primary
+  paid). Plan B uses the non-duplication method (only pays if primary paid less than
+  Plan B would have paid as primary). Plan A allowed $1,200 and paid $960 (80%). Plan
+  B's allowed amount for the same service is $1,100. Under each method, calculate how
+  much Plan B would pay as secondary payer and explain the difference.
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: hard

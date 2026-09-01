@@ -1,0 +1,11 @@
+id: coordination-of-benefits-06
+prompt: >
+  A 64-year-old patient has been on Medicare due to disability (SSDI) for 18 months.
+  His employer has 120 employees and offers a group health plan. His wife covers him on
+  her employer's GHP as well; her employer has 85 employees. A hospitalization claim
+  totaling $22,000 was submitted. Which payer is primary for MSP purposes given the
+  disability basis, and what rule governs the employer size threshold for disability MSP?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

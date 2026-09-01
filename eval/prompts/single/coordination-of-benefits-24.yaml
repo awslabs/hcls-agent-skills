@@ -1,0 +1,13 @@
+id: coordination-of-benefits-24
+prompt: >
+  A provider receives an 835 ERA showing CARC OA-23 ("The impact of prior payer(s)
+  adjudication including payments and/or adjustments") on a secondary claim. The
+  primary EOB shows Plan A allowed $950, applied a $200 deductible, and paid $600.
+  Plan B (secondary, coordination method) received the claim but the 835 shows a $0
+  payment with OA-23. The billed charge was $1,400. What does OA-23 indicate about
+  how secondary payment was calculated, and what should the billing team verify to
+  determine whether Plan B's $0 payment is correct?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

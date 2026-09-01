@@ -1,0 +1,11 @@
+id: coordination-of-benefits-01
+prompt: >
+  A 68-year-old patient is an active employee at a company with 45 employees. She has
+  both Medicare Part A and B and her employer's group health plan. A claim for an MRI
+  was submitted to Medicare first and paid $420. The employer GHP allowed $600 for the
+  same service. Which payer should have been billed first, and does Medicare need to
+  recover its payment?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: easy

@@ -1,0 +1,11 @@
+id: coordination-of-benefits-10
+prompt: >
+  A 45-year-old patient was involved in an auto accident and sustained a lumbar
+  fracture. She has no-fault auto insurance (PIP) with a $50,000 limit and a commercial
+  PPO health plan. The hospital bill totals $38,000. Her no-fault insurer has already
+  paid $22,000 toward the claim. How should the remaining $16,000 be handled between
+  the no-fault insurer and the health plan under COB rules for no-fault insurance?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

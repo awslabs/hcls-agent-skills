@@ -1,0 +1,12 @@
+id: coordination-of-benefits-14
+prompt: >
+  An 8-year-old child's parents are divorced. Per the divorce decree, the father is
+  required to carry health insurance for the child and the mother has physical custody.
+  The child is covered on both the father's Plan A and the mother's Plan B. Both plans
+  use the NAIC COB rules. The child has an appendectomy billed at $21,000. Which plan
+  is primary under the NAIC rule for children of divorced parents when a court order
+  specifies coverage responsibility?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

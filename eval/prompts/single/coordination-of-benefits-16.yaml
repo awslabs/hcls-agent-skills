@@ -1,0 +1,11 @@
+id: coordination-of-benefits-16
+prompt: >
+  A 59-year-old patient is covered by an active employee plan through his current
+  employer and also has COBRA continuation coverage from a previous employer that he
+  elected after a job change. He needs a colonoscopy billed at $2,100. Both plans use
+  NAIC COB rules. Under NAIC, what is the priority order between active employee
+  coverage and COBRA continuation coverage, and which plan pays first?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: easy

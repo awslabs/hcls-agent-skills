@@ -1,0 +1,14 @@
+id: coordination-of-benefits-31
+prompt: >
+  A patient was covered under Plan A (employer GHP) through March 31. She started a new
+  job April 15 and enrolled in Plan B effective April 15. There is a 15-day gap in coverage.
+  She had a surgery on April 10 (still under Plan A) and a follow-up visit on April 22
+  (now under Plan B only). The hospital billed both dates of service to Plan B because
+  that was the most recent plan on file.
+
+  What is the correct payer for each date of service, and how should the billing team correct
+  the claims?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

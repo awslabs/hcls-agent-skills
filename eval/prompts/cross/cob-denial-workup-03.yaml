@@ -1,0 +1,16 @@
+id: cob-denial-workup-03
+prompt: >
+  A 59-year-old patient is on Medicare due to disability (SSDI for 2 years) and is
+  covered under her employer's group health plan. The employer has 150 employees.
+  A $28,000 outpatient spinal decompression claim was submitted to the employer GHP
+  as primary. The GHP denied with CO-22, asserting Medicare should be primary because
+  the patient has Medicare.
+
+  Is the GHP's CO-22 correct? Should the billing team appeal or reroute? If they
+  should appeal, provide the appeal letter and documentation checklist. If they should
+  reroute, describe the corrective billing steps.
+target_skills:
+  - coordination-of-benefits
+  - provider-denial-workup
+domain: healthcare-ops
+difficulty: hard

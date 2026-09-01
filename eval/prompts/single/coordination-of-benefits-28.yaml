@@ -1,0 +1,12 @@
+id: coordination-of-benefits-28
+prompt: >
+  A 69-year-old active employee works at a company that employs 95 workers. He has
+  both Medicare and the employer GHP. He is also disabled (SSDI for 3 years) in
+  addition to being working-aged. The employer has exactly 95 employees. A claim for
+  lumbar spinal fusion is billed at $62,000. Under the MSP rules, which employer size
+  threshold governs — the 20-employee working-aged threshold or the 100-employee
+  disability threshold — and which payer is primary?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: medium

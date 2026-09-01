@@ -1,0 +1,12 @@
+id: coordination-of-benefits-05
+prompt: >
+  A 66-year-old retired engineer has Medicare Parts A and B as her primary insurance and
+  a retiree group health plan through her former employer (which has 310 employees) as
+  secondary. She presents to an outpatient infusion center for IV iron therapy. Medicare
+  allows $840, pays 80% ($672), and the retiree plan allows $900. What is the correct
+  COB order for a retiree plan from a large employer, and how much is the patient
+  potentially responsible for after both payers process the claim?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: easy

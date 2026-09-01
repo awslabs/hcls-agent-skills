@@ -1,0 +1,15 @@
+id: coordination-of-benefits-30
+prompt: >
+  A provider's billing department discovers that a patient treated in 2023 was
+  enrolled in Medicare based on disability throughout 2023, but the patient's
+  employer had 60 employees. The billing team had mistakenly billed the employer
+  GHP as primary and Medicare as secondary the entire year. Medicare paid secondary
+  on 14 claims totaling $47,000 in Medicare payments; the GHP paid primary. The
+  error is discovered in mid-2025. Describe the retroactive MSP correction process:
+  what must the provider do to reverse the incorrect claim order, how does Medicare
+  recover its conditional payments, and what is the lookback period for retroactive
+  MSP adjustments?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: hard

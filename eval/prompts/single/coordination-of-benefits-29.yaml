@@ -1,0 +1,13 @@
+id: coordination-of-benefits-29
+prompt: >
+  A Medicare beneficiary settled a workers' compensation claim for a back injury in
+  March 2024 for $120,000, with $40,000 allocated to future medical expenses (a Workers'
+  Compensation Medicare Set-Aside, WCMSA). Medicare had previously made conditional
+  payments of $18,500 for injury-related care. The settlement did not initially account
+  for Medicare's conditional payment. Describe Medicare's right to recover its $18,500
+  in conditional payments from this WC settlement and the timeline and process for
+  resolution through the BCRC.
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: hard

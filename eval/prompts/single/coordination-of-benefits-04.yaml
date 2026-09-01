@@ -1,0 +1,10 @@
+id: coordination-of-benefits-04
+prompt: >
+  A 4-year-old dependent child is covered under both parents' employer plans. The
+  mother's birthday is March 15, 1985. The father's birthday is November 3, 1983. The
+  father's plan has covered the child since birth; the mother added the child 18 months
+  ago. Which plan is primary under NAIC COB rules and why?
+target_skills:
+  - coordination-of-benefits
+domain: healthcare-ops
+difficulty: easy

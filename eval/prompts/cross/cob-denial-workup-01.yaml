@@ -1,0 +1,16 @@
+id: cob-denial-workup-01
+prompt: >
+  A 61-year-old patient is on Medicare due to disability (SSDI for 4 years) and is
+  also covered under her employer's group health plan. The employer has 80 employees.
+  A claim for lumbar spinal fusion ($42,000) was submitted to the employer GHP as
+  primary and Medicare as secondary. Medicare paid $8,400 as secondary. The GHP has
+  now issued a CO-22 denial, stating that Medicare should be primary.
+
+  The billing team wants to appeal the GHP's CO-22 denial. Should they appeal?
+  If yes, draft the appeal letter and identify the supporting documentation needed.
+  If no, explain what corrective action is required instead.
+target_skills:
+  - coordination-of-benefits
+  - provider-denial-workup
+domain: healthcare-ops
+difficulty: hard
