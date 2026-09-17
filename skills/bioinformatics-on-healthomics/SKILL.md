@@ -23,7 +23,7 @@ tags:
   - hcls
 validated_against:
   date: 2025-07-01
-  packages: {healthomics-mcp: "latest", aws-cli: "2.x"}
+  packages: {healthomics-mcp: "0.1.2", aws-cli: "2.x"}
 ---
 
 # Bioinformatics Analysis on AWS HealthOmics
