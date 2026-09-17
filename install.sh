@@ -29,7 +29,7 @@ Options:
   --help                Show this help
 
 Examples:
-  ./install.sh --target kiro                          # Single agent, all 38 skills
+  ./install.sh --target kiro                          # Single agent, all 42 skills
   ./install.sh --target kiro --mode multiagent        # Coordinator + 8 specialists
   ./install.sh --target kiro --path .                 # Install locally to ./.kiro/
   ./install.sh --target kiro --path . --mode multiagent

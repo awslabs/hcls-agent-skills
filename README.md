@@ -1,11 +1,11 @@
 # Agent Skills for Healthcare & Life Sciences
 
 [![License: MIT-0](https://img.shields.io/badge/License-MIT--0-yellow.svg)](./LICENSE)
-[![Skills](https://img.shields.io/badge/Skills-41-brightgreen.svg)](./skills/)
+[![Skills](https://img.shields.io/badge/Skills-42-brightgreen.svg)](./skills/)
 [![Domains](https://img.shields.io/badge/Domains-13-blue.svg)](./skills/)
 [![Works with](https://img.shields.io/badge/Works_with-Amazon_Quick_|_Kiro_|_Claude_Code_|_Codex-purple.svg)](#platform-compatibility)
 
-A curated collection of agent skills for healthcare and life sciences (HCLS) workflows, following the [Agent Skills open standard](https://agentskills.io). **These 41 domain skills make any AI agent measurably better at HCLS questions.** In a [410-prompt pairwise evaluation](./eval/TECHNICAL_REPORT.md) (380 single-skill + 30 cross-skill) judged by Claude Opus 4.7, skills win **70–86%** of head-to-head comparisons depending on harness, with **up to 85% critical thinking** and **up to 87% scientific accuracy** win rates. Skills work on 20+ platforms including Kiro, Amazon Quick, Amazon Bedrock AgentCore, AWS Strands SDK, Claude Code, OpenAI Codex, CrewAI, LangChain, and more.
+A curated collection of agent skills for healthcare and life sciences (HCLS) workflows, following the [Agent Skills open standard](https://agentskills.io). **These 42 domain skills make any AI agent measurably better at HCLS questions.** In a [410-prompt pairwise evaluation](./eval/TECHNICAL_REPORT.md) (380 single-skill + 30 cross-skill) judged by Claude Opus 4.7, skills win **70–86%** of head-to-head comparisons depending on harness, with **up to 85% critical thinking** and **up to 87% scientific accuracy** win rates. Skills work on 20+ platforms including Kiro, Amazon Quick, Amazon Bedrock AgentCore, AWS Strands SDK, Claude Code, OpenAI Codex, CrewAI, LangChain, and more.
 
 Skills fall into two categories: **reasoning skills** encode methodology, decision frameworks, and domain expertise to guide the agent's thinking (e.g., ACMG variant classification, target trial emulation, HEDIS measure specification); **pipeline skills** encode tool-specific commands, code patterns, and parameter tables that produce runnable artifacts (e.g., GATK4 variant calling, RDKit cheminformatics, HL7v2 parsing). Together they make any AI agent a competent collaborator across [genomics](#genomics), [single-cell analysis](#single-cell-analysis), [medical imaging](#medical-imaging), [protein structure](#protein-structure), [translational research](#cross-domain), [pharmacoepidemiology](#pharmacoepidemiology--real-world-data), [clinical data](#clinical-data), [drug discovery](#drug-discovery), [proteomics](#proteomics), [clinical data review](#clinical-data-review), [multi-omics integration](#multi-omics-integration), [healthcare operations](#healthcare-operations), [regulatory](#regulatory), [machine learning](#cross-domain), and [AWS architecture](#cross-domain).
 
@@ -28,7 +28,7 @@ The biggest gains appear exactly where unguided agents fail most: on the hard, m
 This is what raises the floor for every scientist without lowering the ceiling. Skills don't skip the learning; they provide scaffolding so a new postdoc's analysis meets the same methodological standard as the PI's while they build understanding of *why* each step matters. The work shifts from instructing the agent ("here's how to avoid immortal time bias") to exercising judgment at a higher level ("is a new-user active-comparator design even the right approach?").
 ## Skill Catalog
 
-41 skills across 13 domains.
+42 skills across 13 domains.
 
 ### Genomics
 
