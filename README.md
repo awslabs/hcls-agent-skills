@@ -38,6 +38,7 @@ This is what raises the floor for every scientist without lowering the ceiling. 
 | [variant-calling](./skills/variant-calling/) | pipeline | BWA-MEM2, GATK4 HaplotypeCaller, joint genotyping, VQSR, Mutect2 |
 | [rna-seq-analysis](./skills/rna-seq-analysis/) | pipeline | STAR/Salmon alignment, featureCounts, DESeq2 differential expression |
 | [ngs-quality-control](./skills/ngs-quality-control/) | pipeline | FastQC, fastp, Picard metrics, mosdepth coverage, MultiQC |
+| [bioinformatics-on-healthomics](./skills/bioinformatics-on-healthomics/) | pipeline | AWS HealthOmics workflow generation (WDL/Nextflow), ECR pull-through, registration, run caching |
 
 ### Single-Cell Analysis
 
