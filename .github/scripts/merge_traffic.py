@@ -175,6 +175,41 @@ def merge_timeseries(
     }
 
 
+def fetch_stargazers(token: str) -> list[dict[str, str]]:
+    """Fetch all stargazers with timestamps (paginated).
+
+    Uses the star+json media type to get starred_at timestamps.
+    Returns a list of {starred_at, user} dicts, sorted by date.
+    """
+    stargazers: list[dict[str, str]] = []
+    page = 1
+    while True:
+        url = f"{API_BASE}/stargazers?per_page=100&page={page}"
+        headers = {
+            "Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github.star+json",
+            "X-GitHub-Api-Version": "2022-11-28",
+        }
+        logger.info("Fetching stargazers page %d", page)
+        response = requests.get(url, headers=headers, timeout=30)
+        response.raise_for_status()
+        data = response.json()
+        if not data:
+            break
+        for entry in data:
+            stargazers.append({
+                "starred_at": entry["starred_at"],
+                "user": entry["user"]["login"],
+            })
+        if len(data) < 100:
+            break
+        page += 1
+
+    stargazers.sort(key=lambda e: e["starred_at"])
+    logger.info("Fetched %d total stargazers", len(stargazers))
+    return stargazers
+
+
 def merge_snapshots(
     existing: dict[str, Any], fresh_data: list[dict[str, Any]]
 ) -> dict[str, Any]:
@@ -248,6 +283,14 @@ def main() -> None:
         save_json("paths.json", merged_paths)
     except requests.HTTPError as e:
         logger.error("Failed to fetch paths: %s", e)
+        sys.exit(1)
+
+    # --- Stargazers (full history with timestamps) ---
+    try:
+        stargazers = fetch_stargazers(token)
+        save_json("stargazers.json", stargazers)
+    except requests.HTTPError as e:
+        logger.error("Failed to fetch stargazers: %s", e)
         sys.exit(1)
 
     logger.info("Traffic data collection complete")

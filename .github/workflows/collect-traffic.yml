@@ -2,8 +2,11 @@ name: Collect GitHub Traffic Data
 
 on:
   schedule:
-    # Run daily at 23:00 UTC to capture the full day's traffic
-    - cron: "0 23 * * *"
+    # Run daily at 14:00 UTC = 7:00 AM PT (PDT). This runs after the previous
+    # UTC day has fully closed, so the most recent daily bucket is complete.
+    # Note: cron is always UTC and does not observe DST, so during PST (winter)
+    # this fires at 6:00 AM PT.
+    - cron: "0 14 * * *"
   workflow_dispatch: # Allow manual triggers
 
 env:
@@ -44,6 +47,7 @@ jobs:
           aws s3 cp s3://${{ env.S3_BUCKET }}/${{ env.S3_PREFIX }}/clones.json data/clones.json || true
           aws s3 cp s3://${{ env.S3_BUCKET }}/${{ env.S3_PREFIX }}/referrers.json data/referrers.json || true
           aws s3 cp s3://${{ env.S3_BUCKET }}/${{ env.S3_PREFIX }}/paths.json data/paths.json || true
+          aws s3 cp s3://${{ env.S3_BUCKET }}/${{ env.S3_PREFIX }}/stargazers.json data/stargazers.json || true
 
       - name: Fetch and merge traffic data
         env:
@@ -56,3 +60,4 @@ jobs:
           aws s3 cp data/clones.json s3://${{ env.S3_BUCKET }}/${{ env.S3_PREFIX }}/clones.json
           aws s3 cp data/referrers.json s3://${{ env.S3_BUCKET }}/${{ env.S3_PREFIX }}/referrers.json
           aws s3 cp data/paths.json s3://${{ env.S3_BUCKET }}/${{ env.S3_PREFIX }}/paths.json
+          aws s3 cp data/stargazers.json s3://${{ env.S3_BUCKET }}/${{ env.S3_PREFIX }}/stargazers.json
