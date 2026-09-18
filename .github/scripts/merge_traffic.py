@@ -242,6 +242,12 @@ def main() -> None:
     """Orchestrate traffic data collection and merging."""
     token = get_github_token()
 
+    # Record the UTC timestamp of this collection run so the dashboard can show
+    # an honest "last updated" time reflecting when the workflow actually ran,
+    # rather than inferring it from the latest data bucket. Persisted as a
+    # top-level 'collected_at' key inside views.json (and clones.json).
+    collected_at = datetime.now(timezone.utc).isoformat()
+
     # Ensure the data directory exists
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -250,6 +256,8 @@ def main() -> None:
         views_response = github_get("/traffic/views", token)
         existing_views = load_existing_json("views.json")
         merged_views = merge_timeseries(existing_views, views_response, "views")
+        # Stamp when this run collected data (see collected_at above).
+        merged_views["collected_at"] = collected_at
         save_json("views.json", merged_views)
     except requests.HTTPError as e:
         logger.error("Failed to fetch views: %s", e)
@@ -260,6 +268,8 @@ def main() -> None:
         clones_response = github_get("/traffic/clones", token)
         existing_clones = load_existing_json("clones.json")
         merged_clones = merge_timeseries(existing_clones, clones_response, "clones")
+        # Stamp when this run collected data (see collected_at above).
+        merged_clones["collected_at"] = collected_at
         save_json("clones.json", merged_clones)
     except requests.HTTPError as e:
         logger.error("Failed to fetch clones: %s", e)
@@ -286,12 +296,19 @@ def main() -> None:
         sys.exit(1)
 
     # --- Stargazers (full history with timestamps) ---
-    try:
-        stargazers = fetch_stargazers(token)
-        save_json("stargazers.json", stargazers)
-    except requests.HTTPError as e:
-        logger.error("Failed to fetch stargazers: %s", e)
-        sys.exit(1)
+    # SKIP_STARGAZERS lets the local refresh (refresh_dashboard.sh) rely on the
+    # stargazers.json it just synced from S3 instead of re-fetching stars live
+    # and overwriting it. The scheduled GitHub Action does NOT set this var, so
+    # it always collects stars.
+    if os.environ.get("SKIP_STARGAZERS"):
+        logger.info("SKIP_STARGAZERS is set; skipping stargazers fetch/save")
+    else:
+        try:
+            stargazers = fetch_stargazers(token)
+            save_json("stargazers.json", stargazers)
+        except requests.HTTPError as e:
+            logger.error("Failed to fetch stargazers: %s", e)
+            sys.exit(1)
 
     logger.info("Traffic data collection complete")
 
