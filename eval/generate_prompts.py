@@ -11,16 +11,14 @@ import yaml
 from botocore.exceptions import NoRegionError
 
 try:
-    from .aws_config import region_kwargs, DEFAULT_EXECUTION_MODEL_ID
+    from .aws_config import region_kwargs, execution_model_id, no_region_message
 except ImportError:  # run as a standalone script (python eval/generate_prompts.py)
-    from aws_config import region_kwargs, DEFAULT_EXECUTION_MODEL_ID
+    from aws_config import region_kwargs, execution_model_id, no_region_message
 
 ROOT = Path(__file__).resolve().parent.parent
 SKILLS_DIR = ROOT / "skills"
 SINGLE_DIR = ROOT / "eval" / "prompts" / "single"
 CROSS_DIR = ROOT / "eval" / "prompts" / "cross"
-
-MODEL_ID = DEFAULT_EXECUTION_MODEL_ID
 
 DOMAIN_MAP = {
     "genomic-variant-interpretation": "genomics",
@@ -135,10 +133,10 @@ def parse_skill_md(path: Path) -> dict | None:
     return {"name": name, "description": description, "usage": usage}
 
 
-def call_bedrock(client, prompt: str) -> str:
+def call_bedrock(client, prompt: str, model: str) -> str:
     """Call Bedrock Converse API and return the text response."""
     resp = client.converse(
-        modelId=MODEL_ID,
+        modelId=model,
         messages=[{"role": "user", "content": [{"text": prompt}]}],
         inferenceConfig={"maxTokens": 1024, "temperature": 0.7},
     )
@@ -189,7 +187,16 @@ def main():
     parser.add_argument("--count", type=int, default=PROMPTS_PER_SKILL, help="Prompts per skill")
     parser.add_argument("--skill", type=str, default=None,
                         help="Generate prompts for a single skill by name (e.g., genomic-variant-interpretation)")
+    parser.add_argument("--model", type=str, default=None,
+                        help="Bedrock model ID for prompt generation. Precedence: "
+                             "--model > EVAL_MODEL_ID env var > built-in fallback.")
     args = parser.parse_args()
+
+    # Model precedence: --model flag > EVAL_MODEL_ID env > built-in fallback
+    # (execution_model_id() covers the latter two). Print it so a restricted
+    # account sees immediately which model will be requested.
+    model = args.model or execution_model_id()
+    print(f"Using model: {model}")
 
     # Validate --skill if provided
     if args.skill:
@@ -207,12 +214,8 @@ def main():
         # This standalone entry point runs before run.py's preflight, so the clean
         # PreflightError path never guards it. Catch the actual boto3 failure (not an
         # empty resolve_region(), since a profile/config may still supply the region)
-        # and mirror preflight.py's NoRegionError message for a consistent, actionable fix.
-        raise SystemExit(
-            "No AWS region configured. Set AWS_REGION (or AWS_DEFAULT_REGION), "
-            "or set a default region in your AWS profile/config.\n"
-            f"Error: {e}"
-        )
+        # and reuse the shared message for consistent, actionable guidance.
+        raise SystemExit(no_region_message(e))
 
     # --- Single-skill prompts (N per skill) ---
     if args.skill:
@@ -243,7 +246,7 @@ def main():
             attempted += 1
             try:
                 prompt = call_bedrock(client, META_PROMPT_N.format(
-                    n=i+1, total=args.count, difficulty=difficulty, **info))
+                    n=i+1, total=args.count, difficulty=difficulty, **info), model)
                 write_prompt_yaml(out, pid, prompt, [name], domain, difficulty)
                 written += 1
                 print(f"  OK   {pid} ({difficulty})")
@@ -281,7 +284,7 @@ def main():
             difficulty = DIFFICULTY_SCHEDULE[i % len(DIFFICULTY_SCHEDULE)]
             attempted += 1
             try:
-                prompt = call_bedrock(client, CROSS_META_PROMPT.format(skill_block=skill_block))
+                prompt = call_bedrock(client, CROSS_META_PROMPT.format(skill_block=skill_block), model)
                 write_prompt_yaml(out, pid, prompt, combo["skills"], combo["domain"], difficulty)
                 written += 1
                 print(f"  OK   {pid}")

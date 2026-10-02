@@ -17,6 +17,7 @@ try:
     from .report import generate_report
     from .preflight import validate_credentials, PreflightError
     from .execute import EvalAbortError
+    from .aws_config import FALLBACK_JUDGE_MODEL_ID
 except ImportError:
     from execute import run_all, ensure_eval_agent
     import execute as _ex
@@ -25,6 +26,7 @@ except ImportError:
     from report import generate_report
     from preflight import validate_credentials, PreflightError
     from execute import EvalAbortError
+    from aws_config import FALLBACK_JUDGE_MODEL_ID
 
 
 def load_prompts(prompts_dir: Path) -> list[dict]:
@@ -53,7 +55,14 @@ def main():
     parser.add_argument("--skills", type=str, default=None,
                         help="Path to skills directory (default: ./skills/)")
     parser.add_argument("--model", type=str, default=None,
-                        help="Bedrock model ID for execution (strands backend only)")
+                        help="Bedrock model ID for execution (strands backend only). "
+                             "Precedence: --model > EVAL_MODEL_ID env var > built-in fallback.")
+    parser.add_argument("--judge-model", type=str, default=None,
+                        help="Bedrock model ID for the LLM judge. Precedence: --judge-model > "
+                             "EVAL_JUDGE_MODEL_ID env var > eval/config.yaml > built-in fallback.")
+    parser.add_argument("--skip-model-check", action="store_true",
+                        help="Skip the preflight Converse probe that verifies each model is invocable "
+                             "(credential/region checks still run).")
     parser.add_argument("--tools", type=str, nargs="*", default=None,
                         help="Extra tools for both conditions (e.g., --tools think). Strands backend only.")
     parser.add_argument("--kiro-model", type=str, default=None,
@@ -61,18 +70,33 @@ def main():
     args = parser.parse_args()
 
     cfg = yaml.safe_load(args.config.read_text())
-    # EVAL_JUDGE_MODEL_ID overrides the config judge model so scoring and the
-    # final report reference the same model; CLI/config remain the fallback.
-    if env_judge := os.environ.get("EVAL_JUDGE_MODEL_ID"):
-        cfg["judge"]["model"] = env_judge
+    # Judge model precedence (identical shape to execution's, with config.yaml as
+    # an extra judge-only tier): --judge-model > EVAL_JUDGE_MODEL_ID env var >
+    # eval/config.yaml > built-in fallback. This single value is used for BOTH
+    # scoring and generate_report so the report never names a different model
+    # than the one that judged.
+    judge_model = (
+        args.judge_model
+        or os.environ.get("EVAL_JUDGE_MODEL_ID")
+        or cfg.get("judge", {}).get("model")
+        or FALLBACK_JUDGE_MODEL_ID
+    )
     prompts = load_prompts(args.prompts_dir)
     print(f"Loaded {len(prompts)} prompts")
 
-    # Pre-flight: validate credentials before spending time on execution
-    if not args.skip_execution:
+    # Pre-flight: validate credentials before spending time on execution. Probe
+    # the execution model only when execution will run, the judge model only
+    # when judging will run; skip entirely if both phases are skipped.
+    if not (args.skip_execution and args.skip_judge):
         print("\n=== Pre-flight credential check ===")
         try:
-            validate_credentials(model_id=args.model)
+            validate_credentials(
+                exec_model=args.model,
+                judge_model=judge_model,
+                check_execution=not args.skip_execution,
+                check_judge=not args.skip_judge,
+                skip_model_check=args.skip_model_check,
+            )
         except PreflightError as e:
             print(f"\n✗ Pre-flight failed:\n{e}", file=sys.stderr)
             sys.exit(1)
@@ -114,7 +138,6 @@ def main():
     if not args.skip_judge:
         print("\n=== Scoring responses ===")
         client = get_bedrock_client()
-        judge_model = cfg["judge"]["model"]
         scores_filename = f"scores_{args.version}.json" if args.version else "scores.json"
 
         # Load existing scores for caching
@@ -196,7 +219,7 @@ def main():
     # Step 3: Report
     print("\n=== Generating report ===")
     version_suffix = f"_{args.version}" if args.version else ""
-    report = generate_report(scored, args.results_dir, cfg["judge"]["model"], version=args.version, responses_dir=responses_dir)
+    report = generate_report(scored, args.results_dir, judge_model, version=args.version, responses_dir=responses_dir)
     overall = report["summary"]["overall_delta"]
     print(f"Overall delta: {overall:+.1f}")
     print(f"Report: {args.results_dir / f'report{version_suffix}.md'}")

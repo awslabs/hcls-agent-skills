@@ -5,9 +5,9 @@ import re
 import time
 
 try:
-    from .aws_config import region_kwargs, DEFAULT_JUDGE_MODEL_ID
+    from .aws_config import region_kwargs, judge_model_id
 except ImportError:  # run as a standalone module
-    from aws_config import region_kwargs, DEFAULT_JUDGE_MODEL_ID
+    from aws_config import region_kwargs, judge_model_id
 
 JUDGE_SYSTEM_PROMPT = """You are an expert evaluator for healthcare and life sciences AI responses.
 Score the following response to a domain-specific question on 5 dimensions, each 0-100.
@@ -82,10 +82,18 @@ def score_response(
     prompt_text: str,
     response_text: str,
     domain: str,
-    model: str = DEFAULT_JUDGE_MODEL_ID,
+    model: str | None = None,
     retries: int = 3,
 ) -> dict:
-    """Score a response on 5 dimensions. Returns dict with scores + reasoning."""
+    """Score a response on 5 dimensions. Returns dict with scores + reasoning.
+
+    model: None resolves at call time via judge_model_id() (EVAL_JUDGE_MODEL_ID
+        env var > built-in fallback).
+    """
+    # Late-bound default: resolve the judge model at call time rather than as an
+    # early-bound parameter default. Do NOT restore `= DEFAULT_JUDGE_MODEL_ID`
+    # in the signature — that re-freezes the env read at import time.
+    model = model or judge_model_id()
     sys_prompt = JUDGE_SYSTEM_PROMPT.format(domain=domain)
     clean_response = sanitize_for_judge(response_text)
     user_prompt = f"Question:\n{prompt_text}\n\nResponse to evaluate:\n{clean_response}"

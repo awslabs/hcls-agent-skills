@@ -1,9 +1,10 @@
 # Agent Skills for Healthcare & Life Sciences
 
-[![License: MIT-0](https://img.shields.io/badge/License-MIT--0-yellow.svg)](./LICENSE)
+[![Blog](https://img.shields.io/badge/Blog-a.co/04jW8Au5-red.svg)](https://a.co/04jW8Au5)
 [![Skills](https://img.shields.io/badge/Skills-42-brightgreen.svg)](./skills/)
 [![Domains](https://img.shields.io/badge/Domains-13-blue.svg)](./skills/)
 [![Works with](https://img.shields.io/badge/Works_with-Amazon_Quick_|_Kiro_|_Claude_Code_|_Codex-purple.svg)](#platform-compatibility)
+[![License: MIT-0](https://img.shields.io/badge/License-MIT--0-yellow.svg)](./LICENSE)
 
 A curated collection of agent skills for healthcare and life sciences (HCLS) workflows, following the [Agent Skills open standard](https://agentskills.io). **These 42 domain skills make any AI agent measurably better at HCLS questions.** In a [410-prompt pairwise evaluation](./eval/TECHNICAL_REPORT.md) (380 single-skill + 30 cross-skill) judged by Claude Opus 4.7, skills win **70–86%** of head-to-head comparisons depending on harness, with **up to 85% critical thinking** and **up to 87% scientific accuracy** win rates. Skills work on 20+ platforms including Kiro, Amazon Quick, Amazon Bedrock AgentCore, AWS Strands SDK, Claude Code, OpenAI Codex, CrewAI, LangChain, and more.
 

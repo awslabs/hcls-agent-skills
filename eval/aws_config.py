@@ -33,7 +33,35 @@ def region_kwargs() -> dict:
     return {"region_name": region} if region else {}
 
 
-# Default model IDs use the global.* cross-region inference profile. Overridable
-# via environment so the suite is not pinned to one profile family.
-DEFAULT_EXECUTION_MODEL_ID = os.environ.get("EVAL_MODEL_ID", "global.anthropic.claude-sonnet-5")
-DEFAULT_JUDGE_MODEL_ID = os.environ.get("EVAL_JUDGE_MODEL_ID", "global.anthropic.claude-opus-5")
+# Built-in fallback model IDs use the global.* cross-region inference profile.
+# Kept as named module constants so they stay greppable and documented.
+FALLBACK_EXECUTION_MODEL_ID = "global.anthropic.claude-sonnet-5"
+FALLBACK_JUDGE_MODEL_ID = "global.anthropic.claude-opus-5"
+
+
+# These are FUNCTIONS, not module constants, for the same reason resolve_region()
+# is: the env var must be read at CALL time, not frozen at IMPORT time. An
+# in-process consumer (a test, a notebook, a wrapper) that sets EVAL_MODEL_ID
+# after importing this module must see its value, not a stale default. Do NOT
+# "tidy" these back into import-time `X = os.environ.get(...)` constants.
+def execution_model_id() -> str:
+    """Resolve the execution Bedrock model: EVAL_MODEL_ID env var > built-in fallback."""
+    return os.environ.get("EVAL_MODEL_ID") or FALLBACK_EXECUTION_MODEL_ID
+
+
+def judge_model_id() -> str:
+    """Resolve the judge Bedrock model: EVAL_JUDGE_MODEL_ID env var > built-in fallback."""
+    return os.environ.get("EVAL_JUDGE_MODEL_ID") or FALLBACK_JUDGE_MODEL_ID
+
+
+def no_region_message(error: object) -> str:
+    """Shared actionable message for an unresolvable AWS region.
+
+    Centralized so preflight (STS + Bedrock blocks) and generate_prompts emit
+    identical guidance instead of three drifting copies of the same string.
+    """
+    return (
+        "No AWS region configured. Set AWS_REGION (or AWS_DEFAULT_REGION), "
+        "or set a default region in your AWS profile/config.\n"
+        f"Error: {error}"
+    )

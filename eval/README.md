@@ -8,7 +8,7 @@ Automated evaluation measuring whether domain skills improve agent responses for
 uv venv --python 3.12 && source .venv/bin/activate
 uv pip install -e ".[dev]"
 
-# Recommended: v9 methodology (Strands + Sonnet 4.6 + think tool)
+# Recommended: v9 methodology (Strands + think tool)
 python -m eval.run --parallel 2 --version v9 --pairwise \
   --model us.anthropic.claude-sonnet-4-6-20250514-v1:0 --tools think
 
@@ -37,7 +37,10 @@ open eval/results/review.html
   - `global.anthropic.claude-opus-5` (LLM judge — override with `EVAL_JUDGE_MODEL_ID`)
 - **Region:** set via `AWS_REGION` (falls back to `AWS_DEFAULT_REGION`, then your AWS profile/config). Every step — execution, generation, judging, and preflight — uses this one resolved region; nothing is hardcoded. If no region is resolvable, the preflight check fails with an actionable message.
 
-> The version-pinned commands further down (Quick Start, the "Full run" and "Custom model" examples, "Example reproducing v9", and the Judging Versions table) pin only the **execution** model via `--model` to the `us.anthropic.*` IDs that produced those published results. They do **not** pin the **judge** model — it now defaults to the `global.anthropic.claude-opus-5` profile from `config.yaml`, not the Claude Opus 4.7 judge that produced the historical numbers. For faithful reproduction, also set `EVAL_JUDGE_MODEL_ID` to the Opus 4.7 Bedrock model ID that run used. (This repo records the judge only by name, "Claude Opus 4.7"; the exact model ID is not stored here, so you must supply it.) Enable access to those IDs only if you intend to reproduce a historical version.
+> **Reproducing a historical version — model-access caveats.** The version-pinned commands below (Quick Start, "Full run", "Custom model", "Example reproducing v9", and the Judging Versions table) pass historical `us.anthropic.*` IDs. Two cautions apply:
+>
+> - **Execution model:** `--model` was silently ignored on the Strands backend before the fix on this branch and is **now honored**. These are legacy *regional* IDs, so a default account with only the `global.*` cross-region inference profiles enabled will now get `AccessDeniedException` where the flag previously appeared to succeed. Enable legacy regional model access only if you intend to reproduce a historical version. The v9 commands pass the Sonnet 4.6 ID, but v9 actually executed on Sonnet 4.5 (`us.anthropic.claude-sonnet-4-5-20250929-v1:0`) because the flag was ignored — see the provenance note by the Judging Versions table — so even with access the 4.6 ID will not reproduce v9's run.
+> - **Judge model:** these commands do **not** pin the **judge** — it now defaults to the `global.anthropic.claude-opus-5` profile from `config.yaml`, not the Claude Opus 4.7 judge that produced the historical numbers. For faithful reproduction, also set `EVAL_JUDGE_MODEL_ID` to the Opus 4.7 Bedrock model ID that run used. (This repo records the judge only by name, "Claude Opus 4.7"; the exact model ID is not stored here, so you must supply it.)
 
 ## Architecture
 
@@ -141,7 +144,7 @@ python -m eval.run --skip-execution --version v9 --pairwise
 python -m eval.run --model us.anthropic.claude-sonnet-4-20250514-v1:0 --version v5 --pairwise --tools think
 ```
 
-> As above, this pins only the **execution** model (v5 used Sonnet 4). v5 was judged by Claude Opus 4.7; that exact judge model ID is not recorded here, so to reproduce v5's judging prefix the command with `EVAL_JUDGE_MODEL_ID=<the Opus 4.7 Bedrock model ID that run used>`. Without it the judge defaults to the `global.anthropic.claude-opus-5` profile in `config.yaml`.
+> As above, this pins the **execution** model via `--model`, which is **now honored** (previously inert on the Strands backend). This is a legacy *regional* ID; a `global.*`-only account will get `AccessDeniedException` unless legacy regional model access is enabled. (The command requests a Sonnet 4 ID, but because the flag was ignored at the time, v5 actually ran the then-hardcoded Sonnet 4.5 the table lists.) v5 was judged by Claude Opus 4.7; that exact judge model ID is not recorded here, so to reproduce v5's judging prefix the command with `EVAL_JUDGE_MODEL_ID=<the Opus 4.7 Bedrock model ID that run used>`. Without it the judge defaults to the `global.anthropic.claude-opus-5` profile in `config.yaml`.
 
 ### Build interactive HTML review
 
@@ -241,8 +244,17 @@ The `execution.kiro_cmd` and `execution.skills_agent` fields are only used by th
 | Variable | Controls | Default |
 |---|---|---|
 | `AWS_REGION` → `AWS_DEFAULT_REGION` | Region for execution, generation, judging, and preflight. If neither is set, boto3's own resolution (profile / config / instance metadata) applies. | boto3 resolution |
-| `EVAL_MODEL_ID` | Execution + prompt-generation model | `global.anthropic.claude-sonnet-5` |
-| `EVAL_JUDGE_MODEL_ID` | Judge model (overrides `config.yaml`) | `global.anthropic.claude-opus-5` |
+
+**Model overrides (for restricted accounts):** If your account can invoke only certain Bedrock models, substitute a model you *can* invoke using any lever below. Each model role resolves independently, at call time:
+
+| Model role | CLI flag | Env var | Config file | Built-in fallback |
+|---|---|---|---|---|
+| Execution + prompt generation | `--model` (`eval.run` and `eval.generate_prompts`) | `EVAL_MODEL_ID` | — | `global.anthropic.claude-sonnet-5` |
+| Judge | `--judge-model` (`eval.run`) | `EVAL_JUDGE_MODEL_ID` | `eval/config.yaml` → `judge.model` | `global.anthropic.claude-opus-5` |
+
+**Precedence (highest wins):** **CLI flag > environment variable > `eval/config.yaml` (judge only) > built-in fallback.** The fallbacks live in `eval/aws_config.py` as `FALLBACK_EXECUTION_MODEL_ID` / `FALLBACK_JUDGE_MODEL_ID`, and resolution goes through the call-time functions `execution_model_id()` / `judge_model_id()` — so an env var set in-process (a test, a notebook, a wrapper script) is honored rather than frozen at import.
+
+**Preflight model probe:** Before executing, `eval.run` validates credentials (STS), Bedrock control-plane access, and — critically — performs a **minimal real invocation** (a 1-token Converse) against each model it will use. Because `list_foundation_models` does not enumerate `global.*` cross-region inference profiles, this probe is the only check that exercises IAM, model enablement, and region routing together. An `AccessDeniedException` therefore surfaces **at preflight, naming the exact failing model and every override path**, instead of failing mid-run. Transient errors (throttling, service unavailable) warn and continue rather than aborting. Pass `--skip-model-check` to bypass the invocation probe entirely — the credential and Bedrock-access checks still run.
 
 ## Key Design Decisions
 
@@ -263,9 +275,11 @@ The `execution.kiro_cmd` and `execution.skills_agent` fields are only used by th
 | v5-strands | Pairwise, sanitized + randomized | Strands | Sonnet 4.5 | Bare baseline (no tools) | 88.5% |
 | v7-strands-think | Pairwise, sanitized + randomized | Strands | Sonnet 4.5 | Think tool added (no measurable effect) | 88.0% |
 | v8-kiro-sonnet46 | Pairwise, sanitized + randomized | kiro-cli | Sonnet 4.6 | Full tools; asymmetric isolation issue | 64.6% |
-| v9-strands-think-sonnet46 | Pairwise, sanitized + randomized | Strands | Sonnet 4.6 | Think tool; **recommended primary** | 85.9% |
+| v9-strands-think-sonnet46 | Pairwise, sanitized + randomized | Strands | Sonnet 4.5 (labeled 4.6 — see note) | Think tool; **recommended primary** | 85.9% |
 
-**Methodology note:** v3 was the gold standard when published (reported in `TECHNICAL_REPORT.md`). v9 is now the recommended primary measurement — it uses a symmetric, artifact-free harness (Strands) with model pinning (Sonnet 4.6) and a think tool for both conditions. The 70→86% difference between v3 and v9 is explained by harness effects (tool artifact noise in kiro-cli), not skill quality. Anchor on **critical thinking** as the least-confounded dimension: skills improve reasoning quality 77–85% of the time regardless of harness.
+**Methodology note:** v3 was the gold standard when published (reported in `TECHNICAL_REPORT.md`). v9 is now the recommended primary measurement — it uses a symmetric, artifact-free harness (Strands) with a fixed execution model (labeled Sonnet 4.6 but actually Sonnet 4.5 — see the provenance note below) and a think tool for both conditions. The 70→86% difference between v3 and v9 is explained by harness effects (tool artifact noise in kiro-cli), not skill quality. Anchor on **critical thinking** as the least-confounded dimension: skills improve reasoning quality 77–85% of the time regardless of harness.
+
+> **⚠️ Execution-model provenance (v9 / "sonnet46" rows).** The runs labeled "Sonnet 4.6" actually executed on **Claude Sonnet 4.5** (`us.anthropic.claude-sonnet-4-5-20250929-v1:0`). The `--model` flag was silently ignored on the Strands backend until this branch fixed it, so every strands run used the then-hardcoded Sonnet 4.5 regardless of the ID passed. `v7-strands-think` and `v9-strands-think-sonnet46` were intended to differ *only* by execution model, so they were in fact configured identically — the apparent 4.5-vs-4.6 delta is run-to-run noise, not a model-upgrade effect. The `v5`/`v7` model cells come from hand-entered metadata (`eval/backfill_metadata.py`), not runtime records; their "Sonnet 4.5" is coincidentally what the bug forced, not independent evidence. No win rate, effect size, or score is affected — only the model attribution was wrong. kiro-cli versions (v1–v3, v8) are unaffected: their model was resolved at call time.
 
 **Harness effects:** The execution harness significantly affects measured win rates due to response artifact contamination in agentic harnesses. See [`HARNESS_EFFECTS.md`](./HARNESS_EFFECTS.md) for a detailed analysis of how tool interleaving, MCP noise, and asymmetric isolation confound pairwise coherence judgments.
 
@@ -282,7 +296,7 @@ The `execution.kiro_cmd` and `execution.skills_agent` fields are only used by th
 
 To reproduce results exactly:
 
-1. **Pin both models.** Always use `--model` with the full execution model ID (e.g., `us.anthropic.claude-sonnet-4-6-20250514-v1:0`). Without pinning, Bedrock may route to a different model version. `--model` pins only the execution model — to reproduce a historical version's judging, also set `EVAL_JUDGE_MODEL_ID` to the full judge model ID that run used (historical runs used Claude Opus 4.7; its exact Bedrock ID is not recorded in this repo). If left unset, the judge defaults to the `global.anthropic.claude-opus-5` profile in `config.yaml`.
+1. **Pin both models.** Use `--model` with the full execution model ID (e.g., `us.anthropic.claude-sonnet-4-6-20250514-v1:0`); without it, Bedrock may route to a different model version. **`--model` is now honored** — it was silently ignored on the Strands backend before the fix on this branch, so historical strands runs ignored it and ran the then-hardcoded Sonnet 4.5 (`us.anthropic.claude-sonnet-4-5-20250929-v1:0`); the v9 result labeled 4.6 was in fact a 4.5 run. The example `us.anthropic.*` ID is a legacy *regional* ID; an account with only `global.*` inference profiles enabled will get `AccessDeniedException` unless legacy regional model access is enabled. `--model` pins only the execution model — to reproduce a historical version's judging, also set `EVAL_JUDGE_MODEL_ID` to the full judge model ID that run used (historical runs used Claude Opus 4.7; its exact Bedrock ID is not recorded in this repo). If left unset, the judge defaults to the `global.anthropic.claude-opus-5` profile in `config.yaml`.
 
 2. **Check response metadata.** Each cached response file in `eval/results/responses/` includes metadata (model ID, backend, tools, timestamp). Verify these match your intended configuration before re-judging.
 
@@ -296,4 +310,4 @@ python -m eval.run --parallel 2 --version v9 --pairwise \
   --model us.anthropic.claude-sonnet-4-6-20250514-v1:0 --tools think
 ```
 
-> This pins only the **execution** model. v9 was judged by Claude Opus 4.7; the exact judge model ID is not recorded in this repo. To match the original judging, prefix the command with `EVAL_JUDGE_MODEL_ID=<the Opus 4.7 Bedrock model ID that run used>` — otherwise the judge defaults to the `global.anthropic.claude-opus-5` profile in `config.yaml` and the two arms will not match the published run.
+> This pins only the **execution** model, and `--model` is **now honored** (it was inert on the Strands backend when v9 ran). v9 actually executed on Sonnet 4.5, not the 4.6 ID shown — see the provenance note by the Judging Versions table — so to reproduce v9's execution pass `--model us.anthropic.claude-sonnet-4-5-20250929-v1:0`. Both IDs are legacy *regional* IDs; a `global.*`-only account must enable legacy regional model access or the command fails with `AccessDeniedException`. v9 was judged by Claude Opus 4.7; the exact judge model ID is not recorded in this repo. To match the original judging, prefix the command with `EVAL_JUDGE_MODEL_ID=<the Opus 4.7 Bedrock model ID that run used>` — otherwise the judge defaults to the `global.anthropic.claude-opus-5` profile in `config.yaml` and the two arms will not match the published run.

@@ -5,7 +5,7 @@ import random
 import re
 import time
 
-from .judge import get_bedrock_client, sanitize_for_judge, DIMENSIONS, DEFAULT_JUDGE_MODEL_ID
+from .judge import get_bedrock_client, sanitize_for_judge, DIMENSIONS, judge_model_id
 
 PAIRWISE_SYSTEM_PROMPT = """You are an expert evaluator for healthcare and life sciences AI responses.
 You will see two responses (Response A and Response B) to the same domain question.
@@ -30,10 +30,18 @@ def score_pairwise(
     baseline_text: str,
     skills_text: str,
     domain: str,
-    model: str = DEFAULT_JUDGE_MODEL_ID,
+    model: str | None = None,
     retries: int = 3,
 ) -> dict:
-    """Score two responses pairwise. Returns dict with scores for both + position mapping."""
+    """Score two responses pairwise. Returns dict with scores for both + position mapping.
+
+    model: None resolves at call time via judge_model_id() (EVAL_JUDGE_MODEL_ID
+        env var > built-in fallback).
+    """
+    # Late-bound default: resolve the judge model at call time rather than as an
+    # early-bound parameter default. Do NOT restore `= DEFAULT_JUDGE_MODEL_ID`
+    # in the signature — that re-freezes the env read at import time.
+    model = model or judge_model_id()
     clean_baseline = sanitize_for_judge(baseline_text)
     clean_skills = sanitize_for_judge(skills_text)
 

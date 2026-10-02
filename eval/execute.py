@@ -14,9 +14,9 @@ from concurrent.futures import ThreadPoolExecutor
 from subprocess import DEVNULL, PIPE
 
 try:
-    from .aws_config import region_kwargs, DEFAULT_EXECUTION_MODEL_ID
+    from .aws_config import region_kwargs, execution_model_id
 except ImportError:  # imported as a top-level module
-    from aws_config import region_kwargs, DEFAULT_EXECUTION_MODEL_ID
+    from aws_config import region_kwargs, execution_model_id
 
 logger = logging.getLogger(__name__)
 
@@ -55,10 +55,24 @@ def _reset_fail_fast() -> None:
     _consecutive_auth_errors = 0
 
 
-DEFAULT_MODEL_ID = DEFAULT_EXECUTION_MODEL_ID
+# None means "not overridden" — resolve from aws_config at call time.
+# Set by run.py's --model for a module-level override. Do NOT initialize this
+# to a resolved model ID: that would re-freeze the value at import time and
+# defeat the whole point of execution_model_id() being a function.
+DEFAULT_MODEL_ID: str | None = None
 DEFAULT_SKILLS_PATH = "./skills/"
 DEFAULT_BACKEND = "strands"
 EXTRA_TOOLS: list[str] = []
+
+
+def _resolve_model_id(model_id: str | None) -> str:
+    """Resolve the effective execution model, late-bound at call time.
+
+    Precedence: explicit argument > module-level DEFAULT_MODEL_ID override
+    > execution_model_id() (EVAL_MODEL_ID env var > built-in fallback). Do NOT
+    fold this into a default-argument expression — that re-freezes at def time.
+    """
+    return model_id or DEFAULT_MODEL_ID or execution_model_id()
 
 _ANSI_RE = re.compile(r'\x1b\[[0-9;]*[a-zA-Z]')
 
@@ -111,7 +125,7 @@ def _strands_build_agent(condition: str, model_id: str | None = None):
     # An early-bound `= DEFAULT_MODEL_ID` freezes the value when the function is
     # defined, so a later CLI/module override would be ignored. Do NOT "tidy"
     # this back to a default-argument expression.
-    model_id = model_id or DEFAULT_MODEL_ID
+    model_id = _resolve_model_id(model_id)
     from strands import Agent
     from strands.models.bedrock import BedrockModel
     try:
@@ -244,12 +258,13 @@ async def execute_prompt(
 
     Caches results to disk. Skips execution if cache file already exists.
 
-    model_id: Bedrock model ID for the strands backend. None means "use the
-        configured default" (DEFAULT_MODEL_ID, resolved at call time).
+    model_id: Bedrock model ID for the strands backend. None resolves at call
+        time via: explicit argument > module DEFAULT_MODEL_ID override >
+        execution_model_id() (EVAL_MODEL_ID env var > built-in fallback).
     """
     # Late-bound default (see _strands_build_agent): resolve here so metadata
     # records the model actually used and CLI/module overrides take effect.
-    model_id = model_id or DEFAULT_MODEL_ID
+    model_id = _resolve_model_id(model_id)
     cache_file = results_dir / f"{prompt_id}_{condition}.json"
     if cache_file.exists():
         return json.loads(cache_file.read_text()) | {"cached": True}
@@ -293,14 +308,15 @@ async def run_all(
         parallel: Max concurrent executions.
         timeout: Seconds before killing a single execution.
         kiro_cmd: Command for kiro-cli backend.
-        model_id: Bedrock model ID for strands backend. None means "use the
-            configured default" (DEFAULT_MODEL_ID, resolved at call time).
+        model_id: Bedrock model ID for strands backend. None resolves at call
+            time via: explicit argument > module DEFAULT_MODEL_ID override >
+            execution_model_id() (EVAL_MODEL_ID env var > built-in fallback).
         backend: 'strands' (default) or 'kiro-cli'.
     """
     # Late-bound default (see _strands_build_agent): resolve here so a CLI
     # --model override of DEFAULT_MODEL_ID is honored. Do NOT restore
     # `= DEFAULT_MODEL_ID` in the signature.
-    model_id = model_id or DEFAULT_MODEL_ID
+    model_id = _resolve_model_id(model_id)
     if backend == "kiro-cli":
         ensure_eval_agent()
     results_dir.mkdir(parents=True, exist_ok=True)
