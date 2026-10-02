@@ -3,6 +3,7 @@
 import argparse
 import asyncio
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -10,6 +11,7 @@ import yaml
 
 try:
     from .execute import run_all, ensure_eval_agent
+    from . import execute as _ex
     from .judge import get_bedrock_client, score_response, DIMENSIONS
     from .judge_pairwise import score_pairwise
     from .report import generate_report
@@ -17,6 +19,7 @@ try:
     from .execute import EvalAbortError
 except ImportError:
     from execute import run_all, ensure_eval_agent
+    import execute as _ex
     from judge import get_bedrock_client, score_response, DIMENSIONS
     from judge_pairwise import score_pairwise
     from report import generate_report
@@ -58,6 +61,10 @@ def main():
     args = parser.parse_args()
 
     cfg = yaml.safe_load(args.config.read_text())
+    # EVAL_JUDGE_MODEL_ID overrides the config judge model so scoring and the
+    # final report reference the same model; CLI/config remain the fallback.
+    if env_judge := os.environ.get("EVAL_JUDGE_MODEL_ID"):
+        cfg["judge"]["model"] = env_judge
     prompts = load_prompts(args.prompts_dir)
     print(f"Loaded {len(prompts)} prompts")
 
@@ -70,18 +77,17 @@ def main():
             print(f"\n✗ Pre-flight failed:\n{e}", file=sys.stderr)
             sys.exit(1)
 
-    # Override config with CLI args
+    # Override config with CLI args. Mutate the single execute-module object
+    # bound at import (_ex) so overrides land on the same module the running
+    # code reads — importing it again here could bind a distinct object under
+    # the top-level-script invocation style and silently drop the overrides.
     if args.skills:
-        import eval.execute as _ex
         _ex.DEFAULT_SKILLS_PATH = args.skills
     if args.model:
-        import eval.execute as _ex
         _ex.DEFAULT_MODEL_ID = args.model
     if args.tools:
-        import eval.execute as _ex
         _ex.EXTRA_TOOLS = args.tools
     if args.kiro_model:
-        import eval.execute as _ex
         _ex.DEFAULT_KIRO_MODEL = args.kiro_model
 
     responses_dir = args.results_dir / "responses" / args.version if args.version else args.results_dir / "responses"
@@ -96,6 +102,7 @@ def main():
                 parallel=args.parallel,
                 timeout=cfg["execution"]["timeout_seconds"],
                 kiro_cmd=cfg["execution"]["kiro_cmd"],
+                model_id=args.model,
                 backend=args.backend,
             ))
         except EvalAbortError as e:

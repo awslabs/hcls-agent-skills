@@ -1,5 +1,5 @@
 judge:
-  model: us.anthropic.claude-opus-4-7
+  model: global.anthropic.claude-opus-5
   temperature: 0.0
   max_tokens: 2048
   retries: 3

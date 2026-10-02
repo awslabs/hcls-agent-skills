@@ -8,13 +8,19 @@ from pathlib import Path
 
 import boto3
 import yaml
+from botocore.exceptions import NoRegionError
+
+try:
+    from .aws_config import region_kwargs, DEFAULT_EXECUTION_MODEL_ID
+except ImportError:  # run as a standalone script (python eval/generate_prompts.py)
+    from aws_config import region_kwargs, DEFAULT_EXECUTION_MODEL_ID
 
 ROOT = Path(__file__).resolve().parent.parent
 SKILLS_DIR = ROOT / "skills"
 SINGLE_DIR = ROOT / "eval" / "prompts" / "single"
 CROSS_DIR = ROOT / "eval" / "prompts" / "cross"
 
-MODEL_ID = "us.anthropic.claude-sonnet-4-6"
+MODEL_ID = DEFAULT_EXECUTION_MODEL_ID
 
 DOMAIN_MAP = {
     "genomic-variant-interpretation": "genomics",
@@ -195,7 +201,18 @@ def main():
             print(f"ERROR: Skill '{args.skill}' has no SKILL.md")
             raise SystemExit(1)
 
-    client = boto3.client("bedrock-runtime", region_name="us-west-2")
+    try:
+        client = boto3.client("bedrock-runtime", **region_kwargs())
+    except NoRegionError as e:
+        # This standalone entry point runs before run.py's preflight, so the clean
+        # PreflightError path never guards it. Catch the actual boto3 failure (not an
+        # empty resolve_region(), since a profile/config may still supply the region)
+        # and mirror preflight.py's NoRegionError message for a consistent, actionable fix.
+        raise SystemExit(
+            "No AWS region configured. Set AWS_REGION (or AWS_DEFAULT_REGION), "
+            "or set a default region in your AWS profile/config.\n"
+            f"Error: {e}"
+        )
 
     # --- Single-skill prompts (N per skill) ---
     if args.skill:
@@ -205,6 +222,8 @@ def main():
         skill_files = sorted(SKILLS_DIR.glob("*/SKILL.md"))
         print(f"Found {len(skill_files)} skills, generating {args.count} prompts each")
 
+    written = 0
+    attempted = 0
     skill_cache: dict[str, dict] = {}
     for sf in skill_files:
         info = parse_skill_md(sf)
@@ -221,10 +240,12 @@ def main():
             if out.exists() and not args.force:
                 continue
             difficulty = DIFFICULTY_SCHEDULE[i % len(DIFFICULTY_SCHEDULE)]
+            attempted += 1
             try:
                 prompt = call_bedrock(client, META_PROMPT_N.format(
                     n=i+1, total=args.count, difficulty=difficulty, **info))
                 write_prompt_yaml(out, pid, prompt, [name], domain, difficulty)
+                written += 1
                 print(f"  OK   {pid} ({difficulty})")
             except Exception as e:
                 print(f"  WARN {pid}: {e}")
@@ -258,16 +279,26 @@ def main():
             if out.exists() and not args.force:
                 continue
             difficulty = DIFFICULTY_SCHEDULE[i % len(DIFFICULTY_SCHEDULE)]
+            attempted += 1
             try:
                 prompt = call_bedrock(client, CROSS_META_PROMPT.format(skill_block=skill_block))
                 write_prompt_yaml(out, pid, prompt, combo["skills"], combo["domain"], difficulty)
+                written += 1
                 print(f"  OK   {pid}")
             except Exception as e:
                 print(f"  WARN {pid}: {e}")
         existing = list(CROSS_DIR.glob(f"{combo['id']}-*.yaml"))
         print(f"  {combo['id']}: {len(existing)}/{args.count} prompts")
 
-    print("\nDone.")
+    # Summarize written-vs-requested so a partial or empty run is visible rather
+    # than silently exiting 0. Per-prompt WARN lines above show which ones failed.
+    print(f"\nDone. Wrote {written}/{attempted} prompts generated this run.")
+    if attempted and not written:
+        raise SystemExit(
+            f"ERROR: 0 of {attempted} requested prompts were generated — every attempt "
+            "failed (see WARN lines above). Check AWS credentials, region "
+            "(AWS_REGION / AWS_DEFAULT_REGION), and Bedrock model access."
+        )
 
 
 if __name__ == "__main__":

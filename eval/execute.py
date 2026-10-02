@@ -13,6 +13,11 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from subprocess import DEVNULL, PIPE
 
+try:
+    from .aws_config import region_kwargs, DEFAULT_EXECUTION_MODEL_ID
+except ImportError:  # imported as a top-level module
+    from aws_config import region_kwargs, DEFAULT_EXECUTION_MODEL_ID
+
 logger = logging.getLogger(__name__)
 
 # ─── Fail-fast counter for auth/throttle errors ──────────────────────────────
@@ -50,7 +55,7 @@ def _reset_fail_fast() -> None:
     _consecutive_auth_errors = 0
 
 
-DEFAULT_MODEL_ID = "us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+DEFAULT_MODEL_ID = DEFAULT_EXECUTION_MODEL_ID
 DEFAULT_SKILLS_PATH = "./skills/"
 DEFAULT_BACKEND = "strands"
 EXTRA_TOOLS: list[str] = []
@@ -100,8 +105,13 @@ def _get_extra_tools():
     return tools
 
 
-def _strands_build_agent(condition: str, model_id: str = DEFAULT_MODEL_ID):
+def _strands_build_agent(condition: str, model_id: str | None = None):
     """Build a Strands Agent for the given condition."""
+    # Late-bound default: resolve DEFAULT_MODEL_ID at call time, not def time.
+    # An early-bound `= DEFAULT_MODEL_ID` freezes the value when the function is
+    # defined, so a later CLI/module override would be ignored. Do NOT "tidy"
+    # this back to a default-argument expression.
+    model_id = model_id or DEFAULT_MODEL_ID
     from strands import Agent
     from strands.models.bedrock import BedrockModel
     try:
@@ -109,7 +119,9 @@ def _strands_build_agent(condition: str, model_id: str = DEFAULT_MODEL_ID):
     except ImportError:
         from strands.vended_plugins.skills import AgentSkills
 
-    model = BedrockModel(model_id=model_id)
+    # Resolve region the same way as every other client; region_name is omitted
+    # (not passed as None) when unresolved so BedrockModel keeps its own default.
+    model = BedrockModel(model_id=model_id, **region_kwargs())
     extra_tools = _get_extra_tools()
     if condition == "skills":
         skills_plugin = AgentSkills(skills=DEFAULT_SKILLS_PATH)
@@ -225,13 +237,19 @@ async def execute_prompt(
     results_dir: Path,
     timeout: int = 180,
     kiro_cmd: str = "kiro-cli",
-    model_id: str = DEFAULT_MODEL_ID,
+    model_id: str | None = None,
     backend: str = DEFAULT_BACKEND,
 ) -> dict:
     """Execute a prompt under a condition, return {id, condition, text, cached}.
 
     Caches results to disk. Skips execution if cache file already exists.
+
+    model_id: Bedrock model ID for the strands backend. None means "use the
+        configured default" (DEFAULT_MODEL_ID, resolved at call time).
     """
+    # Late-bound default (see _strands_build_agent): resolve here so metadata
+    # records the model actually used and CLI/module overrides take effect.
+    model_id = model_id or DEFAULT_MODEL_ID
     cache_file = results_dir / f"{prompt_id}_{condition}.json"
     if cache_file.exists():
         return json.loads(cache_file.read_text()) | {"cached": True}
@@ -264,7 +282,7 @@ async def run_all(
     parallel: int = 1,
     timeout: int = 180,
     kiro_cmd: str = "kiro-cli",
-    model_id: str = DEFAULT_MODEL_ID,
+    model_id: str | None = None,
     backend: str = DEFAULT_BACKEND,
 ) -> list[dict]:
     """Execute all prompts under both conditions.
@@ -275,9 +293,14 @@ async def run_all(
         parallel: Max concurrent executions.
         timeout: Seconds before killing a single execution.
         kiro_cmd: Command for kiro-cli backend.
-        model_id: Bedrock model ID for strands backend.
+        model_id: Bedrock model ID for strands backend. None means "use the
+            configured default" (DEFAULT_MODEL_ID, resolved at call time).
         backend: 'strands' (default) or 'kiro-cli'.
     """
+    # Late-bound default (see _strands_build_agent): resolve here so a CLI
+    # --model override of DEFAULT_MODEL_ID is honored. Do NOT restore
+    # `= DEFAULT_MODEL_ID` in the signature.
+    model_id = model_id or DEFAULT_MODEL_ID
     if backend == "kiro-cli":
         ensure_eval_agent()
     results_dir.mkdir(parents=True, exist_ok=True)

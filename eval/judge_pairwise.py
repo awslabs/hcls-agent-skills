@@ -5,7 +5,7 @@ import random
 import re
 import time
 
-from .judge import get_bedrock_client, sanitize_for_judge, DIMENSIONS
+from .judge import get_bedrock_client, sanitize_for_judge, DIMENSIONS, DEFAULT_JUDGE_MODEL_ID
 
 PAIRWISE_SYSTEM_PROMPT = """You are an expert evaluator for healthcare and life sciences AI responses.
 You will see two responses (Response A and Response B) to the same domain question.
@@ -30,7 +30,7 @@ def score_pairwise(
     baseline_text: str,
     skills_text: str,
     domain: str,
-    model: str = "us.anthropic.claude-opus-4-7",
+    model: str = DEFAULT_JUDGE_MODEL_ID,
     retries: int = 3,
 ) -> dict:
     """Score two responses pairwise. Returns dict with scores for both + position mapping."""

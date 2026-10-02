@@ -18,7 +18,7 @@ open eval/results/review.html
 
 > ⚠️ **Cost & Time Estimate**
 >
-> A full eval run (410 prompts × 2 conditions + 410 pairwise judgments) costs **~$126** on-demand in us-east-1:
+> A full eval run (410 prompts × 2 conditions + 410 pairwise judgments) costs **~$126** on-demand:
 >
 > | Phase | Model | Estimated Cost |
 > |-------|-------|---------------|
@@ -32,10 +32,12 @@ open eval/results/review.html
 
 - **Python 3.12+** managed via [uv](https://docs.astral.sh/uv/)
 - **AWS credentials:** configured via `~/.aws/credentials` or environment variables
-- **Amazon Bedrock access:** model access enabled for:
-  - `us.anthropic.claude-sonnet-4-6` (execution, default)
-  - `us.anthropic.claude-opus-4-7` (LLM judge)
-- **Region:** `us-east-1` (default Bedrock region)
+- **Amazon Bedrock access:** model access enabled for the `global.*` cross-region inference profiles the eval requests by default:
+  - `global.anthropic.claude-sonnet-5` (execution, default — override with `EVAL_MODEL_ID` or `--model`)
+  - `global.anthropic.claude-opus-5` (LLM judge — override with `EVAL_JUDGE_MODEL_ID`)
+- **Region:** set via `AWS_REGION` (falls back to `AWS_DEFAULT_REGION`, then your AWS profile/config). Every step — execution, generation, judging, and preflight — uses this one resolved region; nothing is hardcoded. If no region is resolvable, the preflight check fails with an actionable message.
+
+> The version-pinned commands further down (Quick Start, the "Full run" and "Custom model" examples, "Example reproducing v9", and the Judging Versions table) pin only the **execution** model via `--model` to the `us.anthropic.*` IDs that produced those published results. They do **not** pin the **judge** model — it now defaults to the `global.anthropic.claude-opus-5` profile from `config.yaml`, not the Claude Opus 4.7 judge that produced the historical numbers. For faithful reproduction, also set `EVAL_JUDGE_MODEL_ID` to the Opus 4.7 Bedrock model ID that run used. (This repo records the judge only by name, "Claude Opus 4.7"; the exact model ID is not stored here, so you must supply it.) Enable access to those IDs only if you intend to reproduce a historical version.
 
 ## Architecture
 
@@ -43,7 +45,7 @@ open eval/results/review.html
 eval/
 ├── run.py                  # CLI orchestrator — execute → judge → report
 ├── execute.py              # Dual-backend executor (strands SDK or kiro-cli)
-├── judge.py                # Independent scoring via Bedrock Opus 4.7
+├── judge.py                # Independent scoring via the configured Bedrock judge model
 ├── judge_pairwise.py       # Pairwise scoring (both responses in one call)
 ├── report.py               # Generates JSON + markdown reports
 ├── build_review.py         # Generates interactive HTML review
@@ -81,7 +83,7 @@ python -m eval.run [OPTIONS]
 Execution:
   --backend {strands,kiro-cli}  Execution backend (default: strands)
   --model MODEL_ID              Bedrock model ID for execution (strands only)
-                                Default: us.anthropic.claude-sonnet-4-5-20250929-v1:0
+                                Default: global.anthropic.claude-sonnet-5 (or $EVAL_MODEL_ID)
   --tools TOOL [TOOL ...]       Tools to provide to the agent (e.g., --tools think)
                                 Adds specified tools to both conditions symmetrically
   --kiro-model MODEL            Model override for kiro-cli backend
@@ -124,7 +126,7 @@ python -m eval.run --parallel 2 --version v9 --pairwise \
 
 This will:
 1. Execute all 410 prompts under both conditions (baseline = bare agent, skills = agent with AgentSkills plugin)
-2. Score all 820 responses via Claude Opus 4.7 pairwise judge
+2. Score all 820 responses via the configured Bedrock judge model (pairwise)
 3. Generate `report_v9.md` and `scores_v9.json`
 
 ### Re-judge only (skip execution, use cached responses)
@@ -138,6 +140,8 @@ python -m eval.run --skip-execution --version v9 --pairwise
 ```bash
 python -m eval.run --model us.anthropic.claude-sonnet-4-20250514-v1:0 --version v5 --pairwise --tools think
 ```
+
+> As above, this pins only the **execution** model (v5 used Sonnet 4). v5 was judged by Claude Opus 4.7; that exact judge model ID is not recorded here, so to reproduce v5's judging prefix the command with `EVAL_JUDGE_MODEL_ID=<the Opus 4.7 Bedrock model ID that run used>`. Without it the judge defaults to the `global.anthropic.claude-opus-5` profile in `config.yaml`.
 
 ### Build interactive HTML review
 
@@ -211,7 +215,7 @@ python eval/generate_prompts.py --skill genomic-variant-interpretation --force
 
 The `--skill <name>` flag scopes generation to a single skill's prompt files in `eval/prompts/single/` and any cross-skill combos that include it. Omit `--skill` to regenerate the full suite. Use `--count <n>` to override the default of 10 prompts/skill — e.g. `--count 30` for a contributor evaluation run.
 
-Uses Claude Sonnet 4 (`us.anthropic.claude-sonnet-4-6`) via Bedrock. Generates 10 prompts per skill by default, with varying difficulty (3 easy, 4 intermediate, 3 hard); counts above 10 add further prompts at the same difficulty mix.
+Uses `global.anthropic.claude-sonnet-5` via Bedrock (override with `EVAL_MODEL_ID`). Generates 10 prompts per skill by default, with varying difficulty (3 easy, 4 intermediate, 3 hard); counts above 10 add further prompts at the same difficulty mix.
 
 ## Configuration
 
@@ -219,7 +223,7 @@ Uses Claude Sonnet 4 (`us.anthropic.claude-sonnet-4-6`) via Bedrock. Generates 1
 
 ```yaml
 judge:
-  model: us.anthropic.claude-opus-4-7
+  model: global.anthropic.claude-opus-5
   max_tokens: 2048
   retries: 3
 
@@ -231,6 +235,14 @@ execution:
 ```
 
 The `execution.kiro_cmd` and `execution.skills_agent` fields are only used by the `kiro-cli` backend. The strands backend reads model and skills path from CLI flags (or defaults).
+
+**Environment overrides:**
+
+| Variable | Controls | Default |
+|---|---|---|
+| `AWS_REGION` → `AWS_DEFAULT_REGION` | Region for execution, generation, judging, and preflight. If neither is set, boto3's own resolution (profile / config / instance metadata) applies. | boto3 resolution |
+| `EVAL_MODEL_ID` | Execution + prompt-generation model | `global.anthropic.claude-sonnet-5` |
+| `EVAL_JUDGE_MODEL_ID` | Judge model (overrides `config.yaml`) | `global.anthropic.claude-opus-5` |
 
 ## Key Design Decisions
 
@@ -270,7 +282,7 @@ The `execution.kiro_cmd` and `execution.skills_agent` fields are only used by th
 
 To reproduce results exactly:
 
-1. **Pin the model.** Always use `--model` with the full model ID (e.g., `us.anthropic.claude-sonnet-4-6-20250514-v1:0`). Without pinning, Bedrock may route to a different model version.
+1. **Pin both models.** Always use `--model` with the full execution model ID (e.g., `us.anthropic.claude-sonnet-4-6-20250514-v1:0`). Without pinning, Bedrock may route to a different model version. `--model` pins only the execution model — to reproduce a historical version's judging, also set `EVAL_JUDGE_MODEL_ID` to the full judge model ID that run used (historical runs used Claude Opus 4.7; its exact Bedrock ID is not recorded in this repo). If left unset, the judge defaults to the `global.anthropic.claude-opus-5` profile in `config.yaml`.
 
 2. **Check response metadata.** Each cached response file in `eval/results/responses/` includes metadata (model ID, backend, tools, timestamp). Verify these match your intended configuration before re-judging.
 
@@ -283,3 +295,5 @@ Example reproducing v9:
 python -m eval.run --parallel 2 --version v9 --pairwise \
   --model us.anthropic.claude-sonnet-4-6-20250514-v1:0 --tools think
 ```
+
+> This pins only the **execution** model. v9 was judged by Claude Opus 4.7; the exact judge model ID is not recorded in this repo. To match the original judging, prefix the command with `EVAL_JUDGE_MODEL_ID=<the Opus 4.7 Bedrock model ID that run used>` — otherwise the judge defaults to the `global.anthropic.claude-opus-5` profile in `config.yaml` and the two arms will not match the published run.

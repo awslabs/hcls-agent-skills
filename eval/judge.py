@@ -4,6 +4,11 @@ import os
 import re
 import time
 
+try:
+    from .aws_config import region_kwargs, DEFAULT_JUDGE_MODEL_ID
+except ImportError:  # run as a standalone module
+    from aws_config import region_kwargs, DEFAULT_JUDGE_MODEL_ID
+
 JUDGE_SYSTEM_PROMPT = """You are an expert evaluator for healthcare and life sciences AI responses.
 Score the following response to a domain-specific question on 5 dimensions, each 0-100.
 
@@ -33,8 +38,9 @@ def get_bedrock_client():
     if profile := os.environ.get("AWS_PROFILE"):
         session_kwargs["profile_name"] = profile
     session = boto3.Session(**session_kwargs)
-    region = os.environ.get("AWS_REGION", "us-west-2")
-    return session.client("bedrock-runtime", region_name=region)
+    # Region resolves via the shared helper (AWS_REGION -> AWS_DEFAULT_REGION ->
+    # boto3's own chain); region_name is omitted entirely when unresolved.
+    return session.client("bedrock-runtime", **region_kwargs())
 
 
 def sanitize_for_judge(text: str) -> str:
@@ -76,7 +82,7 @@ def score_response(
     prompt_text: str,
     response_text: str,
     domain: str,
-    model: str = "us.anthropic.claude-opus-4-7",
+    model: str = DEFAULT_JUDGE_MODEL_ID,
     retries: int = 3,
 ) -> dict:
     """Score a response on 5 dimensions. Returns dict with scores + reasoning."""
