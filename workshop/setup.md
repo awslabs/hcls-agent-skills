@@ -21,11 +21,12 @@ Pick **one** AI coding assistant and use it for the whole workshop. Both invoke 
 
 ## 2. Clone and Install
 
-Clone the repository and `cd` into it:
+Clone the repository, switch to the workshop branch, and `cd` into it:
 
 ```bash
 git clone https://github.com/awslabs/hcls-agent-skills.git
 cd hcls-agent-skills
+git checkout workshop/life-sciences-rd-90min
 ```
 
 The coding agent is already installed and authenticated — you only install the skills. Run the command for the harness you picked **from inside the cloned repo** (the install uses **Project** scope, which targets the current directory, so your working directory must be the repo):
