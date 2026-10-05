@@ -106,6 +106,24 @@ def load_responses(resp_dir: Path) -> dict[str, dict[str, str]]:
     return dict(responses)
 
 
+def partition_dropped(scores):
+    """Split score entries into (valid, dropped).
+
+    A dropped entry (``entry.get("dropped")`` truthy) carries all-zero
+    baseline/skills dicts and NO ``winner`` key. If one reaches any aggregate —
+    build_skill_data, compute_summary, compute_activation_metrics, or the
+    win-rate JS (which computes ``win_tie = n - sw - bw``) — it silently
+    inflates N and is miscounted as a TIE. report.py already excludes these
+    before scoring; build_review must too, or an all-failed run renders as green
+    ties. Dropped entries are returned separately so the HTML surfaces them
+    (with their drop_reason) instead of letting them vanish.
+    """
+    valid = [s for s in scores if not s.get("dropped")]
+    dropped = [{"id": s["id"], "drop_reason": s.get("drop_reason", "both")}
+               for s in scores if s.get("dropped")]
+    return valid, dropped
+
+
 def build_skill_data(scores):
     by_skill = defaultdict(list)
     for s in scores:
@@ -210,6 +228,7 @@ summary:hover{text-decoration:underline}
 <h1>HCLS Skills Eval &mdash; Interactive Review</h1>
 <p id="subtitle"></p>
 <div class="summary-grid" id="summary-grid"></div>
+<div id="dropped-panel"></div>
 <details style="margin-top:12px"><summary style="font-size:.85rem;color:#4338ca;cursor:pointer">📋 Judging Methodology</summary>
 <div style="font-size:.82rem;margin-top:8px;line-height:1.6">
 <h4 style="margin-bottom:6px">Scoring Dimensions</h4>
@@ -270,26 +289,27 @@ function recomputeSummary(skills){
       if(pr.winner)winners[pr.winner]=(winners[pr.winner]||0)+1;
     }
   }
-  const n=allB.length||1;
+  const n=allB.length;        // true count — 0 on an all-dropped page, not forced to 1
+  const dn=n||1;              // divisor guard only: avoid division by zero in the math below
   const dims={};
   for(let d of DIMS){
     let bvals=[],svals=[];
     for(let sk of skills)for(let pr of sk.prompts){bvals.push(pr.baseline_scores[d]);svals.push(pr.skills_scores[d])}
-    const bm=bvals.reduce((a,v)=>a+v,0)/n;
-    const sm=svals.reduce((a,v)=>a+v,0)/n;
+    const bm=bvals.reduce((a,v)=>a+v,0)/dn;
+    const sm=svals.reduce((a,v)=>a+v,0)/dn;
     const deltas=bvals.map((b,i)=>svals[i]-b);
-    const md=deltas.reduce((a,v)=>a+v,0)/n;
-    const sd=Math.sqrt(deltas.reduce((a,v)=>a+(v-md)**2,0)/(n-1))||1;
+    const md=deltas.reduce((a,v)=>a+v,0)/dn;
+    const sd=Math.sqrt(deltas.reduce((a,v)=>a+(v-md)**2,0)/(dn-1))||1;
     const cd=md/sd;
     // Per-dim win rate
     let sw=0,bw=0;
     deltas.forEach(d=>{if(d>0)sw++;else if(d<0)bw++});
     dims[d]={baseline:+bm.toFixed(1),skills:+sm.toFixed(1),delta:+md.toFixed(1),cohens_d:+cd.toFixed(2),win_skills:sw,win_baseline:bw,win_tie:n-sw-bw};
   }
-  const overall=+(allS.reduce((a,v)=>a+v,0)/n - allB.reduce((a,v)=>a+v,0)/n).toFixed(1);
+  const overall=+(allS.reduce((a,v)=>a+v,0)/dn - allB.reduce((a,v)=>a+v,0)/dn).toFixed(1);
   const oDeltas=allB.map((b,i)=>allS[i]-b);
-  const oMd=oDeltas.reduce((a,v)=>a+v,0)/n;
-  const oSd=Math.sqrt(oDeltas.reduce((a,v)=>a+(v-oMd)**2,0)/(n-1))||1;
+  const oMd=oDeltas.reduce((a,v)=>a+v,0)/dn;
+  const oSd=Math.sqrt(oDeltas.reduce((a,v)=>a+(v-oMd)**2,0)/(dn-1))||1;
   return {n,overall_delta:overall,cohens_d:+(oMd/oSd).toFixed(2),dims,winners};
 }
 function fmtMd(raw){
@@ -334,6 +354,10 @@ const DLABEL={"scientific_accuracy":"Sci.Acc","coherence":"Coher","relevance":"R
 
 function render(){
   let skills=DATA.versions[currentVersion];
+  // Dropped prompts (dropped flag set upstream) are excluded from every metric
+  // above — they carry no valid scores. Surface them here with their reason so
+  // a failed run can never masquerade as green-checked ties.
+  const dropped=(DATA.dropped_per_version||{})[currentVersion]||[];
 
   // Apply filter: rebuild skills with filtered prompts and recomputed stats
   let filteredSkills=skills.map(sk=>{
@@ -412,7 +436,7 @@ function render(){
   // Summary
   const sg=document.getElementById('summary-grid');
   let h=`<div class="stat-card"><div class="label">Overall</div><div class="value pos">${sm.winners&&sm.n?(sm.winners.skills/sm.n*100).toFixed(1)+'%':'—'}</div><div style="font-size:.65rem;color:#888">d=${sm.cohens_d} · Δ${sm.overall_delta>0?'+':''}${sm.overall_delta}</div></div>`;
-  for(let d of DIMS){const v=sm.dims[d];h+=`<div class="stat-card"><div class="label">${DLABEL[d]}</div><div class="value ${dc(v.delta)}">${(v.win_skills/sm.n*100).toFixed(0)}%</div><div style="font-size:.65rem;color:#888">d=${v.cohens_d} · Δ${v.delta>0?'+':''}${v.delta}</div></div>`}
+  for(let d of DIMS){const v=sm.dims[d];h+=`<div class="stat-card"><div class="label">${DLABEL[d]}</div><div class="value ${dc(v.delta)}">${(sm.n?v.win_skills/sm.n*100:0).toFixed(0)}%</div><div style="font-size:.65rem;color:#888">d=${v.cohens_d} · Δ${v.delta>0?'+':''}${v.delta}</div></div>`}
   sg.innerHTML=h;
 
   // Activation metrics panel (per-version)
@@ -435,7 +459,17 @@ function render(){
     ah+=`<p style="font-size:.75rem;color:#666;margin-top:6px"><b>Interpretation:</b> If "Only intended skill(s)" win rate ≥ overall win rate, the benefit comes from targeted activation, not bulk context injection.</p>`;
     ap.innerHTML=ah;
   }
-  document.getElementById('subtitle').innerHTML=ft+vt+sf+`${filteredSkills.length} skills, ${sm.n} prompts`;
+  document.getElementById('subtitle').innerHTML=ft+vt+sf+`${filteredSkills.length} skills, ${sm.n} prompts`+(dropped.length?`, <span class="neg">${dropped.length} dropped</span>`:'');
+
+  // Dropped-prompt panel: no score chips, no validity mark — just the reason.
+  const dp=document.getElementById('dropped-panel');
+  if(dropped.length){
+    let dh=`<div class="skill-section" style="border-left:4px solid #dc2626"><div class="skill-header"><span class="skill-name">⚠ ${dropped.length} dropped prompt${dropped.length>1?'s':''}</span><span style="font-size:.8rem;color:#666">excluded from all metrics — no valid judgment, not counted as ties</span></div>`;
+    dh+=`<table class="dim-table" style="text-align:left"><tr><th>Prompt</th><th>Drop reason</th></tr>`;
+    for(let d of dropped)dh+=`<tr><td>${esc(d.id)}</td><td><span class="flag flag-missing">${esc(d.drop_reason||'unknown')}</span></td></tr>`;
+    dh+=`</table></div>`;
+    dp.innerHTML=dh;
+  } else dp.innerHTML='';
 
   // Use filteredSkills for rendering
   skills=filteredSkills;
@@ -573,6 +607,16 @@ def compute_activation_metrics(skill_flags: dict, scores: list, targets: dict) -
     winners = {}
     for s in scores:
         winners[s["id"]] = s.get("winner", "tie")
+
+    # skill_flags is built from ALL responses (detect_skill_flags) and is NOT
+    # drop-filtered, so it still carries dropped prompt ids. Those ids have no
+    # entry in `winners`, so winners.get(pid) returns None and the prompt
+    # silently falls into the `ties = count - wins - losses` bucket of the
+    # confusion matrix — and inflates precision/recall. `scores` is already the
+    # drop-filtered valid list, so restrict every activation aggregate to its
+    # ids before any dropped prompt can reach them.
+    valid_ids = {s["id"] for s in scores}
+    skill_flags = {pid: fl for pid, fl in skill_flags.items() if pid in valid_ids}
 
     # Compute precision/recall across all prompts
     total_target = 0
@@ -747,6 +791,20 @@ def main():
         print("No scores files found")
         return
 
+    # Partition dropped entries out of EVERY version before any aggregate sees
+    # them. A dropped entry carries all-zero scores and no "winner", so leaving
+    # it in build_skill_data/compute_summary or the serialized prompts that
+    # drive the win-rate JS silently inflates N and manufactures ties — the
+    # exact bug that rendered an all-failed run as green ties. report.py already
+    # drops these; build_review now matches it. The dropped entries are kept
+    # per-version so the HTML can surface them. NOTE: skill_flags are derived
+    # separately from the raw responses and are NOT partitioned here, so
+    # compute_activation_metrics re-filters its flags against the valid score
+    # ids itself (see that function) rather than relying on this partition.
+    dropped_per_version = {}
+    for label in list(score_versions.keys()):
+        score_versions[label], dropped_per_version[label] = partition_dropped(score_versions[label])
+
     prompts, targets = load_prompts(prompts_dir)
     # Load responses per version
     responses_per_version = {}
@@ -789,6 +847,7 @@ def main():
                            "skill_flags_per_version": skill_flags_per_version,
                            "activation_metrics": activation_metrics,
                            "activation_metrics_per_version": activation_metrics_per_version,
+                           "dropped_per_version": dropped_per_version,
                            "version_labels": list(score_versions.keys())},
                           ensure_ascii=False)
 

@@ -5,7 +5,7 @@ import random
 import re
 import time
 
-from .judge import get_bedrock_client, sanitize_for_judge, DIMENSIONS, judge_model_id
+from .judge import get_bedrock_client, sanitize_for_judge, DIMENSIONS, judge_model_id, _converse_scoring, _extract_judge_text
 
 PAIRWISE_SYSTEM_PROMPT = """You are an expert evaluator for healthcare and life sciences AI responses.
 You will see two responses (Response A and Response B) to the same domain question.
@@ -32,11 +32,16 @@ def score_pairwise(
     domain: str,
     model: str | None = None,
     retries: int = 3,
+    max_tokens: int = 2048,
+    temperature: float = 0.0,
 ) -> dict:
     """Score two responses pairwise. Returns dict with scores for both + position mapping.
 
     model: None resolves at call time via judge_model_id() (EVAL_JUDGE_MODEL_ID
         env var > built-in fallback).
+    max_tokens / temperature / retries: judge inference knobs. Defaults match
+        the historical hardcoded values; run.py threads the eval/config.yaml
+        values in so editing config is no longer silently ignored.
     """
     # Late-bound default: resolve the judge model at call time rather than as an
     # early-bound parameter default. Do NOT restore `= DEFAULT_JUDGE_MODEL_ID`
@@ -56,15 +61,18 @@ def score_pairwise(
     sys_prompt = PAIRWISE_SYSTEM_PROMPT.format(domain=domain)
     user_prompt = f"Question:\n{prompt_text}\n\nResponse A:\n{a_text}\n\nResponse B:\n{b_text}"
 
+    # Build inferenceConfig ONCE. temperature is included only when set (None
+    # omits it); _converse_scoring additionally strips any parameter a model
+    # rejects as deprecated/unsupported. The (possibly stripped) dict persists
+    # across retry attempts so a known-bad parameter is never re-sent.
+    inference_config = {"maxTokens": max_tokens}
+    if temperature is not None:
+        inference_config["temperature"] = temperature
+
     for attempt in range(retries):
         try:
-            resp = client.converse(
-                modelId=model,
-                system=[{"text": sys_prompt}],
-                messages=[{"role": "user", "content": [{"text": user_prompt}]}],
-                inferenceConfig={"maxTokens": 2048},
-            )
-            text = resp["output"]["message"]["content"][0]["text"]
+            resp = _converse_scoring(client, model, sys_prompt, user_prompt, inference_config)
+            text = _extract_judge_text(resp)
             json_match = re.search(r"\{.*\}", text, re.DOTALL)
             if json_match:
                 result = json.loads(json_match.group())
@@ -88,7 +96,10 @@ def score_pairwise(
             return {
                 "baseline": {d: 0 for d in DIMENSIONS},
                 "skills": {d: 0 for d in DIMENSIONS},
-                "winner": "tie",
+                # Unparseable judge output is a judge FAILURE, not a tie. Flag it
+                # with winner=="error" so run.py drops the prompt rather than
+                # recording a silent 5-5 tie from the all-zero scores.
+                "winner": "error",
                 "position": a_is,
                 "reasoning": "Failed to parse judge response",
             }
@@ -101,7 +112,9 @@ def score_pairwise(
             return {
                 "baseline": {d: 0 for d in DIMENSIONS},
                 "skills": {d: 0 for d in DIMENSIONS},
-                "winner": "tie",
+                # A judge EXCEPTION must never silently become a tie. Flag it
+                # with winner=="error" so run.py drops the prompt with a reason.
+                "winner": "error",
                 "position": a_is,
                 "reasoning": f"Judge error: {e}",
             }

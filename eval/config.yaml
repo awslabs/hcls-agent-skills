@@ -7,6 +7,7 @@ judge:
 execution:
   timeout_seconds: 1200
   parallel: 1
+  max_tokens: 16384
   kiro_cmd: kiro-cli
   skills_agent: hcls-eval
 

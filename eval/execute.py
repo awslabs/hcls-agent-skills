@@ -14,9 +14,9 @@ from concurrent.futures import ThreadPoolExecutor
 from subprocess import DEVNULL, PIPE
 
 try:
-    from .aws_config import region_kwargs, execution_model_id
+    from .aws_config import region_kwargs, execution_model_id, execution_max_tokens
 except ImportError:  # imported as a top-level module
-    from aws_config import region_kwargs, execution_model_id
+    from aws_config import region_kwargs, execution_model_id, execution_max_tokens
 
 logger = logging.getLogger(__name__)
 
@@ -64,6 +64,12 @@ DEFAULT_SKILLS_PATH = "./skills/"
 DEFAULT_BACKEND = "strands"
 EXTRA_TOOLS: list[str] = []
 
+# None means "not overridden" — resolve from aws_config at call time, exactly
+# like DEFAULT_MODEL_ID. Set by run.py's --max-tokens. Do NOT initialize this to
+# a resolved int: that re-freezes the value at import time and defeats the whole
+# point of execution_max_tokens() being a function.
+DEFAULT_MAX_TOKENS: int | None = None
+
 
 def _resolve_model_id(model_id: str | None) -> str:
     """Resolve the effective execution model, late-bound at call time.
@@ -73,6 +79,58 @@ def _resolve_model_id(model_id: str | None) -> str:
     fold this into a default-argument expression — that re-freezes at def time.
     """
     return model_id or DEFAULT_MODEL_ID or execution_model_id()
+
+
+def _resolve_max_tokens(max_tokens: int | None) -> int:
+    """Resolve the effective execution max_tokens, late-bound at call time.
+
+    Precedence: explicit argument > module-level DEFAULT_MAX_TOKENS override
+    > execution_max_tokens() (EVAL_MAX_TOKENS env var > built-in fallback).
+    Mirrors _resolve_model_id; do NOT fold into a default-argument expression.
+
+    CRITICAL: the baseline and skills conditions MUST receive the IDENTICAL
+    value. The arms may differ ONLY in skill availability — never in token
+    ceiling — or the comparison is confounded. This resolver is condition-blind
+    by design; keep it that way.
+    """
+    return max_tokens or DEFAULT_MAX_TOKENS or execution_max_tokens()
+
+
+def _is_max_tokens_error(e: Exception) -> bool:
+    """True if ``e`` is Strands' MaxTokensReachedException.
+
+    Imported defensively: try the documented path, then fall back to matching
+    on the class name so a moved import path across strands versions cannot
+    silently stop us from recognising truncation. The import is kept inside the
+    function so execute.py stays importable without strands installed.
+    """
+    try:
+        from strands.types.exceptions import MaxTokensReachedException
+        if isinstance(e, MaxTokensReachedException):
+            return True
+    except Exception:
+        pass
+    return type(e).__name__ == "MaxTokensReachedException"
+
+
+def _recover_partial_text(agent) -> str:
+    """Pull the partial assistant text Strands preserves when it truncates.
+
+    MaxTokensReachedException itself carries only a message string; the
+    truncated content is appended to the conversation history (see strands'
+    recover_message_on_max_tokens_reached). Returns "" if nothing is
+    recoverable, so callers can fall back to a bare marker.
+    """
+    try:
+        for msg in reversed(agent.messages):
+            if msg.get("role") != "assistant":
+                continue
+            parts = [b["text"] for b in msg.get("content", []) if "text" in b]
+            if parts:
+                return "\n".join(parts).strip()
+    except (AttributeError, TypeError, KeyError):
+        pass
+    return ""
 
 _ANSI_RE = re.compile(r'\x1b\[[0-9;]*[a-zA-Z]')
 
@@ -119,13 +177,17 @@ def _get_extra_tools():
     return tools
 
 
-def _strands_build_agent(condition: str, model_id: str | None = None):
+def _strands_build_agent(condition: str, model_id: str | None = None, max_tokens: int | None = None):
     """Build a Strands Agent for the given condition."""
     # Late-bound default: resolve DEFAULT_MODEL_ID at call time, not def time.
     # An early-bound `= DEFAULT_MODEL_ID` freezes the value when the function is
     # defined, so a later CLI/module override would be ignored. Do NOT "tidy"
     # this back to a default-argument expression.
     model_id = _resolve_model_id(model_id)
+    # Same-value invariant: both conditions share ONE max_tokens (see
+    # _resolve_max_tokens). The arms may differ only in skill availability, so
+    # never make this condition-dependent.
+    max_tokens = _resolve_max_tokens(max_tokens)
     from strands import Agent
     from strands.models.bedrock import BedrockModel
     try:
@@ -135,7 +197,9 @@ def _strands_build_agent(condition: str, model_id: str | None = None):
 
     # Resolve region the same way as every other client; region_name is omitted
     # (not passed as None) when unresolved so BedrockModel keeps its own default.
-    model = BedrockModel(model_id=model_id, **region_kwargs())
+    # Strands' BedrockModel only sends maxTokens when configured, so we pass it
+    # explicitly rather than inheriting an unknown provider default.
+    model = BedrockModel(model_id=model_id, max_tokens=max_tokens, **region_kwargs())
     extra_tools = _get_extra_tools()
     if condition == "skills":
         skills_plugin = AgentSkills(skills=DEFAULT_SKILLS_PATH)
@@ -171,12 +235,13 @@ _STRANDS_EXECUTOR = ThreadPoolExecutor(max_workers=10)
 
 async def _execute_strands(
     prompt_id: str, prompt_text: str, condition: str,
-    results_dir: Path, timeout: int, model_id: str,
+    results_dir: Path, timeout: int, model_id: str, max_tokens: int | None = None,
 ) -> dict:
     """Execute via Strands SDK."""
     loop = asyncio.get_event_loop()
+    agent = None
     try:
-        agent = _strands_build_agent(condition, model_id)
+        agent = _strands_build_agent(condition, model_id, max_tokens)
         future = loop.run_in_executor(_STRANDS_EXECUTOR, _strands_invoke, agent, prompt_text)
         response = await asyncio.wait_for(future, timeout=timeout)
         _reset_fail_fast()
@@ -187,6 +252,22 @@ async def _execute_strands(
     except EvalAbortError:
         raise
     except Exception as e:
+        # Handle MaxTokensReachedException SPECIFICALLY, before the generic
+        # branch, so a truncated-but-partial response is preserved rather than
+        # discarded. Matched version-robustly because the import path has
+        # drifted across strands releases (see _is_max_tokens_error).
+        if _is_max_tokens_error(e):
+            effective_max = _resolve_max_tokens(max_tokens)
+            partial = _recover_partial_text(agent)
+            logger.warning(
+                f"Truncated response for {prompt_id} ({condition}): model hit the "
+                f"max_tokens={effective_max} output limit. Raise it with --max-tokens "
+                f"or EVAL_MAX_TOKENS. Error: {e}"
+            )
+            # [TRUNCATED] marker keeps this distinguishable from [TIMEOUT]/[ERROR]
+            # so run.py can treat it as not-validly-scorable.
+            text = f"[TRUNCATED] {partial}" if partial else "[TRUNCATED]"
+            return {"text": text, "activated_skills": [], "truncated": True}
         _check_fail_fast(e)
         logger.error(f"Error for {prompt_id} ({condition}): {e}")
         return {"text": f"[ERROR] {type(e).__name__}: {e}", "activated_skills": []}
@@ -253,6 +334,7 @@ async def execute_prompt(
     kiro_cmd: str = "kiro-cli",
     model_id: str | None = None,
     backend: str = DEFAULT_BACKEND,
+    max_tokens: int | None = None,
 ) -> dict:
     """Execute a prompt under a condition, return {id, condition, text, cached}.
 
@@ -261,18 +343,32 @@ async def execute_prompt(
     model_id: Bedrock model ID for the strands backend. None resolves at call
         time via: explicit argument > module DEFAULT_MODEL_ID override >
         execution_model_id() (EVAL_MODEL_ID env var > built-in fallback).
+    max_tokens: output token ceiling for the strands backend. None resolves at
+        call time via: explicit argument > module DEFAULT_MAX_TOKENS override >
+        execution_max_tokens() (EVAL_MAX_TOKENS env var > built-in fallback).
     """
     # Late-bound default (see _strands_build_agent): resolve here so metadata
     # records the model actually used and CLI/module overrides take effect.
     model_id = _resolve_model_id(model_id)
+    # Resolve the token ceiling here too so metadata self-documents the run's
+    # limit. Both conditions resolve the SAME value — never condition-dependent.
+    max_tokens = _resolve_max_tokens(max_tokens)
     cache_file = results_dir / f"{prompt_id}_{condition}.json"
     if cache_file.exists():
-        return json.loads(cache_file.read_text()) | {"cached": True}
+        cached = json.loads(cache_file.read_text())
+        cached_text = cached.get("text", "")
+        # Transient failures must NOT be served from cache: re-invoke so the next
+        # run gets a real attempt. [ERROR] (endpoint/throttle/auth) and [TIMEOUT]
+        # are transient. [TRUNCATED] is NOT transient — it carries real partial
+        # model output — so it REMAINS a valid cache hit. This also self-heals
+        # any already-poisoned entries written before the write-guard below.
+        if not (cached_text.startswith("[ERROR]") or cached_text.startswith("[TIMEOUT]")):
+            return cached | {"cached": True}
 
     if backend == "kiro-cli":
         response = await _execute_kiro(prompt_id, prompt_text, condition, results_dir, timeout, kiro_cmd)
     else:
-        response = await _execute_strands(prompt_id, prompt_text, condition, results_dir, timeout, model_id)
+        response = await _execute_strands(prompt_id, prompt_text, condition, results_dir, timeout, model_id, max_tokens)
 
     text = response["text"]
     activated_skills = response.get("activated_skills", [])
@@ -283,11 +379,23 @@ async def execute_prompt(
     result["metadata"] = {
         "backend": backend,
         "model": (DEFAULT_KIRO_MODEL or "auto") if backend == "kiro-cli" else model_id,
+        "max_tokens": max_tokens,
         "tools": EXTRA_TOOLS if EXTRA_TOOLS else [],
         "skills_path": DEFAULT_SKILLS_PATH if condition == "skills" else None,
         "harness_version": _get_harness_version(backend),
     }
-    cache_file.write_text(json.dumps(result, indent=2))
+    # Surface truncation so downstream (run.py/report.py) can account for it and
+    # a run's partial responses are attributable, not silently dropped.
+    if response.get("truncated"):
+        result["metadata"]["truncated"] = True
+    # Only cache non-transient outcomes. [ERROR] (endpoint/throttle/auth) and
+    # [TIMEOUT] are transient failures: caching them POISONS subsequent runs by
+    # serving the error back instead of retrying, so we leave NO cache entry.
+    # [TRUNCATED] is DIFFERENT — it contains real partial model output, so it IS
+    # cached (and stays distinguishable downstream from a transient failure).
+    is_transient_failure = text.startswith("[ERROR]") or text.startswith("[TIMEOUT]")
+    if not is_transient_failure:
+        cache_file.write_text(json.dumps(result, indent=2))
     return result | {"cached": False}
 
 
@@ -299,6 +407,7 @@ async def run_all(
     kiro_cmd: str = "kiro-cli",
     model_id: str | None = None,
     backend: str = DEFAULT_BACKEND,
+    max_tokens: int | None = None,
 ) -> list[dict]:
     """Execute all prompts under both conditions.
 
@@ -312,11 +421,19 @@ async def run_all(
             time via: explicit argument > module DEFAULT_MODEL_ID override >
             execution_model_id() (EVAL_MODEL_ID env var > built-in fallback).
         backend: 'strands' (default) or 'kiro-cli'.
+        max_tokens: output token ceiling for strands backend. None resolves at
+            call time via: explicit argument > module DEFAULT_MAX_TOKENS override
+            > execution_max_tokens() (EVAL_MAX_TOKENS env var > built-in
+            fallback). The SAME value is used for BOTH conditions — the arms may
+            differ ONLY in skill availability, never in token ceiling.
     """
     # Late-bound default (see _strands_build_agent): resolve here so a CLI
     # --model override of DEFAULT_MODEL_ID is honored. Do NOT restore
     # `= DEFAULT_MODEL_ID` in the signature.
     model_id = _resolve_model_id(model_id)
+    # Resolve once for the whole run so every prompt and both conditions share
+    # the identical ceiling (see _resolve_max_tokens).
+    max_tokens = _resolve_max_tokens(max_tokens)
     if backend == "kiro-cli":
         ensure_eval_agent()
     results_dir.mkdir(parents=True, exist_ok=True)
@@ -326,7 +443,7 @@ async def run_all(
         async with sem:
             return await execute_prompt(
                 prompt["id"], prompt["prompt"], condition,
-                results_dir, timeout, kiro_cmd, model_id, backend,
+                results_dir, timeout, kiro_cmd, model_id, backend, max_tokens,
             )
 
     tasks = []

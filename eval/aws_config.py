@@ -38,6 +38,14 @@ def region_kwargs() -> dict:
 FALLBACK_EXECUTION_MODEL_ID = "global.anthropic.claude-sonnet-5"
 FALLBACK_JUDGE_MODEL_ID = "global.anthropic.claude-opus-5"
 
+# Built-in fallback for the execution output token ceiling. Set high enough that
+# well-formed answers in BOTH conditions complete (skills responses are longer),
+# while still bounding runaway generation. Raised from 8192 to 16384 because at
+# 8192 a real 10-prompt ml-researcher run truncated 4 of 20 responses
+# (ml-researcher 05_baseline, 08_baseline, 09_baseline, 09_skills), disqualifying
+# 3 of 10 prompts from scoring. See execution_max_tokens().
+FALLBACK_EXECUTION_MAX_TOKENS = 16384
+
 
 # These are FUNCTIONS, not module constants, for the same reason resolve_region()
 # is: the env var must be read at CALL time, not frozen at IMPORT time. An
@@ -52,6 +60,17 @@ def execution_model_id() -> str:
 def judge_model_id() -> str:
     """Resolve the judge Bedrock model: EVAL_JUDGE_MODEL_ID env var > built-in fallback."""
     return os.environ.get("EVAL_JUDGE_MODEL_ID") or FALLBACK_JUDGE_MODEL_ID
+
+
+def execution_max_tokens() -> int:
+    """Resolve the execution output token ceiling: EVAL_MAX_TOKENS env var > built-in fallback.
+
+    A FUNCTION, not a module constant, for the same late-binding reason as
+    execution_model_id(): EVAL_MAX_TOKENS must be read at CALL time so an
+    in-process consumer that sets it after import still sees its value.
+    """
+    env = os.environ.get("EVAL_MAX_TOKENS")
+    return int(env) if env else FALLBACK_EXECUTION_MAX_TOKENS
 
 
 def no_region_message(error: object) -> str:

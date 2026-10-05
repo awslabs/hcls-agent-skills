@@ -94,13 +94,15 @@ def validate_credentials(
     """Validate AWS credentials and model invocability before eval execution.
 
     Checks:
-    1. sts:GetCallerIdentity — confirms valid credentials
-    2. bedrock:ListFoundationModels — confirms Bedrock control-plane access
-    3. A minimal bedrock-runtime Converse against each model that will be used,
-       proving it is actually invocable (step 1-2 never touch the model itself).
+    1. sts:GetCallerIdentity — confirms valid credentials. Requires no IAM
+       permission, so it is safe even for restricted workshop roles.
+    2. A minimal bedrock-runtime Converse against each model that will be used,
+       proving it is actually invocable (step 1 never touches the model itself).
 
     check_execution / check_judge gate which models are probed, so a run can
-    validate either, both, or neither. skip_model_check bypasses step 3 only.
+    validate either, both, or neither. skip_model_check bypasses ALL Bedrock
+    calls (step 2 is the only one), leaving just the STS identity check — the
+    way to run preflight in an environment where Bedrock access is restricted.
 
     exec_model / judge_model: None resolves at call time via execution_model_id()
     / judge_model_id() so preflight reports the model that will actually run.
@@ -130,23 +132,7 @@ def validate_credentials(
     arn = identity["Arn"]
     print(f"✓ AWS credentials valid: account={account}, arn={arn}")
 
-    # 2. Validate Bedrock access
-    try:
-        bedrock = boto3.client("bedrock", **region_kwargs())
-        bedrock.list_foundation_models()
-    except NoRegionError as e:
-        # Caught before BotoCoreError (its superclass) so the message is legible:
-        # a missing region should not masquerade as a Bedrock permissions failure.
-        raise PreflightError(no_region_message(e)) from e
-    except (BotoCoreError, ClientError) as e:
-        raise PreflightError(
-            f"Bedrock access check failed. Ensure your role has bedrock:ListFoundationModels permission.\n"
-            f"Error: {e}"
-        ) from e
-
-    print("✓ Bedrock access confirmed")
-
-    # 3. Prove each model that will run is actually invocable. Build the runtime
+    # 2. Prove each model that will run is actually invocable. Build the runtime
     # client only when we will probe, so skip_model_check avoids a needless
     # client (and any region resolution it would force).
     if skip_model_check:
