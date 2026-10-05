@@ -8,7 +8,7 @@ Automated evaluation measuring whether domain skills improve agent responses for
 uv venv --python 3.12 && source .venv/bin/activate
 uv pip install -e ".[dev]"
 
-# Recommended: v9 methodology (Strands + Sonnet 4.6 + think tool)
+# Recommended: v9 methodology (Strands + think tool)
 python -m eval.run --parallel 2 --version v9 --pairwise \
   --model us.anthropic.claude-sonnet-4-6-20250514-v1:0 --tools think
 
@@ -18,7 +18,7 @@ open eval/results/review.html
 
 > ⚠️ **Cost & Time Estimate**
 >
-> A full eval run (410 prompts × 2 conditions + 410 pairwise judgments) costs **~$126** on-demand in us-east-1:
+> A full eval run (410 prompts × 2 conditions + 410 pairwise judgments) costs **~$126** on-demand:
 >
 > | Phase | Model | Estimated Cost |
 > |-------|-------|---------------|
@@ -32,10 +32,10 @@ open eval/results/review.html
 
 - **Python 3.12+** managed via [uv](https://docs.astral.sh/uv/)
 - **AWS credentials:** configured via `~/.aws/credentials` or environment variables
-- **Amazon Bedrock access:** model access enabled for:
-  - `us.anthropic.claude-sonnet-4-6` (execution, default)
-  - `us.anthropic.claude-opus-4-7` (LLM judge)
-- **Region:** `us-east-1` (default Bedrock region)
+- **Amazon Bedrock access:** model access enabled for the `global.*` cross-region inference profiles the eval requests by default:
+  - `global.anthropic.claude-sonnet-5` (execution, default — override with `EVAL_MODEL_ID` or `--model`)
+  - `global.anthropic.claude-opus-5` (LLM judge — override with `EVAL_JUDGE_MODEL_ID`)
+- **Region:** set via `AWS_REGION` (falls back to `AWS_DEFAULT_REGION`, then your AWS profile/config). Every step — execution, generation, judging, and preflight — uses this one resolved region; nothing is hardcoded. If no region is resolvable, the preflight check fails with an actionable message.
 
 ## Architecture
 
@@ -43,7 +43,7 @@ open eval/results/review.html
 eval/
 ├── run.py                  # CLI orchestrator — execute → judge → report
 ├── execute.py              # Dual-backend executor (strands SDK or kiro-cli)
-├── judge.py                # Independent scoring via Bedrock Opus 4.7
+├── judge.py                # Independent scoring via the configured Bedrock judge model
 ├── judge_pairwise.py       # Pairwise scoring (both responses in one call)
 ├── report.py               # Generates JSON + markdown reports
 ├── build_review.py         # Generates interactive HTML review
@@ -81,7 +81,14 @@ python -m eval.run [OPTIONS]
 Execution:
   --backend {strands,kiro-cli}  Execution backend (default: strands)
   --model MODEL_ID              Bedrock model ID for execution (strands only)
-                                Default: us.anthropic.claude-sonnet-4-5-20250929-v1:0
+                                Default: global.anthropic.claude-sonnet-5 (or $EVAL_MODEL_ID)
+  --max-tokens N                Max output tokens for execution (strands only)
+                                Precedence: --max-tokens > $EVAL_MAX_TOKENS >
+                                config.yaml > fallback (16384). Applied identically
+                                to both conditions.
+  --skip-model-check            Skip the preflight Converse probe that verifies each
+                                model is invocable. The STS check still runs; no
+                                Bedrock access is verified.
   --tools TOOL [TOOL ...]       Tools to provide to the agent (e.g., --tools think)
                                 Adds specified tools to both conditions symmetrically
   --kiro-model MODEL            Model override for kiro-cli backend
@@ -92,6 +99,9 @@ Execution:
 
 Judging:
   --pairwise                    Use pairwise judge (recommended, most sensitive)
+  --judge-model MODEL_ID        Bedrock model ID for the LLM judge
+                                Precedence: --judge-model > $EVAL_JUDGE_MODEL_ID >
+                                config.yaml > fallback (global.anthropic.claude-opus-5)
   --skip-execution              Skip execution, re-judge cached responses
   --skip-judge                  Skip judging, just generate report
 
@@ -124,7 +134,7 @@ python -m eval.run --parallel 2 --version v9 --pairwise \
 
 This will:
 1. Execute all 410 prompts under both conditions (baseline = bare agent, skills = agent with AgentSkills plugin)
-2. Score all 820 responses via Claude Opus 4.7 pairwise judge
+2. Score all 820 responses via the configured Bedrock judge model (pairwise)
 3. Generate `report_v9.md` and `scores_v9.json`
 
 ### Re-judge only (skip execution, use cached responses)
@@ -138,6 +148,8 @@ python -m eval.run --skip-execution --version v9 --pairwise
 ```bash
 python -m eval.run --model us.anthropic.claude-sonnet-4-20250514-v1:0 --version v5 --pairwise --tools think
 ```
+
+> As above, this pins the **execution** model via `--model`, which is **now honored** (previously inert on the Strands backend). This is a legacy *regional* ID; a `global.*`-only account will get `AccessDeniedException` unless legacy regional model access is enabled. (The command requests a Sonnet 4 ID, but because the flag was ignored at the time, v5 actually ran the then-hardcoded Sonnet 4.5 the table lists.) v5 was judged by Claude Opus 4.7; that exact judge model ID is not recorded here, so to reproduce v5's judging prefix the command with `EVAL_JUDGE_MODEL_ID=<the Opus 4.7 Bedrock model ID that run used>`. Without it the judge defaults to the `global.anthropic.claude-opus-5` profile in `config.yaml`.
 
 ### Build interactive HTML review
 
@@ -211,7 +223,7 @@ python eval/generate_prompts.py --skill genomic-variant-interpretation --force
 
 The `--skill <name>` flag scopes generation to a single skill's prompt files in `eval/prompts/single/` and any cross-skill combos that include it. Omit `--skill` to regenerate the full suite. Use `--count <n>` to override the default of 10 prompts/skill — e.g. `--count 30` for a contributor evaluation run.
 
-Uses Claude Sonnet 4 (`us.anthropic.claude-sonnet-4-6`) via Bedrock. Generates 10 prompts per skill by default, with varying difficulty (3 easy, 4 intermediate, 3 hard); counts above 10 add further prompts at the same difficulty mix.
+Uses `global.anthropic.claude-sonnet-5` via Bedrock (override with `EVAL_MODEL_ID`). Generates 10 prompts per skill by default, with varying difficulty (3 easy, 4 intermediate, 3 hard); counts above 10 add further prompts at the same difficulty mix.
 
 ## Configuration
 
@@ -219,7 +231,7 @@ Uses Claude Sonnet 4 (`us.anthropic.claude-sonnet-4-6`) via Bedrock. Generates 1
 
 ```yaml
 judge:
-  model: us.anthropic.claude-opus-4-7
+  model: global.anthropic.claude-opus-5
   max_tokens: 2048
   retries: 3
 
@@ -232,54 +244,40 @@ execution:
 
 The `execution.kiro_cmd` and `execution.skills_agent` fields are only used by the `kiro-cli` backend. The strands backend reads model and skills path from CLI flags (or defaults).
 
-## Key Design Decisions
+**Environment overrides:**
 
-- **Baseline isolation:** Strands baseline uses a bare `Agent()` with no plugins; kiro-cli baseline runs from a temp directory with no `.kiro/`
-- **Response sanitization:** Tool-call artifacts stripped before judging so the judge can't identify which condition produced the response
-- **Position randomization (v3+):** 50/50 chance which response is shown as A vs B, canceling position bias
-- **Score caching:** Responses and scores cached to disk — re-runs only process missing data
-- **Paired t-test:** Per-skill significance via `scipy.stats.ttest_rel` on paired observations
-- **Self-contained:** The strands backend requires only AWS credentials — no CLI tools, subscriptions, or local agents
+| Variable | Controls | Default |
+|---|---|---|
+| `AWS_REGION` → `AWS_DEFAULT_REGION` | Region for execution, generation, judging, and preflight. If neither is set, boto3's own resolution (profile / config / instance metadata) applies. | boto3 resolution |
 
-## Judging Versions
+**Model overrides (for restricted accounts):** If your account can invoke only certain Bedrock models, substitute a model you *can* invoke using any lever below. Each model role resolves independently, at call time:
 
-| Version | Method | Backend | Model | Notes | Win Rate |
-|---|---|---|---|---|---|
-| v1 | Independent, raw | kiro-cli | — | Historical baseline | — |
-| v2 | Independent, sanitized | kiro-cli | — | Absolute quality scores | — |
-| v3 | Pairwise, sanitized + randomized | kiro-cli | Sonnet 4.5 | First pairwise (gold standard at time) | 69.5% |
-| v5-strands | Pairwise, sanitized + randomized | Strands | Sonnet 4.5 | Bare baseline (no tools) | 88.5% |
-| v7-strands-think | Pairwise, sanitized + randomized | Strands | Sonnet 4.5 | Think tool added (no measurable effect) | 88.0% |
-| v8-kiro-sonnet46 | Pairwise, sanitized + randomized | kiro-cli | Sonnet 4.6 | Full tools; asymmetric isolation issue | 64.6% |
-| v9-strands-think-sonnet46 | Pairwise, sanitized + randomized | Strands | Sonnet 4.6 | Think tool; **recommended primary** | 85.9% |
+| Model role | CLI flag | Env var | Config file | Built-in fallback |
+|---|---|---|---|---|
+| Execution + prompt generation | `--model` (`eval.run` and `eval.generate_prompts`) | `EVAL_MODEL_ID` | — | `global.anthropic.claude-sonnet-5` |
+| Judge | `--judge-model` (`eval.run`) | `EVAL_JUDGE_MODEL_ID` | `eval/config.yaml` → `judge.model` | `global.anthropic.claude-opus-5` |
 
-**Methodology note:** v3 was the gold standard when published (reported in `TECHNICAL_REPORT.md`). v9 is now the recommended primary measurement — it uses a symmetric, artifact-free harness (Strands) with model pinning (Sonnet 4.6) and a think tool for both conditions. The 70→86% difference between v3 and v9 is explained by harness effects (tool artifact noise in kiro-cli), not skill quality. Anchor on **critical thinking** as the least-confounded dimension: skills improve reasoning quality 77–85% of the time regardless of harness.
+**Precedence (highest wins):** **CLI flag > environment variable > `eval/config.yaml` (judge only) > built-in fallback.** The fallbacks live in `eval/aws_config.py` as `FALLBACK_EXECUTION_MODEL_ID` / `FALLBACK_JUDGE_MODEL_ID`, and resolution goes through the call-time functions `execution_model_id()` / `judge_model_id()` — so an env var set in-process (a test, a notebook, a wrapper script) is honored rather than frozen at import.
 
-**Harness effects:** The execution harness significantly affects measured win rates due to response artifact contamination in agentic harnesses. See [`HARNESS_EFFECTS.md`](./HARNESS_EFFECTS.md) for a detailed analysis of how tool interleaving, MCP noise, and asymmetric isolation confound pairwise coherence judgments.
+**Preflight model probe:** Before executing, `eval.run` validates credentials (`sts:GetCallerIdentity`) and — critically — performs a **minimal real invocation** (a 1-token `bedrock-runtime` Converse) against each model it will use. Because `list_foundation_models` does not enumerate `global.*` cross-region inference profiles, this probe is the only check that exercises IAM, model enablement, and region routing together. An `AccessDeniedException` therefore surfaces **at preflight, naming the exact failing model and every override path**, instead of failing mid-run. Transient errors (throttling, service unavailable) warn and continue rather than aborting. Pass `--skip-model-check` to skip the Converse probe entirely — this leaves the STS identity check **alone**, so **no Bedrock access is verified at all**. A restricted workshop role can pass preflight with `--skip-model-check` and still fail at the first real invocation.
 
 ## Interpreting Results
 
 - **Overall delta:** Mean score difference (skills - baseline) across all prompts and dimensions
-- **Win rate (v3+):** Percentage of prompts where the judge declared skills the winner
+- **Win rate:** Percentage of prompts where the judge declared skills the winner
 - **Per-skill N:** Number of valid prompts (excludes timeouts). "activated" count shows how many had the intended skill loaded.
 - **Sig? (✓):** Paired t-test p < 0.05 for that dimension
 - **Skill flags:** ✓ Intended loaded, ⚠ Unintended loaded, ✗ Intended not loaded, ○ No skill loaded
 - **Cross-skill entries (3 of 41):** These rows test multi-skill activation and are labeled with a `cross-skill` category. Unlike single-skill entries, they measure whether the agent can combine knowledge from 2–3 skills in one response. A win here indicates effective skill composition, not the quality of any individual skill.
 
-## Reproducibility
+**Truncated responses.** When an execution response hits the output token ceiling, `execute.py` preserves the partial text behind a `[TRUNCATED]` marker and sets `metadata["truncated"] = True` rather than discarding it. `run.py` guards `[TRUNCATED]` responses out of judging alongside `[TIMEOUT]`/`[ERROR]`: they score zero on every dimension and are never rescored (so a later re-judge pass skips them too). A run with many truncations is scoring fewer valid prompts than it appears to — re-run it with a higher `--max-tokens` rather than trusting the result.
 
-To reproduce results exactly:
+## Running the tests
 
-1. **Pin the model.** Always use `--model` with the full model ID (e.g., `us.anthropic.claude-sonnet-4-6-20250514-v1:0`). Without pinning, Bedrock may route to a different model version.
+`eval/tests/` holds 18 unit tests (no AWS or network calls). Run them with:
 
-2. **Check response metadata.** Each cached response file in `eval/results/responses/` includes metadata (model ID, backend, tools, timestamp). Verify these match your intended configuration before re-judging.
-
-3. **Symmetric conditions.** Both baseline and skills conditions must have identical environment access — the ONLY variable should be skill content. See the [eval-setup-guidelines steering doc](../.kiro/steering/eval-setup-guidelines.md) for detailed parity requirements and known anti-patterns.
-
-4. **Version label.** Use a unique `--version` tag for each configuration change to avoid mixing results from different setups.
-
-Example reproducing v9:
 ```bash
-python -m eval.run --parallel 2 --version v9 --pairwise \
-  --model us.anthropic.claude-sonnet-4-6-20250514-v1:0 --tools think
+python -m pytest eval/tests -p no:cacheprovider -p no:asyncio -q
 ```
+
+The `-p no:asyncio` / `-p no:cacheprovider` flags sidestep a local `pytest_asyncio` collection error. CI runs the same suite via [`.github/workflows/eval-tests.yml`](../.github/workflows/eval-tests.yml).
