@@ -1,0 +1,108 @@
+# MkDocs Material configuration for the public workshop site.
+#
+# The participant-facing content lives in workshop/*.md at the repo root and the
+# landing page is index.md at the repo root. To serve index.md at `/` and the
+# workshop pages under `/workshop/` WITHOUT copying or moving any file, docs_dir
+# must be the repo root (`.`). Plain MkDocs refuses that ("docs_dir should not
+# be the parent directory of the config file"), so we use the mkdocs-same-dir
+# plugin, which is purpose-built to allow `docs_dir: .` (and to keep the site/
+# output dir out of the sources). `search` is listed explicitly because naming
+# any plugin disables the default search plugin that Material's search needs.
+site_name: Agent Skills for Healthcare & Life Sciences — Workshop
+site_description: A 90-minute hands-on workshop on using, extending, and evaluating HCLS agent skills.
+site_url: https://awslabs.github.io/hcls-agent-skills/
+repo_url: https://github.com/awslabs/hcls-agent-skills
+repo_name: awslabs/hcls-agent-skills
+
+docs_dir: .
+
+# MkDocs defaults to use_directory_urls: true, which emits workshop/setup/index.html
+# and links to /workshop/setup/. AWS Amplify Hosting is not documented to auto-resolve
+# a directory-style request to its index.html, so we build flat .html filenames
+# (workshop/setup.html) that resolve on any static host with no rewrite rules. This
+# makes URLs end in .html.
+use_directory_urls: false
+
+plugins:
+  - search
+  - same-dir
+
+# Allowlist via gitignore semantics (MkDocs 1.6+): exclude every top-level entry,
+# then re-include only the pages that belong on the public site. This drops the
+# skills/, eval/, examples/, tests/, agents/, site/ trees and every root markdown
+# file in one stroke. README.md MUST stay excluded — MkDocs would otherwise map
+# it to the same `/` URL as index.md and raise a conflict. workshop/instructor-guide.md
+# and workshop/index.md are deliberately NOT re-included: the instructor guide is
+# facilitator-only and must never reach the public site.
+exclude_docs: |
+  /*
+  # The Material theme's static files (CSS/JS/fonts) enter the same Files
+  # collection with the top-level src path `assets/...`, so the `/*` line above
+  # excludes the whole theme asset tree and every page renders unstyled. Re-include
+  # the directory wholesale (gitignore semantics) so all hashed assets flow through
+  # without enumerating fragile per-file hashes. The repo has no top-level `assets/`
+  # of its own, so this only re-admits theme output.
+  !/assets/
+  !/index.md
+  !/workshop/
+  /workshop/*
+  !/workshop/overview.md
+  !/workshop/setup.md
+  !/workshop/module-1.md
+  !/workshop/module-2.md
+  !/workshop/module-3.md
+
+# module-3.md's reference to the eval docs (which live only in the GitHub repo,
+# not on this site) is now an absolute GitHub URL
+# (https://github.com/awslabs/hcls-agent-skills/blob/main/eval/README.md), so it
+# no longer needs to resolve against the built site. With no unresolvable
+# internal links left, "not found" link validation stays at the default `warn`
+# so --strict surfaces any future broken internal link.
+# anchors/absolute_links keep their defaults so other link classes still surface.
+validation:
+  links:
+    not_found: warn
+
+theme:
+  name: material
+  features:
+    - navigation.tabs      # top-level sections as tabs (laptop + phone friendly)
+    - navigation.sections  # group the workshop pages in the sidebar
+    - navigation.top       # back-to-top button on long module pages
+    - content.code.copy    # copy button on code blocks (participants paste prompts)
+    - content.tabs.link    # link content tabs so a chosen harness tab stays selected
+    - toc.follow           # table of contents tracks scroll position
+    - search.highlight     # highlight search terms on the target page
+  palette:
+    # Light/dark toggle so participants can pick a comfortable theme.
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition             # the workshop uses note/tip/warning callouts
+  - pymdownx.details       # collapsible blocks (<details> in the modules)
+  - pymdownx.superfences   # nested/fenced code blocks
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+# Explicit nav. Labels are shortened from each file's real H1 to fit the sidebar
+# (e.g. "Module 1: Using Skills (30 min)" -> "Module 1: Using Skills").
+nav:
+  - Home: index.md
+  - Workshop:
+      - Overview: workshop/overview.md
+      - Setup: workshop/setup.md
+      - 'Module 1: Using Skills': workshop/module-1.md
+      - 'Module 2: Extending & Creating Skills': workshop/module-2.md
+      - 'Module 3: Evaluating Skills': workshop/module-3.md

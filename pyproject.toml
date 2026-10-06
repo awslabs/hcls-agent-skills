@@ -26,3 +26,12 @@ packages = ["eval"]
 
 [dependency-groups]
 dev = ["rich"]
+# Docs toolchain for the MkDocs Material workshop site (see mkdocs.yml and
+# .github/workflows/docs.yml). Isolated in its own group so `uv sync
+# --only-group docs` builds the site without pulling the heavy eval runtime
+# deps (strands-agents, boto3, scipy). mkdocs-same-dir lets docs_dir be the
+# repo root; mkdocs-material brings MkDocs itself in transitively.
+docs = [
+    "mkdocs-material==9.7.7",
+    "mkdocs-same-dir==0.1.5",
+]

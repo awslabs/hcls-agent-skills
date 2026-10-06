@@ -2,6 +2,8 @@
 *.pyc
 __pycache__/
 .vscode/
+# Obsidian editor config (local-only, must not reach the public repo)
+.obsidian/
 *.swp
 *.swo
 *~
@@ -22,3 +24,7 @@ skills-lock.json
 # Demo
 demo/node_modules/
 demo/dist/
+
+# MkDocs build output
+site/
+site.zip
