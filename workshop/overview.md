@@ -1,7 +1,9 @@
 # HCLS Agent Skills — Workshop Overview
 
 **Workshop:** Agent Skills for Life Sciences R&D
+
 **Duration:** 90 minutes
+
 **Format:** Hands-on, copy-paste driven. You run every prompt yourself.
 
 This guide walks you through *using* skills, *extending* them with your own org knowledge, and *evaluating* whether your changes actually help. Every exercise gives you an exact prompt, step-by-step instructions, and a "what to look for" contrast between the skilled and unskilled response.
