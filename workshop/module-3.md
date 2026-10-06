@@ -57,7 +57,7 @@ python -m eval.run \
 
 # 6. Review results
 python eval/build_review.py
-open eval/results/review.html
+open eval/results/review.html # or download the html to your local device to view
 ```
 
 The verify step matters because `generate_prompts.py` catches per-prompt exceptions and prints a `WARN` line instead of failing — a credentials or model-access problem leaves a partial or empty prompt set that still looks like success.
