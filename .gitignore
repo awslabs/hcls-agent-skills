@@ -4,6 +4,8 @@ __pycache__/
 .vscode/
 # Obsidian editor config (local-only, must not reach the public repo)
 .obsidian/
+# Local-only Amplify deploy helper scripts (specific to one person's AWS account and hosting setup, not shared)
+.scripts/
 *.swp
 *.swo
 *~
