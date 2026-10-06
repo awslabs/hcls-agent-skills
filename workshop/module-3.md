@@ -29,29 +29,33 @@ The repo ships with a full evaluation you can browse right now:
 > - **Cost:** a 30-prompt pairwise run makes **60 execution calls** (30 prompts × 2 arms) + **30 judge calls**.
 
 ```bash
-# 0. Structural check first — free, no AWS needed
+# 0. Set up environment
+uv venv --python 3.12 && source .venv/bin/activate
+uv pip install -e ".[dev]"
+
+# 1. Structural check first
 python tests/validate_skill.py --skill my-new-skill
 
-# 1. Generate 30 prompts for your new skill (requires Bedrock access)
+# 2. Generate 30 prompts for your new skill (requires Bedrock access)
 python eval/generate_prompts.py --skill my-new-skill --count 30
 
 # Verify generation actually succeeded — should print 30
 ls eval/prompts/single/my-new-skill-*.yaml | wc -l
 
-# 2. Create a subset prompts directory with the required single/ subdirectory
+# 3. Create a subset prompts directory with the required single/ subdirectory
 mkdir -p /tmp/eval-subset/single
 
-# 3. Copy only the target skill's prompt files
+# 4. Copy only the target skill's prompt files
 cp eval/prompts/single/my-new-skill-*.yaml /tmp/eval-subset/single/
 
-# 4. Run the scoped evaluation
+# 5. Run the scoped evaluation
 python -m eval.run \
   --prompts-dir /tmp/eval-subset \
   --parallel 2 \
   --version my-skill-test \
   --pairwise
 
-# 5. Review results
+# 6. Review results
 python eval/build_review.py
 open eval/results/review.html
 ```
@@ -60,7 +64,7 @@ The verify step matters because `generate_prompts.py` catches per-prompt excepti
 
 **What "good" looks like:** win rate ≥ **70%**, critical thinking positive, coherence neutral or positive.
 
-> ⚠️ **Sample size matters.** Those thresholds only mean something at **n ≥ 30 prompts** for a single skill — that's the minimum for the win rate and **Cohen's d** to carry real statistical weight. Run a handful of prompts and the win rate swings on noise. See the eval README's [Running eval for a single skill](../eval/README.md#running-eval-for-a-single-skill) section for the scoped procedure.
+> ⚠️ **Sample size matters.** Those thresholds only mean something at **n ≥ 30 prompts** for a single skill — that's the minimum for the win rate and **Cohen's d** to carry real statistical weight. Run a handful of prompts and the win rate swings on noise. See the eval README's [Running eval for a single skill](https://github.com/awslabs/hcls-agent-skills/blob/main/eval/README.md#running-eval-for-a-single-skill) section for the scoped procedure.
 
 > ⚠️ **The number isn't scoped to your skill.** The harness attaches the *entire* skills directory (`AgentSkills(skills="./skills/")` in `eval/execute.py`) and the model self-selects — `target_skills:` in each prompt YAML is **reporting metadata only** and does not drive execution. Scoping filters the *prompt set*, not the skill set, so a run can post a healthy win rate on prompts where your skill never activated or where a different skill did the work. Before believing the number, check the recorded `activated_skills` field in `eval/results/responses/<version>/<pid>_skills.json` (also surfaced by the **Skills Activated** filter in `review.html`).
 

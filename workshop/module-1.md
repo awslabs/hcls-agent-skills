@@ -53,7 +53,7 @@ harmonization — so the measurements stay consistent and analysis-ready?
 
 **Steps:**
 
-1. **Baseline first.** In your **baseline session**, run the prompt and keep the answer (see [Before You Start](#before-you-start--two-sessions-side-by-side)).
+1. **Baseline first.** In your **baseline session**, run the prompt and keep the answer (see [Before You Start](#before-you-start-two-sessions-side-by-side)).
 2. **Then skilled.** In your **skilled session**, run the same prompt with `/imaging-study-design` invoked explicitly.
 3. **Diff.** Put the two answers side by side and score them against the table below — most of the multisite playbook will match, so the delta to watch for is **specificity**.
 
