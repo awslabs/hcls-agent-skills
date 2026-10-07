@@ -125,6 +125,10 @@ tags: [skill, category:reasoning, <domain>, hcls]   # first tag literally "skill
 > - **`endoscopy-pixel-deid`** (pipeline) — encode the endoscopy burned-in-PHI workflow: OCR/inspect every frame because the `BurnedInAnnotation` (0028,0301) flag is unreliable, apply the PS3.15 Clean Pixel Data Option, and preserve longitudinal linkage with the date-shift option plus a pseudonym crosswalk — operational steps a general model under-specifies.
 > - **`ibd-endoscopic-endpoint-scoring`** (reasoning) — encode per-instrument eligibility and endpoint logic (MES, the UCEIS 3–11 vs 0–8 numbering split, SES-CD remission, BBPS adequacy) plus the central-blinded-reading expectation, flagging which cutoffs are protocol-specific rather than universal — judgment a general model flattens into one confident number.
 
+### Troubleshooting
+
+- **`validate_skill.py` fails** → ensure you are on Python 3.12+ and that `uv pip install -e ".[dev]"` completed without errors. Confirm your venv is activated. 
+
 ---
 
 ### Module 2 Debrief (3 min)

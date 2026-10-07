@@ -29,7 +29,7 @@ The repo ships with a full evaluation you can browse right now:
 > - **Cost:** a 30-prompt pairwise run makes **60 execution calls** (30 prompts × 2 arms) + **30 judge calls**.
 
 ```bash
-# 0. Set up environment
+# 0. Set up environment (Skip if you've done this in Module 2.)
 uv venv --python 3.12 && source .venv/bin/activate
 uv pip install -e ".[dev]"
 

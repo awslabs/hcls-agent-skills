@@ -100,7 +100,6 @@ Both harnesses use the same explicit-invocation form: prefix the skill's directo
 ## 5. Troubleshooting
 
 - **Skills not loading** → re-run the `npx skills add ...` command for your harness and confirm it completed without errors. For **Claude Code**, make sure you're running inside the repo where `.claude/skills/` exists. For **GitHub Copilot**, run `/skills list` to confirm the skill is loaded, and `/skills reload` if you added it mid-session.
-- **`validate_skill.py` fails** → ensure you are on Python 3.12+ and that `uv pip install -e ".[dev]"` completed without errors. Confirm your venv is activated. (You set this venv up in Module 2 — see [module-2.md](module-2.md).)
 - **Agent doesn't cite specific criteria** → the skills may not be discovered or referenced. For **Claude Code**, make sure you're running inside the repo where `.claude/skills/` exists. For **GitHub Copilot**, confirm `/skills list` shows the skill and invoke it explicitly with `/genomic-variant-interpretation`.
 
 Still stuck? Send the failing command output to the organizer **before** the session.
