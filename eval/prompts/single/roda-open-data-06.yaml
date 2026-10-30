@@ -1,0 +1,45 @@
+id: roda-open-data-06
+prompt: 'Here is test question #6 of 10:
+
+
+  ---
+
+
+  You are a computational biologist at a research institute studying structural variants
+  in the human genome. Your team wants to integrate data from the **gnomAD dataset
+  on AWS** with the **1000 Genomes Project** data, both hosted in the Registry of
+  Open Data on AWS, to compare allele frequencies of a set of 47 deletion variants
+  on chromosome 17 (coordinates roughly spanning 17q21.31) across different population
+  groups.
+
+
+  Before your team can begin analysis, you need to answer several operational questions:
+
+
+  1. **Locate both datasets**: Provide the exact S3 bucket URIs for gnomAD and 1000
+  Genomes on AWS, and clarify whether each requires `--no-sign-request`, requester
+  pays, or IAM-based access.
+
+
+  2. **List relevant files**: Write the specific `aws s3 ls` commands to browse the
+  gnomAD structural variant (SV) VCF files and the 1000 Genomes phase 3 VCF files
+  for chromosome 17 specifically. Include any relevant prefixes or subdirectory paths.
+
+
+  3. **Compare licenses**: Summarize the data use terms or licenses for both datasets
+  as listed in RODA — are there any restrictions your institute''s IRB should be aware
+  of before publishing derived results?
+
+
+  4. **Download snippet**: Write a single `aws s3 cp` or `aws s3 sync` command that
+  downloads *only* the chromosome 17 gnomAD SV VCF (and its index file) to a local
+  directory called `~/sv_analysis/gnomad/`.
+
+
+  5. **Access mode recommendation**: Your institute''s cloud environment has no outbound
+  data transfer budget for requester-pays charges. Based on the access modes of these
+  two datasets, flag any cost concerns and suggest a mitigation strategy.'
+target_skills:
+- roda-open-data
+domain: unknown
+difficulty: intermediate

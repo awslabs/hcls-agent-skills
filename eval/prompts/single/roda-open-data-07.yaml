@@ -1,0 +1,43 @@
+id: roda-open-data-07
+prompt: 'A biomedical research team at a fictional institute called Meridian Genomics
+  is building a variant annotation pipeline and wants to leverage publicly available
+  population-frequency data hosted on AWS. They''ve heard that both gnomAD and the
+  1000 Genomes Project datasets are available through the Registry of Open Data on
+  AWS, but they''re unsure about the practical differences between accessing these
+  two resources.
+
+
+  Specifically, the team needs to:
+
+
+  1. Annotate approximately 847,000 rare variants (MAF < 0.01) identified from their
+  internal cohort of 3,200 whole-genome sequences
+
+  2. Prioritize variants in a gene panel of 156 cardiovascular disease genes
+
+  3. Stay within a compute budget that minimizes egress costs
+
+
+  Their pipeline runs on EC2 instances in **us-east-1**.
+
+
+  Please provide the following deliverables:
+
+
+  - A comparison of the gnomAD and 1000 Genomes datasets on RODA, including their
+  S3 bucket locations, access modes (requester pays vs. open), licensing terms, and
+  data formats available (VCF, Hive-partitioned Parquet, BGEN, etc.)
+
+  - A recommendation for which dataset (or combination) best suits their rare-variant
+  annotation use case, with justification
+
+  - Exact `aws s3` or `aws s3api` CLI commands to (a) list the top-level contents
+  of each relevant bucket and (b) download only chromosome 22 VCF files from whichever
+  dataset you recommend, without incurring unnecessary charges
+
+  - A note on whether a STAC catalog or any manifest file exists for either dataset
+  that could help them inventory files programmatically before downloading'
+target_skills:
+- roda-open-data
+domain: unknown
+difficulty: intermediate

@@ -1,0 +1,44 @@
+id: roda-open-data-08
+prompt: 'Here is test question #8 of 10:
+
+
+  ---
+
+
+  You are building a multi-modal cancer genomics pipeline that needs to integrate
+  whole-genome sequencing data with medical imaging for the same patient cohorts.
+  You''ve heard that both the TCGA dataset and the Imaging Data Commons (IDC) are
+  available through the Registry of Open Data on AWS, but you''re uncertain about
+  their access models, bucket structures, and licensing compatibility before committing
+  engineering resources.
+
+
+  Specifically, you need to answer the following:
+
+
+  1. **Access model comparison**: Does the TCGA dataset on AWS use requester-pays,
+  require `--no-sign-request`, or need dbGaP authorization? Contrast this with how
+  the Imaging Data Commons data is accessed on AWS — are both in the same region,
+  and do they share compatible open-data licenses (e.g., can outputs be published
+  in a journal without restriction)?
+
+
+  2. **Bucket exploration**: Provide the exact `aws s3 ls` commands to (a) list the
+  top-level prefixes in the TCGA controlled-access bucket and (b) browse the IDC''s
+  public S3 bucket without incurring egress charges to a researcher in `us-east-1`.
+
+
+  3. **Feasibility check**: Your fictional cohort of 847 LUAD (lung adenocarcinoma)
+  patients requires matching WGS BAM files from TCGA with DICOM imaging series from
+  IDC. Identify any known structural or metadata mismatches between these two registries
+  that could prevent straightforward patient-level joins (e.g., identifier schemes
+  like TCGA barcodes vs. DICOM patient IDs).
+
+
+  4. **Recommendation**: Given the access and licensing constraints you''ve identified,
+  recommend whether a researcher should use AWS Batch in `us-east-1` or `us-west-2`
+  to minimize data transfer costs, and explain why.'
+target_skills:
+- roda-open-data
+domain: unknown
+difficulty: hard

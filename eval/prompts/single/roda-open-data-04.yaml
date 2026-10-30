@@ -1,0 +1,44 @@
+id: roda-open-data-04
+prompt: 'A computational biology team at a fictional biotech company, NovaBio Genomics,
+  is building an automated pipeline to analyze rare variant burden across 47 candidate
+  genes associated with a hereditary cardiomyopathy study. They want to leverage publicly
+  available whole-genome sequencing data from the Registry of Open Data on AWS rather
+  than generating their own cohort.
+
+
+  Their specific requirements are:
+
+  - They need population-level variant frequency data to filter out common variants
+  (MAF > 0.1%) from their 47 candidate genes
+
+  - The dataset must cover at least 100,000 individuals to achieve adequate statistical
+  power
+
+  - They prefer data already hosted in `us-east-1` to minimize egress costs from their
+  EC2 instances
+
+  - They need to understand whether the data requires "Requester Pays" access or can
+  be accessed freely with `--no-sign-request`
+
+  - Their pipeline runs on EC2 instances without AWS credentials configured for external
+  accounts
+
+
+  Please provide the following deliverables:
+
+  1. Identify the most appropriate RODA dataset(s) for this use case, including the
+  S3 bucket URI and any access restrictions
+
+  2. Compare at least two candidate datasets by sample size, data format (VCF, BGEN,
+  Parquet, etc.), and license terms
+
+  3. Write the exact `aws s3` CLI command(s) to list the contents of the relevant
+  bucket prefix and download only the VCF index files (`.tbi` or `.csi`) for chromosome
+  14, where several of their candidate genes reside
+
+  4. Explain any authentication or billing considerations the team must address before
+  running their pipeline at scale'
+target_skills:
+- roda-open-data
+domain: unknown
+difficulty: intermediate

@@ -29,7 +29,7 @@ Options:
   --help                Show this help
 
 Examples:
-  ./install.sh --target kiro                          # Single agent, all 42 skills
+  ./install.sh --target kiro                          # Single agent, all 43 skills
   ./install.sh --target kiro --mode multiagent        # Coordinator + 8 specialists
   ./install.sh --target kiro --path .                 # Install locally to ./.kiro/
   ./install.sh --target kiro --path . --mode multiagent
@@ -107,6 +107,7 @@ install_quick_desktop() {
   print_domain "Proteomics" quantitative-proteomics proteomics-analysis
   print_domain "Clinical Data Review" cdisc-compliance edc-data-validation
   print_domain "Multi-Omics Integration" multi-omics-integration multi-omics-pipeline
+  print_domain "Open Data Discovery" roda-open-data
   print_domain "Healthcare Operations" claims-billing-rules claims-analytics risk-adjustment-strategy \
     risk-adjustment pa-clinical-policy pa-decision-automation hedis-measure-specification \
     risk-stratification-indices quality-measures coordination-of-benefits

@@ -1,0 +1,37 @@
+id: roda-open-data-10
+prompt: 'A computational biology team at a fictional biotech company, NovaBio Therapeutics,
+  is building a multi-omics pipeline to study rare pediatric brain tumors. They need
+  to integrate three specific types of publicly available data from AWS Open Data:
+  (1) whole-genome sequencing variants, (2) RNA-seq expression profiles, and (3) medical
+  imaging (MRI scans). Their constraints are strict: all datasets must be usable without
+  incurring egress charges to the company''s AWS account in us-east-1, the data must
+  be available under licenses permitting commercial derivative works, and the pipeline
+  will process data for approximately 2,400 synthetic patient cohort samples.
+
+
+  Your team lead has asked you to do the following:
+
+
+  1. **Identify and compare** at least three relevant datasets from the Registry of
+  Open Data on AWS that collectively cover WGS variants, RNA-seq, and medical imaging
+  for brain or CNS tumor research. For each dataset, specify the S3 bucket URI, AWS
+  region, access mode (open vs. requester pays), and license type.
+
+
+  2. **Flag any access conflicts** — specifically, identify which datasets (if any)
+  require Requester Pays or controlled access agreements that would block direct `aws
+  s3 cp` without special flags or approvals, and explain the technical workaround.
+
+
+  3. **Write the exact AWS CLI commands** to (a) list the top-level contents of each
+  identified bucket without signing requests where applicable, and (b) recursively
+  sync only `.vcf.gz` files from the WGS dataset into a local directory called `/data/novabio/wgs/`.
+
+
+  4. **Recommend a cost-minimization strategy** for accessing these datasets from
+  an EC2 instance in us-east-1, including whether STAC catalogs or manifest files
+  should be used to avoid full-bucket syncs.'
+target_skills:
+- roda-open-data
+domain: unknown
+difficulty: hard
