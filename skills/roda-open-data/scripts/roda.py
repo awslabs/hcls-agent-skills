@@ -19,16 +19,19 @@ SUPPORTED_LICENSE_TYPES = ["creative commons", "mit", "apache", "public domain"]
 _STOP = set("a an and are as at be by data dataset datasets for from in into is it of on or "
             "the to with about any find show me i want need looking some".split())
 _DS = None
+# Default for load() when include_deprecated is not passed; set by --include-deprecated.
+_INCLUDE_DEPRECATED = False
 
 CACHE_PATH = os.path.expanduser("~/.cache/roda-open-data/index.ndjson")
 
 def _find_index():
-    """Resolve the index: $RODA_INDEX, then $WORKSPACE_DIR/downloads, then the cache."""
+    """Resolve the index: $RODA_INDEX, then $WORKSPACE_DIR/downloads (only if set), then the cache."""
     env = os.environ.get("RODA_INDEX")
     if env and os.path.exists(env): return env
-    ws = globals().get("WORKSPACE_DIR") or os.environ.get("WORKSPACE_DIR", ".")
-    hits = sorted(glob.glob(os.path.join(ws, "downloads", "index*.ndjson")), key=os.path.getmtime)
-    if hits: return hits[-1]
+    ws = globals().get("WORKSPACE_DIR") or os.environ.get("WORKSPACE_DIR")
+    if ws:  # no CWD fallback: a stray ./downloads/index.ndjson must not shadow the cache
+        hits = sorted(glob.glob(os.path.join(ws, "downloads", "index*.ndjson")), key=os.path.getmtime)
+        if hits: return hits[-1]
     if os.path.exists(CACHE_PATH): return CACHE_PATH
     raise FileNotFoundError(f"Index not found. Run `python roda.py download` or fetch {INDEX_URL} first.")
 
@@ -41,9 +44,11 @@ def download_index(dest=None):
         f.write(r.read())
     return dest
 
-def load(path=None, include_deprecated=False):
-    """Load (and cache) the index. Deprecated datasets are excluded by default."""
+def load(path=None, include_deprecated=None):
+    """Load (and cache) the index. Deprecated datasets are excluded unless
+    include_deprecated is True (default: the module-level _INCLUDE_DEPRECATED)."""
     global _DS
+    if include_deprecated is None: include_deprecated = _INCLUDE_DEPRECATED
     if _DS is None or path:
         rows = []
         with open(path or _find_index()) as f:
@@ -101,8 +106,18 @@ def license_matches(d, license_type):
     if lt == "creative commons": return re.search(r"\bcc\b", txt) is not None or "creative commons" in txt
     return lt in txt
 
+def _unsupported_license(license_type):
+    """Return an error result if license_type is not supported, else None."""
+    if license_type and license_type.lower() not in SUPPORTED_LICENSE_TYPES:
+        return {"license_type": license_type, "total_count": 0, "datasets": [],
+                "hint": f"Unsupported license type. Supported: {SUPPORTED_LICENSE_TYPES}. "
+                        "For others, search without --license-type and read the License field."}
+    return None
+
 def search_datasets(query, tags=None, organization=None, license_type=None, limit=10):
     """Ranked keyword search over name/description/tags plus optional filters."""
+    bad = _unsupported_license(license_type)
+    if bad: return bad | {"query": query}
     q = query.lower()
     terms = [t for t in re.findall(r"[\w\-\.]+", q) if t not in _STOP] or [q]
     hits = []
@@ -161,8 +176,13 @@ def s3_list_url(bucket, region, prefix="", max_keys=10, delimiter="/"):
 def parse_s3_listing(xml_text):
     """Parse an S3 ListObjectsV2 XML response into prefixes + objects."""
     from xml.etree import ElementTree as ET
-    xml_text = xml_text[xml_text.find("<"):]  # strip any wrapper text
-    root = ET.fromstring(xml_text)
+    start = xml_text.find("<") if xml_text else -1
+    if start < 0:
+        return {"error": "response is not XML", "prefixes": [], "objects": []}
+    try:
+        root = ET.fromstring(xml_text[start:])  # strip any wrapper text
+    except ET.ParseError as e:
+        return {"error": f"could not parse S3 listing XML: {e}", "prefixes": [], "objects": []}
     ns = {"s": root.tag.split("}")[0].strip("{")} if "}" in root.tag else {}
     p = "s:" if ns else ""
     objs = [{"key": c.findtext(f"{p}Key", namespaces=ns), "size": int(c.findtext(f"{p}Size", "0", ns)),
@@ -176,8 +196,8 @@ def discover_by_organization(organization, limit=10):
     return {"organization": organization, "total_count": len(ds), "datasets": [summary(d) for d in ds[:limit]]}
 
 def discover_by_license(license_type, limit=10):
-    if license_type.lower() not in SUPPORTED_LICENSE_TYPES:
-        return {"total_count": 0, "hint": f"Supported license types: {SUPPORTED_LICENSE_TYPES}"}
+    bad = _unsupported_license(license_type)
+    if bad: return bad
     ds = [d for d in load() if license_matches(d, license_type)]
     return {"license_type": license_type, "total_count": len(ds), "datasets": [summary(d) for d in ds[:limit]]}
 
@@ -289,7 +309,9 @@ def main(argv=None):
     a = ap.parse_args(argv)
     if a.cmd == "download":
         print(download_index(a.index)); return 0
-    load(a.index, include_deprecated=a.include_deprecated)
+    global _INCLUDE_DEPRECATED
+    _INCLUDE_DEPRECATED = a.include_deprecated
+    load(a.index)
     if a.cmd == "search": r = search_datasets(a.query, a.tags, a.organization, a.license_type, a.limit)
     elif a.cmd == "list": r = list_datasets(a.tag, a.limit)
     elif a.cmd == "details": r = get_dataset_details(a.slug)

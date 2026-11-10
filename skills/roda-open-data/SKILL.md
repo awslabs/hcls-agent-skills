@@ -12,8 +12,8 @@ description: >
 usage: Invoke when the user needs to discover, vet, or access datasets from the Registry of Open Data on AWS.
 version: 1.0.0
 validated_against:
-  date: 2026-10-30
-  packages: {python: "3.9+", roda-index: "registry.opendata.aws/index.ndjson (1,222 datasets)"}
+  date: 2026-11-10
+  packages: {python: "3.9+", roda-index: "registry.opendata.aws/index.ndjson (1,497 datasets, 23 deprecated)"}
 tags:
   - skill
   - category:pipeline
@@ -36,7 +36,7 @@ Not for: querying data contents (use Athena/pandas after access is sorted), or n
 
 ## Setup
 
-The index is ~14 MB NDJSON, about 1,200 datasets. Download it once; every command below reads the cached copy.
+The index is ~14 MB NDJSON, about 1,500 datasets. Download it once; every command below reads the cached copy.
 
 ```bash
 python scripts/roda.py download        # saves to ~/.cache/roda-open-data/index.ndjson (or $RODA_INDEX)
@@ -125,7 +125,7 @@ Expected output shape: `1000-genomes` is managed by National Institutes of Healt
 - **Wrong:** Previewing controlled-access or account-required resources. **Right:** Skip `preview`; give access notes.
 - **Wrong:** Treating the preview as the newest data. **Right:** S3 lists keys alphabetically; use `last_modified` and `UpdateFrequency`.
 - **Wrong:** Treating `ManagedBy` as plain text when filtering. **Right:** It is a markdown link in the raw index; `org` does substring matching, and `summary` extracts the name.
-- **Wrong:** `license "cc-by"` or `"gpl"`. **Right:** Only `creative commons`, `mit`, `apache`, `public domain` are supported; for others, `search` and read the License field.
+- **Wrong:** `license "cc-by"`, `"gpl"`, or `search ... --license-type cc0`. **Right:** Only `creative commons`, `mit`, `apache`, `public domain` are supported (both `license` and `search --license-type` reject others with a hint); for others, `search` without the filter and read the License field.
 - **Wrong:** Searching one broad word and listing 100 results. **Right:** Add tags/keywords, or ask one narrowing question.
 - **Wrong:** Passing a dataset title to `details`. **Right:** It needs the slug; `search` first.
 - **Wrong:** Fetching the index inside a no-internet sandbox with `requests`. **Right:** Use the platform's download tool, then `--index`.
