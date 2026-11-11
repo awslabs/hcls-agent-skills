@@ -24,7 +24,9 @@ The independent variable is skill content availability. Everything else — mode
 | Agentic (symmetric) | Kiro CLI | auto | thinking, file reads | 69.5% | 0.39 |
 | SDK (bare baseline) | Strands SDK | Sonnet 4.5 | none | 88.5% | — |
 | SDK (think tool) | Strands SDK | Sonnet 4.5 | think tool | 88.0% | — |
-| SDK (Sonnet 4.6) | Strands SDK | Sonnet 4.6 | think tool | 85.9% | 0.97 |
+| SDK (labeled 4.6) | Strands SDK | Sonnet 4.5 (labeled 4.6) | think tool | 85.9% | 0.97 |
+
+> **⚠️ Execution-model provenance.** The row labeled "Sonnet 4.6" actually executed on **Sonnet 4.5** (`us.anthropic.claude-sonnet-4-5-20250929-v1:0`): the `--model` flag was silently ignored on the Strands backend until a later fix, so every strands run used the then-hardcoded Sonnet 4.5. The two "SDK" rows above (Sonnet 4.5, from hand-entered metadata) and this row were therefore configured identically on the execution model — any difference between them is run-to-run noise, not a model-upgrade effect. Win rates and Cohen's d are unaffected; only the model label was wrong.
 
 Additionally, an asymmetric agentic configuration was tested where the baseline was over-isolated (see §Asymmetric Isolation below). This produced a 64.6% win rate that underestimates skill value.
 
@@ -35,7 +37,7 @@ The gap between harness families traces primarily to a single dimension: **coher
 | Configuration | Coherence Win Rate | Overall Win Rate |
 |---|---|---|
 | Agentic (symmetric) | 54.9% | 69.5% |
-| SDK (Sonnet 4.6) | 92.8% | 85.9% |
+| SDK (labeled 4.6) | 92.8% | 85.9% |
 | **Gap** | **37.9pp** | **16.4pp** |
 
 In the agentic harness, both conditions produce responses interleaved with tool-call artifacts (`Reading file:`, `Successfully read N bytes`, thinking traces). Sanitization removes these before judging, but residual formatting disruption — paragraph breaks, incomplete sentences around stripped blocks — reduces perceived coherence for both conditions symmetrically. The pairwise comparison remains fair (symmetric noise cancels), but the absolute coherence improvement from skills is obscured.

@@ -41,7 +41,7 @@ Total: 17 reasoning skills, 21 pipeline skills.
 
 ### 2.2 Test Prompt Generation
 
-410 test prompts were generated using Claude Sonnet 4.6 via Amazon Bedrock:
+410 test prompts were generated via Amazon Bedrock, requested as Claude Sonnet 4.6 (the model actually invoked is not reliably recorded for Strands-era runs — see the execution-model provenance note in §2.3):
 - 380 single-skill prompts (10 per skill, varying difficulty: 3 easy, 4 intermediate, 3 hard)
 - 30 cross-skill prompts (10 per combination for 3 multi-skill scenarios)
 
@@ -55,9 +55,11 @@ Two primary harness configurations were evaluated:
 
 The Kiro CLI agent invokes the underlying model through `kiro-cli chat --no-interactive` with automatic model selection. Skills are loaded via `--agent hcls-eval` which registers all 38 SKILL.md files as readable resources. The agent has access to a `thinking` tool and file-read operations.
 
-**SDK Harness (Strands Agents SDK, Sonnet 4.6 pinned)**
+**SDK Harness (Strands Agents SDK, execution model labeled Sonnet 4.6)**
 
-The AWS Strands Agents SDK creates a lightweight Python agent via `Agent(model=BedrockModel(...), callback_handler=None)` with the model explicitly pinned to Claude Sonnet 4.6. The skills condition additionally loads an `AgentSkills(skills="./skills/")` plugin. Both conditions capture only the final assistant text via `str(result)`, producing artifact-free output. A `think` tool is provided to both conditions symmetrically.
+The AWS Strands Agents SDK creates a lightweight Python agent via `Agent(model=BedrockModel(...), callback_handler=None)` with the execution model labeled Claude Sonnet 4.6 — but see the provenance note below: the `--model` flag was silently ignored on the Strands backend until a later fix, so this run actually executed on Claude Sonnet 4.5 (`us.anthropic.claude-sonnet-4-5-20250929-v1:0`). The skills condition additionally loads an `AgentSkills(skills="./skills/")` plugin. Both conditions capture only the final assistant text via `str(result)`, producing artifact-free output. A `think` tool is provided to both conditions symmetrically.
+
+> **⚠️ Execution-model provenance.** This "headline" SDK configuration (reported as v9, ~85.9% / d=0.97) is labeled Sonnet 4.6 but executed on Sonnet 4.5, because the `--model` flag was silently ignored on the Strands backend until a later fix forced the then-hardcoded Sonnet 4.5. The think-tool configuration it is contrasted against (v7) was intended to differ *only* by execution model, so the two were in fact configured identically — the apparent 4.5-vs-4.6 contrast is not a valid model comparison. No win rate, effect size, or score changes; only the model attribution was wrong.
 
 In both configurations, two conditions are compared:
 - **Baseline:** Agent invoked without skill content available
@@ -265,7 +267,7 @@ SkillsBench reports a +16.6 percentage point improvement when both conditions ha
 Key methodological principles align across evaluations:
 
 1. **Symmetric tool access** — both SkillsBench and our configurations ensure conditions differ only in skill content
-2. **Model pinning** — SkillsBench fixes the model per configuration; our SDK harness pins to Sonnet 4.6
+2. **Model pinning** — SkillsBench fixes the model per configuration; our SDK harness used a fixed execution model (labeled Sonnet 4.6, but actually Sonnet 4.5 — see §2.3)
 3. **Clean output capture** — SkillsBench uses deterministic verifiers; our SDK harness captures only final text
 
 The convergence across independent frameworks (different prompts, different judges, different skill implementations) strengthens confidence that the effect is real and robust rather than an artifact of any single evaluation methodology.

@@ -1,4 +1,5 @@
 """Generate JSON and markdown evaluation reports."""
+import hashlib
 import json
 import math
 import re
@@ -8,6 +9,11 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from scipy.stats import ttest_rel
+
+try:
+    from .aws_config import resolve_region, execution_model_id
+except ImportError:  # imported as a top-level module
+    from aws_config import resolve_region, execution_model_id
 
 DIMENSIONS = [
     "scientific_accuracy", "coherence", "relevance",
@@ -58,7 +64,7 @@ def _skill_from_id(prompt_id: str) -> str:
     return prompt_id
 
 
-def generate_report(scores: list[dict], results_dir: Path, judge_model: str, version: str = None, responses_dir: Path = None) -> dict:
+def generate_report(scores: list[dict], results_dir: Path, judge_model: str, version: str = None, responses_dir: Path = None, region: str | None = None, execution_model: str | None = None, prompts_dir: Path | None = None) -> dict:
     """Generate report from scored results."""
     try:
         commit = subprocess.check_output(
@@ -67,6 +73,65 @@ def generate_report(scores: list[dict], results_dir: Path, judge_model: str, ver
     except Exception:
         commit = "unknown"
 
+    try:
+        git_dirty = bool(subprocess.check_output(
+            ["git", "status", "--porcelain"], text=True
+        ).strip())
+    except Exception:
+        git_dirty = False
+
+    # Resolve region/executor model at report time when the caller did not
+    # supply them, so a report always records which region and model produced
+    # it even when invoked without those values threaded through.
+    if region is None:
+        region = resolve_region()
+    if execution_model is None:
+        # The executor resolves its model as model_id or DEFAULT_MODEL_ID or
+        # execution_model_id() (eval/execute.py); this fallback only consults
+        # execution_model_id(). Callers who override the executor model
+        # out-of-band (e.g. setting _ex.DEFAULT_MODEL_ID) MUST pass
+        # execution_model explicitly or the report will misname the executor.
+        execution_model = execution_model_id()
+
+    # Fingerprint the prompt set so a reader can tell which prompts produced the
+    # report. Files are hashed by their path RELATIVE to prompts_dir (not the
+    # absolute path) so the fingerprint is portable across machines and
+    # checkouts; sorting on that relative path also makes it independent of
+    # filesystem glob order.
+    prompt_set_dir = None
+    prompt_set_hash = None
+    num_prompt_files = 0
+    if prompts_dir is not None and prompts_dir.exists():
+        pd = prompts_dir.resolve()
+        repo_root = Path(__file__).resolve().parent.parent
+        try:
+            prompt_set_dir = str(pd.relative_to(repo_root))
+        except ValueError:
+            prompt_set_dir = str(pd)
+        # Match load_prompts() in run.py: *.yaml under single/ and cross/.
+        prompt_files = []
+        for sub in ["single", "cross"]:
+            sub_dir = pd / sub
+            if sub_dir.exists():
+                prompt_files.extend(sub_dir.glob("*.yaml"))
+        prompt_files.sort(key=lambda f: f.relative_to(pd).as_posix())
+        # Report generation must never raise here: a full multi-hundred-prompt
+        # eval run has already completed and its results are in hand — they must
+        # be written out. If a prompt file is unreadable, vanished (TOCTOU), or
+        # is a directory named *.yaml, fall back to a sentinel hash rather than
+        # discarding the entire run's results.
+        h = hashlib.sha256()
+        try:
+            for f in prompt_files:
+                h.update(f.relative_to(pd).as_posix().encode("utf-8"))
+                h.update(f.read_bytes())
+                num_prompt_files += 1
+            prompt_set_hash = f"sha256:{h.hexdigest()}"
+        except OSError:
+            # "unavailable" is distinct from None, which means no prompts_dir
+            # was given; num_prompt_files holds the count hashed before failing.
+            prompt_set_hash = "unavailable"
+
     # Identify timeouts/errors (all-zero scores in either condition)
     valid_scores = []
     dropped = defaultdict(list)  # skill -> list of (prompt_id, reason)
@@ -74,6 +139,13 @@ def generate_report(scores: list[dict], results_dir: Path, judge_model: str, ver
         b_sum = sum(s["baseline"].values())
         sk_sum = sum(s["skills"].values())
         skill = _skill_from_id(s["id"])
+        # Explicit drop set by run.py: a transient-failure response body or a
+        # judge call that raised / failed to parse. Honor it FIRST, even if a
+        # score was (defensively) non-zero, so a judge error can NEVER become a
+        # counted tie. num_dropped (below) therefore always reflects these.
+        if s.get("dropped"):
+            dropped[skill].append((s["id"], s.get("drop_reason", "both")))
+            continue
         if b_sum == 0 and sk_sum == 0:
             dropped[skill].append((s["id"], "both"))
         elif b_sum == 0:
@@ -178,7 +250,13 @@ def generate_report(scores: list[dict], results_dir: Path, judge_model: str, ver
         "metadata": {
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "git_commit": commit,
+            "git_dirty": git_dirty,
+            "aws_region": region,
+            "execution_model": execution_model,
             "judge_model": judge_model,
+            "prompt_set_dir": prompt_set_dir,
+            "prompt_set_hash": prompt_set_hash,
+            "num_prompt_files": num_prompt_files,
             "num_prompts_total": len(scores),
             "num_prompts_valid": len(valid_scores),
             "num_dropped": sum(len(v) for v in dropped.values()),
@@ -241,7 +319,10 @@ def generate_report(scores: list[dict], results_dir: Path, judge_model: str, ver
     md = ["# HCLS Skills Evaluation Report\n"]
     md.append(f"**Date:** {report['metadata']['timestamp']}  ")
     md.append(f"**Commit:** {commit}  ")
+    md.append(f"**Region:** {region}  ")
+    md.append(f"**Executor:** {execution_model}  ")
     md.append(f"**Judge:** {judge_model}  ")
+    md.append(f"**Prompt set:** {prompt_set_hash}  ")
     md.append(f"**Prompts:** {len(valid_scores)} valid / {len(scores)} total ({sum(len(v) for v in dropped.values())} dropped due to timeout/error)\n")
     baseline_timeouts = sum(1 for v in dropped.values() for _, r in v if r in ("baseline", "both"))
     skills_timeouts = sum(1 for v in dropped.values() for _, r in v if r in ("skills", "both"))
