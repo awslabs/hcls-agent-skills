@@ -41,7 +41,7 @@ The skill emits Python code using `python-hl7` for HL7v2 and `fhir.resources`
 for FHIR R4. Install dependencies:
 
 ```bash
-pip install python-hl7 fhir.resources pandas
+pip install hl7 fhir.resources pandas
 ```
 
 
