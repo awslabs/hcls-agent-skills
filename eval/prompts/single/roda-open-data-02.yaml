@@ -1,0 +1,38 @@
+id: roda-open-data-02
+prompt: 'A genomics researcher at a fictional biotech company, NovaBio Labs, is starting
+  a new project analyzing structural variants in the human genome. Their team lead
+  has asked them to investigate whether the **1000 Genomes Project dataset** hosted
+  on AWS is suitable for their work before committing to a cloud-based pipeline.
+
+
+  The researcher needs your help with the following specific tasks:
+
+
+  1. **Dataset discovery**: Confirm that the 1000 Genomes Project is available in
+  the Registry of Open Data on AWS, and provide the exact S3 bucket URI where the
+  data is hosted.
+
+
+  2. **Access requirements**: Explain whether this dataset requires "Requester Pays"
+  access or can be accessed freely without AWS credentials. Provide the exact `aws
+  s3 ls` command (with any necessary flags like `--no-sign-request`) that a user would
+  run to list the top-level contents of the bucket from their local terminal.
+
+
+  3. **License and usage**: Describe the data license or usage terms associated with
+  this dataset, and confirm whether NovaBio Labs can use it for internal commercial
+  research without restriction.
+
+
+  4. **Quick content preview**: Provide an example `aws s3 ls` command to list the
+  contents of a specific subdirectory within the bucket — specifically, look one level
+  deeper into any subdirectory that might contain VCF files or alignment data relevant
+  to structural variant analysis.
+
+
+  Assume the researcher has the AWS CLI installed but no special AWS credentials configured.
+  Keep all commands copy-paste ready and explain each flag used.'
+target_skills:
+- roda-open-data
+domain: unknown
+difficulty: easy

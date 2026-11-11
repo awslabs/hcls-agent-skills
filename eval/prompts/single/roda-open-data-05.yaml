@@ -1,0 +1,41 @@
+id: roda-open-data-05
+prompt: 'A computational biology team at a fictional research institute called "Meridian
+  BioLabs" is building a variant annotation pipeline and needs to incorporate population-level
+  allele frequency data. Their lead bioinformatician, Dr. Chen, has heard that gnomAD
+  is available through the Registry of Open Data on AWS but isn''t sure how to access
+  it without incurring egress costs, and also wants to explore whether the 1000 Genomes
+  Project dataset might serve as a complementary or alternative source.
+
+
+  The team''s pipeline runs on EC2 instances in **us-east-1** and processes approximately
+  4,200 rare variants per day (MAF < 1%) identified in a cohort of 850 pediatric patients.
+  They need allele frequency data broken down by ancestry group, and their budget
+  strictly prohibits paying data transfer fees.
+
+
+  Please provide the following:
+
+
+  1. **Dataset discovery**: Identify both the gnomAD and 1000 Genomes datasets on
+  RODA — include their S3 bucket URIs, AWS regions where they''re hosted, and any
+  access restrictions (requester pays, sign-in requirements, etc.).
+
+
+  2. **Cost analysis**: Given the team is in us-east-1, explain which dataset(s) can
+  be accessed with zero data transfer cost and why, and flag any dataset that would
+  trigger requester-pays charges.
+
+
+  3. **Access commands**: Write the exact `aws s3` CLI commands to (a) list the top-level
+  contents of each dataset''s bucket and (b) download a single representative VCF
+  or TSV file containing allele frequency annotations, using the correct flags to
+  avoid authentication or cost issues.
+
+
+  4. **Recommendation**: Based on the license terms, data richness for rare variant
+  annotation, and regional access, recommend which dataset Dr. Chen''s team should
+  prioritize and briefly justify the choice.'
+target_skills:
+- roda-open-data
+domain: unknown
+difficulty: intermediate

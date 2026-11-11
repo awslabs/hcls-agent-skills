@@ -1,0 +1,46 @@
+id: roda-open-data-09
+prompt: 'Here is test question #9 of 10:
+
+
+  ---
+
+
+  Your bioinformatics team is building a multi-cohort somatic variant analysis pipeline
+  and needs to pull data from two specific Registry of Open Data on AWS datasets:
+  the **TCGA on AWS** dataset and the **gnomAD on AWS** dataset. Before committing
+  compute resources, your team lead has asked you to perform a due-diligence check
+  covering access patterns, costs, and data structure.
+
+
+  Specifically, you need to deliver the following:
+
+
+  1. **Access mode comparison**: For each dataset, identify whether it is "Requester
+  Pays" or freely accessible without authentication. Provide the exact `aws s3 ls`
+  or `aws s3 cp` command (with any necessary flags like `--no-sign-request` or `--requester-pays`)
+  to list the top-level contents of each bucket.
+
+
+  2. **License and usage constraints**: Summarize the data use agreements or licenses
+  governing each dataset and flag any restrictions relevant to a commercial biotech
+  company planning to publish findings.
+
+
+  3. **Relevant file formats and paths**: Your pipeline requires VCF files for somatic
+  mutations. Describe where within each bucket''s directory structure you would expect
+  to find VCF files, including any known prefixes or subdirectory conventions (e.g.,
+  specific genome build folders like `GRCh38`).
+
+
+  4. **Cost estimation caveat**: Explain under what conditions your team would incur
+  AWS data transfer or request charges when accessing these two datasets from an EC2
+  instance running in `us-east-1`, and how the access model of each dataset affects
+  that calculation.
+
+
+  Assume your EC2 instance has an IAM role with standard S3 read permissions and no
+  special dbGaP authorization.'
+target_skills:
+- roda-open-data
+domain: unknown
+difficulty: hard
