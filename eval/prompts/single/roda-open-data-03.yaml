@@ -1,0 +1,38 @@
+id: roda-open-data-03
+prompt: 'A genomics researcher at a university wants to explore human genetic variation
+  data without managing expensive storage infrastructure. They''ve heard that the
+  1000 Genomes Project dataset is available through the Registry of Open Data on AWS,
+  but they''re unsure about the access requirements, file organization, and how to
+  get started.
+
+
+  The researcher has the following specific needs:
+
+
+  1. They want to know the **exact S3 bucket name and URI** for the 1000 Genomes Project
+  on AWS, along with whether the bucket requires "requester pays" or can be accessed
+  with `--no-sign-request`.
+
+
+  2. They need a **working `aws s3 ls` command** to list the top-level contents of
+  the bucket so they can understand how the data is organized — assume they are running
+  this from an EC2 instance in `us-east-1` with the AWS CLI installed but no special
+  IAM permissions beyond a basic EC2 role.
+
+
+  3. They want to understand the **dataset license** (e.g., is it open for commercial
+  use? Are there data use agreements?) and where to find that information on `registry.opendata.aws`.
+
+
+  4. They are specifically interested in VCF files for chromosome 22 from Phase 3
+  of the project. Provide the **most likely S3 path prefix** they should navigate
+  to find those files, and a sample `aws s3 cp` or `aws s3 sync` command to download
+  them to a local directory called `~/1kg_chr22/`.
+
+
+  Please provide all four deliverables clearly labeled, and flag any caveats about
+  data size or costs the researcher should be aware of before running these commands.'
+target_skills:
+- roda-open-data
+domain: unknown
+difficulty: easy

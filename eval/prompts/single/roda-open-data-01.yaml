@@ -1,0 +1,40 @@
+id: roda-open-data-01
+prompt: 'A genomics researcher at a fictional biotech company called HelixCore Diagnostics
+  needs to incorporate population-level variant frequency data into their rare disease
+  pipeline. They''ve heard that gnomAD (Genome Aggregation Database) is available
+  as a public dataset on AWS and want to avoid downloading the entire dataset to their
+  local servers.
+
+
+  The researcher has the following specific requirements:
+
+  - They need gnomAD genome variant data (not exome) for chromosome 17, specifically
+  the region spanning genes **BRCA1** and **BRCA2** (approximately chr17:43,000,000–43,200,000
+  and chr13:32,300,000–32,400,000 respectively)
+
+  - They want to understand the dataset''s license terms before using it in a commercial
+  diagnostic product
+
+  - They need to know whether the bucket requires requester pays or allows anonymous
+  access
+
+  - Their pipeline runs on EC2 instances in **us-east-1**
+
+
+  Please provide the following deliverables:
+
+  1. The exact S3 bucket path and URI for the gnomAD dataset as listed in the Registry
+  of Open Data on AWS
+
+  2. The access method (requester pays vs. no-sign-request) and the precise `aws s3`
+  or `aws s3api` CLI command to list the top-level contents of the gnomAD bucket
+
+  3. A ready-to-run `aws s3 cp` or `aws s3 sync` command to pull only the gnomAD v3.1
+  genome VCF (or BGZF) file for chromosome 17
+
+  4. A one-paragraph summary of the dataset''s license and any restrictions relevant
+  to commercial diagnostic use'
+target_skills:
+- roda-open-data
+domain: unknown
+difficulty: easy
