@@ -18,13 +18,13 @@ open eval/results/review.html
 
 > ⚠️ **Cost & Time Estimate**
 >
-> A full eval run (410 prompts × 2 conditions + 410 pairwise judgments) costs **~$126** on-demand:
+> A full eval run (497 prompts × 2 conditions + 497 pairwise judgments) costs **~$153** on-demand:
 >
 > | Phase | Model | Estimated Cost |
 > |-------|-------|---------------|
-> | Execution (820 calls) | Claude Sonnet 4.6 — $3/1M input, $15/1M output | ~$60 |
-> | Judging (410 calls) | Claude Opus 4.7 — $15/1M input, $75/1M output | ~$66 |
-> | **Total** | | **~$126** |
+> | Execution (994 calls) | Claude Sonnet 4.6 — $3/1M input, $15/1M output | ~$73 |
+> | Judging (497 calls) | Claude Opus 4.7 — $15/1M input, $75/1M output | ~$80 |
+> | **Total** | | **~$153** |
 >
 > Wall time: ~4 hours at `--parallel 2`. Costs vary with prompt complexity and response length.
 
@@ -49,8 +49,8 @@ eval/
 ├── build_review.py         # Generates interactive HTML review
 ├── generate_prompts.py     # One-time prompt generation from skill metadata
 ├── config.yaml             # Eval configuration (judge model, timeouts)
-├── prompts/                # Version-controlled test prompts (410 total)
-│   ├── single/             # 380 prompts (10 per skill × 38 skills)
+├── prompts/                # Version-controlled test prompts (497 total)
+│   ├── single/             # 464 prompts (10 per skill × 43 skills + extras)
 │   └── cross/              # 30 prompts (10 per combo × 3 combos)
 ├── results/                # Output (gitignored)
 │   ├── responses/          # Cached agent responses
@@ -121,7 +121,7 @@ The eval suite includes 30 cross-skill prompts (10 per category × 3 categories)
 | `pharma-rwd-clinical` | pharmacoepidemiology + rwd-cohort-analysis + clinical-data-standards | Target trial emulation with claims data and MedDRA coding |
 | `genomics-variant-pipeline` | genomic-variant-interpretation + variant-calling + ngs-quality-control | ACMG classification of a variant discovered via GATK pipeline |
 
-Cross-skill prompts live in `eval/prompts/cross/` (e.g., `drug-discovery-structural-01.yaml`). In eval reports, they appear as 3 additional entries alongside the 38 single-skill entries, bringing the total to 41 rows. They should be interpreted as "cross-skill" category results, not as standalone skill evaluations.
+Cross-skill prompts live in `eval/prompts/cross/` (e.g., `drug-discovery-structural-01.yaml`). In eval reports, they appear as 3 additional entries alongside the 43 single-skill entries, bringing the total to 46 rows. They should be interpreted as "cross-skill" category results, not as standalone skill evaluations.
 
 ## Running an Evaluation
 
@@ -133,7 +133,7 @@ python -m eval.run --parallel 2 --version v9 --pairwise \
 ```
 
 This will:
-1. Execute all 410 prompts under both conditions (baseline = bare agent, skills = agent with AgentSkills plugin)
+1. Execute all 497 prompts under both conditions (baseline = bare agent, skills = agent with AgentSkills plugin)
 2. Score all 820 responses via the configured Bedrock judge model (pairwise)
 3. Generate `report_v9.md` and `scores_v9.json`
 
@@ -172,7 +172,7 @@ Requires kiro-cli installed and authenticated. The agent config is auto-created 
 
 ## Running eval for a single skill
 
-Evaluation is **optional** for contributors (see [CONTRIBUTING.md](../CONTRIBUTING.md) step 8) — maintainers may run their own evaluation during review if you skip it. If you'd like to measure your skill's impact before opening a PR, run a scoped evaluation against only that skill's prompts. This is not a replacement for the full 410-prompt suite (which remains the statistical-power standard for repo-wide validation), but it gives an indicative smoke-test signal at minimal cost.
+Evaluation is **optional** for contributors (see [CONTRIBUTING.md](../CONTRIBUTING.md) step 8) — maintainers may run their own evaluation during review if you skip it. If you'd like to measure your skill's impact before opening a PR, run a scoped evaluation against only that skill's prompts. This is not a replacement for the full 497-prompt suite (which remains the statistical-power standard for repo-wide validation), but it gives an indicative smoke-test signal at minimal cost.
 
 **How it works:** `--prompts-dir` tells the runner where to find prompt YAML files. The loader scans `<dir>/single/*.yaml` and `<dir>/cross/*.yaml`. By creating a temporary directory containing only your target skill's prompt files, you scope execution to just those prompts.
 
@@ -204,14 +204,14 @@ open eval/results/review.html
 
 At n=30 prompts, a single-skill run evaluates 30 prompts × 2 conditions = 60 executions + 30 pairwise judgments. This costs roughly **~$9** and takes **~30 minutes** at `--parallel 2`.
 
-> **Note:** n=30 is the recommended minimum for a contributor smoke test with some statistical signal. The full 410-prompt suite (10 prompts/skill × 38 skills + cross-skill combos) remains required for repo-wide, statistically meaningful conclusions.
+> **Note:** n=30 is the recommended minimum for a contributor smoke test with some statistical signal. The full 497-prompt suite (10 prompts/skill × 43 skills + cross-skill combos) remains required for repo-wide, statistically meaningful conclusions.
 
 ## Regenerating Prompts
 
 Prompts are version-controlled and don't need regeneration. To regenerate:
 
 ```bash
-# Regenerate all prompts (38 skills + 3 cross-skill combos) at the standard 10/skill
+# Regenerate all prompts (43 skills + 3 cross-skill combos) at the standard 10/skill
 python eval/generate_prompts.py --force
 
 # Generate 30 prompts for a single (typically new) skill
@@ -272,12 +272,4 @@ The `execution.kiro_cmd` and `execution.skills_agent` fields are only used by th
 
 **Truncated responses.** When an execution response hits the output token ceiling, `execute.py` preserves the partial text behind a `[TRUNCATED]` marker and sets `metadata["truncated"] = True` rather than discarding it. `run.py` guards `[TRUNCATED]` responses out of judging alongside `[TIMEOUT]`/`[ERROR]`: they score zero on every dimension and are never rescored (so a later re-judge pass skips them too). A run with many truncations is scoring fewer valid prompts than it appears to — re-run it with a higher `--max-tokens` rather than trusting the result.
 
-## Running the tests
 
-`eval/tests/` holds 18 unit tests (no AWS or network calls). Run them with:
-
-```bash
-python -m pytest eval/tests -p no:cacheprovider -p no:asyncio -q
-```
-
-The `-p no:asyncio` / `-p no:cacheprovider` flags sidestep a local `pytest_asyncio` collection error. CI runs the same suite via [`.github/workflows/eval-tests.yml`](../.github/workflows/eval-tests.yml).

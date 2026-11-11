@@ -267,6 +267,13 @@ def main():
                                                 temperature=judge_temperature)
                         entry[cond] = {d: scores.get(d, 0) for d in DIMENSIONS}
                         entry[cond + "_reasoning"] = scores.get("reasoning", "")
+                        # Mirror the pairwise fail-loudly pattern: if the judge
+                        # returned an error marker, flag the ENTIRE prompt as
+                        # dropped rather than recording spurious all-zero scores
+                        # that would render as a win for the other condition.
+                        if scores.get("judge_error"):
+                            entry["dropped"] = True
+                            entry["drop_reason"] = "judge_error"
             scored.append(entry)
             print(f"  Scored {pid}")
 

@@ -219,7 +219,8 @@ def score_response(
                         scores[d] = 0
                 return scores
             return {d: 0 for d in DIMENSIONS} | {
-                "reasoning": "Failed to parse judge response"
+                "reasoning": "Failed to parse judge response",
+                "judge_error": True,
             }
         except Exception as e:
             if attempt < retries - 1 and any(
@@ -227,4 +228,4 @@ def score_response(
             ):
                 time.sleep(2**attempt)
                 continue
-            return {d: 0 for d in DIMENSIONS} | {"reasoning": f"Judge error: {e}"}
+            return {d: 0 for d in DIMENSIONS} | {"reasoning": f"Judge error: {e}", "judge_error": True}
