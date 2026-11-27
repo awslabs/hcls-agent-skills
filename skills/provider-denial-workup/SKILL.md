@@ -80,8 +80,8 @@ Map the CARC (Claim Adjustment Reason Code) to one of five denial categories:
 
 | Category | Typical CARC Codes | Root Cause |
 |---|---|---|
-| Medical necessity | CO-50, CO-56, CO-57 | Service not deemed necessary per payer criteria |
-| Authorization / referral | CO-4, CO-15, CO-197 | Missing, expired, or wrong-provider authorization |
+| Medical necessity | CO-50, CO-56 | Service not deemed necessary per payer criteria |
+| Authorization / referral | CO-15, CO-197 | Missing, expired, or wrong-provider authorization |
 | Benefit exclusion | CO-96, PR-204 | Service not covered under the patient's plan |
 | Timely filing | CO-29 | Claim submitted outside the payer's filing window |
 | Documentation / coding error | CO-16, CO-252, CO-4, CO-11 | Missing info, wrong code, or incomplete submission |
@@ -104,14 +104,14 @@ Is the denial category "benefit exclusion" (CO-96, PR-204)?
     │   │   ├─ YES, and records were not submitted → PEND (gather and resubmit)
     │   │   ├─ YES, and records were submitted → OVERTURN (documentation gap, not clinical gap)
     │   │   └─ NO → ADVISE (criteria not met; escalate to peer-to-peer or clinical review)
-    ├─ Authorization (CO-4, CO-197)?
+    ├─ Authorization (CO-15, CO-197)?
     │   ├─ Was auth obtained but submitted incorrectly? → PEND (correct and resubmit)
     │   ├─ Was auth never obtained? → ADVISE (retroactive auth rarely granted)
     │   └─ Was auth obtained for wrong provider / wrong service? → OVERTURN if payer error
     ├─ Timely filing (CO-29)?
     │   ├─ Was the claim submitted on time? → OVERTURN (provide proof of timely submission)
     │   └─ Was the claim late? → ACCEPT unless payer-side delay is documented
-    └─ Documentation / coding (CO-16, CO-252)?
+    └─ Documentation / coding (CO-16, CO-252, CO-4, CO-11)?
         ├─ Is the missing info available? → PEND (correct and resubmit or provide addendum)
         └─ Is the code wrong? → PEND (correct claim resubmission)
 ```
@@ -280,14 +280,13 @@ If no MCP tool is available, reason from the remittance information the user pro
 
 | CARC | Description | Default Posture |
 |---|---|---|
-| CO-4 | Authorization required | PEND or OVERTURN (if auth exists) |
+| CO-4 | Procedure code inconsistent with modifier | PEND (correct claim) |
 | CO-11 | Diagnosis inconsistent with procedure | PEND (correct claim) |
 | CO-15 | Authorization number invalid | PEND (obtain correct auth number) |
 | CO-16 | Claim lacks information | PEND (resubmit with missing info) |
 | CO-29 | Timely filing expired | OVERTURN (if proof of timely filing exists) or ACCEPT |
 | CO-50 | Non-covered / not medically necessary | OVERTURN or ADVISE |
 | CO-56 | Not medically necessary | OVERTURN or ADVISE |
-| CO-57 | Denied: not consistent with payer guidelines | OVERTURN or ADVISE |
 | CO-96 | Non-covered charge | ACCEPT (or argue misclassification) |
 | CO-97 | Bundled / included in another service | PEND (correct coding) |
 | CO-197 | Precertification absent | PEND (retroactive auth) or ADVISE |

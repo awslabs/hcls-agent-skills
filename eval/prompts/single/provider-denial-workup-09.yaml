@@ -1,6 +1,6 @@
 id: provider-denial-workup-09
 prompt: 'A hospital submitted a claim for inpatient admission following an emergent
-  appendectomy. The payer denied the inpatient claim with CARC CO-4 and downgraded
+  appendectomy. The payer denied the inpatient claim with CARC CO-50 and downgraded
   it to observation status, resulting in a $12,400 payment reduction. The denial
   letter states: "Medical necessity for inpatient level of care not established.
   Clinical criteria support outpatient/observation status."

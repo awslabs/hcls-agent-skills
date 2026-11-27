@@ -1,6 +1,6 @@
 id: provider-denial-workup-14
 prompt: 'A payer denied a claim for CPT 99223 (high-complexity hospital initial visit)
-  with CARC CO-4: "Service requires prior authorization." The denial was received
+  with CARC CO-197: "Service requires prior authorization." The denial was received
   60 days after the date of service. The hospitalist group did not obtain prior
   authorization because their understanding was that inpatient admissions for emergent
   conditions do not require PA under the patient''s plan.
