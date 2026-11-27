@@ -3,7 +3,7 @@ prompt: 'A revenue cycle director wants to implement a denial prevention program
   Her team analyzed last quarter''s denials and found the following top five denial
   categories by dollar volume:
 
-  1. CO-4 / CO-197 (missing authorization): 34% of denied dollars
+  1. CO-197 (missing authorization): 34% of denied dollars
   2. CO-50 (medical necessity): 28% of denied dollars
   3. CO-16 (missing information): 18% of denied dollars
   4. CO-29 (timely filing): 12% of denied dollars
